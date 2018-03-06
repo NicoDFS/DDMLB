@@ -1,0 +1,4 @@
+[11-Jul-2017 09:00:09 UTC] PHP Fatal error:  Class 'Facebook\GraphObject' not found in /home/draftdaily/public_html/library/Engine/Facebook/Facebook/GraphSessionInfo.php on line 33
+[11-Jul-2017 15:26:08 UTC] PHP Fatal error:  Class 'Facebook\FacebookRequestException' not found in /home/draftdaily/public_html/library/Engine/Facebook/Facebook/FacebookThrottleException.php on line 31
+[11-Jul-2017 16:11:30 UTC] PHP Fatal error:  Class 'Facebook\FacebookRequestException' not found in /home/draftdaily/public_html/library/Engine/Facebook/Facebook/FacebookPermissionException.php on line 31
+[11-Jul-2017 17:49:52 UTC] PHP Fatal error:  Class 'Facebook\FacebookRequestException' not found in /home/draftdaily/public_html/library/Engine/Facebook/Facebook/FacebookAuthorizationException.php on line 31

@@ -1,0 +1,6 @@
+[10-Jul-2017 14:05:07 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/ProgressBar/Exception.php on line 25
+[10-Jul-2017 14:05:07 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/ProgressBar/Exception.php on line 25
+[10-Jul-2017 20:34:49 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/ProgressBar/Exception.php on line 25
+[10-Jul-2017 20:34:49 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/ProgressBar/Exception.php on line 25
+[11-Jul-2017 04:46:39 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/ProgressBar/Exception.php on line 25
+[11-Jul-2017 04:46:39 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/ProgressBar/Exception.php on line 25

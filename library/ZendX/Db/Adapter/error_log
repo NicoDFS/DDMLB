@@ -1,0 +1,2 @@
+[10-Jul-2017 23:06:22 UTC] PHP Warning:  require_once(Zend/Db/Adapter/Abstract.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/ZendX/Db/Adapter/Firebird.php on line 26
+[10-Jul-2017 23:06:22 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Db/Adapter/Abstract.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/ZendX/Db/Adapter/Firebird.php on line 26

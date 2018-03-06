@@ -1,0 +1,4 @@
+[07-Jul-2017 18:32:42 UTC] PHP Warning:  require_once(Zend/Crypt/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Crypt/Rsa/Exception.php on line 26
+[07-Jul-2017 18:32:42 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Crypt/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Crypt/Rsa/Exception.php on line 26
+[08-Jul-2017 19:49:59 UTC] PHP Warning:  require_once(Zend/Crypt/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Crypt/Rsa/Exception.php on line 26
+[08-Jul-2017 19:49:59 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Crypt/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Crypt/Rsa/Exception.php on line 26

@@ -1,0 +1,6 @@
+[10-Jul-2017 00:27:48 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Wildfire/Exception.php on line 24
+[10-Jul-2017 00:27:48 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Wildfire/Exception.php on line 24
+[10-Jul-2017 09:06:41 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Wildfire/Exception.php on line 24
+[10-Jul-2017 09:06:41 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Wildfire/Exception.php on line 24
+[11-Jul-2017 12:39:37 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Wildfire/Exception.php on line 24
+[11-Jul-2017 12:39:37 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Wildfire/Exception.php on line 24

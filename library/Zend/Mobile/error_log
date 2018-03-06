@@ -1,0 +1,8 @@
+[09-Jul-2017 19:09:59 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[09-Jul-2017 19:09:59 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[10-Jul-2017 05:38:04 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[10-Jul-2017 05:38:04 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[10-Jul-2017 14:12:41 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[10-Jul-2017 14:12:41 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[11-Jul-2017 09:37:59 UTC] PHP Warning:  require_once(Zend/Exception.php): failed to open stream: No such file or directory in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
+[11-Jul-2017 09:37:59 UTC] PHP Fatal error:  require_once(): Failed opening required 'Zend/Exception.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/draftdaily/public_html/library/Zend/Mobile/Exception.php on line 23
