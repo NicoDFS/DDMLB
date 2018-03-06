@@ -1,0 +1,256 @@
+<style>.help-block {    margin-left: 0%;    color: #f85425 !important;    text-align: left;}</style><div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="tab1a">
+					<h1 id="headerTitle">Withdrawal Request</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container margin-40">
+
+    <div class="row">
+		
+		<div class="btn-pref btn-group btn-group-1 btn-group-justified btn-group-lg" role="group" aria-label="...">
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="favorites" class="btn btn-default btn-1" href="/account">
+					<div class="hidden-xs-1">My <br />Account</div>
+				</a>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<button type="button" id="stars" class="btn btn-1 active" href="#withdrawal" data-toggle="tab">
+					<div class="hidden-xs-1"> <br />Withdrawal</div>
+				</button>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="following" class="btn btn-default btn-1" href="/transaction">
+					<div class="hidden-xs-1">Account <br /> History</div>
+				</a>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="following" class="btn btn-default btn-1" href="/deposit">
+					<div class="hidden-xs-1"> <br />Deposit</div>
+				</a>
+			</div>
+		</div>
+	  
+		<div class="well bg-image-1">
+			<div class="tab-content">
+				
+				
+				<div class="tab-pane fade in active" id="withdrawal">
+					<div class="row mr-15-right-left">
+						<div class="bg-image-2">
+							<div class="">
+								<h3>Withdrawal Form</h3>
+								<div class="row mr-15-right-left">
+									<div class="col-md-6 col-sm-6 pd-15">
+										<div class="row mr-15-right-left">
+											<div class="col-md-6 col-sm-6 pd-15  col-md-offset-3"> 
+											
+												
+												<a href="javascript:void(0);"><img class="btc-pd" src="assets/draftdaily/img/logo/btcsmall.png" alt="bitcoin.png" /> </a>
+												
+												<div class="row mr-15-right-left">
+													<div class="col-md-8 col-sm-8 col-xs-8 pd-15">
+														<p class="font-medium">DFSCoin Balance :</p>
+													</div>
+													<div class="col-md-4 col-sm-4 col-xs-4 pd-15">
+														<p class="font-medium pull-right"><?php echo ($this->userAccountDetails['balance_amt']>0)?$this->userAccountDetails['balance_amt']:'0.00';?></p>
+													</div>
+												</div>
+												
+												<div class="row mr-15-right-left">
+													<div class="col-md-8 col-sm-8 col-xs-8 pd-15">
+														<p class="font-medium">Available for Withdrawal :</p>
+													</div>
+													
+													<div class="col-md-4 col-sm-4 col-xs-4 pd-15">
+														<p class="font-medium pull-right"><?php echo ($this->userAccountDetails['balance_amt']>0)?$this->userAccountDetails['balance_amt']:'0.00';?>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<form method="POST" id="withdrawl" name ="withdrawl" action="">
+										<div class="col-md-6 col-sm-6 ">
+											<div class="form-group">
+												<div class="input-group col-xs-12">
+													<input type="text" placeholder="Amount" name="amount" class="form-control">
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<div class="input-group col-xs-12">
+													<input type="text" placeholder="DFSCoin Wallet Address" name="dfs_address" value="<?php echo $this->userAccountDetails['wallet_address'];?>" class="form-control" disabled /><?php if(empty($this->userAccountDetails['wallet_address'])){?> <a style="float:right;color:#ED9C28;cursor: pointer;"  href="/account">Update Wallet Address</a><?php } ?>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<div class="input-group col-xs-12">
+													<input type="text" placeholder="Security Code" name="secure_code" id="secure_code" class="form-control">
+												</div>
+												<div style="text-align:left;" class="input-group col-xs-12">
+													<?php if (isset($this->success)) { ?> 
+												
+														<div class="opennotificationGreen" style="background-color:#66B45E; height: 40px; padding: 3%; margin-top: 7%; text-align: center;" align="left" >
+														
+															<p><font face="verdana" color="black">Successfully withdrawn !</font></p>
+															
+														</div>
+														
+													<?php } else if (isset($this->message)) { ?>
+													
+														<span style="color:red;"><?php echo ($this->message); ?></span>
+														
+													<?php } ?>
+													<span id="response"></span>
+												</div>
+												<span class="done pull-left"> 
+													<a id="proceed" href="javascript:void(0);"><button class="btn-success btn-lg btn3d margin-10px" name="submitbtn">Done</button></a>
+												</span> 
+												
+												<span class="block text-right">
+													<a id="getcode" title="Click here to get new security code" style="float:right ; color:#ED9C28; cursor: pointer;">get security code</a>
+												</span> 
+												
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row mr-15-right-left">
+						<div class="bg-image-4">
+						<p class="font-medium-a">Withdrawal to your off site DFSCoin Wallet or participating exchange.</p>
+						<p class="font-medium-a">For additional security, all withdrawals are manually reviewed by our support team.</p>
+						<p class="font-medium-a">Bonus coins are not eligible for withdrawal you must first trade them for FPP.</p>
+						<p class="font-medium-a">If you have any issues us, please notify <a href="javascript:void(0);">support@draftdaily.com</a> and we will respond within 12 hours</p>
+						</div>
+					</div>
+				</div>
+				
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    
+   $(document.body).on('click','#getcode',function(){
+       $.ajax({
+            url      : '/withdraw-ajax-handler',
+            type     : 'POST',
+            dataType : 'json',
+            data     : {
+                method : 'getcode'
+            },
+            success  : function(response){ 
+                if(response.code == 200){
+                    $('#response').css('color','#f85425');
+                    $('#response').html(response.message);
+                }else if(response.code == 198){
+					$('#response').css('color','red');
+                    $('#response').html(response.message);
+				}
+            }
+        });
+	});
+   
+    $(document.body).on('click','#proceed',function(e){
+        e.preventDefault();
+        var inputcode =  $( "#secure_code" ).val();
+        
+        if(inputcode!=""){
+            $.ajax({
+                url      : '/withdraw-ajax-handler',
+                type     : 'POST',
+                dataType : 'json',
+                data     : {
+                    method : 'validatecode',
+                    inputcode : inputcode
+                },
+                success  : function(response){					console.log(response);
+                    if(response.code == 200){
+                        $('#response').css('color','none');
+                        $('#response').html('');
+                        $('#withdrawl').closest('form').trigger('submit');
+                    }else if(response.code == 196){
+                        $('#response').css('color','#f85425');
+                        $('#response').html(response.message);
+                    }else if(response.code == 198){
+                        $('#response').css('color','#f85425');
+                        $('#response').html(response.message);
+                    }
+                }
+            });
+        }else{
+            alert('Please provide security code');
+        }
+       
+	});
+
+    
+        <?php if(isset($this->success)) { ?>
+               
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000); 
+        
+       
+		<?php } ?>
+				
+		<?php if(isset($this->message)) { ?>
+					   
+			$('.opennotificationGreen').fadeIn("slow");             
+			$('.opennotificationGreen').css('display','block');
+			
+			setTimeout(function() {
+				$('.opennotificationGreen').fadeOut("slow");
+				$('div').remove(".notification_msgGreen");
+			}, 3000); 
+				
+			   
+		<?php } ?>  
+    
+    
+    $(document).ready(function(){
+        $('#withdrawl').validate({
+            rules: {
+                amount:{
+                    required:true,
+                    regex:/^-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/
+                }, 
+                dfs_address: {
+                     required:true
+                }
+            },
+            messages:{               
+				amount:{
+					 required:"please enter the amount",
+					 regex:"please enter a valid amount"
+				},
+				dfs_address:{
+					 required:"please enter the DFSCoin address"
+				}
+			}
+		});
+    });
+    
+    
+</script>

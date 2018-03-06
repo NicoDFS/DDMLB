@@ -1,0 +1,1 @@
+[10-Jul-2017 22:13:10 UTC] PHP Fatal error:  Interface 'GuzzleHttp\Promise\PromisorInterface' not found in /home/draftdaily/public_html/vendor/guzzlehttp/guzzle/src/Pool.php on line 20

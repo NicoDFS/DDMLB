@@ -1,0 +1,422 @@
+    <section class="relative">
+        <div class="bg-top-pos">
+            <img src="<?php echo $this->baseUrl() . $this->theme_base_path;?>/images/headerBg.png" class="" width="100%" height="100%">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center black-transparent paddingTB-sm m-top-lg">
+                        <h2 class="text-white no-margin">DAILY FANTASY LEAGUE RULES</h2>
+                    </div>
+                    <div class="black-transparent padding-md m-top-sm">
+                        <ul class="nav nav-tabs tab-menu ">
+                            <li class="<?php if($this->id == 'mlb'){ echo "active"; } ?>"><a  href="mlb">MLB</a></li>
+                            <li class="<?php if($this->id == 'nfl'){ echo "active"; } ?>"><a href="nfl">NFL</a></li>
+                            <li class="<?php if($this->id == 'nhl'){ echo "active"; } ?>" ><a  href="nhl">NHL</a></li>
+                            <li class="<?php if($this->id == 'nba'){ echo "active"; } ?>" ><a  href="nba">NBA</a></li>
+                        </ul>
+                        <div class="tab-content clear-both">
+                            <div id="mlb" <?php if($this->id == 'mlb'){ echo 'class=" tab-pane active"'; } else{ echo 'class="tab-pane"';} ?>>
+                                <div class="padding-sm">
+                                    <p class="text-white">The MBL daily fantasy sports contests of DraftDaily are held on daily basis when it is the MLB regular season.
+                            When more than two MLB games are occurring then the fantasy contests takes place in playoffs.</p>
+
+                        <h4 class="text-blue text-uppercase">Contest Arrangement: Salary Cap</h4>
+
+                        <h5 class="text-orange text-uppercase m-top-md">Rules of fantasy Sport Contest</h5>
+                        <p class="text-white">The following are the rules that every team has to abide by when in the game:</p>
+
+                        <ul class="how-to-play">
+                            <li><span class="text-white">To draft the entire fantasy baseball team of 10 players, every team will have a predetermined salary cap of 55000 DFS.</span></li>
+                            <li><span class="text-white">The draft pool players include all those MLB players that are qualified to play on the given day. Once the contests are offered for the day, DraftDaily will not add any more players to the list or make any salary updates.</span></li>
+                            <li><span class="text-white">The total points scored by the player roster of the team owner will result into declaring the contest results and winners.</span></li>
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">TEAM ROSTERS</h5>
+                        <p class="text-white">The team rosters shall comprise of the following:</p>
+                        <ul class="how-to-play">
+                            <li><span class="text-white">There should be 10 players among which the hitters should be from no less than 3 different MLB teams.</span></li>
+                            <li><span class="text-white">The positions of the 10 rosters are P, P, C, 1B/DH, 2B, 3B, SS, OF, OF, OF.</span></li>
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">SCORING TABLE</h5>
+                        <p class="text-white">Each team will earn points in the following format:</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                        How hitters score points:<br>
+                                Single = +3 Pts<br>
+                                Double = +5 Pts<br>
+                                Triple = +8 Pts<br>
+                                Home = +10 Pts<br>
+                                RBI and Runs = +2 Pts.<br>
+                                Base on balls (Walk) = +2 Pts<br>
+                                Stolen base = +5 Pts.<br>
+                                Sacrifice Fly = +1 Pts<br>
+                                Strike Out = -2 Pts
+                                    </span></li>
+
+                                </ul>
+
+
+
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                        How pitchers score points:<br>
+                                        Inning is pitched = +2.25 Pts<br>
+                                        Strike out = +2 Pts<br>
+                                        Win = +4 Pts<br>
+                                        Start = +1 Pt<br>
+                                        Quality Start = +2.5 Pts<br>
+                                        Earned run allowed = -2 Pts<br>
+                                        Hits= -1 Pts<br>
+                                        Walk = - 0.6 Pts<br>
+                                        Home Run = -3 Pts
+                                    </span></li>
+
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                        *NOTE: One thing to note is that pitching statistics for the hitters will not be counted and vice-versa.
+                                    </span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-white">
+                            <h4 class="text-blue">OTHER RULES</h4>
+
+                            <h5 class="text-uppercase bold">ELIGIBLE FOR POSITIONS</h5>
+                            <p>DraftDaily has the sole discretion to determine all the positions for the daily contests.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">TRADE, BENCH PLAYERS AND FREE AGENTS</h5>
+                            <p>According to the format of daily fantasy baseball format, players are selected for a single series of games that often last for that day. In such case, you don’t need to be a wiser chaser in order to pick up players or fret about free agent pickups, trade players or bench players involved in the contest.</p>
+
+
+                            <h5 class="text-uppercase bold m-top-sm">GAME POSTPONEMENTS AND CANCELLATIONS</h5>
+                            <p>The players, who were supposedly going to play in the preempted, postponed or cancelled games will receive no points.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">SHORTENED OR SUSPENDED GAMES</h5>
+                            <p>According to the fantasy baseball format, any points or stats made by the players after the game has been suspended will not be included once the game resumes. Instead, the stats generated by the players till the suspended game, will be taken into consideration.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm"> DOUBLE HEADERS</h5>
+                            <p>The contests hosted on DraftDaily are based on the dates and starting time of the live MLB games. If the player is playing in a doubleheader, then the points and stats will not be combined into an individual score. When a doubleheader is scheduled then the DratOff can single handedly list either game or both the games. If the doubleheader is postponed game then DraftDaily doesn’t have the liberty to separately list the doubleheader games, instead the original scheduled games are used at the time of scoring. This is because the DraftDaily contest has already been created for the given MLB game and the team owners may have formed lineups according to the original game schedule.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">DEADLINE OF ROSTER</h5>
+                            <p>One minute prior to the first game going live, the DraftDaily’s contest automatically gets locked. The players are allowed to amend their lineups as many times they want before the game gets locked. All the players will be locked once the MBL game goes live and the contest is locked.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">LIVE SCORING TABLE</h5>
+                            <p>The live scoring and the rankings offered by the baseball contests are stringently for the fun of the DraftDaily customers. These scores are not official and are just for information purposes. The official results will be declared after the contest concludes. Once the contest status becomes ‘Completed’, you shall know that the official scores have been revealed as the game moves from being live to complete on the My Contests page. The live scores are calculated by using the usual league points system.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">REVISION IN THE SCORES</h5>
+                            <p>Our stats provider for DraftDaily provides the live score of each game. Once the game is finished, DraftDaily gets a final box score that is used to calculate the results of each contest. However the scores will be revised occasionally once the final box score has been released.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">PAYOUTS</h5>
+                            <p>To ensure that the final results are precise, DraftDaily waits for the final box scores that have been reported for each contest’s games. Our stats provider occasionally revises the final box scores to publish correct scores during the live games. In this case, the payout will be based on the final box score and not those published during the live games. If the scores are revised after the final box scores are published then the payouts will not be amended.</p>
+
+                        </div>
+                                </div>
+                            </div>
+                            <div id="nfl"  <?php if($this->id == 'nfl'){ echo 'class=" tab-pane active"'; } else{ echo 'class="tab-pane"';} ?>>
+                          
+                                       <div class="padding-sm">
+                                    <p class="text-white">The Weekly Fantasy Sports Contest hosted on DraftDaily are played every day of the NFL regular season and when two games are played on the same day, then it is played it playoffs.</p>
+
+                        <h4 class="text-blue text-uppercase">Contest Arrangement: Salary Cap</h4>
+
+                        <h5 class="text-orange text-uppercase m-top-md">CONTEST RULES</h5>
+                        <p class="text-white">The rules for the NFL contests are:</p>
+
+                        <ul class="how-to-play">
+                            <li><span class="text-white">A predetermined salary cap of $55000 will be assigned to the players in the entire 9-player roster.</span></li>
+                            <li><span class="text-white">The player pool includes all those participants that are competing in the NFL games and are eligible for given DraftDaily contest. Once the DraftDaily contest starts for the day, no missing player can be added and the salaries will also not change.</span></li>
+                            <li><span class="text-white">The winnings and results will be declared on the basis of the customer�s 9 player roster points.</span></li>
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">TEAM ROSTERS</h5>
+                        <p class="text-white">The NFL team comprises of the following players:</p>
+                        <ul class="how-to-play">
+                            <li><span class="text-white">The rosters shall include 9 players among which players must belong to 2 different NFL teams and represent no less than 2 different football games.</span></li>
+                            <li><span class="text-white">The roster positions are � QB, RB1, RB2, WR1, WR2, TE, FLEX (RB/WR/TE), K and DST.</span></li>
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">SCORING TABLE</h5>
+                        <p class="text-white">The scores are awarded in the following manner:</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                          Scoring of Offensive Players �<br>
+
+    Passing TD will get you 4 points and 25 passing yards gets you 1 point. More than 300 yard passing game gets you 3 points where as interception loses you 1 point. 10 rushing yards will give the player 1 point, rushing TD will get him 6 points and more than 100 yard rushing game will get him 3 points. 10 receiving yards and reception get you 1 point. More than 100 yard receiving games gets you 3 points and receiving TD and Punt/Kickoff return for TD get you 6 points respectively. Fumble lost loses you 1 point and 2 point conversion (run, pass or catch) gets you 2 points.
+
+                                    </span></li>
+
+                                </ul>
+
+
+
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                        The special or defense teams get rewarded as �
+
+    sack earns you 1 point whereas interception, fumble recovery and blocked kicked earn you 2 point respectively. The kickoff return TD, Punt Return TD, interception return TD, fumble recovery TD earns you 6 points respectively. For blocked punt or FG Return TD, safety and Blocked Kick you earn 6 points and 2 points respectively. Points allowed occurring in 0, 1 to 6, 7 to 13, 14 to 20, 21 to 27, and 28 to 34 and above 35 earn you 10, 7, 4, 1, 0, -1 and -4 points respectively.
+                                    </span></li>
+
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                            The Defense or Special Teams allow the following scoring plays:<br>
+                                            
+    Passing TDs, Rushing TDs, Kick Return TDs,Punt Return TDs and Blocked Punt TDs.
+    2 point conversions
+    Extra points
+    Field goals</span></li>
+    <li><span class="text-white" >Kickers gets points as follows �<br>
+
+    for every extra point they get 1 point, for field goal 0 to 39 yards they get 3 points, for field goal 40 to 49 yards they get 4 points and for field goal above 50 yards they get 5 points.
+</span></li>
+
+                                    </span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-white">
+                            <h4 class="text-blue">ADDITIONAL RULES</h4>
+
+                            <h5 class="text-uppercase bold">ELIGIBLE FOR POSITIONS</h5>
+                            <p>DraftDaily determine the positions for the daily contests. The players will be given positions according to their routine positions determined by GOALSERVE. There are players who play multiple positions but then the positions that are mentioned on DraftDaily list can only be used.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">TRADE, BENCH PLAYERS AND FREE AGENTS</h5>
+                            <p>There is no trading of players or free agent pick-ups or bench players involved in the game as you select the players for a single series event..</p>
+
+
+                            <h5 class="text-uppercase bold m-top-sm">GAME POSTPONEMENTS AND CANCELLATIONS</h5>
+                            <p>No points are awarded to any players who participate in the preempted, postponed or cancelled game.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">SHORTENED OR SUSPENDED GAMES</h5>
+                            <p>DraftDaily makes use of the NFL statistics given by GOALSERVE and comprises of all the games that the NFL deems to be complete and official. If the games have been declared as �suspended� by the NFL then the statistics generated on the game played will be taken into consideration.</p>
+
+                         
+                            <h5 class="text-uppercase bold m-top-sm">Roster Deadlines</h5>
+                            <p>The contests will close automatically 5 minutes prior to the first game. You are allowed to edit the roster as many times before the contest is locked. Once locked, you can make no changes.
+</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">Live Scoring</h5>
+                            <p>The football contests that provide live feeding of the game are strictly for the fun of the DraftDaily customers. These scores are not official in any way as the official scores are posted when the game is concluded. Once the contest status becomes �Completed�, you shall know that the official scores have been revealed as the game moves from being live to complete on the My Contests page. The live scores are calculated by using the usual league points system.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">REVISION IN THE SCORES</h5>
+                            <p>GOALSERVE, the stats provider of DraftDaily provides the live score of each game. Once the game is finished, DraftDaily gets a final box score that is used to calculate the results of each contest. However the scores will be revised occasionally once the final box score has been released.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">PAYOUTS</h5>
+                            <p>To ensure that the final results are precise, DraftDaily waits for the final box scores that have been reported for each contest�s games. GoalServe occasionally revises the final box scores to publish correct scores during the live games. In this case, the payout will be based on the final box score and not those published during the live games. If the scores are revised after the final box scores are published then the payouts will not be amended.</p>
+
+                        </div>
+                                </div>
+                              
+                            </div>
+                            <div id="nhl" <?php if($this->id == 'nhl'){ echo 'class=" tab-pane active"'; } else{ echo 'class="tab-pane"';} ?>>
+                                    <div class="padding-sm">
+                                    <p class="text-white">The NHL daily fantasy sports contests of DraftDaily are held on daily basis when it is the NHL regular season. When more than two NHL games are occurring then the fantasy contests takes place in playoffs.</p>
+
+                        <h4 class="text-blue text-uppercase">Contest Arrangement: Salary Cap</h4>
+
+                        <h5 class="text-orange text-uppercase m-top-md">CONTEST RULES</h5>
+                        <ul class="how-to-play">
+                            
+
+    <li><span class="text-white">A predetermined salary cap of 55000 DFS is assigned to every participant to draft their tem of 9 rosters.</span></li>
+    <li><span class="text-white">The draft pool players include all those NHL players that are qualified to play on the given day. Once the contests are offered for the day, DraftDaily will not add any more players to the list or make any salary updates.</span></li>
+    <li><span class="text-white">The total points scored by the player roster of the team owner will result into declaring the contest results and winners.</span></li>
+  </ul>
+
+
+                        <h5 class="text-orange m-top-md">TEAM ROSTERS</h5>
+                        <p class="text-white">The  team roasters shall comprises of the following:</p>
+                        <ul class="how-to-play">
+    <li><span class="text-white">There should be 9 players among which players should be from no less than 3 different NHL teams and represent 2 real life NHL games.</span></li>
+    <li><span class="text-white">The positions of the 9 rosters are LW, RW, C, D, D, UTIL, UTIL, UTIL and G.</span></li>
+    <li><span class="text-white"> UTIL positions can be taken by any skater (LW, RW, C or D) but not the goalies.</span></li>
+
+                        
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">SCORING TABLE</h5>
+                        <p class="text-white">The following is how the team earns points:</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                            The following is how the team earns points:<br>
+                          for a goal the team earns 3 points and for assist it earns 2 points. Shot on goal gets them .3 points and blocked shot gets then .5 points. A penalty minute will get them .1 point and shorthanded point bonus will get them 1 point. Shootout goal and hat trick bonus gets them .2 and 1.5 points respectively.
+
+                                    </span></li>
+
+                                </ul>
+
+
+
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li><span class="text-white">
+                                        Goalies receive points in the following manner �
+
+    a win gets them 3 points and a save gets then .2 points. Goal against loses them 1 point where as shutout bonus gets them 2 points.
+
+                                    </span></li>
+
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                    <li>
+                                        <span class="text-white"> Goalies will earn points for all the stats they accrue including assists and goals. If the entire game is completed with 0 goals allowed in regulation plus overtime, then the golie shutout bonus is awarded to them.</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-white">
+                            <h4 class="text-blue">ADDITIONAL RULES</h4>
+
+                            <h5 class="text-uppercase bold">ELIGIBLE FOR POSITIONS</h5>
+                            <p>DraftDaily determine the positions for the daily contests.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">TRADE, BENCH PLAYERS AND FREE AGENTS</h5>
+                            <p>There is no trading of players or free agent pick-ups or bench players involved in the game as you select the players for a single series event.</p>
+
+
+                            <h5 class="text-uppercase bold m-top-sm">GAME POSTPONEMENTS AND CANCELLATIONS</h5>
+                            <p>No points are awarded to any players who participate in the preempted, postponed or cancelled game.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">SHORTENED OR SUSPENDED GAMES</h5>
+                            <p>DraftDaily makes use of the NHL statistics given by GOALSERVE and comprises of all the games that the NHL deems to be complete and official. If the games have been declared as �suspended� by the NHL then the statistics generated on the game played will be taken into consideration.</p>
+
+                         
+                            <h5 class="text-uppercase bold m-top-sm">Roster Deadlines</h5>
+                            <p>The contests will close automatically 1 minute prior to the first game being live. You are allowed to edit the roster as many times before the contest is locked. Once locked, you can make no changes. 
+</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">Live Scoring</h5>
+                            <p>The NHL hockey contests that provide live feeding of the game are strictly for the fun of the DraftDaily customers. These scores are not official in any way as the official scores are posted when the game is concluded. Once the contest status becomes �Completed�, you shall know that the official scores have been revealed as the game moves from being live to complete on the My Contests page. The live scores are calculated by using the usual league points system.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">REVISION IN THE SCORES</h5>
+                            <p>GOALSERVE, the stats provider of DraftDaily provides the live score of each game. Once the game is finished, DraftDaily gets a final box score that is used to calculate the results of each contest. However the scores will be revised occasionally once the final box score has been released. </p>
+
+                            <h5 class="text-uppercase bold m-top-sm">PAYOUTS</h5>
+                            <p>To ensure that the final results are precise, DraftDaily waits for the final box scores that have been reported for each contest�s games. GoalServe occasionally revises the final box scores to publish correct scores during the live games. In this case, the payout will be based on the final box score and not those published during the live games. If the scores are revised after the final box scores are published then the payouts will not be amended. </p>
+
+                        </div>
+                                </div>
+                            </div>
+                            <div  <div id="nba" <?php if($this->id == 'nba'){ echo 'class=" tab-pane active"'; } else{ echo 'class="tab-pane"';} ?>>
+                                   <div class="padding-sm">
+                                    <p class="text-white">To ensure that the final results are precise, DraftDaily waits for the final box scores that have been reported for each contest�s games. GoalServe occasionally revises the final box scores to publish correct scores during the live games. In this case, the payout will be based on the final box score and not those published during the live games. If the scores are revised after the final box scores are published then the payouts will not be amended.</p>
+
+                        <h4 class="text-blue text-uppercase">Contest Arrangement: Salary Cap</h4>
+
+                        <h5 class="text-orange text-uppercase m-top-md">CONTEST RULES</h5>
+                        <p class="text-white">Rules of the Fantasy Sports Contest</p>
+<p class="text-white">The following are the rules that every team has to abide by when in the game:</p>
+                        <ul class="how-to-play">
+                             <li><span class="text-white">To draft the entire fantasy basketball team of 8 players, every team will have a predetermined salary cap of 55000 DFS.</span></li>
+                             <li><span class="text-white">The draft pool players include all those NBA players that are qualified to play on the given day. Once the contests are offered for the day, DraftDaily will not add any more players to the list or make any salary updates.en DraftDaily contest. Once the DraftDaily contest starts for the day, no missing player can be added and the salaries will also not change.</span></li>
+                             <li><span class="text-white">The total points scored by the player roster of the team owner will result into declaring the contest results and winners.</span></li>
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">TEAM ROSTERS</h5>
+                        <p class="text-white">The team shall include the following:</p>
+                        <ul class="how-to-play">
+                            <li><span class="text-white">They shall consists 8 players among which atleast 2 need to be from different NBA teams and represent atleast 2 real-life NBA games.</span></li>
+                            <li><span class="text-white">The positions of the 8 rosters are � PG, SG, SF, PF, C, G, F, and UTIL.</span></li>
+                        </ul>
+
+
+                        <h5 class="text-orange m-top-md">SCORING TABLE</h5>
+                        <p class="text-white">The scores are awarded in the following manner:</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ul class="how-to-play">
+                                   <span class="text-white">
+                                       The scoring table goes as follows:<br></span>
+
+                         <li><span class="text-white">The players gain points as follows � <br>
+
+    for a point they get 1 point, for 3 pointer shots they get .5 points, for rebound they get 1.25 points, for assist they get 1.5 points, for steal they get 2 points, for block 2 points and for turnover they lose .5 points. Double-double earns them 1.5 points and triple double earns them 3 points.
+
+
+                                    </span></li>
+
+                                </ul>
+
+
+
+                            </div>
+                          
+                        
+                        </div>
+
+                        <div class="text-white">
+                            <h4 class="text-blue">ADDITIONAL RULES</h4>
+
+                            <h5 class="text-uppercase bold">ELIGIBLE FOR POSITIONS</h5>
+                            <p>DraftDaily has the sole discretion to determine all the positions for the daily contests.
+</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">TRADE, BENCH PLAYERS AND FREE AGENTS</h5>
+                            <p>you are not allowed to make any trade between the basketball players, or make any pick-ups or use bench players.</p>
+
+
+                            <h5 class="text-uppercase bold m-top-sm">GAME POSTPONEMENTS AND CANCELLATIONS</h5>
+                            <p>The players, who were supposedly going to play in the preempted, postponed or cancelled games will receive no points.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">SHORTENED OR SUSPENDED GAMES</h5>
+                            <p>According to the fantasy basketball format, any points or stats made by the players after the game has been suspended will not be included once the game resumes. Instead, the stats generated by the players till the suspended game, will be taken into consideration. DraftDaily makes use of the official NBA stats offered by the GOALSERVE.</p>
+
+                         
+                            <h5 class="text-uppercase bold m-top-sm">Roster Deadlines</h5>
+                            <p>Five minute prior to the first game going live, the DraftDaily�s contest automatically gets locked. The players are allowed to amend their lineups as many times they want before the game gets locked. All the players will be locked once the NBA game goes live and the contest is locked.
+</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">Live Scoring</h5>
+                            <p>The live scoring and the rankings offered by the basketball contests are stringently for the fun of the DraftDaily customers. These scores are not official and are just for information purposes. The official results will be declared after the contest concludes. Once the contest status becomes �Completed�, you shall know that the official scores have been revealed as the game moves from being live to complete on the My Contests page. The live scores are calculated by using the usual league points system.</p>
+
+                            <h5 class="text-uppercase bold m-top-sm">REVISION IN THE SCORES</h5>
+                            <p>GOALSERVE, the stats provider of DraftDaily provides the live score of each game. Once the game is finished, DraftDaily gets a final box score that is used to calculate the results of each contest. However the scores will be revised occasionally once the final box score has been released. </p>
+
+                            <h5 class="text-uppercase bold m-top-sm">PAYOUTS</h5>
+                            <p>GOALSERVE, the stats provider of DraftDaily provides the live score of each game. Once the game is finished, DraftDaily gets a final box score that is used to calculate the results of each contest. However the scores will be revised occasionally once the final box score has been released. </p>
+
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>

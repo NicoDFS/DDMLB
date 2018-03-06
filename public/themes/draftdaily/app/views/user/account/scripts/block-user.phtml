@@ -1,0 +1,88 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 id="acnt">My Account</h4>
+    </div>
+    <div class="panel-heading">
+        <h5 id="acnt">Blocked Users</h5>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">        
+            <form method="POST" class="blockuser">  
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>ABOUT BLOCKING USERS</strong></p>
+                <p>You are allowed to block a maximum of three players from joining your public or private Head-to-head Challenges within an entry fee of $215 or less. This will also block Head-to-Head Challenge requests and you will never be auto-matched with these users in Head-to-Head Challenges at that entry range. However, we will not block or limit other types of contests.</p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>BLOCK ANOTHER USER</strong></p>
+               
+                <input type="text" name="username" placeholder="Username" class="form-control"><br>
+               <?php if(isset($this->required)){  ?>
+                <p style="color: red;"><?php echo $this->required; ?></p>
+              <?php } ?>
+                <button type="submit" name="block" value="block" class="btn btn-info">BLOCK</button>
+
+<!--/**
+    * Developer     : Nikhil Aggarwal   
+    * Date          : 04/09/2014
+    * Description   : Showing error message when user give null value in input box
+    **/
+//    -------------------------------------------------------------------------------------->
+                
+            </div>
+            <div class="col-md-4">
+              
+                <p><strong>BLOCKED USERS</strong></p>
+                 <?php if(!isset($this->blocked)){ ?>
+                <p>You have not blocked any Users</p>
+                 <?php } ?>
+                <?php if(isset($this->blocked)){  foreach ($this->blocked as $blockeduser){ ?>
+                <p><input type="checkbox" id="blockuser[]"  name="blockuser[]" value="<?php echo $blockeduser['user_name']; ?>"/><?php echo $blockeduser['user_name']; ?></p>               
+                <?php }  ?>
+                 <p><button type="submit"  id="block" name="block" value="unblock" class="btn btn-info">UNBLOCK</button></p>
+                <?php } ?>
+                 <?php  if(isset($this->message)){  ?>
+                <p style="color:#ff6c00; font-weight: bold;"><?php echo $this->message; ?></p>
+              <?php } ?>
+            </div>
+        </div>
+             </form>
+            </div>
+</div>
+    </div>
+<script>
+    
+  $(document.body).on('click','#block',function(){        
+//      $('#checkbox[]')
+        if($('input[name="blockuser[]"]:checked').length<=0)
+    {
+        alert("Please Select atleast one checkbox");
+        return false;
+    }
+//        alert('Please select at least one Referral by clicking on the checkboxes');
+    });
+
+$( document ).ready(function(){
+//       console.log('test');
+        $('.blockuser').validate({
+     
+            rules: {
+               username: {
+//                      required: true,  
+//                      regex: /^[a-z0-9]+$/i
+                }
+              
+            },
+            messages: {
+                username: {
+//                    required: "Username is the required Field",
+//                    regex: "Invalid Username"
+                
+                }
+            
+            }
+        });
+        
+    });
+
+</script>

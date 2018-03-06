@@ -1,0 +1,25 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4>NEWS</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+    <?php if (isset($this->parsedata)):  foreach ($this->parsedata as $key=> $data):  ?> 
+
+            <div class="col-sm-6 col-md-11 news_thumb" id="<?php echo $key; ?>">
+
+                <div class="caption">
+
+                    <a href="<?= $data['link']; ?>" target="_"><h5><strong><?= $data['title']; ?></strong> <span>- <?php echo date('d/m/Y',  strtotime($data['pubDate'])) ?></span> <span><?php echo date('H:i a',  strtotime($data['pubDate'])) ?></span></h5></a>
+                    <p class="news-desc"><?= $data['description']; ?></p>
+
+                </div>
+            </div>
+        <?php endforeach;
+    endif;
+    ?>
+</div>
+    </div>
+</div>
+
+

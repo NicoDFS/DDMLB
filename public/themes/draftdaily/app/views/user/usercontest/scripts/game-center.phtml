@@ -1,0 +1,831 @@
+<?php
+if (isset($this->lineup)) {
+    $data = $this->lineup;
+}
+?>
+
+	<div class="container mar-top">
+		<div class="row">
+			<div class="heading text-center">
+				<h1>GAMECENTER</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container margin-40">
+		<div class="row">
+			<div class="well bg-image-1">
+				<div class="bg-image-2">
+					<div class="row mr-15-right-left">
+						<div class="col-md-8 col-sm-8 col-xs-12 pd-15-15-none">
+							<h3 class="pull-left"><?php echo $data['contest_name']; ?></h3>
+						</div>
+						
+						<div class="col-md-4 col-sm-4 col-xs-12 pd-15-15-none">
+							<h4 class="text-right">Prize Pool : <?php echo $data['prize_pool']; ?> DFS</h4>
+						</div>
+						
+					</div>
+					
+					<div class="row mr-15-right-left">
+						<div class="row scor-bg-color box-pd">
+							<ul class="list-inline text-uppercase text-white">
+								<li class="col-md-4 col-sm-4 col-xs-12">Start Time : <span class="bg_res"><?php echo $data['start_time']; ?></span></li>
+								<li class="col-md-2 col-sm-2 col-xs-6">SPORTS:<span class="bg_res">
+									<?php
+										if (isset($data['sports_id'])) {
+											switch ($data['sports_id']) {
+												case 1: echo 'NFL';
+													break;
+												case 2 : echo 'MLB';
+													break;
+												case 3 : echo 'NBA';
+													break;
+												case 4 : echo 'NHL';
+													break;
+											}
+										}                             
+									?></span>
+								</li>
+							
+								<li class="col-md-2 col-sm-2 col-xs-6">TEAMS : <span class="bg_res"><?php echo count($this->standings); ?></span></li>
+								<li class="col-md-2 col-sm-2 col-xs-6">STATUS : <span class="bg_res">
+										<?php
+											switch ($data['con_status']) {
+												case 1 : echo "COMPLETED";
+													break;
+												case 2 : echo "LIVE";
+													break;
+											}
+										?></span>
+								</li>
+							
+								<li class="col-md-2 col-sm-2 col-xs-6">Positions : <span class="bg_res"><?php echo count($this->standings); ?></span></li>
+							</ul>
+						</div>
+					</div>
+          
+          
+					<div class="row mr-15-right-left">
+          
+          
+						<div class="bs-example">
+						
+							<ul class="nav nav-tabs" id="myTab">
+								<li class="active">
+								<a class="btn-success btn-lg-lg-a btn3d text-uppercase" data-toggle="tab" href="#view">view</a></li>
+								<li><a class="btn-success btn-lg-lg-a btn3d text-uppercase" data-toggle="tab" href="#h2h">H2H</a></li>
+							</ul>
+							
+							<div class="tab-content" id="myTabContent">
+								<div id="view" class="tab-pane fade in active">
+									<div class="row">
+										<div  class="col-md-5">
+											<div class="row scor-bg-color">
+												<h4 class="pull-left margin-20 text-uppercase">Quick View</h4>
+											</div>
+											
+											<div class="row mr-15-right-left">
+												<table id="table" class="table flip-table header-img">
+													<thead>
+														<tr>
+															<th><span class="tb-head">FPTS : <?php echo $data['players_points']; ?></span></th>
+														</tr>
+													</thead>
+													<tbody>
+													
+													</tbody>
+												</table>
+											</div>
+											
+											<div class="row scor-bg-color">
+												<h4 class="pull-left margin-20 text-uppercase">STANDINGS</h4>
+											</div>
+											
+											<div class="card card-a card-ba">
+												<div class="tab-content">
+													<table class="footable score-board">
+														<thead>
+															<tr class="header-img">
+																<th class="footable-first-column">RANK</th>
+																<th data-class="expand">TEAM-NAME </th>
+																
+																<th>FPTS</th>
+															</tr>
+														</thead>
+														
+														<tbody class="user_name">
+															<?php
+															if (isset($this->standings)) {
+																foreach ($this->standings as $value) {
+																	?>
+																	<tr> 
+																		<td><?php
+																			if (isset($value['con_rank'])) {
+																				echo $value['con_rank'];
+																			} else {
+																				echo "N/A";
+																			}
+																			?></td> 
+																		<?php if ($this->session->storage->user_id === $value['created_by']) { ?>
+																			<td><a href="javascript:void(0);" class="standing text-green-light" data-lid="<?php echo $value['user_lineup_id']; ?>" data-uid="<?php echo $value['created_by'] ?>" > <?php echo $value['user_name']; ?> </a></td>
+																		<?php } else { ?>
+																			<td><a href="javascript:void(0);" class="standing text-green-light" data-lid="<?php echo $value['user_lineup_id']; ?>" data-uid="<?php echo $value['created_by'] ?>" >  <?php echo $value['user_name']; ?> </a></td>
+																		<?php } ?>
+																		
+																		<td><?php
+																			if (isset($value['players_points'])) {
+																				echo $value['players_points'];
+																			} else {
+																				echo "--";
+																			}
+																			?></td> 
+																	</tr> 
+																	<?php
+																}
+															}
+															?>
+														</tbody>
+													</table>
+												</div>
+											</div>
+		
+										</div>
+										
+										<div  class="col-md-7">
+										<div class="row scor-bg-color">
+												<h4 class="pull-left margin-20">LIVE SCORINGS</h4>
+												<h4 class="pull-right margin-20 text-uppercase">RANK: <span class="rank"><?php echo $data['con_rank']; ?></span> <span class="m-right-lg pull-right">&nbsp; TEAM: <span class="name"> <?php echo $data['user_name'] ?> </span></span></h4>
+											</div>
+											
+											<div class="card card-a">
+												<div class="tab-content-1a">
+													<table class="footable score-board">
+														<thead>
+															<tr class="header-img">
+																<th class="footable-first-column">POS</th>
+																<th data-class="expand">NAME</th>
+																<th>SCORINGS</th>
+																<th>FPTS</th>
+															</tr>
+														</thead>
+														
+														<tbody class="live-score">
+
+															<?php
+															if (isset($this->live_scorings)) {
+																foreach ($this->live_scorings as $live_scorings) {
+																	?>
+
+																	<tr>
+																	
+																		<td class="text-left"><?php echo $live_scorings['position']; ?> </td>
+																		
+																		<td class="text-left"><a href="javascript:void(0);" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $live_scorings['id']; ?>"><?php echo $live_scorings['name']; ?></a></td>
+
+
+																		<td class="text-left">
+																			<?php
+																			if (isset($live_scorings['score'])) {
+																				foreach ($live_scorings['score'] as $key => $value) {
+																					echo $value . ' ' . $key . ', ';
+																				}
+																			}
+																			?> 
+																		</td>
+																		
+																		<td class="text-left"><?php
+																			if (isset($live_scorings['point'])) {
+																				echo $live_scorings['point'];
+																			} else {
+																				echo "--";
+																			}
+																			?>
+																		</td>
+																		
+																	</tr>
+																	<?php
+																}
+															}
+															?>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											
+											<div class="text-white pull-right"> 
+												<strong>TOTAL FANTASY POINTS:<span class="total"><?php echo $data['players_points']; ?></span></strong> 
+											</div>
+											
+											<div class="pull-left"> <a class="text-orange-light" href="#" ><?php
+												if (isset($data['sports_id'])) {
+													switch ($data['sports_id']) {
+														case 1:
+															?>
+															<a class="twitter-timeline" target="_blank" href="https://twitter.com/hashtag/NFL" data-widget-id="542656314074075136">#NFL Tweets</a>
+															<script>!function(d, s, id) {
+																	var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+																	if (!d.getElementById(id)) {
+																		js = d.createElement(s);
+																		js.id = id;
+																		js.src = p + "://platform.twitter.com/widgets.js";
+																		fjs.parentNode.insertBefore(js, fjs);
+																	}
+																}(document, "script", "twitter-wjs");</script>
+															<?php
+															break;
+														case 2 :
+															?>
+															<a class="twitter-timeline" target="_blank" href="https://twitter.com/hashtag/MLB" data-widget-id="542656077183979522">#MLB Tweets</a>
+															<script>!function(d, s, id) {
+																	var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+																	if (!d.getElementById(id)) {
+																		js = d.createElement(s);
+																		js.id = id;
+																		js.src = p + "://platform.twitter.com/widgets.js";
+																		fjs.parentNode.insertBefore(js, fjs);
+																	}
+																}(document, "script", "twitter-wjs");</script>
+															<?php
+															break;
+														case 3 :
+															?>
+															<a class="twitter-timeline"  target="_blank" href="https://twitter.com/hashtag/NBA" data-widget-id="542651675966578688">#NBA Tweets</a>
+															<script>!function(d, s, id) {
+																	var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+																	if (!d.getElementById(id)) {
+																		js = d.createElement(s);
+																		js.id = id;
+																		js.src = p + "://platform.twitter.com/widgets.js";
+																		fjs.parentNode.insertBefore(js, fjs);
+																	}
+																}(document, "script", "twitter-wjs");</script>
+
+															<?php
+															break;
+														case 4 :
+															?>
+															<a class="twitter-timeline" target="_blank" href="https://twitter.com/hashtag/NHL" data-widget-id="542655765668851712">#NHL Tweets</a>
+															<script>!function(d, s, id) {
+																	var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+																	if (!d.getElementById(id)) {
+																		js = d.createElement(s);
+																		js.id = id;
+																		js.src = p + "://platform.twitter.com/widgets.js";
+																		fjs.parentNode.insertBefore(js, fjs);
+																	}
+																}(document, "script", "twitter-wjs");</script>
+
+
+															<?php
+															break;
+														}
+													}                              
+												?></a> 
+											</div>
+										</div>
+									</div>	
+								</div>
+								
+								
+								<div id="h2h" class="tab-pane fade">
+									<div class="panel-body">
+										<div class="row bg-black mr-15-right-left">
+											<div class="col-md-5 col-sm-5 col-xs-12 pd-15">
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="well prdtbg width100 pad-8 text-center bg-dark2a">
+														<label><?php echo $data['user_name'] ?></label>
+														<div class="black-rounded"><?php echo $data['players_points']; ?></div>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="well prdtbg width100 pad-8 text-center bg-dark2a">
+														<label>P</label>
+														<div class="black-rounded"><?php echo count($this->standings); ?></div>
+													</div>
+												</div>
+												
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="well prdtbg width100 pad-8 text-center bg-dark2a">
+													<label>YTP</label>
+													<div class="black-rounded user-ytp">0</div>
+													</div>
+												</div>
+												
+											</div>
+											
+											<div class="col-md-2 col-sm-2 col-xs-6 col-xs-offset-3 col-sm-offset-0">
+												<div class="well text-center bg-dark2a"> <img class="img-responsive" src="<?php echo $this->baseUrl() . $this->theme_base_path?>/images/logo.png" alt="logo.png"> </div>
+											</div>
+											
+											<div class="col-md-5 col-sm-5 col-xs-12 pd-15">
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="well prdtbg width100 pad-8 text-center bg-dark2a">
+													<label>YTP</label>
+													<div class="black-rounded rival-ytp">0</div>
+													</div>
+												</div>
+												
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="well prdtbg width100 pad-8 text-center bg-dark2a">
+														<label>P</label>
+														<div class="black-rounded"><?php echo count($this->standings); ?></div>
+													</div>
+												</div>
+												
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<div class="well prdtbg width100 pad-8 text-center bg-dark2a">
+														<label class="name"></label>
+														<div class="total black-rounded"></div>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="row">
+										<div  class="col-md-6">
+											<div class="row scor-bg-color">
+												<h4 class="pull-left margin-20">CURRENTLY AT POSITION <?php echo $data['con_rank']; ?></h4>
+												<h4 class="pull-right margin-20 text-uppercase">
+													<div class="at-position">
+														<select>
+															<option selected ><?php echo $data['user_name']; ?></option>
+														</select>
+														
+													</div>
+												</h4>
+											</div>
+											
+											<div class="card card-a">
+												<div class="tab-content-1a">
+													<table class="footable lobbyTable score-board">
+														<thead>
+															<tr class="header-img">
+																<th class="footable-first-column">POS</th>
+																<th data-class="expand">NAME</th>
+																<th>SCORINGS</th>
+																<th>FPTS</th>
+															</tr>
+														</thead>
+														<tbody id="user-live-score">
+															<?php  	
+															if (isset($this->live_scorings)) {
+																foreach ($this->live_scorings as $live_scorings) {
+																	?>
+
+																	<tr>
+																		<td class="text-left"><?php echo $live_scorings['position']; ?> </td>
+																		<td class="text-left"><a href="#" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $live_scorings['id']; ?>"><?php echo $live_scorings['name']; ?></a></td>
+																		<td class="text-left">
+																			<?php
+																			if (isset($live_scorings['score'])) {
+																				foreach ($live_scorings['score'] as $key => $value) {
+							
+																					echo $value . ' ' . $key . ', ';
+							
+																				}
+																			}
+																			?>
+																		</td>
+																		<td class="text-left"><?php
+																			if (isset($live_scorings['point'])) {
+																				echo $live_scorings['point'];
+																			} else {
+																				echo "--";
+																			}
+																			?></td>
+																	</tr>
+
+																	<?php
+																}
+															}
+															?>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="text-white pull-right"> <strong>TOTAL FANTASY POINTS: <span id="usertotal1"><?php echo $data['players_points']; ?></span></strong> </div>
+										</div>
+										
+										<div  class="col-md-6">
+											<div class="row scor-bg-color">
+												<h4 class="pull-left margin-20"><span class="pull-left">CURRENTLY AT POSITION &nbsp;</span><span class="rank pull-left"></span></h4>
+												<h4 class="pull-right margin-20 text-uppercase">
+													<div class="at-position"> 
+														<a href="<?php echo $this->baseUrl() . "/new-contest/1" ?>"><button class="btn-success btn-lg-lg btn3d">Rematch</button></a>
+														<select id="h2h_stand">
+															<option class="h2h_standing" data-lid="0" data-uid="0"> SELECT USER </option>
+															<?php foreach ($this->standings as $value) { ?>
+																<option  class="h2h_standing" data-lid="<?php echo $value['user_lineup_id']; ?>" data-uid="<?php echo $value['created_by'] ?>"> <?php echo $value['user_name']; ?> </option>
+															<?php } ?>
+
+														</select>
+													</div>
+												</h4>
+										  </div>
+										  
+											<div class="card card-a">
+												<div class="tab-content-1a">
+													<table class="footable lobbyTable score-board">
+														<thead>
+															<tr class="header-img">
+																<th class="footable-first-column">POS</th>
+																<th data-class="expand">NAME</th>
+																<th>SCORINGS</th>
+																<th>FPTS</th>
+															</tr>
+														</thead>
+														<tbody class="live-score">
+															<tr>
+																<td></td>
+																
+																<td></td>
+																<td></td>
+																<td></td>
+															</tr>
+														</tbody>
+												
+													</table>
+												</div>
+											</div>
+											<div class="text-white pull-right"> <strong>TOTAL FANTASY POINTS:<span class="total"></span></strong> </div>
+											
+										</div>
+										
+									</div>
+
+								</div>
+							</div>
+						</div>
+			  
+			  
+					</div>
+			 
+				</div>
+			</div>
+		</div>
+	</div>
+  
+	<input type="hidden" name="lineup-id" id="lineup" value="<?php echo $this->lineup['user_lineup_id']; ?>" />
+	<input type="hidden" name="contest-id" id="contestID" value="<?php echo $this->lineup['contest_id']; ?>" />
+	<input type="hidden" name="con_status" id="con_status" value="<?php echo $data['con_status']; ?>" />
+	<input type="hidden" name="user-lid" id="user-lid" value="<?php echo $this->lineup['user_lineup_id']; ?>" />
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        (function getLiveFeed() {
+            
+            var lineupId = $('#lineup').val();
+            var contestId = $('#contestID').val();
+            var conStatId = $('#con_status').val(); 
+            
+            if (conStatId == 2) {
+                $.ajax({
+                    Type: "POST",
+                    url: '/game-center-ajax',
+                    dataType: 'json',
+                    data: {
+                        method: 'liveFeed',
+                        lid: lineupId,
+                        cid: contestId
+                    },
+                    success: function(response) {
+                        var point = '--';
+                        var score;
+                        var escore;
+                        
+                        $('.name').html(response.lineup.user_name);
+                        $('.rank').html(response.lineup.con_rank);
+                        $('.total').html(response.lineup.players_points);
+                        $('.live-score >tr').hide();
+                        $('.rival-ytp').html(response.yettoplay);
+                        
+                        $.each(response.data, function(index, value) {
+                            
+                            point = '--';
+                            if (typeof (value.point) !== 'undefined' && (value.point) !== null) {
+                                point = value.point;
+                            }
+                            
+                            if (typeof (value.score) !== 'undefined' && (value.score) !== null) {
+                                score = value.score;
+                                escore = "";
+                                $.each(score, function(sindex, svalue) {
+                                    escore += String(svalue) + " " + String(sindex) + ", ";
+                                });
+
+                            } else {
+                                
+                                escore = '--';
+                                
+                            }
+                            
+                            escore = escore.slice(0, -1);
+                            
+                            $('.live-score').append('<tr><td>' + value.position + '</td><td><a href="javascript:void(0);" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="' + value.id + '">' + value.name + '</a></td><td>' + escore + '</td><td>' + point + '</td></tr>');
+                            
+                        });
+                        
+                        $('.user_name').html('');
+                        
+                        var user_ID = <?php echo $this->session->storage->user_id; ?>;
+
+                        $.each(response.standings, function(index, value) {
+
+                            if (user_ID == value.created_by) {
+                                
+                                $('.user_name').append('<tr><td>' + value.con_rank + '</td><td><a  href="javascript:void(0);" class="text-green-light standing" data-lid="' + value.user_lineup_id + '"data-uid="' + value.created_by + '">' + value.user_name + '</a></td><td>' + value.players_points + '</td></tr>');
+                            } else {
+                                
+                                $('.user_name').append('<tr><td>' + value.con_rank + '</td><td><a href="javascript:void(0);" class="text-green-light standing" data-lid="' + value.user_lineup_id + '"data-uid="' + value.created_by + '">' + value.user_name + '</a></td><td>' + value.players_points + '</td></tr>');
+                            }
+                        });
+                    },
+                    
+                    complete: function() {
+                        
+                        // Schedule the next request when the current one's complete
+                        setTimeout(getLiveFeed, 1500);
+                        
+                    }
+                    
+                });
+            }
+        })();
+
+
+        $(document.body).on('click', '#h2h', function() {
+            
+            var lineupId = $('.h2h_standing').attr('data-lid');
+            var userName = $('.h2h_standing').html();
+            var user = $('.h2h_standing').attr('data-uid');
+            
+            $('#lineup').val(lineupId);
+            
+            if (lineupId != "") {
+                $.ajax({
+                    Type: "POST",
+                    url: '/game-center-ajax',
+                    dataType: 'json',
+                    data: {
+                        method: 'eachlineup',
+                        lid: lineupId
+                    },
+                    success: function(response) {
+                        var point = '--';
+                        var score;
+                        var escore;
+                      
+                        $('.name').html(userName);
+                        $('.rank').html(response.lineup.con_rank);
+                        $('.total').html(response.lineup.players_points);
+                        $('.live-score >tr').hide();
+                        $('.rival-ytp').html(response.yettoplay)
+                        $.each(response.data, function(index, value) {
+
+                            point = '--';
+                            if (typeof (value.point) !== 'undefined'  && (value.point) !== null) {
+                                point = value.point;
+                            }
+                            if (typeof (value.score) !== 'undefined'  && (value.score) !== null) {
+                                score = value.score;
+                                escore = "";
+                                $.each(score, function(sindex, svalue) {
+                                    escore += String(svalue) + " " + String(sindex) + ", ";
+                                });
+
+                            } else {
+                                escore = '--';
+                            }
+                            console.log('test');
+                            escore = escore.slice(0, -1);
+                            $('.live-score').append('<tr><td>' + value.position + '</td><td><a  href="javascript:void(0);" class="text-green-light playerDetails" data-target="#playerDetailsModal" data-toggle="modal" data-pid="' + value.id + '">' + value.name + '</td><td>' + escore + '</td><td>' + point + '</td></tr>');
+                        });
+                    }
+                });
+            }
+        });
+
+
+        (function getuserLiveFeed() {
+            var lineupId = $('#user-lid').val();
+            var contestId = $('#contestID').val();
+            var conStatId = $('#con_status').val(); //console.log(conStatId);
+            if (conStatId == 2) {
+                $.ajax({
+                    Type: "POST",
+                    url: '/game-center-ajax',
+                    dataType: 'json',
+                    data: {
+                        method: 'liveFeed',
+                        lid: lineupId,
+                        cid: contestId
+                    },
+                    success: function(response) {
+                        var point = '--';
+                        var score;
+                        var escore;
+                        
+                        //  $('.name').html(response.lineup.user_name);
+                        //  $('.rank').html(response.lineup.rank);
+                        
+                        $('#usertotal').html(response.lineup.players_points);
+                        //  $('.live-score >tr').hide();
+                        $('.user-ytp').html(response.yettoplay);
+                        $('#user-live-score').html('');
+                        
+                        $.each(response.data, function(index, value) {
+                            
+                            point = '--';
+                            if (typeof (value.point) !== 'undefined' && (value.point) !== null) {
+                                point = value.point;
+                            }
+                            if (typeof (value.score) !== 'undefined' && (value.score) !== null) {
+                                score = value.score;
+                                escore = "";
+                                $.each(score, function(sindex, svalue) {
+                                    escore += String(svalue) + " " + String(sindex) + ", ";
+                                });
+
+                            } else {
+                                escore = '--';
+                            }
+                            
+                            escore = escore.slice(0, -1);
+                            $('#user-live-score').append('<tr><td>' + value.position + '</td><td><a href="javascript:void(0);" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="' + value.id + '">' + value.name + '</a></td><td>' + escore + '</td><td>' + point + '</td></tr>');
+                        });
+                        
+                        //  $('.user_name').html('');
+                        //  var user_ID = <?php echo $this->session->storage->user_id;        ?>;
+                        
+                        //   $.each(response.standings,function(index,value){ 
+                        
+                            //if(user_ID == value.created_by){
+                                //$('.user_name').append('<tr><td>'+value.rank+'</td><td><a style="color:#FF6B07 !important;" href="#" class="standing" data-lid="'+value.lineup_id+'"data-uid="'+ value.created_by+'">'+value.user_name+'</a></td><td>0</td><td>'+value.players_points+'</td></tr>');
+                            // }else{
+                                // $('.user_name').append('<tr><td>'+value.rank+'</td><td><a style=" color: #fff !important;" href="#" class="standing" data-lid="'+value.lineup_id+'"data-uid="'+value.created_by+'">'+value.user_name+'</a></td><td>0</td><td>'+value.players_points+'</td></tr>');    
+                        // }
+                        // });
+                    },
+                    
+                    complete: function() {
+                        // Schedule the next request when the current one's complete
+                        setTimeout(getuserLiveFeed, 5000);
+                    }
+                });
+            }
+        })();
+
+
+    });
+    $(document.body).on('click', '#h2h', function() {
+        $('.view').hide();
+        $('.head2head').show();
+    });
+
+    $(document.body).on('click', '#view', function() {
+        $('.view').show();
+        $('.head2head').hide();
+    });
+    
+    
+                           
+       /**
+        * Developer     : Vivek Chaudhari   
+        * Date          : 18/06/2014
+        * Description   : highlight table value if matched find rivel input field
+        */
+        $(document.body).on('keyup','#rival-input',function(){
+            var rival = $(this).val();
+           // rival = rival.toLowerCase();            
+                $(".standing").each(function(){
+                    $(this).parent().parent().hide();
+                    var row = $(this).text();
+                    
+                    //    row = row.toLowerCase();                        
+                        if(row.indexOf(rival) != -1){
+                            $(this).parent().parent().show();
+                        }
+                });
+                
+                $('.user_name').children().each(function(){
+                    var search = $(this).text(); 
+                    $(this).css('color','');
+                        if(rival!=''){
+                            if(search.indexOf(rival) != -1){
+                                $(this).css('color','yellow');
+                            }
+                        }
+                });
+        });
+        
+        
+        //    ======================================end filter view==============================================================
+/**
+    * Developer     : Vivek Chaudhari   
+    * Date          : 14/07/2014
+    * Description   : show standings in game-player section during contest result comparison (http://localhost.draftdaily.com/game-center/39#)
+    **/
+$(document).ready(function() {
+	
+    $(document.body).on('change','#h2h_stand',function(){
+		var lineupId  =  $('.h2h_standing').filter(":selected").attr('data-lid');  
+        var userName = $('.h2h_standing').filter(":selected").html();
+        var user = $('.h2h_standing').filter(":selected").attr('data-uid');
+        $('#lineup').val(lineupId);
+        
+        $.ajax({
+            Type        : "POST",
+            url         : '/game-center-ajax',
+            dataType    : 'json',
+            data        : { 
+                            method : 'eachlineup',
+                            lid : lineupId
+                        },
+            
+            success    : function(response){
+				console.log(response);
+				var point = '--';
+				var score;
+				var escore;
+				$('.name').html(userName);
+				$('.rank').html(response.lineup.con_rank);
+				$('.total').html(response.lineup.players_points);
+				$('.live-score >tr').hide();
+				
+				$.each(response.data,function(index,value){ 
+					point = '--';
+					if (typeof(value.point) !== 'undefined' && (value.point) !== null){
+						point = value.point;
+					}
+					if (typeof(value.score) !== 'undefined' && (value.score) !== null){
+						score = value.score;
+						escore = "";
+						$.each(score,function(sindex,svalue){
+							 escore += String(svalue)+" "+String(sindex)+", "; 
+						});
+						
+					}else{
+						escore = '--';
+					}
+					escore = escore.slice(0,-1);
+					$('.live-score').append('<tr><td>'+value.position+'</td><td><a href="javascript:void(0);" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="'+value.id+'">'+value.name+'</td><td>'+escore+'</td><td>'+point+'</td></tr>');
+				});
+			}
+		});
+	});
+     
+    $(document.body).on('click','.standing',function(){
+        var lineupId  =  $(this).attr('data-lid');  
+        var userName = $(this).html();
+        var user = $(this).attr('data-uid');
+        $('#lineup').val(lineupId);
+        
+        if(lineupId != "") {
+            
+            $.ajax({
+                Type        : "POST",
+                url         : '/game-center-ajax',
+                dataType    : 'json',
+                data        : { 
+                                method : 'eachlineup',
+                                lid : lineupId
+                            },
+                
+                success    : function(response){
+                    var point = '--';
+                    var score;
+                    var escore;
+                    $('.name').html(userName);
+                    $('.rank').html(response.lineup.con_rank);
+                    $('.total').html(response.lineup.players_points);
+                    $('.live-score >tr').hide();
+                    
+                        $.each(response.data,function(index,value){ 
+                            point = '--';
+                            if (typeof(value.point) !== 'undefined' && (value.point) !== null){
+                                point = value.point;
+                            }
+                            if (typeof(value.score) !== 'undefined' && (value.score) !== null){
+                                score = value.score;
+                                escore = "";
+                                $.each(score,function(sindex,svalue){
+                                     escore += String(svalue)+" "+String(sindex)+", "; 
+                                });
+                                
+                            }else{
+                                escore = '--';
+                            }
+                            escore = escore.slice(0,-1);
+                            $('.live-score').append('<tr><td>'+value.position+'</td><td><a class="playerDetails text-green-light" data-pid='+value.id+' data-toggle="modal" data-target="#playerDetailsModal" href="javascript:void(0);">'+value.name+'</a></td><td>'+escore+'</td><td>'+point+'</td></tr>');
+  
+                    });
+                }
+            });
+        }
+    });
+});
+</script>

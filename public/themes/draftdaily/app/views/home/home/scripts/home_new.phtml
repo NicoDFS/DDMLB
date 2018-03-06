@@ -1,0 +1,869 @@
+ <body class="">
+<!--Body Wrapper-->
+<div class="body-wrapper">
+	<header class="border-bot-gray5">
+    	<nav class="navbar no-m-bottom bg-dark1">
+          <div class="container">
+            <div class="navbar-header paddingTB-xs">
+              <button type="button" class="navbar-toggle collapsed pull-left m-left-md" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="text-white"><i class="fa fa-bars"></i></span>
+              </button>
+              <a href="#" class=""><img src="assets/images/logo.png" class="img-responsive center-block"></a>
+            </div>
+        
+            <div class="collapse navbar-collapse navbarMenu text-center" id="navbarMenu">
+              <ul class="nav navbar-nav paddingTB-xs">
+                <li class="active"><a href="#">Lobby</a></li>
+                <li><a href="#">My Lineups</a></li>
+                <li><a href="#">My Contests</a></li>
+                <li><a href="#">Promotions</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right paddingTB-xs">
+                    <li><a href="#"><span><i class="fa fa-gear"></i></span></a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right paddingTB-xs bg-dark2">
+                    <li><a href="#">My Account <span><i class="fa fa-chevron-down"></i></span></a></li>
+                    <li><a class="btn btn-green m-top-sm m-right-sm" href="#">SIGNUP</a></li>
+              </ul>
+              
+            </div>
+            
+          </div>
+        </nav>
+    </header>
+    
+    <section class="background-bg">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                	<div class="news-holder">
+                    	<div class="news-title">
+                            <span class="bold">News:</span>
+                        </div>
+                        <div class="news-content">
+                        	<marquee direction="left" onMouseOver="this.stop();" onMouseOut="this.start();">
+                            	<span class="bold"><a class="text-black" href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a></span>
+                            </marquee>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">	
+            	<div class="col-md-12">
+                	<div id="bannerSlider" class="owl-carousel owl-theme bannerSlider">
+ 
+                        <div class="item">
+                        	<img src="assets/images/slider-1.jpg" class="img-responsive slider-img" alt="" width="100%" height="100%">
+                        </div>
+                        <div class="item">
+                        	<img src="assets/images/slider-2.jpg" class="img-responsive slider-img" alt="" width="100%" height="100%">
+                        </div>
+                        <div class="item">
+                        	<img src="assets/images/slider-3.jpg" class="img-responsive slider-img" alt="" width="100%" height="100%">
+                        </div>
+                        
+                    </div>
+                    <div class="bannerNavigation">
+                    	<a id="prevBtn" class="cur-pointer prev"><span><i class="fa fa-2x fa-angle-left"></i></span></a>    	
+                        <a id="nextBtn" class="cur-pointer next"><span><i class="fa fa-2x fa-angle-right"></i></span></a>    	
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-md-12">
+                	<ul class="list-unstyled contestMenu">
+                    	<li class="col-sm-4"><a class="font-ste-bold" href="#">CREATE A LINEUP <span><img src="assets/images/right-arrow.png" class="square-18 top-m2px"></span></a></li>
+                        <li class="col-sm-4"><a class="font-ste-bold" href="#">CREATE A CONTEST <span> <img src="assets/images/right-arrow.png" class="square-18 top-m2px"></span></a></li>
+                        <li class="col-sm-4"><a class="font-ste-bold" href="#">REFER A FRIEND <span> <img src="assets/images/right-arrow.png" class="square-18 top-m2px"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-md-12">
+                	<div class="col-sm-4 bg-black">
+                    	<h5 class="opacity-zero hidden-xs">Dont Remove this line</h5>
+                    </div>
+                    <div class="col-sm-4 bg-black">
+                    	<h5 class="text-center font-MyriadPro-Regular text-yellow-light">ADVANCED FILTERS</h5>
+                    </div>
+                    <div class="col-sm-4 bg-black">
+                    	<h5 class="text-right font-MyriadPro-Regular text-green-light">CLEAR FILTERS <span><i class="fa fa-chevron-down"></i></span></h5>
+                    </div>
+                </div>
+            	
+            </div>
+            <div class="row">
+            	<div class="col-md-12">
+                	<div class="col-sm-4 bg-dark2 h-100">
+                    	<div class="">
+                        	<h4 class="text-center font-ste-regular text-yellow-light">START TIME</h4>
+                            <div class="row">
+                            	<div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="radio no-margin">
+                                            <input id="rd1" type="radio" name="sTime" value="">
+                                            <label for="rd1"><span class="top3px">ALL</span></label>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="radio no-margin">
+                                            <input id="rd2" type="radio" name="sTime" value="">
+                                            <label for="rd2"><span class="top3px">Next Start</span></label>
+                                        </div>
+                                    	
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="radio no-margin">
+                                            <input id="rd3" type="radio" name="sTime" value="">
+                                            <label for="rd3"><span class="top3px">Today</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            	
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 bg-dark1 h-100">
+                    	<div class="">
+                        	<h4 class="text-center font-ste-regular text-yellow-light">SIZES</h4>
+                            
+                            <div class="row">
+                            	<div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                        <div class="checkbox no-margin">
+                                            <input id="check1" type="checkbox" name="sizes" value="">
+                                            <label class="m-left-sm" for="check1"><span class="top3px">2</span></label>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check2" type="checkbox" name="sizes" value="">
+                                            <label class="m-left-sm" for="check2"><span class="top3px">3-6</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check3" type="checkbox" name="sizes" value="">
+                                            <label class="m-left-sm" for="check3"><span class="top3px">7-10</span></label>
+                                        </div>
+                                    	
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check4" type="checkbox" name="sizes" value="">
+                                            <label class="m-left-sm" for="check4"><span class="top3px">11-20</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check5" type="checkbox" name="sizes" value="">
+                                            <label class="m-left-sm" for="check5"><span class="top3px">21+</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            	
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-4 bg-dark2 h-100">
+                    	<div class="">
+                        	<h4 class="text-center font-ste-regular text-yellow-light">ENTRY FEE</h4>
+                            <div class="row">
+                            	<div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check6" type="checkbox" name="entryFee" value="">
+                                            <label class="m-left-sm" for="check6"><span class="top3px">Free</span></label>
+                                        </div>
+                                    	
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check7" type="checkbox" name="entryFee" value="">
+                                            <label class="m-left-sm" for="check7"><span class="top3px">$1-$5</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check8" type="checkbox" name="entryFee" value="">
+                                            <label class="m-left-sm" for="check8"><span class="top3px">$6-$20</span></label>
+                                        </div>
+                                    	
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check9" type="checkbox" name="entryFee" value="">
+                                            <label class="m-left-sm" for="check9"><span class="top3px">$21-$50</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check10" type="checkbox" name="entryFee" value="">
+                                            <label class="m-left-sm" for="check10"><span class="top3px">$51-$109</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                	<div class="form-group no-m-bottom">
+                                    	<div class="checkbox no-margin">
+                                            <input id="check11" type="checkbox" name="entryFee" value="check1">
+                                            <label class="m-left-sm" for="check11"><span class="top3px">$110+</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+            	<div class="col-md-12">
+                	<div class="row">
+                    	<div class="navbar-header paddingTB-xs">
+                          <button type="button" class="navbar-toggle collapsed pull-left m-left-md" data-toggle="collapse" data-target="#tabMenu" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="text-white"><i class="fa fa-bars"></i></span>
+                          </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="tabMenu">
+                            <ul class="nav nav-tabs nav-justified menuTabs">
+                                    <li class="text-center blue-grad">
+                                        <span class="block">
+                                            <label class="m-right-sm font-ste-medium hidden-sm hidden-md">SPORT</label>
+                                            <select class="font-ste-medium">
+                                                <option selected>NBA</option>
+                                                <option>MLB</option>
+                                                <option>NHL</option>
+                                                <option>NFL</option>
+                                            </select>
+                                        </span>
+                                    </li>
+                                    <li><a class="font-ste-medium" data-toggle="tab" href="#tab1">ALL</a></li>
+                                    <li><a class="font-ste-medium" data-toggle="tab" href="#tab2">HEAD-2-HEAD</a></li>
+                                    <li><a class="font-ste-medium" data-toggle="tab" href="#tab3">50-50</a></li>
+                                    <li><a class="font-ste-medium" data-toggle="tab" href="#tab4">LEAGUES</a></li>
+                                    <li class="active"><a class="font-ste-medium" data-toggle="tab" href="#tab5">MULTIPLIERS</a></li>
+                                    <li><a class="font-ste-medium" data-toggle="tab" href="#tab6">BIGINNER</a></li>
+                                    
+                                </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content">
+                    	<div id="tab1" class="tab-pane fade">
+                        	<div class="row m-bottom-md">
+                            	<div class="col-md-12">
+                                	<div class="table-responsive">
+                                    	<table class="table lobbyTable">
+                                        	<thead>
+                                            	<tr>
+                                                	<th><span>SPORT</span></th>
+                                                    <th><span>CONTEST</span></th>
+                                                    <th><span>ENTRIES</span></th>
+                                                    <th><span>ENTRY FEE</span></th>
+                                                    <th><span>PRIZE POOL</span></th>
+                                                    <th><span>LIVE IN</span></th>
+                                                    <th>NEXT CONTEST LIVE IN<br>
+                                                    	<div class="timer" id="hms">12:15:45</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab2" class="tab-pane fade">
+                        	<div class="row m-bottom-md">
+                            	<div class="col-md-12">
+                                	<div class="table-responsive">
+                                    	<table class="table lobbyTable">
+                                        	<thead>
+                                            	<tr>
+                                                	<th><span>SPORT</span></th>
+                                                    <th><span>CONTEST</span></th>
+                                                    <th><span>ENTRIES</span></th>
+                                                    <th><span>ENTRY FEE</span></th>
+                                                    <th><span>PRIZE POOL</span></th>
+                                                    <th><span>LIVE IN</span></th>
+                                                    <th>NEXT CONTEST LIVE IN<br>
+                                                    	<div class="timer" id="hms">12:15:45</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        	
+                        </div>
+                        <div id="tab3" class="tab-pane fade">
+                        	<div class="row m-bottom-md">
+                            	<div class="col-md-12">
+                                	<div class="table-responsive">
+                                    	<table class="table lobbyTable">
+                                        	<thead>
+                                            	<tr>
+                                                	<th><span>SPORT</span></th>
+                                                    <th><span>CONTEST</span></th>
+                                                    <th><span>ENTRIES</span></th>
+                                                    <th><span>ENTRY FEE</span></th>
+                                                    <th><span>PRIZE POOL</span></th>
+                                                    <th><span>LIVE IN</span></th>
+                                                    <th>NEXT CONTEST LIVE IN<br>
+                                                    	<div class="timer" id="hms">12:15:45</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab4" class="tab-pane fade">
+                        	<div class="row m-bottom-md">
+                            	<div class="col-md-12">
+                                	<div class="table-responsive">
+                                    	<table class="table lobbyTable">
+                                        	<thead>
+                                            	<tr>
+                                                	<th><span>SPORT</span></th>
+                                                    <th><span>CONTEST</span></th>
+                                                    <th><span>ENTRIES</span></th>
+                                                    <th><span>ENTRY FEE</span></th>
+                                                    <th><span>PRIZE POOL</span></th>
+                                                    <th><span>LIVE IN</span></th>
+                                                    <th>NEXT CONTEST LIVE IN<br>
+                                                    	<div class="timer" id="hms">12:15:45</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab5" class="tab-pane fade in active">
+                        	<div class="row m-bottom-md">
+                            	<div class="col-md-12">
+                                	<div class="table-responsive">
+                                    	<table class="table lobbyTable">
+                                        	<thead>
+                                            	<tr>
+                                                	<th><span>SPORT</span></th>
+                                                    <th><span>CONTEST</span></th>
+                                                    <th><span>ENTRIES</span></th>
+                                                    <th><span>ENTRY FEE</span></th>
+                                                    <th><span>PRIZE POOL</span></th>
+                                                    <th><span>LIVE IN</span></th>
+                                                    <th>NEXT CONTEST LIVE IN<br>
+                                                    	<div class="timer" id="hms">12:15:45</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab6" class="tab-pane fade">
+                        	<div class="row m-bottom-md">
+                            	<div class="col-md-12">
+                                	<div class="table-responsive">
+                                    	<table class="table lobbyTable">
+                                        	<thead>
+                                            	<tr>
+                                                	<th><span>SPORT</span></th>
+                                                    <th><span>CONTEST</span></th>
+                                                    <th><span>ENTRIES</span></th>
+                                                    <th><span>ENTRY FEE</span></th>
+                                                    <th><span>PRIZE POOL</span></th>
+                                                    <th><span>LIVE IN</span></th>
+                                                    <th>NEXT CONTEST LIVE IN<br>
+                                                    	<div class="timer" id="hms">12:15:45</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/football.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/rugbyball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/baseball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                                <tr>
+                                                	<td><span><img src="assets/images/basketball.png"></span></td>
+                                                    <td><span>MLB $50k Gold Glove($15,000 to First)</span></td>
+                                                    <td><span>0/2</span></td>
+                                                    <td><span>$10</span></td>
+                                                    <td><span>$18</span></td>
+                                                    <td><span>2h,34m,47s</span></td>
+                                                    <td><button class="btn btn-sm btn-enter">ENTER <span class="right-arrow"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    	 
+                    </div>
+                </div>
+            </div>
+        	
+        </div>
+    </section>
+    
+    <footer class="paddingTB-lg footer bg-dark1 border-top-gray5">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-sm-2 col-xs-4 ft-br min-h-130">
+                	<div>
+                    	<ul class="list-unstyled">
+                        	<li class="active"><a href="#">LOBBY</a></li>
+                            <li><a href="#">CONTACT US</a></li>
+                            <li><a href="#">HOW TO PLAY</a></li>
+                            <li><a href="#">PRIVATE NOTICE</a></li>
+                            <li><a href="#">REFER-A-FRIEND</a></li>
+                            <li><a href="#">FAQ'S</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-xs-4 ft-br min-h-130">
+                	<div class="m-left-sm">
+                    	<ul class="list-unstyled">
+                        	<li><a href="#">ABOUT US</a></li>
+                            <li><a href="#">AFFILIATES</a></li>
+                            <li><a href="#">DEPOSIT BONUS</a></li>
+                            <li><a href="#">WHY DRAFTOFF</a></li>
+                            <li><a href="#">RULES</a></li>
+                            <li><a href="#">LEGAL</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-xs-2 pull-right min-h-130">
+                	<div class="m-left-sm">
+                    	<ul class="list-unstyled">
+                        	<li><a href="#"><span class="facebook"><i class="fa fa-3x fa-facebook-square"></i></span></a></li>
+                            <li><a href="#"><span class="twitter"><i class="fa fa-3x fa-twitter-square"></i></span></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-1 col-xs-2 ft-br pull-right min-h-130">
+                	<div class="m-left-sm">
+                    	<ul class="list-unstyled">
+                        	<li><a href="#">MLB</a></li>
+                            <li><a href="#">NFL</a></li>
+                            <li><a href="#">NBA</a></li>
+                            <li><a href="#">NHL</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-xs-12 min-h-130">
+                	<div class="text-center">
+                    	<img src="assets/images/logo-light.png" class="img-responsive center-block">
+                        <p class="text-gray m-top-sm">DRAFTOFF INC, IS US-BASED COMPANY</p>	
+                        <p class="text-gray">&copy; 2015 DRAFTDAILY.COM ALL RIGHTS RESERVED</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    
+    </footer>
+
+</div>
+<!--Body Wrapper End-->

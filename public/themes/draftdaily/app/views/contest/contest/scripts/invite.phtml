@@ -1,0 +1,205 @@
+
+<section class="relative">
+<div class="container mar-top">           
+            <div class="row">
+			<div class="heading text-center">
+				<h1>Invite Friends</h1>
+				</div>
+                <div class="container margin-40">
+				<div class="well bg-image-1">
+					<div class="bg-image-2">
+						<div class="row mr-15-right-left">
+							<div class="row">
+								<h3>INVITE YOUR FRIENDS TO PLAY IN THIS CONTEST!</h3>
+								</div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <div class="padding-md text-white">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="well bg-image min-h-100">
+                                                <p class="bold">LEAGUE name: <?php if(isset($this->contestDetails)){ echo $this->contestDetails['contest_name']; } ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="well bg-image min-h-100">
+                                                <p class="bold">Sport:  <?php if(isset($this->contestDetails)){ echo $this->contestDetails['display_name']; } ?></p>
+                                                <p class="bold">Time:<?php if(isset($this->contestDetails)){ echo date('m/d H:m A',  strtotime($this->contestDetails['start_time'])).' EST'; } ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="well bg-image min-h-100">
+                                                <p class="bold">Entry Fee: <?php if(isset($this->contestDetails)){ echo $this->contestDetails['entry_fee']; } ?> DFS</p>
+                                                <p class="bold">Prize Pool: <?php if(isset($this->contestDetails)){ echo $this->contestDetails['prize_pool']; } ?> DFS</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="well bg-image min-h-100">
+                                                <p class="bold">Entries:<?php if(isset($this->contestDetails)){ echo $this->contestDetails['total_entry']; } ?>/<?php if(isset($this->contestDetails)){ if($this->contestDetails['play_limit'] !=0) { echo $this->contestDetails['play_limit'];}else{ echo "Unl."; } } ?></p>
+                                                <p class="bold">Struct:<?php if(isset($this->contestDetails)){ echo $this->contestDetails['contest_display_name']; } ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form method="post" name="inviteallfriend" id="inviteallfriend">
+                                    <div class="row">
+                                        <div class="col-sm-6 margin-20">
+                                            <div class="padding-sm">
+                                                <h4 class="text-left margin-10px">ADD FRIENDS</h4>
+                                                <div class="">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label class="text-left">TO:</label>
+                                                            <div class="input-group col-xs-12">
+                                                               <input ttype="text" class="form-control input-bg-black" value="" name="emails" id="emails" required="true" title="Enter friends email" placeholder="Enter friends email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <h4 class="text-left margin-10px">MESSAGE:</h4>
+                                                            <div class="input-group col-xs-12">
+                                                                <textarea class="form-control input-bg-black" rows="5" name="message" id="message" placeholder="Write a personal message (500 characters max)."></textarea>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 margin-20">
+                                            <div class="padding-sm">
+                                                <h4 class="text-left margin-10px">POST YOUR CHALLANGE SHARE YOUR LINK!</h4>                                               
+                                                <div class="form-group group-30px">
+												 <label class="text-left">Copy Your Personal Link</label>
+                                                    <div class="input-group col-xs-12">
+                                                        <input type="text" readonly=""  value="http://<?php echo $this->appSetting->host.'/affiliate/'.$this->session->storage->user_name; ?>" class="form-control custom-input bold text-center"> 
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mr-15-right-left">
+									
+										<div class="col-md-2  margin-20">
+										
+											<a href="<?php echo $this->appSetting->hostLink; ?>"  data-image="<?php echo $this->baseUrl() . $this->appSetting->assestPath . 'images/logo-large@2x1.png'; ?>" data-title="<?php echo $this->appSetting->title; ?>" data-desc="Play daily fantasy sports. Draft Like A Boss." class="btnShare"><span><i class="fa fa-3x fa-facebook-square"></i></span></a>
+											
+										</div> 
+										
+										<div class="col-md-2  margin-20">
+										
+											<a href="https://twitter.com/share?url=http://<?php echo $this->appSetting->host; ?>/<?php echo $this->session->storage->user_name;  ?>&via=DraftLikeABoss&text=Join DraftDaily Today and Play Daily Fantasy Sports!" class="twtpopup btnShare" data-related="jasoncosta" data-lang="en" data-size="large" data-via="twitterdev" data-count="none"><span><i class="fa fa-3x fa-twitter-square"></i></span></a>
+											
+											<script>
+											
+											!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+											
+											</script>
+											
+											<script>
+												$('.twtpopup').click(function(event) {
+													var width  = 575,
+														height = 400,
+														left   = ($(window).width()  - width)  / 2,
+														top    = ($(window).height() - height) / 2,
+														url    = this.href,       
+														opts   = 'status=1' +
+																 ',width='  + width  +
+																 ',height=' + height +
+																 ',top='    + top    +
+																 ',left='   + left;
+
+													window.open(url, 'twitter', opts);
+
+													return false;
+												});
+
+												window.fbAsyncInit = function(){
+													FB.init({
+														appId: '756221974485557', status: true, cookie: true, xfbml: true }); 
+												};
+												(function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];if   (d.getElementById(id)) {return;}js = d.createElement('script'); js.id = id; js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+												function postToFeed(title, desc, url, image){
+													var obj = {method: 'feed',link: url, picture: 'http://'+'draftdaily.com/'+image,name: title,description: desc};
+													function callback(response){}
+													FB.ui(obj, callback);
+												}  
+
+												$('.btnShare').click(function(){
+													elem = $(this);
+													postToFeed(elem.data('title'), elem.data('desc'), elem.prop('href'), elem.data('image'));
+
+													return false;
+												});
+											</script> 
+											
+										</div>
+										
+									</div>
+									
+                                                </div>
+                                                </div>
+                                                                                       
+</script>
+                                                <div class="m-top-xs">
+                                                    <span class="font-medium-a">Note: Refer friends and family to unlock cash and prizes! Visit our <a href="/refer-friend">Refer-A-Friend</a> page page for full program details.</span>
+                                                </div>
+
+
+
+                                                <div class="form-group m-top-md">
+                                                    <div class="input-group text-right col-xs-12">
+                                                        <button type="submit"  class="btn-success btn-lg btn3d">SEND INVITES</button>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+<script>
+$( document ).ready(function(){
+        //console.log('test');
+        $('#inviteallfriend').validate({
+             rules: {
+                 emails:{
+                     required:true
+                 },
+                message:{
+                     required:true
+                 }
+                 
+             },
+             messages:{
+                 emails:{
+                 required:"please enter the email address",
+                 regex:"please enter the valid email address"
+             },
+             message:{
+                  required:"please enter some message"
+              }
+         }
+     })
+ });
+</script>

@@ -1,0 +1,332 @@
+id,name,position,age,team_name,pos_code,team_code
+3930,"Cartier Martin",PF,29,"Detroit Pistons",PF,Det
+2799,"Louis Williams",SG,28,"Toronto Raptors",SG,Tor
+3247,"Joel Anthony",C,32,"Detroit Pistons",C,Det
+2745,"Brandon Bass",PF,29,"Boston Celtics",PF,Bos
+3417,"Jerryd Bayless",PG,26,"Milwaukee Bucks",PG,Mil
+4240,"Avery Bradley",PG,23,"Boston Celtics",PG,Bos
+3046453,"Vitor Faverani",C,26,"Boston Celtics",C,Bos
+3209,"Jeff Green",SF,28,"Boston Celtics",SF,Bos
+2433,"Kris Humphries",PF,29,"Washington Wizards",PF,Wsh
+2325975,"Chris Johnson",SF,24,"Philadelphia 76ers",SF,Phi
+2489663,"Kelly Olynyk",C,23,"Boston Celtics",C,Bos
+2530722,"Phil Pressey",PG,23,"Boston Celtics",PG,Bos
+3026,"Rajon Rondo",PG,28,"Boston Celtics",PG,Bos
+6624,"Jared Sullinger",C,22,"Boston Celtics",C,Bos
+1026,"Gerald Wallace",SF,32,"Boston Celtics",SF,Bos
+6427,"Bismack Biyombo",C,22,"Charlotte Bobcats",C,Cha
+3422,"Chris DouglasRoberts",SG,27,"Los Angeles Clippers",SG,LAC
+1000,"Brendan Haywood",C,34,"Cleveland Cavaliers",C,Cle
+2389,"Al Jefferson",C,29,"Charlotte Bobcats",C,Cha
+6601,"Michael KiddGilchrist",SF,21,"Charlotte Bobcats",SF,Cha
+4300,"Gary Neal",SG,30,"Charlotte Bobcats",SG,Cha
+1821,"Jannero Pargo",PG,35,"Charlotte Bobcats",PG,Cha
+1985,"Luke Ridnour",PG,33,"Orlando Magic",PG,Orl
+6156,"Jeff Taylor",SF,25,"Charlotte Bobcats",SF,Cha
+3276,"Anthony Tolliver",PF,29,"Phoenix Suns",PF,PHX
+2579258,"Cody Zeller",C,22,"Charlotte Bobcats",C,Cha
+3041,"Lou Amundson",PF,31,"Cleveland Cavaliers",PF,Cle
+3415,"D.J. Augustin",PG,26,"Detroit Pistons",PG,Det
+1703,"Carlos Boozer",PF,32,"Los Angeles Lakers",PF,LAL
+6530,"Greg Smith",PF,23,"Dallas Mavericks",PF,Dal
+2991473,"Anthony Bennett",PF,21,"Minnesota Timberwolves",PF,Min
+4232,"Alonzo Gee",SF,27,"Denver Nuggets",SF,Den
+3211,"Spencer Hawes",PF,26,"Los Angeles Clippers",PF,LAC
+6442,"Kyrie Irving",PG,22,"Cleveland Cavaliers",PG,Cle
+2768,"Jarrett Jack",PG,31,"Brooklyn Nets",PG,Bkn
+2959745,"Sergey Karasev",SG,21,"Brooklyn Nets",SG,Bkn
+2778,"C.J. Miles",SG,27,"Indiana Pacers",SG,Ind
+6474,"Tristan Thompson",PF,23,"Cleveland Cavaliers",PF,Cle
+2419,"Anderson Varejao",C,32,"Cleveland Cavaliers",C,Cle
+6628,"Dion Waiters",SG,22,"Cleveland Cavaliers",SG,Cle
+6631,"Tyler Zeller",C,24,"Boston Celtics",C,Bos
+3965,"DeJuan Blair",C,25,"Washington Wizards",C,Wsh
+2806,"Jose Calderon",PG,33,"New York Knicks",PG,NY
+136,"Vince Carter",SG,37,"Memphis Grizzlies",SG,Mem
+6581,"Jae Crowder",SF,24,"Dallas Mavericks",SF,Dal
+991,"Samuel Dalembert",C,33,"New York Knicks",C,NY
+3981,"Wayne Ellington",SG,26,"Los Angeles Lakers",SG,LAL
+2751,"Monta Ellis",SG,29,"Dallas Mavericks",SG,Dal
+2382,"Devin Harris",PG,31,"Dallas Mavericks",PG,Dal
+2596158,"Shane Larkin",PG,22,"New York Knicks",PG,NY
+2991143,"Ricky Ledo",SG,22,"Dallas Mavericks",SG,Dal
+510,"Shawn Marion",SF,36,"Cleveland Cavaliers",SF,Cle
+609,"Dirk Nowitzki",PF,36,"Dallas Mavericks",PF,Dal
+3242,"Brandan Wright",PF,27,"Dallas Mavericks",PF,Dal
+3413,"Darrell Arthur",PF,26,"Denver Nuggets",PF,Den
+3194,"Wilson Chandler",SF,27,"Denver Nuggets",SF,Den
+6433,"Kenneth Faried",PF,24,"Denver Nuggets",PF,Den
+6588,"Evan Fournier",SG,22,"Orlando Magic",SG,Orl
+3003,"Randy Foye",SG,31,"Denver Nuggets",SG,Den
+3428,"Danilo Gallinari",SF,26,"Denver Nuggets",SF,Den
+3437,"J.J. Hickson",C,26,"Denver Nuggets",C,Den
+4000,"Ty Lawson",PG,27,"Denver Nuggets",PG,Den
+3452,"JaVale McGee",C,26,"Denver Nuggets",C,Den
+4298,"Timofey Mozgov",C,28,"Denver Nuggets",C,Den
+2782,"Nate Robinson",PG,30,"Denver Nuggets",PG,Den
+2581018,"Kentavious CaldwellPope",SG,21,"Detroit Pistons",SG,Det
+2585629,"Luigi Datome",SF,26,"Detroit Pistons",SF,Det
+6585,"Andre Drummond",C,21,"Detroit Pistons",C,Det
+3997,"Brandon Jennings",PG,25,"Detroit Pistons",PG,Det
+3998,"Jonas Jerebko",PF,27,"Detroit Pistons",PF,Det
+2583664,"Tony Mitchell",PF,22,"Detroit Pistons",PF,Det
+4260,"Greg Monroe",PF,24,"Detroit Pistons",PF,Det
+6469,"Kyle Singler",SF,26,"Detroit Pistons",SF,Det
+2411,"Josh Smith",SF,28,"Detroit Pistons",SF,Det
+3235,"Rodney Stuckey",PG,28,"Indiana Pacers",PG,Ind
+2792,"Charlie Villanueva",PF,30,"Dallas Mavericks",PF,Dal
+3964,"Patrick Beverley",PG,26,"Houston Rockets",PG,Hou
+2490589,"Isaiah Canaan",PG,23,"Houston Rockets",PG,Hou
+2489530,"Troy Daniels",SG,23,"Houston Rockets",SG,Hou
+2755,"Francisco Garcia",SG,33,"Houston Rockets",SG,Hou
+3992,"James Harden",SG,25,"Houston Rockets",SG,Hou
+2384,"Dwight Howard",C,28,"Houston Rockets",C,Hou
+6597,"Terrence Jones",PF,22,"Houston Rockets",PF,Hou
+4299,"Jeremy Lin",PG,26,"Los Angeles Lakers",PG,LAL
+6464,"Donatas Motiejunas",PF,24,"Houston Rockets",PF,Hou
+6466,"Chandler Parsons",SF,26,"Dallas Mavericks",SF,Dal
+6424,"Lavoy Allen",PF,25,"Indiana Pacers",PF,Ind
+1767,"Rasual Butler",SF,35,"Washington Wizards",SF,Wsh
+6635,"Chris Copeland",SF,30,"Indiana Pacers",SF,Ind
+4251,"Paul George",SF,24,"Indiana Pacers",SF,Ind
+3436,"Roy Hibbert",C,27,"Indiana Pacers",C,Ind
+3438,"George Hill",PG,28,"Indiana Pacers",PG,Ind
+2488958,"Solomon Hill",SF,23,"Indiana Pacers",SF,Ind
+2774,"Ian Mahinmi",C,28,"Indiana Pacers",C,Ind
+1781,"Luis Scola",PF,34,"Indiana Pacers",PF,Ind
+4303,"Donald Sloan",PG,26,"Indiana Pacers",PG,Ind
+4244,"Lance Stephenson",SG,24,"Charlotte Bobcats",SG,Cha
+4239,"Evan Turner",SG,26,"Boston Celtics",SG,Bos
+3277,"C.J. Watson",PG,30,"Indiana Pacers",PG,Ind
+2177,"David West",PF,34,"Indiana Pacers",PF,Ind
+1765,"Matt Barnes",SF,34,"Los Angeles Clippers",SF,LAC
+2528779,"Reggie Bullock",SG,23,"Los Angeles Clippers",SG,LAC
+165,"Jamal Crawford",SG,34,"Los Angeles Clippers",SG,LAC
+3200,"Glen Davis",PF,28,"Los Angeles Clippers",PF,LAC
+3201,"Jared Dudley",SG,29,"Milwaukee Bucks",SG,Mil
+2004,"Willie Green",SG,33,"Orlando Magic",SG,Orl
+3989,"Blake Griffin",PF,25,"Los Angeles Clippers",PF,LAC
+3442,"DeAndre Jordan",C,26,"Los Angeles Clippers",C,LAC
+2779,"Chris Paul",PG,29,"Los Angeles Clippers",PG,LAC
+3024,"J.J. Redick",SG,30,"Los Angeles Clippers",SG,LAC
+862,"Hedo Turkoglu",SF,35,"Los Angeles Clippers",SF,LAC
+110,"Kobe Bryant",SG,36,"Los Angeles Lakers",SG,LAL
+3002,"Jordan Farmar",PG,27,"Los Angeles Clippers",PG,LAC
+4241,"Xavier Henry",SF,23,"Los Angeles Lakers",SF,LAL
+3994,"Jordan Hill",C,27,"Los Angeles Lakers",C,LAL
+4247,"Wesley Johnson",SF,27,"Los Angeles Lakers",SF,LAL
+2488651,"Ryan Kelly",PF,23,"Los Angeles Lakers",PF,LAL
+6607,"Kendall Marshall",PG,23,"Milwaukee Bucks",PG,Mil
+4003,"Jodie Meeks",SG,27,"Detroit Pistons",SG,Det
+592,"Steve Nash",PG,40,"Los Angeles Lakers",PG,LAL
+6620,"Robert Sacre",C,25,"Los Angeles Lakers",C,LAL
+3243,"Nick Young",SF,29,"Los Angeles Lakers",SF,LAL
+2367,"Tony Allen",SG,32,"Memphis Grizzlies",SG,Mem
+3969,"Nick Calathes",SG,25,"Memphis Grizzlies",SG,Mem
+3195,"Mike Conley",PG,27,"Memphis Grizzlies",PG,Mem
+4259,"Ed Davis",PF,25,"Los Angeles Lakers",PF,LAL
+3206,"Marc Gasol",C,29,"Memphis Grizzlies",C,Mem
+3999,"James Johnson",PF,27,"Toronto Raptors",PF,Tor
+3444,"Kosta Koufos",C,25,"Memphis Grizzlies",C,Mem
+3445,"Courtney Lee",SG,29,"Memphis Grizzlies",SG,Mem
+6452,"Jon Leuer",PF,25,"Memphis Grizzlies",PF,Mem
+558,"Mike Miller",SF,34,"Cleveland Cavaliers",SF,Cle
+4253,"Quincy Pondexter",SG,26,"Memphis Grizzlies",SG,Mem
+1724,"Tayshaun Prince",SF,34,"Memphis Grizzlies",SF,Mem
+1017,"Zach Randolph",PF,33,"Memphis Grizzlies",PF,Mem
+2448,"Beno Udrih",PG,32,"Memphis Grizzlies",PG,Mem
+1966,"LeBron James",SF,29,"Cleveland Cavaliers",SF,Cle
+2009,"James Jones",SF,34,"Cleveland Cavaliers",SF,Cle
+3032977,"Giannis Antetokounmpo",SG,19,"Milwaukee Bucks",SG,Mil
+6592,"John Henson",C,23,"Milwaukee Bucks",C,Mil
+2767,"Ersan Ilyasova",PF,27,"Milwaukee Bucks",PF,Mil
+6448,"Brandon Knight",PG,22,"Milwaukee Bucks",PG,Mil
+3450,"O.J. Mayo",SG,27,"Milwaukee Bucks",SG,Mil
+6609,"Khris Middleton",PF,23,"Milwaukee Bucks",PF,Mil
+2016,"Zaza Pachulia",C,30,"Milwaukee Bucks",C,Mil
+4265,"Larry Sanders",C,25,"Milwaukee Bucks",C,Mil
+4261,"Ekpe Udoh",PF,27,"Los Angeles Clippers",PF,LAC
+2491079,"Nate Wolters",PG,23,"Milwaukee Bucks",PG,Mil
+3055,"J.J. Barea",PG,30,"Dallas Mavericks",PG,Dal
+3191,"Corey Brewer",SF,28,"Minnesota Timberwolves",SF,Min
+3968,"Chase Budinger",SF,26,"Minnesota Timberwolves",SF,Min
+2534781,"Gorgui Dieng",C,24,"Minnesota Timberwolves",C,Min
+6633,"Robbie Hummel",SF,25,"Minnesota Timberwolves",SF,Min
+3449,"Kevin Love",PF,26,"Cleveland Cavaliers",PF,Cle
+2394,"Kevin Martin",SG,31,"Minnesota Timberwolves",SG,Min
+3451,"Luc Richard Mbah a Moute",PF,28,"Philadelphia 76ers",PF,Phi
+2993875,"Shabazz Muhammad",SF,21,"Minnesota Timberwolves",SF,Min
+3453,"Nikola Pekovic",C,28,"Minnesota Timberwolves",C,Min
+4011,"Ricky Rubio",PG,24,"Minnesota Timberwolves",PG,Min
+3882,"Alexey Shved",PG,25,"Philadelphia 76ers",PG,Phi
+2789,"Ronny Turiaf",C,31,"Minnesota Timberwolves",C,Min
+6569,"Alan Anderson",SG,32,"Brooklyn Nets",SG,Bkn
+261,"Kevin Garnett",C,38,"Brooklyn Nets",C,Bkn
+2327449,"Jorge Gutierrez",PG,25,"Brooklyn Nets",PG,Bkn
+1007,"Joe Johnson",SG,33,"Brooklyn Nets",SG,Bkn
+434,"Andrei Kirilenko",SF,33,"Brooklyn Nets",SF,Bkn
+3448,"Brook Lopez",C,26,"Brooklyn Nets",C,Bkn
+662,"Paul Pierce",SF,37,"Washington Wizards",SF,Wsh
+2488653,"Mason Plumlee",PF,24,"Brooklyn Nets",PF,Bkn
+4385,"Mirza Teletovic",PF,29,"Brooklyn Nets",PF,Bkn
+4017,"Marcus Thornton",SG,27,"Boston Celtics",SG,Bos
+2798,"Deron Williams",PG,30,"Brooklyn Nets",PG,Bkn
+4248,"AlFarouq Aminu",SF,24,"Dallas Mavericks",SF,Dal
+3474,"Anthony Morrow",SG,29,"Oklahoma City Thunder",SG,OkC
+6641,"Brian Roberts",PG,28,"Charlotte Bobcats",PG,Cha
+3232,"Jason Smith",C,28,"New York Knicks",C,NY
+4267,"Cole Aldrich",C,26,"New York Knicks",C,NY
+1975,"Carmelo Anthony",SF,30,"New York Knicks",SF,NY
+2987,"Andrea Bargnani",C,29,"New York Knicks",C,NY
+984,"Tyson Chandler",C,32,"Dallas Mavericks",C,Dal
+2753,"Raymond Felton",PG,30,"Dallas Mavericks",PG,Dal
+2528210,"Tim Hardaway Jr.",SG,22,"New York Knicks",SG,NY
+4182,"Pablo Prigioni",PG,37,"New York Knicks",PG,NY
+6468,"Iman Shumpert",SG,24,"New York Knicks",SG,NY
+2444,"J.R. Smith",SG,29,"New York Knicks",SG,NY
+2991235,"Steven Adams",C,21,"Oklahoma City Thunder",C,OkC
+1705,"Caron Butler",SF,34,"Detroit Pistons",SF,Det
+1978,"Nick Collison",PF,34,"Oklahoma City Thunder",PF,OkC
+3202,"Kevin Durant",SF,26,"Oklahoma City Thunder",SF,OkC
+3439,"Serge Ibaka",PF,25,"Oklahoma City Thunder",PF,OkC
+6443,"Reggie Jackson",PG,24,"Oklahoma City Thunder",PG,OkC
+2991009,"Grant Jerrett",PF,21,"Oklahoma City Thunder",PF,OkC
+6598,"Perry Jones",SF,23,"Oklahoma City Thunder",SF,OkC
+6603,"Jeremy Lamb",SG,22,"Oklahoma City Thunder",SG,OkC
+2018,"Kendrick Perkins",C,29,"Oklahoma City Thunder",C,OkC
+2530596,"Andre Roberson",SG,22,"Oklahoma City Thunder",SG,OkC
+3468,"Russell Westbrook",PG,25,"Oklahoma City Thunder",PG,OkC
+3187,"Arron Afflalo",SG,29,"Denver Nuggets",SG,Den
+2580913,"Dewayne Dedmon",C,25,"Orlando Magic",C,Orl
+6440,"Tobias Harris",SF,22,"Orlando Magic",SF,Orl
+2775,"Jason Maxiell",PF,31,"Charlotte Bobcats",PF,Cha
+6614,"Andrew Nicholson",PF,24,"Orlando Magic",PF,Orl
+2527963,"Victor Oladipo",SG,22,"Orlando Magic",SG,Orl
+2807,"Ronnie Price",PG,31,"Los Angeles Lakers",PG,LAL
+2596108,"Michael CarterWilliams",PG,23,"Philadelphia 76ers",PG,Phi
+2490144,"Brandon Davies",PF,23,"Philadelphia 76ers",PF,Phi
+6612,"Arnett Moultrie",PF,23,"New York Knicks",PF,NY
+2991280,"Nerlens Noel",PF,20,"Philadelphia 76ers",PF,Phi
+1018,"Jason Richardson",SG,33,"Philadelphia 76ers",SG,Phi
+6647,"Henry Sims",C,24,"Philadelphia 76ers",C,Phi
+6634,"Hollis Thompson",SG,23,"Philadelphia 76ers",SG,Phi
+6630,"Tony Wroten",SG,21,"Philadelphia 76ers",SG,Phi
+3244,"Thaddeus Young",SF,26,"Minnesota Timberwolves",SF,Min
+4238,"Eric Bledsoe",PG,24,"Phoenix Suns",PG,PHX
+3423,"Goran Dragic",SG,28,"Phoenix Suns",SG,PHX
+2754,"Channing Frye",PF,31,"Orlando Magic",PF,Orl
+2991281,"Archie Goodwin",SG,20,"Phoenix Suns",SG,PHX
+2761,"Gerald Green",SG,28,"Phoenix Suns",SG,PHX
+2596107,"Alex Len",C,21,"Phoenix Suns",C,PHX
+6461,"Markieff Morris",PF,25,"Phoenix Suns",PF,PHX
+6616,"Miles Plumlee",C,26,"Phoenix Suns",C,PHX
+2810,"Shavlik Randolph",PF,30,"Phoenix Suns",PF,PHX
+3033,"P.J. Tucker",SF,29,"Phoenix Suns",SF,PHX
+2178,"Mo Williams",PG,31,"Minnesota Timberwolves",PG,Min
+6576,"Quincy Acy",SF,24,"New York Knicks",SF,NY
+6582,"Jared Cunningham",SG,23,"Los Angeles Clippers",SG,LAC
+841,"Jason Terry",SG,37,"Houston Rockets",SG,Hou
+4008,"Jeff Ayres",PF,27,"San Antonio Spurs",PF,SA
+2968439,"Aron Baynes",PF,27,"San Antonio Spurs",PF,SA
+3190,"Marco Belinelli",SG,28,"San Antonio Spurs",SG,SA
+1996,"Matt Bonner",PF,34,"San Antonio Spurs",PF,SA
+3976,"Austin Daye",SF,26,"San Antonio Spurs",SF,SA
+2167,"Boris Diaw",PF,32,"San Antonio Spurs",PF,SA
+215,"Tim Duncan",PF,38,"San Antonio Spurs",PF,SA
+272,"Manu Ginobili",SG,37,"San Antonio Spurs",SG,SA
+3988,"Danny Green",SG,27,"San Antonio Spurs",SG,SA
+6446,"Cory Joseph",PG,23,"San Antonio Spurs",PG,SA
+6450,"Kawhi Leonard",SF,23,"San Antonio Spurs",SF,SA
+1015,"Tony Parker",PG,32,"San Antonio Spurs",PG,SA
+3233,"Tiago Splitter",PF,29,"San Antonio Spurs",PF,SA
+3978,"DeMar DeRozan",SG,25,"Toronto Raptors",SG,Tor
+4274,"Landry Fields",SG,26,"Toronto Raptors",SG,Tor
+3991,"Tyler Hansbrough",PF,29,"Toronto Raptors",PF,Tor
+2834,"Chuck Hayes",C,31,"Toronto Raptors",C,Tor
+2769,"Amir Johnson",PF,27,"Toronto Raptors",PF,Tor
+3012,"Kyle Lowry",PG,28,"Toronto Raptors",PG,Tor
+4264,"Patrick Patterson",PF,25,"Toronto Raptors",PF,Tor
+6619,"Terrence Ross",SF,23,"Toronto Raptors",SF,Tor
+6477,"Jonas Valanciunas",C,22,"Toronto Raptors",C,Tor
+4291,"Greivis Vasquez",PG,27,"Toronto Raptors",PG,Tor
+1006,"Richard Jefferson",SF,34,"Dallas Mavericks",SF,Dal
+6511,"Malcolm Thomas",PF,25,"Philadelphia 76ers",PF,Phi
+2797,"Marvin Williams",PF,28,"Charlotte Bobcats",PF,Cha
+2426,"Trevor Ariza",SF,29,"Houston Rockets",SF,Hou
+6580,"Bradley Beal",SG,21,"Washington Wizards",SG,Wsh
+1711,"Drew Gooden",PF,33,"Washington Wizards",PF,Wsh
+2758,"Marcin Gortat",C,30,"Washington Wizards",C,Wsh
+1713,"Nene Hilario",PF,32,"Washington Wizards",PF,Wsh
+557,"Andre Miller",PG,38,"Washington Wizards",PG,Wsh
+2594922,"Otto Porter Jr.",SF,21,"Washington Wizards",SF,Wsh
+2488660,"Glen Rice Jr.",SG,23,"Washington Wizards",SG,Wsh
+4289,"Kevin Seraphin",C,24,"Washington Wizards",C,Wsh
+4023,"Garrett Temple",SG,28,"Washington Wizards",SG,Wsh
+4237,"John Wall",PG,24,"Washington Wizards",PG,Wsh
+2795,"Martell Webster",SF,27,"Washington Wizards",SF,Wsh
+3993,"Gerald Henderson",SG,26,"Charlotte Bobcats",SG,Cha
+6479,"Kemba Walker",PG,24,"Charlotte Bobcats",PG,Cha
+2489716,"Matthew Dellavedova",SG,24,"Cleveland Cavaliers",SG,Cle
+1727,"Amar'e Stoudemire",PF,31,"New York Knicks",PF,NY
+6591,"Maurice Harkless",SF,21,"Orlando Magic",SF,Orl
+2439,"Jameer Nelson",PG,32,"Dallas Mavericks",PG,Dal
+6615,"Kyle O'Quinn",PF,24,"Orlando Magic",PF,Orl
+6478,"Nikola Vucevic",C,24,"Orlando Magic",C,Orl
+6472,"Isaiah Thomas",PG,25,"Phoenix Suns",PG,PHX
+4004,"Patty Mills",PG,26,"San Antonio Spurs",PG,SA
+2531367,"Dwight Powell",PF,23,"Boston Celtics",PF,Bos
+2990992,"Marcus Smart",PG,20,"Boston Celtics",PG,Bos
+3064509,"James Young",SG,19,"Boston Celtics",SG,Bos
+2594816,"P.J. Hairston",SG,21,"Charlotte Bobcats",SG,Cha
+3078284,"Noah Vonleh",PF,19,"Charlotte Bobcats",PF,Cha
+2489897,"Will Cherry",PG,23,"Cleveland Cavaliers",PG,Cle
+2528794,"Joe Harris",SG,23,"Cleveland Cavaliers",SG,Cle
+2528355,"Alex Kirk",C,22,"Cleveland Cavaliers",C,Cle
+2488684,"Erick Green",PG,23,"Denver Nuggets",PG,Den
+2999547,"Gary Harris",SG,20,"Denver Nuggets",SG,Den
+3102530,"Jusuf Nurkic",C,20,"Denver Nuggets",C,Den
+2580782,"Spencer Dinwiddie",PG,21,"Detroit Pistons",PG,Det
+2528393,"Tarik Black",F,22,"Houston Rockets",F,Hou
+3102529,"Clint Capela",C,20,"Houston Rockets",C,Hou
+3421,"Joey Dorsey",PF,30,"Houston Rockets",PF,Hou
+2580589,"Nick Johnson",SG,21,"Houston Rockets",SG,Hou
+4195,"Kostas Papanikolaou",SF,24,"Houston Rockets",SF,Hou
+2309097,"Damjan Rudez",SF,28,"Indiana Pacers",SF,Ind
+2491063,"Shayne Whittington",PF,23,"Indiana Pacers",PF,Ind
+2488999,"C.J. Wilcox",SG,23,"Los Angeles Clippers",SG,LAC
+2528426,"Jordan Clarkson",PG,22,"Los Angeles Lakers",PG,LAL
+3064514,"Julius Randle",PF,19,"Los Angeles Lakers",PF,LAL
+2993873,"Jordan Adams",SG,20,"Memphis Grizzlies",SG,Mem
+2282734,"Kalin Lucas",PG,25,"Memphis Grizzlies",PG,Mem
+2614962,"Jarnell Stokes",PF,20,"Memphis Grizzlies",PF,Mem
+3102534,"Damien Inglis",SF,19,"Milwaukee Bucks",SF,Mil
+2581084,"Johnny O'Bryant III",PF,21,"Milwaukee Bucks",PF,Mil
+3056600,"Jabari Parker",SF,19,"Milwaukee Bucks",SF,Mil
+3064440,"Zach LaVine",PG,19,"Minnesota Timberwolves",PG,Min
+2991039,"Glenn Robinson III",SG,20,"Minnesota Timberwolves",SG,Min
+3059319,"Andrew Wiggins",G,19,"Minnesota Timberwolves",G,Min
+3593,"Bojan Bogdanovic",SF,25,"Brooklyn Nets",SF,Bkn
+2530750,"Markel Brown",SG,22,"Brooklyn Nets",SG,Bkn
+2488845,"Cory Jefferson",PF,23,"Brooklyn Nets",PF,Bkn
+4280,"Jerome Jordan",C,28,"Brooklyn Nets",C,Bkn
+2991227,"Cleanthony Early",SF,23,"New York Knicks",SF,NY
+2488674,"Travis Wear",SF,24,"New York Knicks",SF,NY
+2991041,"Mitch McGary",PF,22,"Oklahoma City Thunder",PF,OkC
+2417,"Sebastian Telfair",PG,29,"Oklahoma City Thunder",PG,OkC
+6485,"Lance Thomas",SF,26,"Oklahoma City Thunder",SF,OkC
+3064290,"Aaron Gordon",PF,19,"Orlando Magic",PF,Orl
+2381,"Ben Gordon",SG,31,"Orlando Magic",SG,Orl
+2527968,"Devyn Marble",SG,22,"Orlando Magic",SG,Orl
+2583639,"Elfrid Payton",PG,20,"Orlando Magic",PG,Orl
+3059318,"Joel Embiid",C,20,"Philadelphia 76ers",C,Phi
+2991070,"Jerami Grant",SF,20,"Philadelphia 76ers",SF,Phi
+2566741,"K.J. McDaniels",SG,21,"Philadelphia 76ers",SG,Phi
+2608891,"JaKarr Sampson",PF,21,"Philadelphia 76ers",PF,Phi
+2560823,"Zoran Dragic",SG,25,"Phoenix Suns",SG,PHX
+3059281,"Tyler Ennis",PG,20,"Phoenix Suns",PG,PHX
+6462,"Marcus Morris",PF,25,"Phoenix Suns",PF,PHX
+2982334,"T.J. Warren",SF,21,"Phoenix Suns",SF,PHX
+2993874,"Kyle Anderson",SF,21,"San Antonio Spurs",SF,SA
+3113297,"Bruno Caboclo",SF,19,"Toronto Raptors",SF,Tor
+3032980,"Lucas Nogueira",C,22,"Toronto Raptors",C,Tor
+4235,"Greg Stiemsma",C,29,"Toronto Raptors",C,Tor

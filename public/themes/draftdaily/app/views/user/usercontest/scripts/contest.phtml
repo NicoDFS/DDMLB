@@ -1,0 +1,577 @@
+<style>
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: #fff !important;
+	text-decoration: none;
+}
+
+
+th a.sort-by { 
+	padding-right: 18px;
+	position: relative;
+}
+a.sort-by:before,
+a.sort-by:after {
+	border: 4px solid transparent;
+	content: "";
+	display: block;
+	height: 0;
+	right: 5px;
+	top: 50%;
+	position: absolute;
+	width: 0;
+}
+a.sort-by:before {
+	border-bottom-color: #666;
+	margin-top: -9px;
+}
+a.sort-by:after {
+	border-top-color: #666;
+	margin-top: 1px;
+}
+</style>
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<h1>My Contests</h1>
+		</div>
+	</div>
+</div>
+<div class="container margin-40">
+    <div class="row">
+		<div class="well bg-image-1">
+			<div class="bg-image-2">
+				
+				<!---------------------Live Contests Section Start Herer---------------------------->
+				
+				<div class="row contest-bg-color">
+					<div class="col-md-4 col-sm-4 col-xs-6 pd-15">
+						<h3 class="pull-left">Live Contests</h3>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-6 col-md-offset-4 pd-15">
+						<a class="btn-success btn-lg btn3d pull-right" href="/home">Join new contest</a>
+					</div>
+				</div>
+								
+				<div class="row mr-15-right-left">
+					<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+						<div class="card card-a margin-40">
+							<div class="tab-content-1a">
+								<table class="footable">
+									<thead>
+										<tr class="header-img">
+											<th class="footable-first-column">ID</th>
+											<th data-class="expand">GAME</th>
+											<th data-hide="phone,tablet">ENTRY FEE</th>
+											<th data-hide="phone,tablet">PrizePool</th>
+											<th data-class="expand">ACTION</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<?php if (!empty($this->livecontestData)) { ?>
+										
+											<?php foreach ($this->livecontestData as $liveData) { ?>
+											
+												<tr>
+													<td><?php echo $liveData['contest_id']; ?></td>
+													<td><a data-toggle="modal" data-target=".contest-details-modal-undraft"class="condetails opencontestmodal text-green-light" data-cid="<?php echo $liveData['contest_id']; ?>" href="javascript:void(0);" id='green'><?php echo $liveData['contest_name']; ?></a></td>
+													<td><?php echo $liveData['entry_fee'].' DFS'; ?></td>
+													<td><?php echo $liveData['prize_pool'].' DFS'; ?></td>
+													<td><a href="<?php $this->baseUrl(); ?>/game-center/<?php echo $liveData['contest_id']; ?>" type="button" class="btn-success btn-lg-1 btn3d">View</a></td>
+												</tr>
+											
+											<?php } ?>
+										
+										<?php } else { ?>
+												<tr> 
+													<td colspan="5" class="text-green-light" >You dont have any live contests at this time.</td>
+												</tr>
+												
+										<?php } ?>
+										
+									</tbody>
+								</table>
+							</div>
+						</div> 
+					</div>
+				</div>
+				
+				<!---------------------Live Contests Section End Here------------------------------->
+				
+				<!---------------------Upcoming Contests Section Start Here------------------------->
+				
+				<div class="row contest-bg-color">
+					<div class="col-md-4 col-sm-4 col-xs-12 pd-15">
+						<h3 class="pull-left">Upcoming Contests</h3>
+					</div>
+					
+					<div class="col-md-4 col-sm-4 col-xs-6 col-xs-offset-3 col-md-offset-4 pd-15">
+						<a class="btn-success btn-lg btn3d pull-left" href="/lineup">View my lineups</a>
+					</div>
+					
+				</div>
+        
+				<div class="row mr-15-right-left">
+					<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+						<div class="card card-a margin-40">
+							<div class="tab-content-1a">
+								<table class="footable">
+								
+									<thead>
+										<tr class="header-img">
+											<th class="footable-first-column">ID</th>
+											<th data-class="expand">GAME</th>
+											<th data-hide="phone,tablet">STARTS IN</th>
+											<th data-hide="phone,tablet">ENTRY FEE </th>
+											<th data-hide="phone,tablet">ENTRIES</th>
+											<th data-class="expand">ACTION</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<?php if (!empty($this->upcomingcontestData)) { ?>
+											<?php foreach ($this->upcomingcontestData as $upcomeingData) { ?>
+												<tr>
+													<td><?php echo $upcomeingData['contest_id']; ?></td>
+													
+													<td><a data-toggle="modal" data-target=".contest-details-modal-undraft"class="condetails opencontestmodal text-green-light" data-cid="<?php echo $upcomeingData['contest_id']; ?>" href="javascript:void(0);" id='green'><?php echo $upcomeingData['contest_name']; ?></a></td>
+													
+													<td data-time="<?php echo strtotime($upcomeingData['start_time']); ?>" class="timeleft"> </td>
+													
+													<td><?php echo $upcomeingData['entry_fee'].' DFS'; ?></td>
+													
+													<td><?php
+														echo $upcomeingData['total_entry'] . "/";
+														if ($upcomeingData['play_limit'] == '0') {
+															echo "Unl.";
+														} else {
+															echo $upcomeingData['play_limit'];
+														}
+														?></td>
+														
+													<?php
+													$current_timestamp = strtotime(date('Y-m-d H:i:s'));
+													$game_timestamp = strtotime($upcomeingData['start_time']);
+													$result_timestamp = $game_timestamp - $current_timestamp;
+													if($result_timestamp < 300){
+														$uri = "javascript:void(0)";
+													} else {
+														$uri = "/edit-contest-lineup/".$upcomeingData['lineup_id'];
+													}
+													?>
+													<td>
+														<a  data-cid="<?php echo $upcomeingData['contest_id']; ?>" href="<?php echo $uri; ?>" type="button" class="btn-success btn-lg-1 btn3d btn3-block">Edit</a>
+														
+														<a href="<?php $this->baseUrl(); ?>/invite/<?php echo $upcomeingData['contest_id']; ?>" type="button" class="btn-success btn-lg-1 btn3d btn3-block">Invite</a>
+													</td>
+												</tr>
+												
+											<?php } ?>
+												
+											
+										<?php } else { ?>
+												<tr> 
+													<td colspan="6" class="text-green-light" >You are not entered in any upcoming contests.</td>
+												</tr>
+										<?php } ?>
+									
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="col-md-12 text-center">
+								<ul class="pagination pagination-lg pager" id="myPager"></ul>
+							</div>	
+						</div>
+					</div>
+				</div>
+        
+				<!---------------------Upcoming Contests Section End Here------------------------>
+				
+				<!---------------------Completed Contests Section Start Here--------------------->
+				<div class="row contest-bg-color">
+					
+					<div class="col-md-4 col-sm-4 col-xs-12 pd-15">
+						<h3 class="pull-left top9px">Completed Contests</h3>
+					</div>
+					
+					<div class="col-md-3 col-sm-3 col-xs-6 pd-15">
+						<div class="form-group pull-right no-m-bottom m-left-sm">
+							<div class="input-group">
+								<label class="text-white text-uppercase">BUY IN</label>&nbsp;&nbsp;
+								<select name="entryFee" class="font-ste-medium" id="entryFee"">
+									<option value="-1" selected="selected">All</option>
+									<option value="-2">Pay Only</option>
+									<option value="0">Free Only</option>
+									<!--<option value="2">$2.00</option>
+									<option value="5">$5.00</option>
+									<option value="10">$10.00</option>
+									<option value="20">$20.00</option>
+									<option value="50">$50.00</option>
+									<option value="100">$100.00</option>
+									<option value="200">$200.00</option> -->
+								</select>      
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-5 col-sm-5 col-xs-6 pd-15">
+						<div class="form-group pull-right no-m-bottom m-left-sm">
+							<div class="input-group">
+								<label class="text-white text-uppercase">Show Contests</label>&nbsp;&nbsp;
+								<select name="contestDay" class="font-ste-medium" id="contestDay">
+									<option value="3">Last 3 Days</option>
+									<option value="7">Last 7 Days</option>
+									<option value="30">Last 30 Days</option>
+									<option value="-1" selected>All Time</option>
+								</select>    
+							</div>
+						</div>
+					</div>
+				</div>
+          
+          
+				<div class="row mr-15-right-left">
+					<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+						<div class="card card-a margin-40">
+							<div class="tab-content-1a">
+							
+								<table id ="completedtable" class="footable">
+									<thead>
+										<tr class="header-img">
+											<th class="footable-first-column" style="width:6%;"><a href="javascript:void(0);" class="sort-by">ID</a></th>
+											<th data-class="expand"><a href="javascript:void(0);" class="sort-by">GAME</a></th>
+											<th data-hide="phone"><a href="javascript:void(0);" class="sort-by">STARTS IN</a></th>
+											<th data-hide="phone,tablet"><a href="javascript:void(0);" class="sort-by">ENTRY FEE</a></th>
+											<th data-hide="phone,tablet"><a href="javascript:void(0);" class="sort-by">PRIZE POOL</a></th>
+											<th data-hide="phone,tablet"><a href="javascript:void(0);" class="sort-by">CON RANK</a></th>
+											<th data-hide="phone,tablet"><a href="javascript:void(0);" class="sort-by">CON PRIZE</a></th>
+											<th data-class="expand">ACTION</th>
+										</tr>
+									</thead>
+									
+									<tbody class="complete">	
+										<?php if (!empty($this->completedcontestData)) { ?>
+											<?php foreach ($this->completedcontestData as $completedData) { ?>
+											
+												<tr>
+													<td><?php echo $completedData['contest_id']; ?></td>
+													
+													<td><a data-toggle="modal" data-target=".contest-details-modal-undraft"class="condetails opencontestmodal text-green-light" data-cid="<?php echo $completedData['contest_id']; ?>" href="javascript:void(0);" id='green'><?php echo $completedData['contest_name']; ?></a></td>
+													
+													<td><?php echo date("j M Y ", strtotime($completedData['start_time'])); ?></td>
+													
+													<td><?php echo $completedData['entry_fee']." DFS"; ?></td>
+													
+													<td><?php echo $completedData['prize_pool']." DFS"; ?></td>
+													
+													<td><?php echo $completedData['con_rank']; ?></td>
+													
+													<td><?php echo $completedData['con_prize']." DFS"; ?></td>
+													
+													<td> <a class="btn-success btn-lg-1 btn3d" href="/game-center/<?php echo $completedData['contest_id']; ?>" contest-id="60" type="button">Results</a></td>
+												</tr>
+												
+												
+											<?php } ?>
+											
+										<?php } else { ?>
+											<tr> 
+												<td colspan="8" class="text-green-light" >You have not played in any contest yet.</td>
+											</tr>
+										<?php } ?>
+									</tbody>
+									
+								</table>
+							</div> 						
+						</div>
+						
+						<div class="col-md-12 text-center">
+							<ul class="pagination pagination-lg pager" id="myPager-1"></ul>
+						</div>
+
+					</div>
+				</div>
+				
+				<!---------------------Completed Contests Section End Here----------------------->
+			</div>
+		</div>
+    </div>
+</div>
+  
+
+
+<script>
+    /*
+     * dev: priyanka added these lines for initialisation of jquery datatables plugin
+     * date : 8/6/2015
+     */
+    $(document).ready(function() {
+        $('#livetable').dataTable({
+            "bPaginate": true,
+            "bFilter": false,
+            "bLengthChange": false,
+            "pageLength": 5,
+			"order": [[ 0, "desc" ]],
+            "bInfo": true
+        });
+    });
+
+    $(document).ready(function() {
+        $('#upcomingtable').dataTable({
+            "bPaginate": true,
+            "bFilter": false,
+            "bLengthChange": false,
+			"bUseRendered": false,
+            "pageLength": 5,
+			"order": [[ 2, "asc" ]],
+            "bInfo": true,
+			columnDefs: [
+				{
+					targets: [2],
+					data: {
+						_: "2.display",
+						sort: "2.@data-time",
+						type: "2.@data-time",
+					}
+				},
+			]
+        });
+    });
+	
+	$.fn.dataTable.ext.classes.sPageButton = 'btn btn-custom';
+	
+	$(document).ready(function() {
+    $("#completedtable").dataTable({
+        aaSorting: [[0, 'desc'],[2, 'asc']],
+        bPaginate: true,
+        bFilter: false,
+		bLengthChange: false,
+		pageLength:5,
+        bInfo: false,
+        bSortable: true,
+        bRetrieve: true,
+        aoColumnDefs: [
+            { aTargets: [ 7 ], bSortable: false }
+        ]
+    }); 
+});
+   /* $(document).ready(function() {
+        $('#completedtable').dataTable({
+            "bPaginate": true,
+            "bFilter": false,
+            "bLengthChange": false,
+            "pageLength": 5,
+			"order": [[ 0, "desc" ]],
+            //"paging": false,
+			//"bSort": true,
+            "bInfo": true
+
+
+        });
+    });
+   
+   
+     * dev: priyanka modified the lines of script for filtering and datatables inintialisation for newly appending rows
+     * date : 8/6/2015
+     */
+	 
+    $(document).ready(function() {
+        
+       var tablenew = $('#completedtable').dataTable();
+        
+        $(document.body).on('change', '#contestDay', function(e) {
+            
+            var day = $(this).val();
+            var entryFee = $('#entryFee').val();
+
+            $.ajax({
+                url: '/usercontest-ajax-handler',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    method: 'getcontest',
+                    entryFee: entryFee,
+                    day: day
+                },
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+
+                    tablenew.fnClearTable();
+                    $('.complete').html('');
+                    if (response != 0) {
+                        $(".completeContestTable").css('display', '');
+                    }
+                    console.log(response);
+                   
+                    $.each(response, function(index, value) {
+                        var a = value.contest_id;
+						
+                        var b = '<a data-toggle="modal" data-target=".contest-details-modal-undraft" class="condetails opencontestmodal text-green-light" data-cid="'+value.contest_id+'" href="javascript:void(0);" id="green">'+value.contest_name+'</a>';
+						
+                        //var c = $.format.date(value.start_time, "dd MMM yyyy");
+                        //console.log(moment());
+                        var c = moment(value.start_time).format('DD MMMM YYYY');
+                        var d = ''+value.entry_fee;
+                        var e = ''+value.prize_pool;
+                        var f = value.con_rank;
+                        var x = ''+value.con_prize;
+                        var y = '<a type="button" contest-id="' + value.contest_id + '" href="/game-center/' + value.contest_id + '" class="btn-success btn-lg-1 btn3d">Results</a>';
+                        tablenew.fnAddData([a, b, c, d, e, f, x, y]);
+                    });
+                    tablenew.draw();
+
+                }
+
+            });
+
+        });
+
+        $(document.body).on('change', '#entryFee', function(e) {
+            var entryFee = $(this).val();
+            var day = $('#contestDay').val();
+			
+            $.ajax({
+                url: '/usercontest-ajax-handler',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    method: 'getcontest',
+                    entryFee: entryFee,
+                    day: day
+                },
+                beforeSend: function() {
+
+                },
+				success: function(response) {
+
+                    tablenew.fnClearTable();
+                    $('.complete').html('');
+                    if (response != 0) {
+                        $(".completeContestTable").css('display', '');
+                    }
+					console.log(response);
+                    $.each(response, function(index, value) {
+						
+                        var a = value.contest_id;
+                       var b = '<a data-toggle="modal" data-target=".contest-details-modal-undraft" class="condetails opencontestmodal text-green-light" data-cid="'+value.contest_id+'" href="javascript:void(0);" id="green">'+value.contest_name+'</a>';
+					   
+                       // var c = $.format.date(value.start_time, "dd MMM yyyy");
+                        var c = moment(value.start_time).format('DD MMMM YYYY');
+                        var d = 'DFS '+value.entry_fee;
+                        var e = 'DFS '+value.prize_pool;
+                        var f = value.con_rank;
+                        var x = 'DFS '+value.con_prize;
+                        var y = '<a type="button" contest-id="' + value.contest_id + '" href="/game-center/' + value.contest_id + '" class="btn-success btn-lg-1 btn3d">Results</a>';
+                        tablenew.fnAddData([a, b, c, d, e, f, x, y]);
+                    });
+                    tablenew.draw();
+                }             
+            });
+        });
+    });
+
+    /*
+     * dev: priyanka added this  script for timers
+     * date : 8/6/2015
+     */
+    $(document).ready(function() {
+        $('.timeleft').each(function(e) {
+            var gettime = $(this).attr('data-time');
+            if (gettime !== undefined) {
+                updateTimeSpan(gettime, this)
+            }
+        });
+		
+		$('.paginate_button ').click(function(){
+			$('.timeleft').each(function(e) {
+				var gettime = $(this).attr('data-time');
+				if (gettime !== undefined) {
+					updateTimeSpan(gettime, this)
+				}
+			});
+		});
+		
+    });
+	
+	//countdown timer function
+    function updateTimeSpan(gettime, selector) {
+        //gettime = '1412130240';
+        var d = new Date(gettime * 1000);
+        var t = new Date((new Date) * 1 + 1000 * 3600 * 1);
+        var ms;
+        var s, m, h, mt;
+        var call;
+        ms = d - t;
+		
+        // get the months between now and then    
+		//    mt = parseInt(ms / (1000 * 60 * 60 * 24 * 30));
+		//    ms -= (mt * 1000 * 60 * 60 * 24 * 30);
+				// get the days between now and then    
+		//    d = parseInt(ms / (1000 * 60 * 60 * 24));
+		//    ms -= (d * 1000 * 60 * 60 * 24);
+		
+        // get hours    
+        h = parseInt(ms / (1000 * 60 * 60));
+        ms -= (h * 1000 * 60 * 60);
+        // get minutes    
+        m = parseInt(ms / (1000 * 60));
+        ms -= (m * 1000 * 60);
+        // get seconds    
+        s = parseInt(ms / 1000);
+        var time = h + 'h,' + m + 'm,' + s + 's.';
+        $(selector).html(time);
+
+        //locked the contest entry if there is only 30 minutes remaining to start the contest
+        if (h == 0 && m <= 30) {
+            var coid = $(selector).closest('td').next('td').find('.enterbutton ').removeAttr("href");
+            $(selector).closest('td').next('td').find('.enterbutton').html("LOCKED");
+            $(selector).closest('td').next('td').find('.enterbutton ').removeClass('enter_btn');
+        }
+
+
+        //clear timeout value and set zero values of time
+        if ((h <= 0) && (m <= 0) && (s <= 0)) {
+            var over = '00h,00m,00s.';
+            $(selector).html(over);
+            clearTimeout(call);
+        }
+
+        call = setTimeout(function() {
+            updateTimeSpan(gettime, selector);
+        }, 100);
+    }
+	
+	$(document.body).on('click', '.opencontestmodal', function() {
+		var contestId = $(this).attr('data-cid');
+		var drafttype = $(this).attr('drafttype');
+
+
+		$.ajax({
+			url: '/contest-details',
+			type: 'POST',
+			dataType: 'html',
+			data: {
+				cid: contestId,
+				drafttype: drafttype
+			},
+			beforeSend: function() {
+
+			},
+			success: function(response) {
+				$(document.body).find('#contestdetails_body').html(response)
+				$('#contestModal').modal('show');
+			}
+		});
+
+	});
+
+
+</script>
+</script>

@@ -1,0 +1,2158 @@
+<hr>
+<?php 
+	if(isset($this->error)){    
+
+		echo "<div class='text-white'><h4>".$this->error."</h4></div>";
+
+	} else { 
+?> 
+
+<div class="row mr-15-right-left">
+		
+	<div class="col-md-6 col-sm-6 col-xs-12 pd-15">
+		<h4 class="pull-left pd-9-0 text-uppercase">Edit Lineup
+		<span class="m-left-md" style="color:yellow;"><?php echo !empty($this->sports)?$this->sports:'N/A';?></span></h4>
+	</div>
+	
+	<div class="col-md-6 col-sm-6 col-xs-12 pd-right-none">     
+		<div class="input-group col-md-12 col-sm-12 col-xs-12">
+			<input id="search_player" class="form-control input-sm" type="text" placeholder="Player Search">
+		</div>
+	</div>
+</div>
+
+<div class="">
+	<div class="row mr-15-right-left">
+		<div class="col-md-6 col-sm-12 col-xs-`12 pd-left-none pd-15-15-none">
+			<div class="card card-a loader-section">
+			
+				<!-------------------------------------NFL GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+			
+				<?php if ($this->sports == "NFL") { ?>
+				
+				<ul id="plrlst" class="nav nav-tabs nav-tabs-a tabs-9" role="tablist">                                         
+					<li class="active"><a class="plistnew_3" data-playrecode="QB" data-toggle="tab" aria-controls="QB" href="#QB">QB</a></li>
+					<li><a class="plistnew_3" data-playrecode="RB"  data-toggle="tab" aria-controls="RB" href="#RB">RB</a></li>
+					<li><a class="plistnew_3" data-playrecode="WR"   data-toggle="tab" aria-controls="WR" href="#WR">WR</a></li>
+					<li><a class="plistnew_3" data-playrecode="TE"   data-toggle="tab" aria-controls="TE" href="#TE">TE</a></li>
+					<li><a class="plistnew_3" data-playrecode="FLEX" data-toggle="tab" aria-controls="FLEX" href="#FLEX">FLEX</a></li>
+					<li><a class="plistnew_3" data-playrecode="K"     data-toggle="tab" aria-controls="K" href="#K">K</a></li>
+					<li><a class="plistnew_3" data-playrecode="DST"   data-toggle="tab" aria-controls="DST" href="#DST">DST</a></li>
+					<li><a class="plistnew_3" data-playrecode="ALL"   data-toggle="tab" aria-controls="ALL" href="#ALL">ALL</a></li>
+					<li><a class="" data-playrecode="C" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+                      
+				<!-- Tab panes -->
+				<div class="tab-content">
+				
+					<div role="tabpanel" class="tab-pane active" id="QB">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="QB">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+									
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="RB">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="RB">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="WR">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="WR">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="TE">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="TE">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="FLEX">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="FLEX">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="K">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="K">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="DST">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb7" data-pos="DST">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="ALL">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb8" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="scoring">
+                        <div class="scoring-panel table-responsive" style="display: block;">
+							<p>Offensive players will accumulate points as follows: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Passing TD = +4PTs</li>
+								<li>25 Passing Yards = +1PT (+0.04PT/ per yard is awarded)</li>
+								<li>300+ Yard Passing Game = +3PTs</li>
+								<li>interception = -1PT</li>
+								<li>10 Rushing Yards = +1PT (+0.1PT per yard is awarded)</li>
+								<li>Rushing TD = +6PTs</li>
+								<li>100+ Yard Rushing Game = +3PTs</li>
+								<li>10 Receiving Yards = +1PT (+0.1PT per yard is awarded)</li>
+								<li>Reception = +1PT</li>
+								<li>Receiving TD = +6PTs</li>
+								<li>100+ Yard Receiving Game = +3PTs</li>
+								<li>Punt/Kickoff Return for TD = +6PTs</li>
+								<li>Fumble Lost = -1PT</li>
+								<li>2 Point Conversion (Pass, Run, or Catch) = +2PTs</li>
+								<li>Offensive Fumble Recovery TD = +6PTs</li>
+							</ul>
+							<p>Defense/Special Teams will accumulate points as follows: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Sack = +1PT</li>
+								<li>Interception = +2PTs</li>
+								<li>Fumble Recovery = +2PTs</li>
+								<li>Kickoff Return TD = +6PTs</li>
+								<li>Punt Return TD = +6PTs</li>
+								<li>Interception Return TD = +6PTs</li>
+								<li>Fumble Recovery TD = +6PTs</li>
+								<li>Blocked Punt or FG Return TD = +6PTs</li>
+								<li>safety = +2PTs</li>
+								<li> Blocked Kick = +2PTs</li>
+								<li>0 Points Allowed = +10PTs</li>
+								<li>1-6 Points Allowed = +7PTs</li>
+								<li>7-13 Points Allowed = +4PTs</li>
+								<li>14-20 Points Allowed = +1PT</li>
+								<li>21-27 Points Allowed = 0PTs</li>
+								<li>28-34 Points Allowed = -1PT</li>
+								<li>35+ Points Allowed = -4PTs</li>
+							</ul>
+							<p>The following scoring plays will result in Points Allowed (PA) by your Defense/Special Teams (DST):</p>
+							<ul class="list-unstyled" id="ul">
+								<li>Rushing TDs, Passing TDs, Punt Return TDs, Kick Return TDs and Blocked Punt TDs</li>
+								<li> 2pt conversions</li>
+								<li>Extra-points</li>
+								<li>Field-goals</li>
+								<li>*NOTE:Points Allowed (PA) only includes points surrendered while DST is on the field - doesn't include points given up by team's offense (i.e. points off offensive turnovers). </li>
+							</ul>
+						</div>			
+					</div>
+								
+				</div>
+				
+                <?php } ?> 
+				
+				<!-------------------------------------NFL GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+				
+				<!-------------------------------------MLB GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+				
+				<?php if ($this->sports == "MLB") { ?>
+				
+				<ul id="plrlst" class="nav nav-tabs nav-tabs-a" role="tablist">                                         
+					<li class="active"><a class="plistnew_3" data-playrecode="P" data-toggle="tab" href="#P">P</a></li>
+					<li><a class="plistnew_3" data-playrecode="C" data-toggle="tab" href="#C">C</a></li>
+					<li><a class="plistnew_3" data-playrecode="1B" data-toggle="tab" href="#1B">1B</a></li>
+					<li><a class="plistnew_3" data-playrecode="2B" data-toggle="tab" href="#2B">2B</a></li>
+					<li><a class="plistnew_3" data-playrecode="3B" data-toggle="tab" href="#3B">3B</a></li>
+					<li><a class="plistnew_3" data-playrecode="SS" data-toggle="tab" href="#SS">SS</a></li>
+					<li><a class="plistnew_3" data-playrecode="OF" data-toggle="tab" href="#OF">OF</a></li>
+					<li><a class="plistnew_3" data-playrecode="ALL" data-toggle="tab" href="#ALL">ALL</a></li>
+					<li><a class="" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+				
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="P">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="P">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										 
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+			 
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="C">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="C">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="1B">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="1B">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="2B">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="2B">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="3B">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="3B">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="SS">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="SS">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="OF">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="OF">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="ALL">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb7" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="scoring">
+                        <div class="scoring-panel table-responsive" style="display: block;">
+							</br>
+							<p>How hitters score points: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Single = +3 Pts</li>
+								<li>Double = +5 Pts</li>
+								<li>Triple = +8 Pts</li>
+								<li>Home = +10 Pts</li>
+								<li>RBI and Runs = +2 Pts.</li>
+								<li>Base on balls (Walk) = +2 Pts/li>
+								<li>Stolen base = +5 Pts.</li>
+								<li>Sacrifice Fly = +1 Pts</li>
+								<li>Strike Out = -2 Pts</li>
+							</ul>
+							<p>How pitchers score points: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Inning is pitched = +2.25 Pts</li>
+								<li>Strike out = +2 Pts</li>
+								<li>Win = +4 Pts</li>
+								<li>Start = +1 Pt</li>
+								<li>Quality Start = +2.5 Pts</li>
+								<li>Earned run allowed = -2 Pts</li>
+								<li>Hits= -1 Pts</li>
+								<li>Walk = - 0.6 Pts</li>
+								<li>Home Run = -3 Pts</li>
+								<li> Blocked Kick = +2PTs</li>
+							</ul>
+							<ul class="list-unstyled" id="ul">
+								<li>*NOTE: One thing to note is that pitching statistics for the hitters will not be counted and vice-versa. </li>
+							</ul>
+						</div>			
+					</div>					
+				</div>
+				
+				<?php } ?>
+				
+				<!-------------------------------------MLB GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+				<!-------------------------------------NBA GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+				
+				<?php if ($this->sports == "NBA") { ?>
+				
+				<ul  id="plrlst"class="nav nav-tabs nav-tabs-a tabs-9">
+					<li class="active"><a class="plistnew_3"  data-playrecode="PG" data-toggle="tab" href="#PG">PG</a></li>
+					<li><a class="plistnew_3"  data-playrecode="SG" d data-toggle="tab" href="#SG">SG</a></li>
+					<li><a class="plistnew_3" data-playrecode="SF"   data-toggle="tab" href="#SF">SF</a></li>
+					<li><a class="plistnew_3" data-playrecode="PF"  data-toggle="tab" href="#PF">PF</a></li>
+					<li><a class="plistnew_3" data-playrecode="C"   data-toggle="tab" href="#C">C</a></li>
+					<li><a class="plistnew_3" data-playrecode="G" data-toggle="tab" href="#G">G</a></li>
+					<li><a class="plistnew_3" data-playrecode="F"    data-toggle="tab" href="#F">F</a></li>
+					<li><a class="plistnew_3" data-playrecode="UTIL"  data-toggle="tab" href="#UTIL">UTIL</a></li>
+					<li><a class="plistnew_3" data-playrecode="ALL"  data-toggle="tab" href="#ALL">ALL</a></li>
+					<li><a class="" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+				
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="PG">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="PG">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+									  
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										 
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="SG">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="SG">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="SF">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="SF">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="PF">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="PF">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="C">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="C">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="G">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="G">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="F">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb7" data-pos="F">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="UTIL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb8" data-pos="UTIL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="ALL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb9" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="scoring">
+						<div class="scoring-panel" style="display: block;">   
+							<p>Players will accumulate points as follows</p>
+							<ul class="list-unstyled">
+
+								<li>Point = +1 PT</li>
+								<li>Made 3pt. shot = +0.5 PTs</li>
+								<li>Rebound = +1.25 PTs</li>
+								<li>Assist = +1.5 PTs</li>
+								<li>Steal = +2 PTs</li>
+								<li>Block = +2 PTs</li>
+								<li>Turnover = -0.5 PTs</li>
+								<li>Double-Double = +1.5PTs (MAX 1 PER PLAYER: Points, Rebounds, Assists, Blocks, Steals)</li>
+								<li>Triple-Double = +3PTs (MAX 1 PER PLAYER: Points, Rebounds, Assists, Blocks, Steals)</li>
+							</ul>
+						</div>		
+					</div>	
+					</div>
+				<?php } ?>
+				
+				<!-------------------------------------NBA GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+				
+				<!-------------------------------------NHL GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+				
+				<?php if ($this->sports == "NHL") { ?>
+				
+				<ul  id="plrlst"class="nav nav-tabs nav-tabs-a nav-tabs-a1">
+					<li class="active"><a class="plistnew_3" data-playrecode="C" data-toggle="tab" href="#C">C</a></li>
+					<li><a class="plistnew_3" data-playrecode="C" data-toggle="tab" href="#W">W</a></li>
+					<li><a class="plistnew_3" data-playrecode="1B" data-toggle="tab" href="#D">D</a></li>
+					<li><a class="plistnew_3" data-playrecode="2B" data-toggle="tab" href="#G">G</a></li>
+					<li><a class="plistnew_3" data-playrecode="3B" data-toggle="tab" href="#UTIL">UTIL</a></li>
+					<li><a class="plistnew_3" data-playrecode="ALL" data-toggle="tab" href="#ALL">ALL</a></li>
+					<li><a class="" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+				
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="C">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="C">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										 
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="W">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="W">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="D">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="D">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="G">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="G">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="UTIL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="UTIL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="ALL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					
+					<div role="tabpanel" class="tab-pane fade" id="scoring">
+						<div class="scoring-panel table-responsive" style="display: block;">
+							<p>Players will accumulate points as follows: </p>
+							<ul class="list-unstyled">
+								<li>Goal = +3 PTS</li>
+								<li>Assist = +2 PTS</li>
+								<li>Shot on Goal = +0.5 PTS</li>
+								<li>Blocked Shot = +0.5 PTS</li>
+								<li>Short Handed Point Bonus (Goal/Assist) = +1 PTS</li>
+								<li>Shootout Goal = +0.2 PTS</li>
+								<li>Hat Trick Bonus = +1.5 PTS</li>
+							</ul>
+							<p>Goalies only will accumulate points as follows: </p>
+							<ul class="list-unstyled">
+
+
+								<li>Win = +3 PTS</li>
+								<li>Save = +0.2 PTS</li>
+								<li>Goal Against = -1 PTS</li>
+								<li>Shutout Bonus = +2 PTS</li>
+							</ul>
+							<p>Goalie Scoring Notes:</p>
+							<ul class="list-unstyled">
+								<li> Goalies WILL receive points for all stats they accrue, including goals and assists.</li>
+								<li> The Goalie Shutout Bonus is credited to goalies if they complete the entire game with 0 goals allowed in regulation + overtime. Shootout goals will not prevent a shutout. Goalie must complete the entire game to get credit for a shutout.</li>
+							</ul>
+						</div>		
+					</div>	
+					
+				</div>
+				<?php } ?>
+				
+				<!-------------------------------------NHL GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+			</div>
+			
+		</div>
+
+		<div class="col-md-6 col-sm-12 col-xs-`12 pd-right-none pd-15-15-none">
+			<div class="card card-a">
+			
+				<ul class="nav nav-tabs nav-tabs-b" role="tablist">
+					<li class="pull-left">LINEUP</li>
+					<li class="text-center">AVG. REM. / PLAYER:<span id="avg_rim" style="color: rgb(255, 255, 255);">0</span> DFS</li>
+					<li class="pull-right">REM. SALARY:<span id="salary_cap_amt" style="color: rgb(255, 255, 255);"><?php echo $this->rem_salary; ?></span> DFS</span></li>
+				</ul>
+				
+				<input type="hidden" value="<?php echo $this->settings['salary_cap_amt']; ?>" id="salary_cap" name="salary_cap">
+                <input type="hidden" value="<?php echo $this->rem_salary; ?>" id="rim_amt" name="rim_amt">
+								
+				<div class="tab-content-1">
+					<table class="footable playersTable flip-table lobbyTable">
+						<thead>
+							<tr class="header-color">
+								<th>POS</th>
+								<th>PLAYER</th>
+								<th>OPP</th>
+								<th>FPPG</th>
+								<th>SALARY</th>
+								<th></th>
+							</tr>
+						</thead>
+						
+						<tbody id="lineup">
+						
+							<!------------------------------MLB CONTESTS LINEUP STRT HERE-------------------------------------------->
+							
+							<?php
+							if (isset($this->sports)) {
+								
+								if ($this->sports == "MLB") {  ?>
+								
+									<?php foreach ($this->mylineupDetails as $lineupdetails) { ?>
+									
+										<tr data-pval="<?php echo $lineupdetails['plr_value']; ?>" data-teamcode="<?php echo $lineupdetails['team_code']; ?>"  data-pcode="<?php echo $lineupdetails['pos_code']; ?>" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>" >
+											
+											<td class="pos"><?php echo $lineupdetails['pos_code']; ?></td>
+											
+											<td class="p-name text-green-light"><a id="green"  href="#" class="playerDetails" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>"><?php echo $lineupdetails['name']; ?></td>
+											
+											
+											<?php 
+											$home_arr = explode('@',$this->homeTeam_array[$lineupdetails['team_code']]);
+						
+											if($home_arr[0]==$lineupdetails['team_code']){
+												$match_code =  "<span class='font3'>".$home_arr[0]."</span> @ ".$home_arr[1];
+											}else{
+												$match_code = $home_arr[0]." @ <span class='font3'>".$home_arr[1]."</span>";
+											}
+											?>
+											
+											<td class="opp"><?php echo $match_code; ?></td>
+											
+											<td class="pts"><?php echo (isset($lineupdetails['fppg']))?$lineupdetails['fppg']:"0.0";?></td>
+											
+											<td class="salary"><?php echo $lineupdetails['plr_value']." DFS"; ?></td>
+											
+											<td class="last">
+
+												<a data-id="<?php echo $lineupdetails['id']; ?>" class="remPlayer"><span class="text-red"><i class="fa fa-times"></i></span></a>
+
+											</td>
+										</tr> 
+							<?php 	} 	?>
+							
+							<!------------------------------NBA CONTESTS LINEUP STRT HERE-------------------------------------------->
+							
+						<?php 	} else if ($this->sports == "NBA") { ?>
+
+									<?php foreach ($this->mylineupDetails as $lineupdetails) {  ?>
+									
+										<tr data-pval="<?php echo $lineupdetails['plr_value']; ?>" data-pcode="<?php echo $lineupdetails['pos_code']; ?>" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>" >
+											<td class="pos"><?php echo $lineupdetails['pos_code']; ?></td>
+                                                        
+											<td class="p-name text-green-light"><a id="green"  href="#" class="playerDetails" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>"><?php echo $lineupdetails['name']; ?></td>
+                                                        
+											<?php 
+											$home_arr = explode('@',$this->homeTeam_array[$lineupdetails['team_code']]);
+						
+											if($home_arr[0]==$lineupdetails['team_code']){
+												$match_code =  "<span class='font3'>".$home_arr[0]."</span> @ ".$home_arr[1];
+											}else{
+												$match_code = $home_arr[0]." @ <span class='font3'>".$home_arr[1]."</span>";
+											}
+											?>
+											
+											<td class="opp"><?php echo $match_code; ?></td>
+														
+                                            <td class="pts"><?php echo (isset($lineupdetails['fppg']))?$lineupdetails['fppg']:"0.0";?></td>
+											
+											<td class="salary"><?php echo $lineupdetails['plr_value'].' DFS'; ?></td>
+											
+											<td class="last">
+												<a data-id="<?php echo $lineupdetails['id']; ?>" class="remPlayer"><span class="text-red"><i class="fa fa-times"></i></span></a>
+
+											</td>
+										</tr>    
+							<?php 	}  ?>
+						
+							<!------------------------------NFL CONTESTS LINEUP STRT HERE-------------------------------------------->
+							
+						<?php  	} else if ($this->sports == "NFL") { ?>
+						
+						
+									<?php foreach ($this->mylineupDetails as $lineupdetails) { ?>
+									
+										<tr data-pval="<?php echo $lineupdetails['plr_value']; ?>" data-pcode="<?php echo $lineupdetails['pos_code']; ?>" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>" >
+											
+											<td class="pos"><?php echo $lineupdetails['pos_code']; ?></td>
+											
+											<td class="p-name text-green-light"><a id="green"  href="#" class="playerDetails" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>"><?php echo $lineupdetails['name']; ?></td>
+										   
+											<?php 
+											$home_arr = explode('@',$this->homeTeam_array[$lineupdetails['team_code']]);
+						
+											if($home_arr[0]==$lineupdetails['team_code']){
+												$match_code =  "<span class='font3'>".$home_arr[0]."</span> @ ".$home_arr[1];
+											}else{
+												$match_code = $home_arr[0]." @ <span class='font3'>".$home_arr[1]."</span>";
+											}
+											?>
+											
+											<td class="opp"><?php echo $match_code; ?></td>
+											
+											<td class="pts"><?php echo (isset($lineupdetails['fppg']))?$lineupdetails['fppg']:"0.0";?></td>
+											
+											<td class="salary"><?php
+												if (isset($lineupdetails['plr_value'])) {
+													echo $lineupdetails['plr_value']." DFS";
+												} else {
+													echo "2000 DFS";
+												}
+												?>
+											</td>
+											
+											<td class="last">
+												<a data-id="<?php $lineupdetails['id']; ?>" class="remPlayer"><span class="text-red"><i class="fa fa-times"></i></span></a>
+											</td>
+										</tr>
+										
+							<?php   } ?>
+							
+							<!------------------------------NHL CONTESTS LINEUP STRT HERE-------------------------------------------->
+							
+						<?php   } else {    ?>
+									<?php foreach ($this->mylineupDetails as $lineupdetails) { ?>
+									
+										<tr data-pval="<?php echo $lineupdetails['plr_value']; ?>" data-pcode="<?php echo $lineupdetails['pos_code']; ?>" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>" >
+										
+											<td class="pos"><?php echo $lineupdetails['pos_code']; ?></td>
+											
+											<td class="p-name text-green-light"><a id="green"  href="#" class="playerDetails" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $lineupdetails['id']; ?>" data-tid="<?php echo $lineupdetails['team_id']; ?>"><?php echo $lineupdetails['name']; ?></td>
+											
+											<?php 
+											$home_arr = explode('@',$this->homeTeam_array[$lineupdetails['team_code']]);
+						
+											if($home_arr[0]==$lineupdetails['team_code']){
+												$match_code =  "<span class='font3'>".$home_arr[0]."</span> @ ".$home_arr[1];
+											}else{
+												$match_code = $home_arr[0]." @ <span class='font3'>".$home_arr[1]."</span>";
+											}											
+											?>
+											
+											<td class="opp"><?php echo $match_code; ?></td>
+											
+											<td class="pts"><?php echo (isset($lineupdetails['fppg']))?$lineupdetails['fppg']:"0.0";?></td>
+											
+											<td class="salary"><?php
+												if (isset($lineupdetails['plr_value'])) {
+													echo $lineupdetails['plr_value'];
+												} else {
+													echo "0";
+												}
+												?> DFS
+											</td>
+											
+											<td class="last">
+												<a data-id="<?php echo $lineupdetails['id']; ?>" class="remPlayer"><span class="text-red"><i class="fa fa-times"></i></span></a>
+											</td>
+											
+										</tr> 
+										
+							<?php 	} ?>
+							
+						<?php  	}
+						
+							} ?>
+
+                        </tbody>
+					</table>
+				</div>				
+			</div>
+
+			<a href="/lineup"><button id="cancel" class="btn-success btn-lg btn3d">CANCEL</button></a>
+			
+			<button id="clear_lineup" class="btn-success btn-lg btn3d">CLEAR</button>
+			
+			<button class="btn-success btn-lg btn3d" data-target="#importLineup"  data-toggle="modal">IMPORT</button>
+			
+			<button id="update_lineup" class="btn-submit btn-lg btn3d">SAVE LINEUP</button>
+			
+		</div>
+	</div>
+	
+	<input type="hidden" name="mylineup_id" id="mylineup_id" value="<?php echo $this->mylineup_id; ?>" />
+    <input type="hidden" name="searchKey" id="searchKey" value="<?php echo $this->searchKey; ?>" />
+    <input type="hidden" name="sports_id" id="sports_id" value="<?php echo $this->sports_id; ?>" />
+    <input type="hidden" name="conid" id="conid" value="<?php echo $this->conid; ?>" />
+    <input type="hidden" name="startTime" id="startTime" value="<?php echo $this->start_time; ?>" />
+    <!--<input type="hidden" name="matchCount" id="matchCount" value="<?php echo $this->matchDetails['match_count']; ?>" />-->
+    <input type="hidden" id="time" value="<?php echo $this->time; ?>" />
+    <input type="hidden" name="matchCount" id="endTime" value="<?php echo $this->gameLastDate; ?>" />
+</div>
+
+   
+<script>
+
+$(document).ready(function() {
+	var owl = $(".owl-demo");
+	owl.owlCarousel({
+		autoPlay: 2000, //Set AutoPlay to 3 seconds
+		stopOnHover: true,
+		items: 4, //10 items above 1000px browser width
+		itemsDesktop: [1000, 5], //5 items between 1000px and 901px
+		itemsDesktopSmall: [900, 3], // 3 items between 900px and 601px
+		itemsTablet: [600, 2], //2 items between 600 and 0;
+		//                  navigation: true,
+
+		itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+	});
+	
+	$(".next").click(function() {
+		owl.trigger('owl.next');
+	});
+	
+	$(".prev").click(function() {
+		owl.trigger('owl.prev');
+	});
+
+});
+
+    
+$(document).ready(function() {
+	
+	
+	/* tab ajax section start here */
+	<?php if(!empty($this->homeTeam_array)){ $hometeams = json_encode($this->homeTeam_array);?>
+			var hometeam_array = JSON.parse('<?= $hometeams; ?>');
+		<?php  }else{?>
+			console.log('homeTeam_array empty');
+		<?php }?>
+        
+        var selectedTeam = new Array();
+        var playerlist = new Array();
+        var rimSal;
+        var rimAvg;
+        var remainSalary;
+        var mylineupPlayerList = new Array();
+        var lineupTeam = new Array();
+
+        $(document.body).on('click', '.plistnew_3', function(e) {
+            var ptype = $(this).html();
+            var searchKey = $('#searchKey').val();
+            var searchFilter = $('#search_player').val(); // added by alok on 21/07/2017
+            var sportId = $('#sports_id').val();
+			
+			
+            if (!$(this).parent().hasClass('active')) {
+                $.ajax({
+                    url: '/filter-player-by-team',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'playerfilter',
+                       // filterValue:searchFilter,
+                        searchValue: ptype,
+                        searchKey: searchKey,
+                        selectedTeam: selectedTeam,
+                        sportId: sportId
+                    },
+                    beforeSend: function() {						
+						$(".loader-section").prepend('<div class="pageloader"></div>');						
+                    },
+                    success: function(response) {
+                       $('.pageloader').css('display','none');
+                        if (response) {
+							//console.log(response);
+                            $(".playersTable[data-pos=" + ptype + "] >tbody").html('');
+
+                            var a = response.length;
+                            var b = 1;
+							console.log(response);
+                            $.each(response, function(index, value) {
+                                var index = playerlist.indexOf(value.id);
+                                
+                                var dl = "";
+
+                                if (value.injury_status == 1) {
+                                    dl = "<span title='"+value.injury_reason+"' class='injure_color'>&nbsp;&nbsp;"+value.injury_code+"</span>";
+                                }
+                                
+                                if (ptype == "FLEX") {
+                                    value.pos_code = "FLEX";
+                                }
+								
+								var plrteam = value.team_code;
+								var match = hometeam_array[plrteam];
+								var items = match.split('@');
+								if(items[0]==plrteam){
+									var team_c = "<span class='font3'>"+items[0]+"</span> @ "+items[1];
+								} else {
+									var team_c = items[0]+" @ <span class='font3'>"+items[1]+"</span>";
+								}
+								
+                                if (index == -1) {
+                                    $(".playersTable[data-pos=" + ptype + "] >tbody").append('<tr ><td class="r0">' + value.position + '</td><td class="r1 text-green-light"><a id="green" style="cursor:pointer;" data-toggle="modal" data-target="#playerModal" data-tid="' + value.team_id + '" data-pid="' + value.id + '">' + value.name + ' ' + dl + '</a></td><td id="tb" class="r2">' + team_c + '</td><td class="r4">' + value.fppg + '</td><td class="r5">' + value.plr_value + ' DFS</td><td class="r6"><a style="cursor:pointer" class="text-green-light addPlayer"  data-pval="' + value.plr_value + '" data-pid="' + value.id + '" data-team="' + value.team_code + '" data-pcode="' + value.pos_code + '" data-tid="' + value.team_id + '"><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td></tr>');
+                                } else {
+                                    $(".playersTable[data-pos=" + ptype + "] >tbody").append('<tr style="display:none;" ><td class="r0">' + value.position + '</td><td class="r1 text-green-light"><a id="green" style="cursor:pointer;" data-toggle="modal" data-target="#playerModal" data-tid="' + value.team_id + '" data-pid="' + value.id + '">' + value.name + ' ' + dl + '</a></td><td class="r2">' + team_c + '</td><td class="r4">' + value.fppg + '</td><td class="r5">' + value.plr_value + ' DFS</td><td class="r6"><a style="cursor:pointer" class=" text-green-light addPlayer" data-pval="' + value.plr_value + '" data-pid="' + value.id + '" data-team="' + value.team_code + '" data-pcode="' + value.pos_code + '" data-tid="' + value.team_id + '"><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td></tr>');
+                                }
+                                
+                                if (a == b) {
+                                    checkList();
+                                }
+                                b++;
+                            })
+
+                            
+                            if ( !$.fn.dataTable.isDataTable( ".playersTable[data-pos="+ptype+"]" ) ) {
+                                table=   $(".playersTable[data-pos="+ptype+"]").DataTable( {
+									"paging":         false,
+									"info":     false,
+									"searching": false
+                                });
+                            }
+
+                        } 
+                    },
+					error: function() {
+						window.location.reload();
+					}
+                });
+            }
+        });
+	/* tab ajax section end here */
+	
+	
+	var selectedTeam = new Array();
+
+	$(document.body).on('click','.teamselect',function(){
+		if($('.allteam').hasClass('selected')){
+		  if($(this).children('.notify').hasClass('check')){
+				$(this).children('.notify').removeClass('check');
+				$(this).children('.notify').removeClass('select');
+				if(!$(this).siblings('.teamselect').children('.notify').hasClass('check')){
+				   $(this).parent().parent().parent().removeClass('selected');
+				}
+			}else{
+				$(this).children('.notify').addClass('check');
+				$(this).children('.notify').addClass('select');
+			}  
+			 teamfilter();
+		}
+	   
+	}); 
+		
+    $('.allteam').click(function(e) {
+        if(!$(this).hasClass('selected')){
+            $(this).addClass('selected');
+            $(this).find('.notify').addClass('select');
+             teamfilter()
+        }       
+    }); 
+	
+    function teamfilter(){
+        var posCode = $('#plrlst').find('.active').children().attr('data-playrecode');
+      
+        var selectedTeam = [];
+        $('.teamselect').each(function(){
+            if($(this).children('.notify').hasClass('select')){
+                var tcode = $(this).attr('tcode');
+                selectedTeam.push(tcode);
+            }
+        });
+         filterTeam(posCode,selectedTeam,'pos_code');
+    }
+	
+    function filterTeam(searchPos,searchTeam,searchKey){
+		var sportId = $('#sports_id').val();
+		$.ajax({
+			url : '/filter-player-by-team',
+			type : 'POST',
+			dataType : 'json',
+			data : {
+				method : 'playerByTeam',
+				searchPos : searchPos,
+				searchTeam  : searchTeam,
+				searchKey   : searchKey,
+				 sportId    :  sportId   
+			},
+			success : function(response) {
+				if(response){
+					$(".playersTable[data-pos="+searchPos+"] >tbody").html('');
+					$.each(response,function( index, value ) {
+						$(".playersTable[data-pos="+searchPos+"] >tbody").append('<tr ><td class="r0">'+value.position+'</td><td class="r1 text-green-light"><a id="green" style="cursor:pointer;" data-toggle="modal" data-target="#playerModal" data-tid="'+value.team_id+'" data-pid="'+value.id+'">'+value.name+'</a></td><td id="tb" class="r2">'+value.team_vs+'</td><td class="r4">'+value.fppg+'</td><td class="r5">$'+value.plr_value+'</td><td class="r6"><a class="text-green-light addPlayer"  data-pval="'+value.plr_value+'" data-pid="'+value.id+'" data-team="'+value.team_code+'" data-pcode="'+value.pos_code+'" data-tid="'+value.team_id+'"><i class="fa fa-plus"></i></a></td></tr>');
+					});
+				}                 
+			}
+
+		});
+	}
+});
+    
+
+    
+
+    var selectedTeam = new Array(); 
+
+    var playerlist   = new Array();
+
+    var mylineupPlayerList = new Array();
+
+    var lineupTeam = new Array(); 
+
+    var sportsId = $('#sports_id').val();
+
+    $(document.body).on('click','#submit_lineup',function(){
+    
+        var tstatus = $('#ticketcode').attr('tstatus');
+
+        var ticketid = $('#ticketcode').attr('ticketid');
+
+        var sports_id  = $('#sports_id').val();
+
+        var conid      = $('#conid').val();
+
+        var start_time = $('#startTime').val();
+
+        var rem_salary = "255";
+		
+		//$('#salary_cap_amt').html();
+
+        var end_time = $('#endTime').val(); 
+
+        var pos_details = [];
+
+        var arr = [];
+
+        $("#lineup").children('tr').each(function(){
+
+            var pos = $(this).attr('data-pcode');
+
+            var pid = $(this).attr('data-pid');
+
+            var obj = {};
+
+            obj[pid] = pos; 
+
+            arr.push(pid);
+
+            pos_details.push(obj);
+
+                
+
+        });    
+
+        $.ajax({
+            url      : '/ajax-handler-lineup',
+
+            type     : 'POST',
+
+            dataType : 'json',
+
+            data : {
+
+                method    : 'savelineup',
+
+                lineup    : arr,
+
+                sports_id : sports_id,
+
+                conid     : conid,
+
+                start_time :start_time,
+
+                rem_salary : rem_salary,
+
+                end_time : end_time, 
+                pos_details : pos_details,  
+                tstatus : tstatus,
+
+                ticketid :ticketid  
+
+            },
+
+            beforeSend : function() {    
+
+            },
+
+            success : function(response) {      
+
+                if(response != 0){
+
+                    top.location.href = "/onlineOffer/"+response;
+
+                    lineupTeam.length === 0;
+
+                }else{
+
+                   $('#error-msg').html('Entry Full');
+
+                        $('#error-modal').modal('show');
+
+                }
+
+            }                   
+        });
+    });
+
+  
+    $(document.body).on('click','#applyticket',function(e){
+
+        e.preventDefault();
+
+        var ticketcode =  $( "#ticketcode" ).val();
+
+        var contestId = $('#conid').val();
+
+        if(ticketcode!=""){
+
+            $.ajax({
+
+                url      : '/contest-ajax-handler',
+
+                type     : 'POST',
+
+                dataType : 'json',
+
+                data     : {
+
+                    method : 'useticket',
+
+                    code : ticketcode,
+
+                    contestId :contestId
+
+                },
+
+                success  : function(response){
+
+                    if(response.code == 200){
+
+                        $('#ticket_msg').text('');
+
+                        $('#ticket_msg').text(response.message);
+
+                        $('#ticket_msg').css('color','yellow');
+
+                        $( "#ticketcode" ).attr('ticketid',response.data);
+
+                        $( "#ticketcode" ).attr('tstatus',1 );
+
+                        $('#con_cost').text('TOTAL CONTEST COST - Free');
+
+                    }else if(response.code == 197){
+
+                        $('#ticket_msg').text('');
+
+                        $('#ticket_msg').text(response.message);
+
+                        $('#ticket_msg').css('color','red');
+
+                        $( "#ticketcode" ).attr('ticketid',0);
+
+                        $( "#ticketcode" ).attr('tstatus',0);
+
+                        $('#con_cost').text('TOTAL CONTEST COST -'+$('#con_cost').attr('data-cost'));
+
+                    }
+
+                }
+
+            });
+
+        }else{
+
+           
+
+            $('#error-msg').html('Please provide Ticket Code');
+
+                        $('#error-modal').modal('show');
+
+        }
+
+    });
+
+    $(document.body).on('click','.modal-body #conftc',function(){
+
+        var result = $(this).val();
+
+        if ($(this).prop('checked')==true){ 
+
+            $('.enableagree').attr('id', 'submit_lineup');                
+
+        }else{                
+
+            $('.enableagree').removeAttr('id');                
+
+        }
+
+    });
+
+    // $('#create_lineup').click(function(){  
+
+    $(document.body).on('click','#lineupSubmit',function(e){ 
+
+        var check = 1;
+
+        var lp_players = new Array();
+
+        var lp_teams = new Array();
+
+        var lp_pos = new Array();
+
+        var rem_salary = parseInt($('#salary_cap_amt').text())
+
+        var time = $('#time').val();
+
+        $('#lineup>tr').each(function(){ //console.log($(this))
+
+            if(check){
+
+                if($(this).children('.p-name').html() == ""){
+
+                    check = 0;
+
+                    $('#error-msg').html('lineup contains unfilled positions, please complete the lineup');
+
+                        $('#error-modal').modal('show');
+
+                  
+
+                }
+
+            }
+
+            if($(this).children('.p-name').html() != ""){
+
+                var pid = $(this).attr('data-pid');
+
+                var pteam = $(this).attr('data-pteam');
+
+                lp_teams.push(pteam);
+
+                lp_players.push(pid);
+
+                var pos = $(this).attr('data-pcode');
+
+                var obj = {};
+
+                obj[pid] = pos; 
+
+                lp_pos.push(obj);
+
+            }
+
+        });
+
+        //     console.log(lp_teams)
+
+        if(rem_salary <0){
+
+            check=0;
+
+           
+
+            $('#error-msg').html('Salary Cap exceed, Player salaries should be within Salary cap');
+
+                        $('#error-modal').modal('show');
+
+        }
+
+        if(check){
+
+			<?php if (isset($this->lowbalance)) { ?>
+
+							$('#depositModal').modal('show');
+
+			<?php } else { ?>
+
+							$('#submitModal').modal('show');    
+
+			<?php } ?>
+
+        }     
+
+    });
+
+    $(document.body).on('click','.addplayer',function(e){
+
+        var pid     = $(this).attr('data-pid');
+
+        var pcode   = $(this).attr('data-pcode');
+
+        var pteam   = $(this).attr('data-team');
+
+        var tid     = $(this).attr('data-tid');
+
+        var w       = $(this);
+
+        var active  = $('#plrlst').children('.active').children().html();
+
+        var clength = $('tr[data-pcode="'+pcode+'"]').length;
+
+        var pval    = $(this).attr('data-pval');
+
+        var sports_id = $('#sports_id').val();
+
+        //            console.log(w)
+
+        if(sports_id == 3){
+
+            if(active != pcode){
+
+                clength = $('tr[data-pcode="'+pcode+'"]').length;
+
+                if(active != "ALL"){
+
+                    pcode = active;
+
+                }
+
+                addplayer(pcode,pid,pteam,pval,w,active,clength,sports_id);
+
+            }else{
+
+                addplayer(pcode,pid,pteam,pval,w,active,clength,sports_id);
+
+            }
+
+        }else{
+
+            addplayer(pcode,pid,pteam,pval,w,active,clength,sports_id);
+
+        }
+
+    }); 
+
+    
+
+    $(document.body).on('click','#clear_lineup',function(e){
+
+        $('#salary_cap_amt').html($('#salary_pool').val());
+
+        $('#avg_rim').html('0');
+
+        $('#salary_cap_amt').css('color','#fff');
+
+        $('#avg_rim').css('color','#fff');
+
+        var plist = [];
+
+        $("#lineup").find('tr').each(function(){
+
+    
+
+            var pid = $(this).attr('data-pid'); 
+
+            plist.push(pid);
+
+        });
+
+
+        if (plist.length === 0) {
+
+           $('#error-msg').html('Lineup is empty');
+
+                        $('#error-modal').modal('show');
+
+        }else{ 
+
+            $.each(plist,function( index, value ) {
+
+                $('*[data-pid="'+value+'"]').children('.p-name').html('');
+
+                $('*[data-pid="'+value+'"]').children('.opp').html('');
+
+                $('*[data-pid="'+value+'"]').children('.pts').html('');
+
+                $('*[data-pid="'+value+'"]').children('.salary').html('');
+
+                $('*[data-pid="'+value+'"]').children('.last').html('');
+
+                $('*[data-pid="'+value+'"]').parent().parent().show();
+
+                $('*[data-pid="'+value+'"]').removeAttr('data-pid');
+            
+            });
+
+            plist.length = 0;
+
+        }
+
+    });
+
+                    
+
+    function addplayer(pcode,pid,pteam,pval,w,active,clength,sports_id){
+
+        $('tr[data-pcode="'+pcode+'"]').each(function(cindex,value){ 
+
+
+            if($(this).children('.p-name').html() == ""){
+
+                if(mylineupPlayerList!=""){
+
+                    var index     = mylineupPlayerList.indexOf(pid);  /*  get index of pid */
+
+                    var teamIndex = lineupTeam.indexOf(pteam);  /* get index of team */
+
+                    
+
+                    if(index == -1){
+
+                        mylineupPlayerList.push(pid);  /*  Add pid from array list */
+
+                    }
+                 
+                    if(teamIndex == -1){
+
+                        lineupTeam.push(pteam);
+
+                    }
+              
+                }else{                 
+                    var index     = playerlist.indexOf(pid);  /*  get index of pid */
+
+                    var teamIndex = lineupTeam.indexOf(pteam);  /* get index of team */
+
+                    
+
+                    if(index == -1){
+
+                        playerlist.push(pid);   /*  Add pid from array list */
+
+                    }
+
+                    if(teamIndex == -1){
+
+                        lineupTeam.push(pteam);
+
+                    }
+
+                }
+
+
+                var name   = w.parent().siblings('.r2').children().html(); 
+
+                var opp    = w.parent().siblings('.r3').html();
+
+                var pts    = w.parent().siblings('.r4').html();
+
+                var salary = w.parent().siblings('.r5').html();
+
+                var tid = w.attr('data-tid');
+
+                w.parent().parent().hide();
+
+                $('#tblData').find('.addPlayer*[data-pid="'+pid+'"]').parent().parent().hide();
+
+                $(this).attr('data-pid',pid);
+
+                $(this).attr('data-pval',pval);
+
+                $(this).attr('data-pteam',pteam);
+
+                /* $(this).children('.p-name').html('<a data-target="#playerDetailsModal" data-toggle="modal" data-tid="'+tid+'" data-pid="'+pid+'">'+name+'</a>');   */
+
+                $(this).children('.p-name').html('<a class="playerstats pointer"  data-pcode="'+pcode+'" data-tid="'+tid+'" data-pid="'+pid+'" data-sport="'+sports_id+'">'+name+'</a>');
+
+                $(this).children('.opp').html(opp);
+
+                $(this).children('.pts').html(pts);
+
+                $(this).children('.salary').html(salary);
+
+                $(this).children('.last').html('<a class="remPlayer" data-id="'+pid+'"><span class="text-red"><i class="fa fa-times"></i></span></a>');
+
+                /* $(this).children('.last').html('<a class="remPlayer"><img src="/assets/images/cross2.png" /></a>'); */
+
+                                                 
+
+                    checkSalary()   
+
+                return false;
+
+                    
+
+            }else{
+
+                if(sports_id == 1){
+
+                    if(cindex == clength - 1){
+
+                        $('#error-msg').html('Position already filled');
+
+                        $('#error-modal').modal('show');
+
+                    }
+
+                        
+
+                }
+
+                if(cindex == clength - 1){
+
+                    if(sports_id == 2){
+
+                        $('#error-msg').html('Position already filled');
+
+                        $('#error-modal').modal('show');
+
+                    }
+
+                    if(sports_id == 3){
+
+                           
+
+                        if(active == "G" || active == "F"){ 
+
+                            if(active == pcode){
+
+                                pcode   = $(w).attr('data-pcode');
+
+                                clength = $('tr[data-pcode="'+pcode+'"]').length;
+
+                                addplayer(pcode,pid,pteam,pval,w,active,clength,sports_id);
+
+                                return false;
+
+                            }
+
+                        }else if(active == "ALL"){
+
+                            var psplit = pcode.split('');
+
+                            pcode = psplit[1];
+
+                            clength = $('tr[data-pcode="'+pcode+'"]').length;
+
+                            addplayer(pcode,pid,pteam,pval,w,active,clength,sports_id);
+
+                        }
+
+                               
+
+                    }
+
+                       
+
+                    var pclength = $('*[data-pcode="UTIL"]').length;
+
+                        
+
+                    /*  condition to check Goaile, should not go to UTIL */
+
+                    if(sports_id == 4 && pcode == 'G'){ /*  NHL */
+
+                        $('#error-msg').html('Position already filled');
+
+                        $('#error-modal').modal('show');
+
+                       
+
+                        return false;
+
+                    }else{
+
+                        $('*[data-pcode="UTIL"]').each(function(uindex,value){
+
+                            if($(this).children('.p-name').html() == ""){
+
+                                var index = playerlist.indexOf(pid);  /*  get index of pid */
+
+                           
+
+                                if(index == -1){
+
+                                    playerlist.push(pid);   /* Add pid from array list */
+
+                                }
+                                 var name   = w.parent().siblings('.r2').children().html(); 
+
+                                var opp    = w.parent().siblings('.r3').html();
+
+                                var pts    = w.parent().siblings('.r4').html();
+
+                                var salary = w.parent().siblings('.r5').html();
+
+                                var tid = w.attr('data-tid');
+
+                                w.parent().parent().hide();
+
+                                $('#tblData').find('.addPlayer*[data-pid="'+pid+'"]').parent().parent().hide();
+
+                                
+
+                                $(this).attr('data-pid',pid);
+
+                                $(this).attr('data-pval',pval);
+
+                                $(this).attr('data-pteam',pteam);
+
+                                /* $(this).children('.p-name').html('<a data-target="#playerDetailsModal" data-toggle="modal" data-tid="'+tid+'" data-pid="'+pid+'">'+name+'</a>');   */
+
+                                $(this).children('.p-name').html('<a class="playerstats pointer"  data-pcode="'+pcode+'" data-tid="'+tid+'" data-pid="'+pid+'" data-sport="'+sports_id+'">'+name+'</a>');
+
+                                $(this).children('.opp').html(opp);
+
+                                $(this).children('.pts').html(pts);
+
+                                $(this).children('.salary').html(salary);
+
+                                $(this).children('.last').html('<td><a class="remPlayer" data-id="'+pid+'"><span class="text-red"><i class="fa fa-times"></i></span></a></td>');
+
+                                
+
+                                checkSalary();
+
+                                return false;
+
+                                
+
+                            }else{ 
+
+                                /* for utility positions only */
+
+                                if(uindex == pclength-1){
+
+                                    $('#error-msg').html('Position already filled');
+
+                        $('#error-modal').modal('show');
+
+                                    
+
+                                }
+
+                            }
+
+                        });
+
+                    }      
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+
+    $("#search_player").keyup(function(){
+
+        /* When value of the input is not blank */
+
+        var term=$(this).val().trim().toLowerCase();
+
+        if( term != "")
+
+        {
+
+            $(".playersTable tbody>tr").hide();
+
+            $(".playersTable td").filter(function(){
+
+                return $(this).text().toLowerCase().indexOf(term ) >-1
+
+            }).parent("tr").show();
+
+        }
+
+        else
+
+        {
+
+            /* When there is no input or clean again, show everything back */
+
+            $(".playersTable tbody>tr").show();
+
+        }
+
+        checkList();
+
+    }); 
+
+    
+
+     function checkList(){  
+
+        $('#lineup >tr').each(function(){
+
+            var pid = $(this).attr('data-pid');
+
+            if(pid != undefined){
+
+                $(document.body).find('.addplayer*[data-pid="'+pid+'"]').each(function(){
+
+                    $(this).parent().parent().hide();
+
+                });
+
+            }
+
+        });
+
+    }
+
+    
+
+    function checkSalary(){
+
+        var totalcost = 0; var count=0;var remCount=0;
+
+        $('#lineup >tr').each(function(){
+
+            count++;
+
+            var pcost = ($(this).attr('data-pval'));
+
+            if(pcost != undefined){
+
+                totalcost = parseInt(totalcost) + parseInt(pcost);
+
+            }else{
+
+                remCount ++;
+
+            }
+
+        });
+		
+        var salaryPool = $('#salary_cap').val();
+
+        var rimSalary = Math.round(parseInt(salaryPool) - parseInt(totalcost));
+		
+        $('#salary_cap_amt').html(rimSalary);
+
+		
+        var rimAvgVal = 0;
+
+        if(remCount > 0){
+
+            rimAvgVal = Math.round(rimSalary / remCount);
+
+        }
+
+        $('#avg_rim').html(rimAvgVal);
+
+        if(rimAvgVal < 0){
+
+            $('#avg_rim').css('color','red');
+
+        }else{
+
+            $('#avg_rim').css('color','#fff');
+
+        }
+
+    }   
+
+    $('.depth_chart').on('click', function (e) {
+
+        var dataTeams = $(this).attr('data-team');
+
+        var teamArr = dataTeams.split('@');
+
+        var sportId = $('#sports_id').val();
+
+        var teams = new Array();
+
+        if(teamArr[0] != undefined && teamArr[1] != undefined){
+
+            teams.push(teamArr[0]);
+
+            teams.push(teamArr[1]); 
+
+            $.ajax({
+
+                url          : '/depth-chart',
+
+                type         : 'POST',
+
+                dataType     : 'html',
+
+                data         : {
+
+                    searchTeam   : teams,
+
+                    sportId      : sportId
+
+                },
+
+                beforeSend   : function(){ },
+
+                success      : function(response){
+
+                    $('#depth_chart_popup').find('.modal-body').html(response);
+
+                    $('#depth_chart_popup').modal('show');
+
+                }
+
+            });
+
+        }
+
+    });
+
+     
+
+     
+
+</script>
+<?php } ?>

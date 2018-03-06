@@ -1,0 +1,252 @@
+<section class="relative">
+    <div class="bg-top-pos">
+        <img src="<?php echo $this->baseUrl() . $this->theme_base_path;?>/images/headerBg.png" class="" width="100%" height="100%">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center black-transparent paddingTB-sm m-top-lg">
+                    <h2 class="text-white no-margin">YOU'RE IN!</h2>
+                </div>
+                <div class="text-center black-transparent paddingTB-xs m-top-sm">
+                    <h3 class="text-white no-margin">CONTEST LIVE IN <span style="padding : 35px;" data-time="<?php echo strtotime($this->enter['start_time']); ?>" class="timeleft"></span></h3>
+                    <h5 class="text-white">
+                        <?php
+                        if (isset($this->enter['sports_id'])) {
+                            switch ($this->enter['sports_id']) {
+                                case 1 :echo "Congratulations, your team has been entered into the NFL Contest.";
+                                    break;
+                                case 2 : echo "Congratulations, your team has been entered into the MLB Daily Contest.";
+                                    break;
+                                case 3 : echo "Congratulations, your team has been entered into the NBA Daily Contest.";
+                                    break;
+                                case 4 : echo "Congratulations, your team has been entered into the NHL Daily Contest.";
+                                    break;
+                            }
+                        }
+                        ?></h5>
+                    <p style="color: #fff;">
+                        You can continue to make edits to your team until the contest locks. Once the contest goes live,you can follow the<br/>action in real time by visiting 
+                        <a href="<?php echo $this->baseUrl() . "/contest"; ?>">My Contests</a>.
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="black-transparent min-h-300">
+                            <div class="padding-md text-white">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3><strong>Challenge your friends using your lineup:</strong></h3>
+                                    </div>
+                                    <div class="col-md-3">       
+                                        <a href="<?php echo $this->baseUrl('/direct-challenge'); ?>" class="btn btn-warning" >PLAY WITH FRIENDS>></a>
+                                    </div>
+                                </div>
+                                <h5>
+                                    <?php
+                                    if (isset($this->enter['sports_id'])) {
+                                        switch ($this->enter['sports_id']) {
+                                            case 1 :echo "NFL";
+                                                break;
+                                            case 2 : echo "MLB";
+                                                break;
+                                            case 3 : echo "NBA";
+                                                break;
+                                            case 4 : echo "NHL";
+                                                break;
+                                        }
+                                    }
+                                    ?> | Starts
+                                    <?php echo date('m/d/Y  H:i:s A', strtotime($this->enter['start_time'])) ?>
+                                </h5>
+                                <div>
+                                    <h3>PLAY MORE,WIN MORE</h3>
+                                    <ul class="list-unstyled list-inline">
+                                        <li>
+                                            <input id="SAME" checked type="radio" name="CONTEST" class="joincon" value="SAME">
+                                            <label for="SAME">
+                                                JOIN CONTESTS WITH SAME TEAM                                            
+                                            </label> 
+                                        </li>
+                                        
+                                        <li>
+                                            <input id="DIFFERENT" type="radio" name="CONTEST" class="joincon" value="DIFFERENT">
+                                            <label for="DIFFERENT">
+                                                JOIN CONTESTS WITH DIFFERENT TEAM                                         
+                                            </label> 
+                                        </li>
+                                        
+                                        
+                                    </ul>
+                                    
+                                    
+                                </div>
+
+
+                                <table  class="table playersTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Sport</th>
+                                            <th class="text-center">Contest &nbsp;&nbsp;&nbsp;</th>
+                                            <th class="text-center">Entries</th>
+                                            <th class="text-center">Entry Fee</th>
+                                            <th class="text-center">Total Prizes</th>
+                                            <th class="text-center">CONTEST LIVE IN</th>
+                                            <th >&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (isset($this->contest)) {
+                                            foreach ($this->contest as $contestDetails) {
+                                                ?>
+                                                <tr class="con-select">
+                                                    <td><input style="margin-right: 10px;" class="joincheck" type="checkbox" name="contest[]" >
+                                                        <?php
+                                                        if (isset($contestDetails['sports_id'])) {
+                                                            switch ($contestDetails['sports_id']):
+                                                                case 1: echo "NFL";
+                                                                    break;
+                                                                case 2 : echo "MLB";
+                                                                    break;
+                                                                case 3 : echo "NBA";
+                                                                    break;
+                                                                case 4 : echo "NHL";
+                                                                    break;
+                                                            endswitch;
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td class="con-name" data-toggle="modal" data-target=".contest-details-modal-undraft" style="cursor: pointer;" data-cid="<?php echo $contestDetails['contest_id']; ?>" id='green'><?php
+                                                        if (isset($contestDetails['contest_name'])) {
+                                                            echo $contestDetails['contest_name'];
+                                                        }
+                                                        ?></td>
+                                                    <td ><?php echo $contestDetails['total_entry'] . "/" . $contestDetails['play_limit']; ?></td>
+                                                    <td ><?php
+                                                        if (isset($contestDetails['entry_fee'])) {
+                                                            echo "DFS" . $contestDetails['entry_fee'];
+                                                        }
+                                                        ?></td>
+                                                    <td ><?php
+                                                        if (isset($contestDetails['prize_pool'])) {
+                                                            echo "DFS" . $contestDetails['prize_pool'];
+                                                        }
+                                                        ?></td>
+                                                    <td>
+                                                        <?php
+                                                        $currentdate = date('Y-m-d');
+                                                        $contestDate = date('Y-m-d', strtotime($contestDetails['start_time']));
+                                                        if ($currentdate == $contestDate) {
+                                                            ?>  
+                                                            <span data-time="<?php echo strtotime($contestDetails['start_time']); ?>" class="timeleft"></span>
+                                                            <?php
+                                                        } else {
+                                                            echo date('D, M d, Y', strtotime($contestDetails['start_time']));
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <a style="width: 100px;" class="btn btn-primary btn-xs select enter_btn" data-cid="<?php echo $contestDetails['contest_id']; ?>" data-fee="<?php echo $contestDetails['entry_fee']; ?>" data-time="<?php echo strtotime($contestDetails['start_time']); ?>" data-sport="<?php echo $contestDetails['sports_id']; ?>" >SELECT</a>
+                                                        <a style="display : none; width: 115px;" class="btn btn-primary btn-xs draft team enter_btn"  data-cid="<?php echo $contestDetails['contest_id']; ?>" href="<?php echo $this->serverUrl . "/draftteam/" . $contestDetails['contest_id']; ?>" role="button">DRAFT TEAM&nbsp;</a>
+                                                    </td>
+                                                </tr>   
+                                            <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-8"></div>
+                                    <div class="col-md-2">
+                                        <a href="<?php echo $this->baseUrl('/lineup'); ?>" class="btn btn-warning" >VIEW MY LINEUPS</a>
+                                    </div>
+									
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-primary joinall" >JOIN CONTESTS</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<input class="hidden" id="balance" data-balance="<?= $this->balance; ?>">
+<input class="hidden" id="lineup-id" data-lid="<?= $this->lineup; ?>">
+
+
+<script>
+$(document).ready(function(){
+	<?php if(empty($this->contest)) { ?>
+		 $('.joinall').attr('disabled',true);
+	<?php } ?>
+});
+$(document.body).on('change','.joincon',function(){
+    var join = $(this).val();
+    
+    if(join=='SAME'){
+        $('.team').hide();
+        $('.select').show();
+        $('.joinall').removeAttr('disabled');
+        $('.joincheck').removeAttr('disabled');
+        $('.select').html('SELECT')
+    }else if(join=='DIFFERENT'){
+        $('.select').hide();
+        $('.team').show();
+        $('.joinall').attr('disabled',true);
+        $('.joincheck').attr('disabled',true);
+        $('.joincheck').removeAttr('checked');
+    }
+});
+
+  $(document.body).on('click','#check-confirm',function(){
+          if($(this).prop('checked')){
+              $('.enter').attr('id','enter-confirm');
+          }else{
+              $('.enter').removeAttr('id');
+          }
+      });
+      $(document.body).on('click','.enter',function(){
+            if($('#mcheck-confirm').is(':visible')){ 
+                if(!$('#mcheck-confirm').prop('checked')){
+                    alert('please agree the terms and conditions');
+                }
+            }
+            
+      }); 
+     $(document.body).on('click','.select',function(){
+            var check = $(this).parent().parent().find('.joincheck');
+            check.prop('checked',!(check.prop('checked')));
+            if(check.prop('checked')){
+                $(this).html('SELECTED!');
+            }else{
+                $(this).html('SELECT');
+            }
+        });
+      $(document.body).on('click','.joincheck',function(){
+            if($(this).prop('checked')){
+                $(this).parent().siblings().find('.select').html('SELECTED!');
+            }else{
+                $(this).parent().siblings().find('.select').html('SELECT');
+            }
+        }); 
+    </script>

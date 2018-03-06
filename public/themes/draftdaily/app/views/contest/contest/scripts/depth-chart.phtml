@@ -1,0 +1,70 @@
+
+
+
+<?php if (isset($this->detail)) { ?>
+<div class="modal-header modal-header-pd-15">
+    <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+	</div>
+    <div class="row mr-15-right-left">
+	<div id="back" style="padding:3% 0px;">
+            <?php foreach ($this->detail as $key => $value) { ?>
+                <div class="col-md-6 col-xs-12">
+                    <strong>Today's <?php echo $value[0][0]['details']['team_name'] ?> Lineup</strong>
+                    <p>Has not been posted. Check back soon</p>
+                    <strong><?php echo $value[0][0]['details']['team_name'] ?> Depth Chart</strong>
+                    <div class="row" style="height: 400px; overflow-y: scroll; margin-top:20px;">
+                        <?php foreach ($value as $dkey => $dvalue) { ?>
+                            <div class="col-md-2"><?php
+                                if (isset($dvalue[0]['pos'])) {
+                                    echo $dvalue[0]['pos'];
+                                }
+                                ?></div>
+                            <div class="col-md-9" >
+
+                                <table class="table">
+                                    <tbody>
+                                        <?php
+                                        $index = 1;
+                                        foreach ($dvalue as $pkey => $pvalue) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $index; ?></td>
+                                                <td class="r1">
+                                                    <a><?php
+                                                        if (isset($pvalue['details']['name'])) {
+                                                            echo $pvalue['details']['name'];
+                                                        }
+                                                        ?></a>
+                                                </td>
+                                                <td><?php
+                                                    if (isset($pvalue['details']['bats'])) {
+                                                        echo $pvalue['details']['bats'];
+                                                    }
+                                                    ?></td><td class="r2" style="display: none;"><?php
+                                                    if (isset($this->teams)) {
+                                                        echo $this->teams[0] . "@" . $this->teams[1];
+                                                    }
+                                                    ?></td><td class="r4" style="display: none;">4.4</td><td class="r5"><?php
+                                                        if (isset($pvalue['plr_value'])) {
+                                                            echo $pvalue['plr_value']." DFS";
+                                                        }
+                                                        ?></td><td><a class="addPlayer" data-pval="<?php echo $pvalue['plr_value']; ?>" data-team="<?php echo $pvalue['details']['team_code']; ?>" data-pid="<?php echo $pvalue['details']['id']; ?>" data-pcode="<?php echo $pvalue['details']['pos_code']; ?>" href="#"><img width="20px" src="/assets/images/Plus.png" /></a></td></tr>
+                                                    <?php
+                                                    $index++;
+                                                }
+                                                ?>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                <?php } ?>
+                    </div>
+                </div>    
+    <?php } ?>
+        </div> 
+    </div>
+	<div class="row mr-15-right-left" style="background-color:#f85425; height:10px; margin-top:20px !important;"> </div>
+<?php } ?>

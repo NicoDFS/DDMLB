@@ -1,0 +1,728 @@
+
+
+<style>
+.help-block{
+	margin-left:0px !important;
+	color:#f85425 !important;;
+}
+.no-p-right{
+	padding-right:0px;
+}
+.no-p-left{
+	padding-left:0px;
+}
+</style>
+
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="tab1a">
+					<h1 id="headerTitle">Account Information</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container margin-40">
+
+    <div class="row">
+		
+		<div class="btn-pref btn-group btn-group-1 btn-group-justified btn-group-lg" role="group" aria-label="...">
+			
+			<div class="btn-group" role="group">
+				<button type="button" id="stars" class="btn btn-1 active" href="#account" data-toggle="tab">
+					<div class="hidden-xs-1">My <br />Account</div>
+				</button>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="favorites" class="btn btn-default btn-1" href="/withdrawal">
+					<div class="hidden-xs-1"> <br />Withdrawal</div>
+				</a>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="favorites" class="btn btn-default btn-1" href="/transaction">
+					<div class="hidden-xs-1">Account <br /> History</div>
+				</a>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="following" class="btn btn-default btn-1" href="/deposit">
+					<div class="hidden-xs-1"> <br />Deposit</div>
+				</a>
+			</div>
+		</div>
+	  
+	  
+		<div class="well bg-image-1">
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="account">
+					<div class="row col-container">
+						<div class="col bg-image-2">
+							<div class="">
+								<h3>Personal Information</h3>
+								<div class="row mr-15-right-left">
+								
+									<div class="col-md-5 col-sm-5 col-xs-5 pd-15">
+										<p class="font-medium">UserName :</p>
+									</div>
+									
+									<div class="col-md-7 col-sm-7 col-xs-7 pd-15">
+										
+										<p class="font-medium"><?php echo (!empty($this->userAccountDetails))?$this->userAccountDetails['user_name']:'';?></p>
+										
+									</div>
+									
+								</div>
+								
+								<div class="row mr-15-right-left">
+								
+									<div class="col-md-5 col-sm-5 col-xs-5 pd-15">
+										<p class="font-medium">Email :</p>
+									</div>
+									
+									<div class="col-md-7 col-sm-7 col-xs-7 pd-15">
+										<p class="font-medium"><?php echo (!empty($this->userAccountDetails))?$this->userAccountDetails['email']:'';?></p>
+									</div>
+									
+								</div>
+								
+								<div class="row mr-15-right-left">
+									<div class="col-md-5 col-sm-5 col-xs-5 pd-15">
+										<p class="font-medium">DFSCoin Wallet Address:</p>
+									</div>
+									
+									<div class="col-md-7 col-sm-7 col-xs-7 pd-15">
+										<?php
+											if (empty($this->userAccountDetails['wallet_address'])) { ?>
+											<form action="" method="post"?>
+												<div style="text-align:left;" class="form-group">
+													<div class="input-group hb-hb col-xs-12">
+														<input type="text" name="wallet_address" id="bname" value="" required placeholder="DFSCoin Wallet Address" class="form-control custom-input"> 
+													</div>
+													<div class="input-group col-xs-12">
+														<button class="btn-success btn-lg btn3d margin-10px" name="submit" type="submit">Update</button> 
+													</div>
+													
+												</div>
+												
+											</form>
+											<?php } else { ?>
+											<p class="font-medium"><?php echo $this->userAccountDetails['wallet_address']; ?></p>
+											<?php } ?>
+										
+									</div>
+								</div>
+								
+								<div class="row mr-15-right-left">
+								
+									<div class="col-md-5 col-sm-5 col-xs-5 pd-15">
+										<p class="font-medium">Address:</p>
+									</div>
+									
+									
+									<div class="col-md-7 col-sm-7 col-xs-7 pd-15">
+										<?php if (!empty($this->userBillingAddress)) {  ?>
+										<?php foreach ($this->userBillingAddress as $key => $value) {  
+											
+											echo '<p class="font-medium">'.$value['name'] . ",</p>";
+											echo '<p class="font-medium">'.$value['address1'] . ",</p>";
+											if ($value['address2'] != "") {
+												echo '<p class="font-medium">'.$value['address2'] . ",</p>";
+											}
+											
+											echo '<p class="font-medium">'.$value['city'] . ", ".$value['user_state'] .", ".$value['country'].", ".$value['zip'].", ".$value['phone']."</p>";
+											
+												
+											}
+										} else { ?> 
+											<p class="font-medium">Please select the address</p>
+
+										<?php } ?>
+										<p class="font-medium">
+										<?php if (!empty($this->userBillingAddress)) {?>
+										
+											<a id="<?php echo $value['address_id']; ?>" data-toggle="modal"  data-target="#editInformation" class="edit-user-bill-address"> 
+												<button class="btn-success btn-lg btn3d margin-10px" name="submit">Edit Information</button>
+											</a>
+									
+										<?php }else{ ?>
+											
+											<a data-toggle="modal"  data-target=".add-address-pop" class="font-ste-regular p-bottom-sm"> 
+												<button class="btn-success btn-lg btn3d margin-10px" name="submit">Add Information</button>
+											</a>
+										<?php } ?>
+										</p>
+										
+									</div>
+								</div>
+								
+								
+								
+							</div>
+						</div>
+						
+						<div class="col bg-image-2">
+							<div class="">
+								<div class="row mr-15-right-left">
+									<div class="col-md-6 col-sm-6 col-xs-6 pd-left-none">
+										<h3>Contest Funds</h3>
+										<div class="row mr-15-right-left">
+											<div class="col-md-8 col-sm-8 col-xs-8 pd-15">
+												<p class="font-medium">DFSCoins :</p>
+											</div>
+											
+											<div class="col-md-4 col-sm-4 col-xs-4 pd-15">
+												<p class="font-medium font-color"><?php echo $this->userBalance; ?></p>
+											</div>
+										</div>
+										<div class="row mr-15-right-left">
+											<div class="col-md-8 col-sm-8 col-xs-8 pd-15">
+												<p class="font-medium">Frequent Player Points :</p>
+											</div>
+											<div class="col-md-4 col-sm-4 col-xs-4 pd-15">
+												
+												<p class="font-medium font-color"><?php echo (!empty($this->userAccountDetails['fpp']))?$this->userAccountDetails['fpp']:'0';?></p>
+												
+											</div>
+										</div>
+										
+										<div class="row mr-15-right-left">
+											<div class="col-md-8 col-sm-8 col-xs-8 pd-15">
+												<p class="font-medium">Available Tickets :</p>
+											</div>
+											<div class="col-md-4 col-sm-4 col-xs-4 pd-15">
+												<p class="font-medium font-color"><?php echo ($this->userTickets > 0)?$this->userTickets.'<a data-target="#getTicketDetailModal" data-toggle="modal" ><button  type="button" class="btn btn-b btn-xs">Details</button></a>':$this->userTickets;?></p>
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="col-md-6 col-sm-6 col-xs-6 pd-right-none">
+										<h3>Bonus Details</h3>
+										<div class="row mr-15-right-left">
+											<div class="col-md-10 col-sm-10 col-xs-10 pd-15">
+												<p class="font-medium">Pending Bonus :</p>
+											</div>
+											<div class="col-md-2 col-sm-2 col-xs-2 pd-15">
+												<p class="font-medium font-color"><?php echo $this->userBonus; ?></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+					<div class="row col-container">
+						<div class="bg-image-3">
+							<p class="font-medium-1">You can convert Deposit Bonuses to playable funds by exchanging them for FPP (Frequent Player Points). FPP is earned every time you enter a paid contest at the rate of 4 FPP per DFSCoin You can convert your FPP's into DFSCoins at the rate of 1 = <?php if(isset($this->settings['fpp_exchange'])){ echo $this->settings['fpp_exchange'];}?> FPP.</p>
+						</div>
+					</div>
+					
+					<div class="row mr-15-right-left">
+						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-4">
+							<input type="text"  placeholder="bonus amount for exchange" id="t_amount" value="">
+						</div>
+						
+						<div class="col-md-2 col-sm-2 col-xs-6 pd-15"> 
+							<a id="apply_exchange" href="javascript:void(0);"> 
+								<button style="margin-top:20px !important;" class="btn-success btn-lg btn3d margin-10px" name="submit">Exchange</button>
+							</a> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.home_menu').css('color', '');
+        $('#headbalance').css('color', '#ff6c00');
+    });
+
+    setTimeout(function() {
+        $('#errormsg').fadeOut("slow");
+        $('p').remove("#errormsg");
+    }, 3000);
+
+    setTimeout(function() {
+        $('#succmsg').fadeOut("slow");
+        $('p').remove("#succmsg");
+    }, 30000);
+
+	$(document).ready(function() {
+
+        $('.home_menu').css('color', '');
+        $('#headbalance').css('color', '#ff6c00');
+        
+        $(document.body).on('click','#apply_exchange',function(){
+            var t_amount = $('#t_amount').val();
+
+            if(t_amount != ""){
+                if ((t_amount+"").match(/^\d+$/) ) {
+                    
+					 $.ajax({
+						 type : 'post',
+						url : '/withdraw-ajax-handler',
+						dataType : 'json',
+						data :{
+						  method : 'fppexchange',  
+						  t_amount : t_amount
+						},
+						success : function(response){
+							if(response){
+								$('#error-msg').html(response.message);
+								$('#error-modal').modal('show');
+							}
+						}
+					});
+                }else{
+                    $('#error-msg').html("Amount is invalid, accept number only");
+                    $('#error-modal').modal('show');
+                }
+            }else{
+                $('#error-msg').html("Please provide Bonus Value !");
+                $('#error-modal').modal('show');
+            }
+        });
+        
+    });
+
+    setTimeout(function() {
+        $('#errormsg').fadeOut("slow");
+        $('p').remove("#errormsg");
+    }, 3000);
+
+    setTimeout(function() {
+        $('#succmsg').fadeOut("slow");
+        $('p').remove("#succmsg");
+    }, 30000);
+
+</script>
+
+<!----------------------------------------edit eddress modal, date :5/8/2015 ------------------------------>
+
+<div id="editInformation" class="modal fade theme2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="title">Edit Information</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="margin-none edituseraddress"  method="post" id="editspace" action="/account/edit-address/<?php echo (!empty($this->userAddress['0']['address_id'])?$this->userAddress['0']['address_id']:''); ?>">
+                            <div class="form-group">
+                              <input type="text"  name="accountforum" value="accountform1" class="form-control input-bg-black hidden"> 
+                                <div class="input-group col-xs-12 hb-hb">
+                                    <input type="text" name="name" id="bname" value="<?php
+                                    if (isset($this->userAddress)) {
+                                        echo $this->userAddress['0']['name'];
+                                    }
+                                    ?>" required placeholder="Full Name" class="form-control input-bg-black"> 
+                                </div>
+                            </div>
+                            <div class="form-group hb-hb">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" name="address1" id="baddress1" value="<?php
+                                    if (isset($this->userAddress)) {
+                                        echo $this->userAddress['0']['address1'];
+                                    }
+                                    ?>" class="form-control input-bg-black" placeholder="Billing Address"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" name="address2" id="baddress2" value="<?php
+                                    if (isset($this->userAddress)) {
+                                        echo $this->userAddress['0']['address2'];
+                                    }
+                                    ?>" class="form-control input-bg-black" placeholder="Billing Address 2"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" name="city" id="bcity" value="<?php
+                                    if (isset($this->userAddress)) {
+                                        echo $this->userAddress['0']['city'];
+                                    }
+                                    ?>" class="form-control input-bg-black" placeholder="City"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" name="zip" id="bzip" value="<?php
+                                    if (isset($this->userAddress)) {
+                                        echo $this->userAddress['0']['zip'];
+                                    }
+                                    ?>" class="form-control input-bg-black" placeholder="Zip/Pincode"> 
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+
+                                    <div class="col-xs-6 no-p-left">
+                                        <select class="form-control input-bg-black bcountry" name="country" id="bcountry">
+                                            <option value="country" >Select Country</option>
+                                            <?php
+                                            if (isset($this->userCountries)) {
+                                                foreach ($this->userCountries as $key => $valuecn) {
+                                                    ?>
+                                                    <option  class="countryfilter" id="<?php echo $valuecn['country_id']; ?>"  <?php
+                                                    if (isset($this->userAddress)) {
+                                                        if ($this->userAddress['0']['country'] == $valuecn['country_code']) {
+                                                            echo " selected";
+                                                        }
+                                                    }
+                                                    ?> value="<?php echo $valuecn['country_code']; ?>"><?php echo $valuecn['country_name']; ?></option><?php
+                                                         }
+                                                     }
+                                                     ?>                                                                              
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 no-p-left">
+                                        <select class="form-control input-bg-black user_state" name="user_state" id="buser-state">
+                                            <option value="state" > Select State</option>
+                                            <?php
+                                            if (isset($this->userStates)) {
+                                                foreach ($this->userStates as $key => $valuest) {
+                                                    ?>
+                                                    <option  class="con-<?php echo $valuest['country_id']; ?>"  <?php
+                                                    if (isset($this->userAddress)) {
+                                                        if ($this->userAddress['0']['user_state'] == $valuest['name']) {
+                                                            echo " selected";
+                                                        }
+                                                    }
+                                                    ?> value="<?php echo $valuest['name']; ?>"><?php echo $valuest['name']; ?></option><?php
+                                                         }
+                                                     }
+                                                     ?>                                                                              
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <div class="col-xs-12 no-p-left">
+                                        <select class="form-control input-bg-black" name="status" id="bstatus">
+                                            <option value="status" >Select Status</option>
+                                            <option  value="1" <?php
+                                            if (isset($this->userAddress)) {
+                                                if ($this->userAddress['0']['status'] == 1) {
+                                                    echo " selected";
+                                                }
+                                            }
+                                            ?>>Active </option>                                                                                
+                                            <option  value="0" <?php
+                                            if (isset($this->userAddress)) {
+                                                if ($this->userAddress['0']['status'] == 0) {
+                                                    echo " selected";
+                                                }
+                                            }
+                                            ?>>Deactive</option>                                                                                
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" name="phone" id="bphone" value="<?php
+                                    if (isset($this->userAddress)) {
+                                        echo $this->userAddress['0']['phone'];
+                                    }
+                                    ?>" class="form-control input-bg-black" placeholder="Phone"> 
+                                </div>
+                            </div>
+							
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <button class="btn-success btn-lg btn3d">Update</button>
+                                    <button class="btn-submit btn-lg btn3d" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--------------------------------------------------add adress modal ,dated :5/8/2015------------------------------------>
+<div id="addressmodalnew" class="modal fade theme2 add-address-pop">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-center font-ste-medium">Edit Information</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="margin-none adduseraddress"  method="post" action="/account/add-address">
+                            <div class="form-group">
+                              <input type="text"  name="accountforum2" value="accountform2" class="form-control input-bg-black hidden"> 
+                                <div class="input-group col-xs-12 hb-hb">
+                                    <input type="text" name="name" id="bname" value="" required placeholder="Full Name" class="form-control input-bg-black"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group col-xs-12 hb-hb">
+                                    <input type="text" name="address1" id="baddress1" value="" class="form-control input-bg-black" placeholder="Billing Address"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group col-xs-12 hb-hb">
+                                    <input type="text" name="address2" id="baddress2" value="" class="form-control input-bg-black" placeholder="Billing Address 2"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group col-xs-12 hb-hb">
+                                    <input type="text"  name="city" id="bcity" value="" class="form-control input-bg-black" placeholder="City"> 
+                                </div>
+                            </div>
+							
+                            <div class="form-group">
+                                <div class="input-group col-xs-12 hb-hb">
+                                    <input type="text"name="zip" id="bzip" value=""class="form-control input-bg-black" placeholder="Zip/Pincode"> 
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+
+                                    <div class="col-xs-6 no-p-left pd-left-none">
+                                        <select class="form-control input-bg-black bcountry" name="country" id="bcountry">
+                                            <option value="country">Select Country</option>
+                                            <?php
+                                            if (isset($this->userCountries)) {
+                                                foreach ($this->userCountries as $key => $valuecn) {
+                                                    ?>
+                                                    <option  class="countryfilter" date-id="<?php echo $valuecn['country_id']; ?>"
+                                                   value="<?php echo $valuecn['country_code']; ?>"><?php echo $valuecn['country_name']; ?></option><?php
+                                                         }
+                                                     }
+                                                     ?>                                                                              
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 no-p-right pd-right-none">
+                                        <select class="form-control input-bg-black user_state" name="user_state" id="buser-state">
+                                            <option value="state">Select State</option>
+                                            <?php
+                                            if (isset($this->userStates)) {
+                                                foreach ($this->userStates as $key => $valuest) {
+                                                    ?>
+                                                    <option  class="con-<?php echo $valuest['country_id']; ?>" value="<?php echo $valuest['name']; ?>"><?php echo $valuest['name']; ?></option><?php
+                                                         }
+                                                     }
+                                                     ?>                                                                              
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <div class="col-xs-6 no-p-left pd-left-none">
+                                        <select class="form-control input-bg-black" name="status" id="bstatus">
+                                            <option value="status" >Select Status</option>
+                                            <option  value="1">Active </option>                                                                                
+                                            <option  value="0">Deactive</option>                                                                                
+                                        </select>   
+                                    </div>
+								<div class="col-xs-6 no-p-right pd-right-none">
+                                    <input type="text" name="phone" id="bphone" value="" class="form-control input-bg-black" placeholder="Phone"> 
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group col-xs-12">
+                                    <button class="btn-success btn-lg btn3d addressadd">Submit</button>
+                                    <button class="btn-submit btn-lg btn3d" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+					</div>
+				</div> 
+			</div>
+            <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+        </div>
+    </div>
+</div>
+
+<script>
+     
+	/*
+	 * DEV: Prince Kumar Dwivedi 
+     * DATE : 08/11/2017
+     * DESC : form validations for add address and edit address
+    */
+    $(document).ready(function () {
+		
+		$.validator.addMethod("valueNotEquals", function(value, element, arg)
+		{return arg != value; }, "Value must not equal arg.");
+
+
+        $('.adduseraddress').validate({
+    
+            rules: {
+                name: {
+                    required: true,
+                    regex: /^[a-zA-Z][a-zA-Z ]+$/
+                    //maxlength: 15
+                },
+                address1: {
+                    required: true                 
+                },
+                
+               country: { valueNotEquals: "country" },
+                user_state: { valueNotEquals: "state" },
+                 status: { valueNotEquals: "status" },
+               
+                address2:{                 
+                },
+                
+                city: {
+                    required: true,
+                    regex: /^[a-zA-Z][a-zA-Z ]+$/
+                },
+                zip: {
+                    required: true,
+                    regex: /^[a-z0-9]+$/i
+                
+                },
+                phone: {
+                    required: true,
+                    regex: /^\d+$/,
+                    maxlength: 10,
+                    minlength: 10
+                
+                }            
+            
+            },
+            messages: {
+                name: {
+                    required: "Name is required Field",
+                    regex: "Please enter only alphabets"
+                    //maxlength: "length of username should not exceed after 15 characters"
+                },
+                address1: {
+                    required: "Address is required Field"
+                    //regex: "Invalid address"
+                },
+                address2: {
+                    //regex: "Invalid address"
+                },
+                city: {
+                    required: "City is required Field",
+                    regex: "Please enter only alphabets"
+                },
+                zip: {
+                    required: "Zip/Pincode is required Field",
+                    regex: "Please enter only Alphabets or Numbers"
+                },
+                
+            country: { valueNotEquals: "Please select a Country!" },
+            user_state: { valueNotEquals: "Please select a state!" },
+            status: { valueNotEquals: "Please select status!" },
+  
+                phone: {
+                    required: "Phone is required Field",
+                    regex: "Please enter only Numbers",
+                    maxlength: "Please enter 10 digits only",
+                    minlength: "Please enter 10 digits only"
+
+                }
+            
+            }
+        });
+        
+    });
+    
+	$( document ).ready(function(){
+                     
+		$.validator.addMethod("valueNotEquals", function(value, element, arg)
+		{return arg != value;}, "Value must not equal arg.");
+		 
+        $('.edituseraddress').validate({
+    
+            rules: {
+                name: {
+                    required: true,
+                    regex: /^[a-zA-Z][a-zA-Z ]+$/
+                },
+                address1: {
+                    required: true
+                },
+                city: {
+                    required: true,
+                    regex: /^[a-zA-Z][a-zA-Z ]+$/
+                },
+                zip: {
+                    required: true,
+                    regex: /^[a-z0-9]+$/i
+                
+                },
+                country: { valueNotEquals: "country" },
+                user_state: { valueNotEquals: "state" },
+                 status: { valueNotEquals: "status" },
+                phone: {
+                    required: true,
+                    regex: /^\d+$/,
+                    maxlength: 10,
+                    minlength: 10
+                
+                }            
+            
+            },
+            messages: {
+                name: {
+                    required: "Name is required Field",
+                    regex: "Please enter only numbers"
+                },
+                address1: {
+                    required: "Address is required Field"
+                },
+                city: {
+                    required: "City is required Field",
+                    regex: "Please enter only alphabets"
+                },
+                zip: {
+                    required: "Zip/Pincode is required Field",
+                    regex: "Please enter only Alphabets or Numbers"
+                },
+                phone: {
+                    required: "Phone is required Field",
+                    regex: "Please enter only Numbers",
+                    maxlength: "Please enter 10 digits only",
+                    minlength: "Please enter 10 digits only"
+
+                },
+                country: { valueNotEquals: "Please select a Country!" },
+            user_state: { valueNotEquals: "Please select a state!" },
+            status: { valueNotEquals: "Please select status!" }
+            
+            }
+        });
+    });
+</script>
+ 

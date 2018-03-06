@@ -1,0 +1,149 @@
+id,name,position,age,team_name,pos_code,team_code
+2585616,"Pero Antic",PF,32,"Atlanta Hawks",PF,Atl
+91,"Elton Brand",PF,35,"Atlanta Hawks",PF,Atl
+3970,"DeMarre Carroll",SF,28,"Atlanta Hawks",SF,Atl
+3213,"Al Horford",C,28,"Atlanta Hawks",C,Atl
+6594,"John Jenkins",SG,23,"Atlanta Hawks",SG,Atl
+2011,"Kyle Korver",SG,33,"Atlanta Hawks",SG,Atl
+6454,"Shelvin Mack",PG,24,"Atlanta Hawks",PG,Atl
+3930,"Cartier Martin",PF,30,"Detroit Pistons",PF,Det
+3015,"Paul Millsap",PF,29,"Atlanta Hawks",PF,Atl
+2490089,"Mike Muscala",PF,23,"Atlanta Hawks",PF,Atl
+3032979,"Dennis Schroder",PG,21,"Atlanta Hawks",PG,Atl
+6622,"Mike Scott",PF,26,"Atlanta Hawks",PF,Atl
+4015,"Jeff Teague",PG,26,"Atlanta Hawks",PG,Atl
+3247,"Joel Anthony",C,32,"Detroit Pistons",C,Det
+3417,"Jerryd Bayless",PG,26,"Milwaukee Bucks",PG,Mil
+2433,"Kris Humphries",PF,29,"Washington Wizards",PF,Wsh
+3220,"Josh McRoberts",PF,27,"Miami Heat",PF,Mia
+3415,"D.J. Augustin",PG,27,"Detroit Pistons",PG,Det
+6430,"Jimmy Butler",SG,25,"Chicago Bulls",SG,Chi
+1708,"Mike Dunleavy",SF,34,"Chicago Bulls",SF,Chi
+6434,"Jimmer Fredette",PG,25,"New Orleans Pelicans",PG,NO
+3986,"Taj Gibson",PF,29,"Chicago Bulls",PF,Chi
+1981,"Kirk Hinrich",SG,33,"Chicago Bulls",SG,Chi
+568,"Nazr Mohammed",C,37,"Chicago Bulls",C,Chi
+3224,"Joakim Noah",C,29,"Chicago Bulls",C,Chi
+3456,"Derrick Rose",PG,26,"Chicago Bulls",PG,Chi
+2528353,"Tony Snell",SF,23,"Chicago Bulls",SF,Chi
+2429,"Luol Deng",SF,29,"Miami Heat",SF,Mia
+4232,"Alonzo Gee",SF,27,"Denver Nuggets",SF,Den
+3965,"DeJuan Blair",C,25,"Washington Wizards",C,Wsh
+3413,"Darrell Arthur",PF,26,"Denver Nuggets",PF,Den
+3192,"Aaron Brooks",PG,29,"Chicago Bulls",PG,Chi
+3194,"Wilson Chandler",SF,27,"Denver Nuggets",SF,Den
+6433,"Kenneth Faried",PF,25,"Denver Nuggets",PF,Den
+3003,"Randy Foye",SG,31,"Denver Nuggets",SG,Den
+3428,"Danilo Gallinari",SF,26,"Denver Nuggets",SF,Den
+3437,"J.J. Hickson",C,26,"Denver Nuggets",C,Den
+4000,"Ty Lawson",PG,27,"Denver Nuggets",PG,Den
+3452,"JaVale McGee",C,26,"Denver Nuggets",C,Den
+4298,"Timofey Mozgov",C,28,"Denver Nuggets",C,Den
+2782,"Nate Robinson",PG,30,"Denver Nuggets",PG,Den
+2581018,"Kentavious CaldwellPope",SG,21,"Detroit Pistons",SG,Det
+2585629,"Luigi Datome",SF,26,"Detroit Pistons",SF,Det
+6585,"Andre Drummond",C,21,"Detroit Pistons",C,Det
+3997,"Brandon Jennings",PG,25,"Detroit Pistons",PG,Det
+3998,"Jonas Jerebko",PF,27,"Detroit Pistons",PF,Det
+2583664,"Tony Mitchell",PF,22,"Detroit Pistons",PF,Det
+4260,"Greg Monroe",PF,24,"Detroit Pistons",PF,Det
+6469,"Kyle Singler",SF,26,"Detroit Pistons",SF,Det
+2411,"Josh Smith",SF,28,"Detroit Pistons",SF,Det
+6578,"Harrison Barnes",SF,22,"Golden State Warriors",SF,GS
+2747,"Andrew Bogut",C,29,"Golden State Warriors",C,GS
+3975,"Stephen Curry",PG,26,"Golden State Warriors",PG,GS
+6587,"Festus Ezeli",C,25,"Golden State Warriors",C,GS
+6589,"Draymond Green",SF,24,"Golden State Warriors",SF,GS
+2386,"Andre Iguodala",SG,30,"Golden State Warriors",SG,GS
+6602,"Ognjen Kuzmic",C,24,"Golden State Warriors",C,GS
+2772,"David Lee",PF,31,"Golden State Warriors",PF,GS
+3460,"Marreese Speights",PF,27,"Golden State Warriors",PF,GS
+6475,"Klay Thompson",SG,24,"Golden State Warriors",SG,GS
+3414,"Omer Asik",C,28,"New Orleans Pelicans",C,NO
+3554,"Omri Casspi",SF,26,"Sacramento Kings",SF,Sac
+1767,"Rasual Butler",SF,35,"Washington Wizards",SF,Wsh
+3973,"Darren Collison",PG,27,"Sacramento Kings",PG,Sac
+3201,"Jared Dudley",SG,29,"Milwaukee Bucks",SG,Mil
+2760,"Danny Granger",SF,31,"Miami Heat",SF,Mia
+3008,"Ryan Hollins",C,30,"Sacramento Kings",C,Sac
+6637,"Kent Bazemore",SG,25,"Atlanta Hawks",SG,Atl
+996,"Pau Gasol",PF,34,"Chicago Bulls",PF,Chi
+6607,"Kendall Marshall",PG,23,"Milwaukee Bucks",PG,Mil
+4003,"Jodie Meeks",SG,27,"Detroit Pistons",SG,Det
+1135,"Chris Andersen",PF,36,"Miami Heat",PF,Mia
+1977,"Chris Bosh",C,30,"Miami Heat",C,Mia
+3419,"Mario Chalmers",PG,28,"Miami Heat",PG,Mia
+6590,"Justin Hamilton",C,24,"Miami Heat",C,Mia
+2184,"Udonis Haslem",PF,34,"Miami Heat",PF,Mia
+1987,"Dwyane Wade",SG,32,"Miami Heat",SG,Mia
+3032977,"Giannis Antetokounmpo",SG,19,"Milwaukee Bucks",SG,Mil
+6592,"John Henson",C,23,"Milwaukee Bucks",C,Mil
+2767,"Ersan Ilyasova",PF,27,"Milwaukee Bucks",PF,Mil
+6448,"Brandon Knight",PG,22,"Milwaukee Bucks",PG,Mil
+3450,"O.J. Mayo",SG,27,"Milwaukee Bucks",SG,Mil
+6609,"Khris Middleton",PF,23,"Milwaukee Bucks",PF,Mil
+2016,"Zaza Pachulia",C,30,"Milwaukee Bucks",C,Mil
+4265,"Larry Sanders",C,26,"Milwaukee Bucks",C,Mil
+3231,"Ramon Sessions",PG,28,"Sacramento Kings",PG,Sac
+2491079,"Nate Wolters",PG,23,"Milwaukee Bucks",PG,Mil
+2393,"Shaun Livingston",PG,29,"Golden State Warriors",PG,GS
+662,"Paul Pierce",SF,37,"Washington Wizards",SF,Wsh
+3410,"Alexis Ajinca",C,26,"New Orleans Pelicans",C,NO
+3412,"Ryan Anderson",PF,26,"New Orleans Pelicans",PF,NO
+4250,"Luke Babbitt",SF,25,"New Orleans Pelicans",SF,NO
+6583,"Anthony Davis",PF,21,"New Orleans Pelicans",PF,NO
+3983,"Tyreke Evans",SF,25,"New Orleans Pelicans",SF,NO
+3431,"Eric Gordon",SG,25,"New Orleans Pelicans",SG,NO
+3995,"Jrue Holiday",PG,24,"New Orleans Pelicans",PG,NO
+6610,"Darius Miller",SF,24,"New Orleans Pelicans",SF,NO
+6617,"Austin Rivers",SG,22,"New Orleans Pelicans",SG,NO
+2333797,"Jeff Withey",C,24,"New Orleans Pelicans",C,NO
+2992,"Shannon Brown",PG,28,"Miami Heat",PG,Mia
+1705,"Caron Butler",SF,34,"Detroit Pistons",SF,Det
+3028,"Thabo Sefolosha",SG,30,"Atlanta Hawks",SG,Atl
+3187,"Arron Afflalo",SG,29,"Denver Nuggets",SG,Den
+2166,"Leandro Barbosa",SG,31,"Golden State Warriors",SG,GS
+1828,"Reggie Evans",PF,34,"Sacramento Kings",PF,Sac
+3005,"Rudy Gay",SF,28,"Sacramento Kings",SF,Sac
+3217,"Carl Landry",PF,31,"Sacramento Kings",PF,Sac
+2528447,"Ray McCallum",PG,23,"Sacramento Kings",PG,Sac
+2578213,"Ben McLemore",SG,21,"Sacramento Kings",SG,Sac
+3462,"Jason Thompson",PF,28,"Sacramento Kings",PF,Sac
+1726,"John Salmons",SF,34,"New Orleans Pelicans",SF,NO
+3457,"Brandon Rush",SG,29,"Golden State Warriors",SG,GS
+6580,"Bradley Beal",SG,21,"Washington Wizards",SG,Wsh
+1711,"Drew Gooden",PF,33,"Washington Wizards",PF,Wsh
+2758,"Marcin Gortat",C,30,"Washington Wizards",C,Wsh
+1713,"Nene Hilario",PF,32,"Washington Wizards",PF,Wsh
+557,"Andre Miller",PG,38,"Washington Wizards",PG,Wsh
+2594922,"Otto Porter Jr.",SF,21,"Washington Wizards",SF,Wsh
+2488660,"Glen Rice Jr.",SG,23,"Washington Wizards",SG,Wsh
+4289,"Kevin Seraphin",C,24,"Washington Wizards",C,Wsh
+4023,"Garrett Temple",SG,28,"Washington Wizards",SG,Wsh
+4237,"John Wall",PG,24,"Washington Wizards",PG,Wsh
+2795,"Martell Webster",SF,27,"Washington Wizards",SF,Wsh
+6431,"Norris Cole",PG,26,"Miami Heat",PG,Mia
+6460,"E'Twaun Moore",SG,25,"Chicago Bulls",SG,Chi
+4258,"DeMarcus Cousins",C,24,"Sacramento Kings",C,Sac
+6480,"Derrick Williams",PF,23,"Sacramento Kings",PF,Sac
+2531100,"Adreian Payne",PF,23,"Atlanta Hawks",PF,Atl
+2528354,"Cameron Bairstow",PF,23,"Chicago Bulls",PF,Chi
+2528588,"Doug McDermott",SF,22,"Chicago Bulls",SF,Chi
+6459,"Nikola Mirotic",PF,23,"Chicago Bulls",PF,Chi
+2488684,"Erick Green",PG,23,"Denver Nuggets",PG,Den
+2999547,"Gary Harris",SG,20,"Denver Nuggets",SG,Den
+3102530,"Jusuf Nurkic",C,20,"Denver Nuggets",C,Den
+2580782,"Spencer Dinwiddie",PG,21,"Detroit Pistons",PG,Det
+2284101,"Justin Holiday",SG,25,"Golden State Warriors",SG,GS
+4262,"Hassan Whiteside",C,25,"Miami Heat",C,Mia
+2488650,"Andre Dawkins",SG,23,"Miami Heat",SG,Mia
+2579321,"James Ennis",SF,24,"Miami Heat",SF,Mia
+2530780,"Shabazz Napier",PG,23,"Miami Heat",PG,Mia
+3038,"Shawne Williams",SF,28,"Miami Heat",SF,Mia
+3102534,"Damien Inglis",SF,19,"Milwaukee Bucks",SF,Mil
+2581084,"Johnny O'Bryant III",PF,21,"Milwaukee Bucks",PF,Mil
+3056600,"Jabari Parker",SF,19,"Milwaukee Bucks",SF,Mil
+2531038,"Russ Smith",PG,23,"New Orleans Pelicans",PG,NO
+2527926,"Patric Young",PF,22,"New Orleans Pelicans",PF,NO
+2531352,"Eric Moreland",PF,22,"Sacramento Kings",PF,Sac
+2991042,"Nik Stauskas",SG,21,"Sacramento Kings",SG,Sac

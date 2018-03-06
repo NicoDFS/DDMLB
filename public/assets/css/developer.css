@@ -1,0 +1,222 @@
+.abc{
+    width:100%;
+}
+
+.nav-tabs li a:focus {
+  color: #ff6c00 !important;
+  outline: none !important;
+}
+
+.social-cont{
+  background-color:#34495e;
+  padding-top:4px;
+  padding-bottom:4px;
+  display: table;
+  width: 100%;
+}
+.social-cont span.inline{
+  display: table-cell;
+  vertical-align: middle;
+  height: 38px;
+  font-size: 16px;
+  font-family: "Roboto Bold";
+  padding-right: 15px;
+}
+.social-cont span.inline i{
+  font-size: 20px;
+}
+.social-cont span.inline i.up{
+  color: #00b226;
+}
+.social-cont span.inline i.down{
+  color: #b20000;
+}
+
+.social-icon.slack:hover, .social-icon.slack:active, .social-icon.slack:focus {
+  opacity: 1;
+  background-color: #42c299;
+}
+
+.social-icon.instagram:hover, .social-icon.instagram:active, .social-icon.instagram:focus {
+  opacity: 1;
+  background-color: #d10869;
+}
+
+.social-icon.reddit:hover, .social-icon.reddit:active, .social-icon.reddit:focus {
+  opacity: 1;
+  background-color: #99ffcc;
+}
+.social-icon.github:hover, .social-icon.github:active, .social-icon.github:focus {
+  opacity: 1;
+  background-color: #04AA51;
+}
+
+.social-cont .social{
+  text-align: right;
+  display: inline-block;
+  float: right;  
+}
+.contact_call{font-size:14px; font-family:lato; text-align:left; color:#fff; font-weight:700; line-height:30px;}
+.contact_call i{font-size:16px; margin-right:10px;}
+
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(1.334em) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(1.334em) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(1.334em) translateZ(0);
+    -moz-transform: translateX(1.334em) translateZ(0);
+    -ms-transform: translateX(1.334em) translateZ(0);
+    -o-transform: translateX(1.334em) translateZ(0);
+    transform: translateX(1.334em) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.social span.text-right{
+  display: table;
+  float: left;
+  height: 38px;
+  vertical-align: middle;
+}
+.social span.text-right p{
+  margin: 0;
+  padding: 0;
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 10px;
+  font-size: 16px;
+  font-family: "Roboto Semi Bold";
+  color: rgb(68, 68, 68);
+  line-height: 1.2;
+}
+a.social-icon, a.social-icon:visited {
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition-property: background-color;
+  -moz-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  transition-timing-function: ease;
+  text-align: center;
+  display: inline-block;
+  width:28px;
+  height:25px; 
+  color: #444;
+  margin: 2px 10px;
+  font-size: 20px;
+  display: table;
+  float: left;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(204, 204, 204);
+   transform: rotate(-45deg);
+  / Color each button differently /
+}
+a.social-icon:focus, a.social-icon:active, a.social-icon:hover{
+  text-decoration: none;
+  color: #FFF;
+  border:none;
+}
+
+.social-icon i{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center; color:#fff;
+  height: 100%; line-height:25px; font-weight:normal;
+  width: 100%; font-size:14px; transform: rotate(45deg);
+  
+}
+.social-icon.facebook {
+  / Animation /
+  -webkit-animation: fadeInRight 0.6s 0.25s forwards;
+  animation: fadeInRight 0.6s 0.25s forwards;
+  opacity: 0;
+  / Color /
+}
+.social-icon.facebook:hover , .social-icon.facebook:active, .social-icon.facebook:focus {
+  opacity: 1;
+  background-color: #0077b2;
+}
+.social-icon.twitter {
+  / Animation /
+  -webkit-animation: fadeInRight 0.6s 0.5s forwards;
+  animation: fadeInRight 0.6s 0.5s forwards;
+  opacity: 0;
+  / Color /
+}
+.social-icon.twitter:hover, .social-icon:nth-child(2):active, .social-icon:nth-child(2):focus {
+  opacity: 1;
+  background-color: #008cb2;
+}
+.social-icon.linkedin {
+  / Animation /
+  -webkit-animation: fadeInRight 0.6s 0.75s forwards;
+  animation: fadeInRight 0.6s 0.75s forwards;
+  opacity: 0;
+  / Color /
+}
+.social-icon.linkedin:hover, .social-icon.linkedin:active, .social-icon.linkedin:focus {
+  opacity: 1;
+  background-color: #00a1b2;
+}
+.social-icon.google-plus {
+  / Animation /
+  -webkit-animation: fadeInRight 0.6s 1s forwards;
+  animation: fadeInRight 0.6s 1s forwards;
+  opacity: 0;
+  / Color /
+}
+.social-icon.google-plus:hover, .social-icon.google-plus:active, .social-icon.google-plus:focus {
+  opacity: 1;
+  background-color: #e3401d;
+}
+.social-icon.email {
+  / Animation /
+  -webkit-animation: fadeInRight 0.6s 1.25s forwards;
+  animation: fadeInRight 0.6s 1.25s forwards;
+  opacity: 0;
+  / Color /
+}
+.social-icon.email:hover, .social-icon.email:active, .social-icon.email:focus {
+  opacity: 1;
+  background-color: #e3401d;
+}
+
+
+.social-icon img {
+  width: 20px;
+}
+
+.social-border {
+	border-bottom : 1px solid #656669;
+	padding: 7px 7%;
+}

@@ -1,0 +1,1587 @@
+
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<h1><?php echo $this->contestRes['contest_name']; ?></h1>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-sm-12 col-xs-12 pd-left-none pd-15-15-none">
+			<?php $stadium = '';
+			if(isset($this->sports)){
+				switch ($this->sports) { 
+					case 'NFL':
+						$stadium = "NFL_STADIUM";
+						break;
+					case 'MLB':
+						$stadium = "MLB_STADIUM";
+						break;
+					case 'NBA':
+						$stadium = "NBA_STADIUM";
+						break;
+					case 'NHL':
+						$stadium = "NHL_STADIUM";
+						break;
+				}
+			}
+			?>
+			
+			<div class="Contest-Details <?php echo $stadium;?>">
+				<div class="Contest-header bg-img">
+					<h5>Full Contest Details</h5>
+					<a class="btn btn-positive text-center" href="javascript:void(0);">All Games</a>
+				</div>
+
+				<div id="main_area">
+					<!-- Slider -->
+					<div class="row">
+						<div class="span12" id="slider">
+							<!-- Top part of the slider -->
+							<div class="row">
+								<div class="span8" id="carousel-bounding-box">
+									<div class="carousel slide" id="myCarousel">
+										<!-- Carousel items -->
+										<div class="carousel-inner">
+										
+											<?php 
+											$i=0;
+											if (!empty($this->teamCode)) { //echo "<pre>"; print_r($this->teamCode); die;
+												foreach ($this->teamCode as $teams) {  
+                                            ?>
+											
+											<div class="item <?php echo ($i==0)?'active':''; ?>" data-slide-number="<?php echo $i; ?>">
+												<div class="row">
+												
+													<div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-0 pd-15">
+														<!--<img class="contest-img-a" src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/contest.png" alt="contest.png">-->
+													</div>
+													
+													<div class="col-md-12 col-sm-8 col-xs-8">
+														<h5><?php echo $teams['hometeam']['name']; ?></h5>
+														<div class="vs-img">
+															<img src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/vs.png" alt="vs.png" />
+														</div>
+														<h5 class="text-left"><?php echo $teams['awayteam']['name']; ?></h5>
+													</div>
+													
+													<div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-0 pd-15">
+														<!--<img class="contest-img" src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/contest.png" alt="contest.png">-->
+													</div>
+													
+												</div>
+												
+												<div class="row">
+													<h6 class="text-center"><?php  echo date('D, M d,Y g:i a T', strtotime($teams['time'])); ?></h6>
+													<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+														<div class="button-img">
+															<a data-team="<?php echo $teams['hometeam']['name'] . "@" . $teams['awayteam']['name']; ?>" class="depth_chart btn btn-positive text-center" href="javascrip:void(0);">depth charts</a>
+														</div>
+													</div>
+												</div>
+												
+											</div>
+											
+											<?php
+												$i++; }
+											}
+											?>
+										</div><!-- Carousel nav -->
+									</div>
+									
+									<a class="carousel-control left" data-slide="prev" href="#myCarousel"><img src="<?php echo $this->baseUrl() . $this->appSetting->assestPath; ?>/draftdaily/img/lineup-page/left-arrow.png" width="46" height="46"  /></a> 
+									
+									<a class="carousel-control right" data-slide="next" href="#myCarousel"><img src="<?php echo $this->baseUrl() . $this->appSetting->assestPath; ?>draftdaily/img/lineup-page/right-arrow.png" width="46" height="46" /></a>
+
+								</div>
+							</div>
+						</div>
+					</div><!--/Slider-->
+                </div>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-sm-12 col-xs-12 pd-right-none pd-15-15-none">
+			<div class="Contest-Details-1">
+				<div class="Contest-header bg-img">
+					<h5>Contest Goes Live On <?php echo date('D, M d,Y g:i a T', strtotime($this->contestRes['start_time'])) ?> <p class='timeleft' data-time= "<?php echo date(strtotime($this->contestRes['start_time'])); ?>"></p></h5>
+				</div>
+				
+				<div class="pd-30">
+					<div class="row" style=" margin-bottom:20px;">
+						<div class="col-md-6 col-sm-6 col-xs-6 pd-right-10">
+							<div class="bg-image">
+								<img src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/Entries.png" />
+								<h4>Entries: <?php
+                                    if (isset($this->contestRes)) {
+                                        echo $this->contestRes['total_entry'] . " of " . $this->contestRes['play_limit'];
+                                    }
+                                    ?></h4>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-sm-6 col-xs-6 pd-left-10">
+							<div class="bg-image">
+								<img src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/Entry-fee.png" />
+								<h4>Entry Fee: <?php
+                                    if (isset($this->contestRes['entry_fee'])) {
+                                        echo $this->contestRes['entry_fee']. " DFS";
+                                    } else {
+                                        echo "Free";
+                                    }
+                                    ?></h4>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6 pd-right-10">
+							<div class="bg-image">
+								<img src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/Prize-pool.png" />
+								<h4>Prize Pool: <?php
+                                    if (isset($this->contestRes)) {
+                                        echo $this->contestRes['prize_pool']. " DFS";;
+                                    }
+                                    ?></h4>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-sm-6 col-xs-6 pd-left-10">
+							<div class="bg-image">
+								<img src="<?php echo $this->baseUrl().$this->appSetting->assestPath;?>/draftdaily/img/lineup-page/FPP-reward.png" />
+								<h4>FPP Reward: <?php
+                                    if (isset($this->contestRes)) {
+                                        echo $this->contestRes['fpp'];
+                                    }
+                                    ?></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-sm-6 col-xs-12 margin-20 pd-15-15 pd-15">
+			<div class="form-group col-md-8 pd-15">
+				<input id="search_player" class="form-control input-sm" type="text" placeholder="Player Search">
+			</div>
+		</div>
+
+		<div class="col-md-6 col-sm-6 col-xs-12 margin-20  pd-15-15">
+			<button type="button" data-target="#termsModal1" data-toggle="modal" class="btn-success btn-lg btn3d">GLOSARY OF TERMS</button>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="container margin-40">
+	<div class="row">
+		<div class="col-md-6 col-sm-12 col-xs-`12 pd-left-none pd-15-15-none">
+			<div class="card card-a loader-section">
+			
+				<!-------------------------------------NFL GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+			
+				<?php if ($this->sports == "NFL") { ?>
+				
+				<ul id="plrlst" class="nav nav-tabs nav-tabs-a" role="tablist">                                         
+					<li class="active"><a class="plistnew" data-playrecode="QB" data-toggle="tab" aria-controls="QB" href="#QB">QB</a></li>
+					<li><a class="plistnew" data-playrecode="RB"  data-toggle="tab" aria-controls="RB" href="#RB">RB</a></li>
+					<li><a class="plistnew" data-playrecode="WR"   data-toggle="tab" aria-controls="WR" href="#WR">WR</a></li>
+					<li><a class="plistnew" data-playrecode="TE"   data-toggle="tab" aria-controls="TE" href="#TE">TE</a></li>
+					<li><a class="plistnew" data-playrecode="FLEX" data-toggle="tab" aria-controls="FLEX" href="#FLEX">FLEX</a></li>
+					<li><a class="plistnew" data-playrecode="K"     data-toggle="tab" aria-controls="K" href="#K">K</a></li>
+					<li><a class="plistnew" data-playrecode="DST"   data-toggle="tab" aria-controls="DST" href="#DST">DST</a></li>
+					<li><a class="plistnew" data-playrecode="ALL"   data-toggle="tab" aria-controls="ALL" href="#ALL">ALL</a></li>
+					<li><a class="" data-playrecode="C" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+                      
+				<!-- Tab panes -->
+				<div class="tab-content">
+				
+					<div role="tabpanel" class="tab-pane active" id="QB">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="QB">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+									
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="RB">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="RB">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="WR">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="WR">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="TE">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="TE">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="FLEX">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="FLEX">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="K">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="K">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="DST">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb7" data-pos="DST">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="ALL">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb8" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="scoring">
+                        <div class="scoring-panel table-responsive" style="display: block;">
+							<p>Offensive players will accumulate points as follows: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Passing TD = +4PTs</li>
+								<li>25 Passing Yards = +1PT (+0.04PT/ per yard is awarded)</li>
+								<li>300+ Yard Passing Game = +3PTs</li>
+								<li>interception = -1PT</li>
+								<li>10 Rushing Yards = +1PT (+0.1PT per yard is awarded)</li>
+								<li>Rushing TD = +6PTs</li>
+								<li>100+ Yard Rushing Game = +3PTs</li>
+								<li>10 Receiving Yards = +1PT (+0.1PT per yard is awarded)</li>
+								<li>Reception = +1PT</li>
+								<li>Receiving TD = +6PTs</li>
+								<li>100+ Yard Receiving Game = +3PTs</li>
+								<li>Punt/Kickoff Return for TD = +6PTs</li>
+								<li>Fumble Lost = -1PT</li>
+								<li>2 Point Conversion (Pass, Run, or Catch) = +2PTs</li>
+								<li>Offensive Fumble Recovery TD = +6PTs</li>
+							</ul>
+							<p>Defense/Special Teams will accumulate points as follows: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Sack = +1PT</li>
+								<li>Interception = +2PTs</li>
+								<li>Fumble Recovery = +2PTs</li>
+								<li>Kickoff Return TD = +6PTs</li>
+								<li>Punt Return TD = +6PTs</li>
+								<li>Interception Return TD = +6PTs</li>
+								<li>Fumble Recovery TD = +6PTs</li>
+								<li>Blocked Punt or FG Return TD = +6PTs</li>
+								<li>safety = +2PTs</li>
+								<li> Blocked Kick = +2PTs</li>
+								<li>0 Points Allowed = +10PTs</li>
+								<li>1-6 Points Allowed = +7PTs</li>
+								<li>7-13 Points Allowed = +4PTs</li>
+								<li>14-20 Points Allowed = +1PT</li>
+								<li>21-27 Points Allowed = 0PTs</li>
+								<li>28-34 Points Allowed = -1PT</li>
+								<li>35+ Points Allowed = -4PTs</li>
+							</ul>
+							<p>The following scoring plays will result in Points Allowed (PA) by your Defense/Special Teams (DST):</p>
+							<ul class="list-unstyled" id="ul">
+								<li>Rushing TDs, Passing TDs, Punt Return TDs, Kick Return TDs and Blocked Punt TDs</li>
+								<li> 2pt conversions</li>
+								<li>Extra-points</li>
+								<li>Field-goals</li>
+								<li>*NOTE:Points Allowed (PA) only includes points surrendered while DST is on the field - doesn't include points given up by team's offense (i.e. points off offensive turnovers). </li>
+							</ul>
+						</div>			
+					</div>
+								
+				</div>
+				
+                <?php } ?> 
+				
+				<!-------------------------------------NFL GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+				
+				<!-------------------------------------MLB GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+				
+				<?php if ($this->sports == "MLB") { ?>
+				
+				<ul id="plrlst" class="nav nav-tabs nav-tabs-a" role="tablist">                                         
+					<li class="active"><a class="plistnew" data-playrecode="P" data-toggle="tab" href="#P">P</a></li>
+					<li><a class="plistnew" data-playrecode="C" data-toggle="tab" href="#C">C</a></li>
+					<li><a class="plistnew" data-playrecode="1B" data-toggle="tab" href="#1B">1B</a></li>
+					<li><a class="plistnew" data-playrecode="2B" data-toggle="tab" href="#2B">2B</a></li>
+					<li><a class="plistnew" data-playrecode="3B" data-toggle="tab" href="#3B">3B</a></li>
+					<li><a class="plistnew" data-playrecode="SS" data-toggle="tab" href="#SS">SS</a></li>
+					<li><a class="plistnew" data-playrecode="OF" data-toggle="tab" href="#OF">OF</a></li>
+					<li><a class="plistnew" data-playrecode="ALL" data-toggle="tab" href="#ALL">ALL</a></li>
+					<li><a class="" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+				
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="P">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="P">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										 
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="C">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="C">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="1B">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="1B">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="2B">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="2B">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="3B">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="3B">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="SS">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="SS">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="OF">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="OF">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="ALL">
+                        <table class="footable table flip-table lobbyTable playersTable Newtable" id="tb7" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane active" id="scoring">
+                        <div class="scoring-panel table-responsive" style="display: block;">
+							</br>
+							<p>How hitters score points: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Single = +3 Pts</li>
+								<li>Double = +5 Pts</li>
+								<li>Triple = +8 Pts</li>
+								<li>Home = +10 Pts</li>
+								<li>RBI and Runs = +2 Pts.</li>
+								<li>Base on balls (Walk) = +2 Pts/li>
+								<li>Stolen base = +5 Pts.</li>
+								<li>Sacrifice Fly = +1 Pts</li>
+								<li>Strike Out = -2 Pts</li>
+							</ul>
+							<p>How pitchers score points: </p>
+							<ul class="list-unstyled" id="ul">
+								<li>Inning is pitched = +2.25 Pts</li>
+								<li>Strike out = +2 Pts</li>
+								<li>Win = +4 Pts</li>
+								<li>Start = +1 Pt</li>
+								<li>Quality Start = +2.5 Pts</li>
+								<li>Earned run allowed = -2 Pts</li>
+								<li>Hits= -1 Pts</li>
+								<li>Walk = - 0.6 Pts</li>
+								<li>Home Run = -3 Pts</li>
+								<li> Blocked Kick = +2PTs</li>
+							</ul>
+							<ul class="list-unstyled" id="ul">
+								<li>*NOTE: One thing to note is that pitching statistics for the hitters will not be counted and vice-versa. </li>
+							</ul>
+						</div>			
+					</div>					
+				</div>
+				
+				<?php } ?>
+				
+				<!-------------------------------------MLB GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+				<!-------------------------------------NBA GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+				
+				<?php if ($this->sports == "NBA") { ?>
+				
+				<ul  id="plrlst"class="nav nav-tabs nav-tabs-a">
+					<li class="active"><a class="plistnew"  data-playrecode="PG" data-toggle="tab" href="#PG">PG</a></li>
+					<li><a class="plistnew"  data-playrecode="SG" d data-toggle="tab" href="#SG">SG</a></li>
+					<li><a class="plistnew" data-playrecode="SF"   data-toggle="tab" href="#SF">SF</a></li>
+					<li><a class="plistnew" data-playrecode="PF"  data-toggle="tab" href="#PF">PF</a></li>
+					<li><a class="plistnew" data-playrecode="C"   data-toggle="tab" href="#C">C</a></li>
+					<li><a class="plistnew" data-playrecode="G" data-toggle="tab" href="#G">G</a></li>
+					<li><a class="plistnew" data-playrecode="F"    data-toggle="tab" href="#F">F</a></li>
+					<li><a class="plistnew" data-playrecode="UTIL"  data-toggle="tab" href="#UTIL">UTIL</a></li>
+					<li><a class="plistnew" data-playrecode="ALL"  data-toggle="tab" href="#ALL">ALL</a></li>
+					<li><a class="" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+				
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="PG">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="PG">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+									  
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										 
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="SG">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="SG">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="SF">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="SF">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="PF">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="PF">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="C">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="C">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="G">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="G">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="F">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb7" data-pos="F">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="UTIL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb8" data-pos="UTIL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="ALL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb9" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="scoring">
+						<div class="scoring-panel" style="display: block;">   
+							<p>Players will accumulate points as follows</p>
+							<ul class="list-unstyled">
+
+								<li>Point = +1 PT</li>
+								<li>Made 3pt. shot = +0.5 PTs</li>
+								<li>Rebound = +1.25 PTs</li>
+								<li>Assist = +1.5 PTs</li>
+								<li>Steal = +2 PTs</li>
+								<li>Block = +2 PTs</li>
+								<li>Turnover = -0.5 PTs</li>
+								<li>Double-Double = +1.5PTs (MAX 1 PER PLAYER: Points, Rebounds, Assists, Blocks, Steals)</li>
+								<li>Triple-Double = +3PTs (MAX 1 PER PLAYER: Points, Rebounds, Assists, Blocks, Steals)</li>
+							</ul>
+						</div>		
+					</div>	
+					</div>
+				<?php } ?>
+				
+				<!-------------------------------------NBA GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+				
+				<!-------------------------------------NHL GAME PLAYER LINEUP SECTION START HERE---------------------------------->
+				
+				<?php if ($this->sports == "NHL") { ?>
+				
+				<ul  id="plrlst"class="nav nav-tabs nav-tabs-a nav-tabs-a1">
+					<li class="active"><a class="plistnew" data-playrecode="C" data-toggle="tab" href="#C">C</a></li>
+					<li><a class="plistnew" data-playrecode="C" data-toggle="tab" href="#W">W</a></li>
+					<li><a class="plistnew" data-playrecode="1B" data-toggle="tab" href="#D">D</a></li>
+					<li><a class="plistnew" data-playrecode="2B" data-toggle="tab" href="#G">G</a></li>
+					<li><a class="plistnew" data-playrecode="3B" data-toggle="tab" href="#UTIL">UTIL</a></li>
+					<li><a class="plistnew" data-playrecode="ALL" data-toggle="tab" href="#ALL">ALL</a></li>
+					<li><a class="" data-toggle="tab" href="#scoring">Scoring</a></li>
+				</ul>
+				
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="C">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb1" data-pos="C">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($this->filterPlayerList as $player) { ?>
+									<tr>
+										<td class="r0"><?php echo $player['pos_code']; ?></td>
+										<td class="r1 text-green-light" ><a data-target="#playerModal" data-toggle="modal" >
+										<?php
+										echo $player['name']; 
+										
+										if($player['injury_status'] == 1){
+											echo "<span title='".$player['injury_reason']."' class='injure_color'>&nbsp;&nbsp;".$player['injury_code']."</span>";
+										}
+										
+										
+										?></a>
+										</td>
+										
+										<td class="r2"><?php echo $player['match_code']; ?></td>
+										 
+										<td class="r4"><?php echo $player['fppg']; ?></td>
+										<td class="r5"><?php echo $player['plr_value']." DFS"; ?></td>
+										<td><a class="addPlayer" <?php echo "data-pid='" . $player['id'] . "' data-pcode='" . $player['pos_code'] . "' data-team='" . $player['team_code'] . "' data-tid='" . $player['team_id'] . "' data-pval='" . $player['plr_value'] . "'"; ?>><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="W">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb2" data-pos="W">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="D">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb3" data-pos="D">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="G">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb4" data-pos="G">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="UTIL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb5" data-pos="UTIL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="ALL">
+						<table class="footable table flip-table lobbyTable playersTable Newtable" id="tb6" data-pos="ALL">
+							<thead>
+								<tr class="header-img">
+									<th>POS</th>
+									<th>PLAYER</th>
+									<th>OPP</th>
+									<th>FPPG</th>
+									<th>SALARY</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+			
+					</div>
+					
+					
+					<div role="tabpanel" class="tab-pane fade" id="scoring">
+						<div class="scoring-panel table-responsive" style="display: block;">
+							<p>Players will accumulate points as follows: </p>
+							<ul class="list-unstyled">
+								<li>Goal = +3 PTS</li>
+								<li>Assist = +2 PTS</li>
+								<li>Shot on Goal = +0.5 PTS</li>
+								<li>Blocked Shot = +0.5 PTS</li>
+								<li>Short Handed Point Bonus (Goal/Assist) = +1 PTS</li>
+								<li>Shootout Goal = +0.2 PTS</li>
+								<li>Hat Trick Bonus = +1.5 PTS</li>
+							</ul>
+							<p>Goalies only will accumulate points as follows: </p>
+							<ul class="list-unstyled">
+
+
+								<li>Win = +3 PTS</li>
+								<li>Save = +0.2 PTS</li>
+								<li>Goal Against = -1 PTS</li>
+								<li>Shutout Bonus = +2 PTS</li>
+							</ul>
+							<p>Goalie Scoring Notes:</p>
+							<ul class="list-unstyled">
+								<li> Goalies WILL receive points for all stats they accrue, including goals and assists.</li>
+								<li> The Goalie Shutout Bonus is credited to goalies if they complete the entire game with 0 goals allowed in regulation + overtime. Shootout goals will not prevent a shutout. Goalie must complete the entire game to get credit for a shutout.</li>
+							</ul>
+						</div>		
+					</div>	
+					
+				</div>
+				<?php } ?>
+				
+				<!-------------------------------------NHL GAME PLAYER LINEUP SECTION END HERE---------------------------------->
+				
+			</div>
+			
+			<div class="margin-20">                  
+				<button type="button" class="btn-success btn-lg btn3d export_to_csv">EXPORT TO CSV</button>
+			</div>
+
+		</div>
+
+		<div class="col-md-6 col-sm-12 col-xs-12 pd-right-none pd-15-15-none">
+			<div class="card card-a">
+			
+				<ul class="nav nav-tabs nav-tabs-b" role="tablist">
+					<li class="pull-left">LINEUP</li>
+					<li class="text-center position-top-left">AVG. REM. / PLAYER:<span id="avg_rim" style="color: rgb(255, 255, 255);"><?php echo round($this->settings['salary_cap_amt']/10); ?></span> DFS</li>
+					<li class="pull-right position-top">REM. SALARY:<span id="salary_cap_amt" style="color: rgb(255, 255, 255);"><?php echo $this->settings['salary_cap_amt']; ?></span> DFS</span></li>
+				</ul>
+				
+				<input type="hidden" value="<?php echo $this->settings['salary_cap_amt']; ?>" id="salary_cap" name="salary_cap">
+				<input type="hidden" value="<?php echo $this->settings['salary_cap_amt']/10; ?>" id="rim_amt" name="rim_amt">
+								
+				<div class="tab-content-1">
+					<table class="footable">
+						<thead>
+							<tr class="header-color">
+								<th>POS</th>
+								<th>PLAYER</th>
+								<th>OPP</th>
+								<th>FPPG</th>
+								<th>SALARY</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="lineup">
+							<?php
+							if (isset($this->sports)) {
+								if ($this->sports == "MLB") {
+									?>
+									<tr data-pcode="P" >
+										<td class="pos">P</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>    
+									<tr data-pcode="P" >
+										<td class="pos">P</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="C" >
+										<td class="pos">C</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="1B" >
+										<td class="pos">1B</td> 
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="2B" >
+										<td class="pos">2B</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="3B" >
+										<td class="pos">3B</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="SS" >
+										<td class="pos">SS</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="OF" >
+										<td class="pos">OF</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="OF" >
+										<td class="pos">OF</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="OF">
+										<td class="pos">OF</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+								<?php } else if ($this->sports == "NBA") { ?>
+									<tr data-pcode="PG" >
+										<td class="pos">PG</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>    
+									<tr data-pcode="SG" >
+										<td class="pos">SG</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="SF" >
+										<td class="pos">SF</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="PF" >
+										<td class="pos">PF</td> 
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="C" >
+										<td class="pos">C</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="G" >
+										<td class="pos">G</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="F" >
+										<td class="pos">F</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="UTIL" >
+										<td class="pos">UTIL</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+								<?php } else if ($this->sports == "NFL") { ?>
+									<tr data-pcode="QB" >
+										<td class="pos">QB</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>    
+									<tr data-pcode="RB" >
+										<td class="pos">RB</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="RB" >
+										<td class="pos">RB</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="WR">
+										<td class="pos">WR</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="WR" >
+										<td class="pos">WR</td> 
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary" style="cursor:pointer;"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="WR" >
+										<td class="pos">WR</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="TE">
+										<td class="pos">TE</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="FLEX" >
+										<td class="pos">FLEX</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="K" >
+										<td class="pos">K</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="DST" >
+										<td class="pos">DST</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+								<?php } else { ?>
+									<tr data-pcode="C" >
+										<td class="pos">C</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr> 
+									<tr data-pcode="C" >
+										<td class="pos">C</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="W" >
+										<td class="pos">W</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="W" >
+										<td class="pos">W</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="W" >
+										<td class="pos">W</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="D">
+										<td class="pos">D</td> 
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="D" >
+										<td class="pos">D</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="G" >
+										<td class="pos">G</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<tr data-pcode="UTIL">
+										<td class="pos">UTIL</td>
+										<td class="p-name text-green-light" style="cursor:pointer;" ></td>
+										<td class="opp"></td>
+										<td class="pts"></td>
+										<td class="salary"></td>
+										<td class="last"></td>
+									</tr>
+									<?php
+								}
+							}
+							?>
+						</tbody>                              
+					</table>
+				</div>				
+			</div>
+
+			<a href="/home"><button id="cancel" class="btn-success btn-lg btn3d">CANCEL</button></a>
+			<button id="clear_lineup" class="btn-success btn-lg btn3d">Clear</button>
+			<button id="lineupSubmit" class="btn-submit btn-lg btn3d">Submit</button>
+			
+		</div>
+	</div>
+	
+	<input type="hidden" name="searchKey" id="searchKey" value="<?php echo $this->searchKey; ?>" />
+    <input type="hidden" name="sports_id" id="sports_id" value="<?php echo $this->sports_id; ?>" />
+    <input type="hidden" name="conid" id="conid" value="<?php echo $this->conid; ?>" />
+    <input type="hidden" name="startTime" id="startTime" value="<?php echo $this->start_time; ?>" />
+    <input type="hidden" name="matchCount" id="matchCount" value="<?php echo $this->matchDetails['match_count']; ?>" />
+    <input type="hidden" id="time" value="<?php echo $this->time; ?>" />
+    <input type="hidden" name="matchCount" id="endTime" value="<?php echo $this->gameLastDate; ?>" />
+</div>
+
+<script>
+$(document).ready(function() {
+	var table = $('#tb1').DataTable( {
+        //"scrollY":        "350px",
+        //"scrollCollapse": true,
+        "paging":         false,
+        "info":     false,
+        "searching": false
+    } );
+	
+	$('.plistnew').click(function(){
+		$.fn.dataTable.ext.search.push( function( settings, data, dataIndex ) {
+			var searchdata = $('#search_player').val() ;
+			if ( ( isNaN( searchdata )  ))
+			{
+				return true;
+			}
+			return false;
+		});
+	});
+	
+
+	var owl = $(".owl-demo");
+	owl.owlCarousel({
+		autoPlay: 2000, //Set AutoPlay to 3 seconds
+		stopOnHover: true,
+		items: 4, //10 items above 1000px browser width
+		itemsDesktop: [1000, 5], //5 items between 1000px and 901px
+		itemsDesktopSmall: [900, 3], // 3 items between 900px and 601px
+		itemsTablet: [600, 2], //2 items between 600 and 0;
+
+		itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
+	});
+	
+	$(".next").click(function() {
+		owl.trigger('owl.next');
+	});
+	$(".prev").click(function() {
+		owl.trigger('owl.prev');
+	});
+
+});
+
+$("#search_player").keyup(function() {
+
+	var term = $(this).val().trim().toLowerCase();
+	if (term !== "")
+	{
+		$(".Newtable tbody>tr").hide();
+		$(".Newtable td").filter(function() {
+			return $(this).text().toLowerCase().indexOf(term) > -1;
+		}).parent("tr").show();
+	}
+	else
+	{
+
+		$(".Newtable tbody>tr").show();
+	}
+	checkList();
+});
+
+$(document).ready(function() {
+	
+	var selectedTeam = new Array();
+	$(document.body).on('click', '.teamselect', function() {
+		if ($('.allteam').hasClass('selected')) {
+			if ($(this).children('.notify').hasClass('check')) {
+				$(this).children('.notify').removeClass('check');
+				$(this).children('.notify').removeClass('select');
+				if (!$(this).siblings('.teamselect').children('.notify').hasClass('check')) {
+					$(this).parent().parent().parent().removeClass('selected');
+				}
+			} else {
+				$(this).children('.notify').addClass('check');
+				$(this).children('.notify').addClass('select');
+			}
+			teamfilter()
+		}
+
+	});
+   $('.allteam').click(function(e) {
+		if (!$(this).hasClass('selected')) {
+			$(this).addClass('selected');
+			//$(this).find('.notify').addClass('select');
+			teamfilter()
+		}
+
+	});
+	function teamfilter() {
+		var posCode = $('#plrlst').find('.active').children().attr('data-playrecode');
+		var selectedTeam = [];
+		$('.teamselect').each(function() {
+			if ($(this).children('.notify').hasClass('select')) {
+				var tcode = $(this).attr('tcode');
+				selectedTeam.push(tcode);
+			}
+		});
+		filterTeam(posCode, selectedTeam, 'pos_code');
+	}
+	function filterTeam(searchPos, searchTeam, searchKey) {
+		var searchdata = $('#search_player').val() ;
+		var sportId = $('#sports_id').val();
+		$.ajax({
+			url: '/filter-player-by-team',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				method: 'playerByTeam',
+				searchPos: searchPos,
+				searchdata:searchdata,
+				searchTeam: searchTeam,
+				searchKey: searchKey,
+				sportId: sportId
+			},
+			success: function(response) {
+				
+				if (response) {
+					$(".playersTable[data-pos=" + searchPos + "] >tbody").html('');
+					$.each(response, function(index, value) {
+						var dl = "";
+						if (value.injury_status == 1) {
+							dl = "<span title='"+value.injury_reason+"' class='injure_color'>&nbsp;&nbsp;"+value.injury_code+"</span>";
+						}
+						
+						$(".playersTable[data-pos=" + searchPos + "] >tbody").append('<tr ><td class="r0">' + value.position + '</td><td class="r1 text-green-light"><a id="green" style="cursor:pointer;" data-toggle="modal" data-target="#playerModal" data-tid="' + value.team_id + '" data-pid="' + value.id + '">' + value.name + ' ' + dl + '</a></td><td id="tb" class="r2">' + value.team_code +' @ '+value.team_vs + '</td><td class="r4">' + value.fppg + '</td><td class="r5">' + value.plr_value + ' DFS</td><td class="r6"><a class="text-green-light addPlayer"  data-pval="' + value.plr_value + '" data-pid="' + value.id + '" data-team="' + value.team_code + '" data-pcode="' + value.pos_code + '" data-tid="' + value.team_id + '"><i class="fa fa-plus"></i></a></td></tr>');
+					});
+				}
+			}
+
+		});
+	}
+});
+</script>

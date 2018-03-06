@@ -1,0 +1,31 @@
+﻿.ClearFilter
+{
+    margin-top:8px !important;
+    padding:2px 6px !important;
+    width:94px !important;
+    
+}
+.FocusArea
+{
+    /*background-size: cover;*/
+    /*-ms-behavior: url(../../FixesFiles/backgroundsize.min.htc);*/
+    background: no-repeat center center fixed;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='Images/Race.jpg', sizingMethod='scale');
+}
+.HeadingOfBar ul li
+{
+    
+}
+.TbLogin,.TbLog
+{
+    color:Gray;
+    padding-top:11px;
+    padding-bottom:11px;
+    height:20px;
+}
+.BlackOverLay
+{
+    background-image:url(../Images/blackBg.png);
+    background-repeat:repeat-x repeat-y;
+    background-color:Transparent;
+}

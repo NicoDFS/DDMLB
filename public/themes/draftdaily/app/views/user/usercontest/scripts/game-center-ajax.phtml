@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5><strong>LIVE SCORINGS</strong></h5>
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-sm">view H2H</button>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label> TEAM :<?php echo $this->lineup['user_name']; ?></label>
+                                               
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label> RANK :<?php echo $this->lineup['rank']; ?></label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>YTP: 0</label>
+                                            
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>PIR: 0</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>POS</th>
+                                        <th>NAME</th>
+                                        <th>SCORINGS</th>
+                                        <th>FPTS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php if(isset($this->details)){foreach ($this->details as $live_scorings){ ?>
+                                   
+                                        <tr>
+                                            <td><?php echo $live_scorings['position']; ?> </td>
+                                            <td><?php echo $live_scorings['name']; ?></td>
+                                            <td>
+                                                <?php if(isset($live_scorings['score'])){
+                                                foreach ($live_scorings['score'] as $key=>$value){ 
+                                                    if($value!=0){
+                                                        echo $key.' '.$value.'  ';
+                                                    }
+                                                 
+                                                } }else{ echo "--";}?>
+                                            </td>
+                                            <td><?php if(isset($live_scorings['point'])){ echo $live_scorings['point']; } else{ echo "--";} ?></td>
+                                        </tr>
+                                         <?php } }?>
+                                   
+                                </tbody>
+                            </table>
+                            <div class="a" style="float: right">
+                               <strong>TOTAL FANTASY POINTS :<?php echo $this->lineup['players_points']; ?></strong>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,1966 @@
+<div class="modal-header modal-header-pd-15">
+	<div class="row mr-15-right-left">
+	<div class="livesIn livesIn-1 col-md-3 col-sm-3 col-xs-4 pull-left">
+			<?php if (isset($this->image)) { ?>
+				<img src="<?php echo '/' . $this->image; ?>" id="player-img" class="center-block" width="200" height="200" />
+			<?php } ?>
+		</div>
+	
+		<div class="col-md-4 col-xs-8">
+			<div class="">
+				<h3 class="name">
+					<?php
+					if (isset($this->name)) {
+						echo $this->name;
+					}
+					?>
+				</h3>
+				<h4 class="place text-white">
+					<b class="text-white"><?php echo $this->team_name; ?> | # <?php echo $this->playerCode; ?> </b>
+				</h4>
+				
+			</div>
+			</div>
+			<div class="col-md-5 col-xs-12">
+			<div class="season-stats">
+			<h4 class="font-ste-regular m-top-md text-white"> <?php echo date('Y'); ?> Season Stats </h4>
+			<div class="m-top-sm">
+					<ul class="list-unstyled list-inline" id="stat-box">
+						<?php
+						if (isset($this->sportsId) && $this->sportsId == 1) {
+							if (isset($this->playerStat['Receiving'])) {
+								?>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>REC</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Receiving']['receptions'])) {
+												echo $this->playerStat['season_stats']['Receiving']['receptions'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>YDS</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Receiving']['receiving_yards'])) {
+												echo $this->playerStat['season_stats']['Receiving']['receiving_yards'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>YDS/G</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Receiving']['receiving_yards']) && ($this->playerStat['season_stats']['Receiving']['receiving_yards'] != 0)) {
+												echo round($this->playerStat['season_stats']['Receiving']['receiving_yards'] / $this->playerStat['season_stats']['game'], 1);
+											} else {
+												echo "0.0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>TD</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Receiving'])) {
+												echo $this->playerStat['season_stats']['Receiving']['receiving_touchdowns'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>FPPG</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['fppg'])) {
+												echo $this->playerStat['season_stats']['fppg'];
+											} else {
+												echo "0.0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								
+								<?php } else { ?>
+								
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>RATE</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Passing']['quaterback_rating'])) {
+												echo $this->playerStat['season_stats']['Passing']['quaterback_rating'];
+											} else {
+												echo "0.0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>YDS</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Passing']['yards'])) {
+												echo $this->playerStat['season_stats']['Passing']['yards'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>INT</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Passing']['interceptions'])) {
+												echo $this->playerStat['season_stats']['Passing']['interceptions'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>TD</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['Passing']['passing_touchdowns'])) {
+												echo $this->playerStat['season_stats']['Passing']['passing_touchdowns'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>FPPG</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (isset($this->playerStat['season_stats']['fppg'])) {
+												echo $this->playerStat['season_stats']['fppg'];
+											} else {
+												echo "0.0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<?php
+							}
+						}
+						?>
+						
+						<?php if (isset($this->sportsId) && $this->sportsId == 2) { ?>
+
+								<?php if (isset($this->playerStat['Pitching'])) { ?>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>ERA</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Pitching']['earned_run_average'])) {
+												echo $this->playerStat['Pitching']['earned_run_average'];
+											} else {
+												echo "0.00";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>W-L</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Pitching']['wins'])) {
+												echo $this->playerStat['Pitching']['wins'];
+											} else {
+												echo "0-0";
+											}
+											?>-<?php echo $this->playerStat['Pitching']['losses']; ?>&nbsp;
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>K</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Pitching']['strikeouts'])) {
+												echo $this->playerStat['Pitching']['strikeouts'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>WHIP</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Pitching']['walk_hits_per_inning_pitched'])) {
+												echo $this->playerStat['Pitching']['walk_hits_per_inning_pitched'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>                                    
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>FPPG</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['fppg'])) {
+												echo $this->playerStat['fppg'];
+											} else {
+												echo "0.0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>    
+								
+								<?php } else { ?>
+								
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>AVG</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Batting']['batting_avg'])) {
+												echo $this->playerStat['Batting']['batting_avg'];
+											} else {
+												echo "0.00";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>HR</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Batting']['home_runs'])) {
+												echo $this->playerStat['Batting']['home_runs'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>RBI</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['Batting']['runs_batted_in'])) {
+												echo $this->playerStat['Batting']['runs_batted_in'];
+											} else {
+												echo "0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+	
+								<li class="stat-box">
+									<div class="padding-xs">
+										<span>FPPG</span>
+										<h2 id="stat-block-number">
+											<?php
+											if (!empty($this->playerStat['fppg'])) {
+												echo $this->playerStat['fppg'];
+											} else {
+												echo "0.0";
+											}
+											?>
+										</h2>
+									</div>
+								</li>
+							<?php } ?>
+						<?php } ?>
+
+						<?php if (isset($this->sportsId) && $this->sportsId == 3) { ?>
+						
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>PPG</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['points_per_game'])) {
+											echo $this->playerStat['points_per_game'];
+										} else {
+											echo "0.0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>RPG</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['rebounds_per_game'])) {
+											echo $this->playerStat['rebounds_per_game'];
+										} else {
+											echo "0.0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>APG</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['assists_per_game'])) {
+											echo $this->playerStat['assists_per_game'];
+										} else {
+											echo "0.0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>STLPG</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['steals_per_game'])) {
+											echo $this->playerStat['steals_per_game'];
+										} else {
+											echo "0.0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>FPPG</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['fppg'])) {
+											echo $this->playerStat['fppg'];
+										} else {
+											echo "0.0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+						<?php } ?>
+
+						<?php if (isset($this->sportsId) && $this->sportsId == 4) { ?>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>GP</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['games_played'])) {
+											echo $this->playerStat['games_played'];
+										} else {
+											echo "0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>G</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['goals'])) {
+											echo $this->playerStat['goals'];
+										} else {
+											echo "0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>A</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['assists'])) {
+											echo $this->playerStat['assists'];
+										} else {
+											echo "0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>PTS</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['points'])) {
+											echo $this->playerStat['points'];
+										} else {
+											echo "0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+							<li class="stat-box">
+								<div class="padding-xs">
+									<span>FPPS</span>
+									<h2 id="stat-block-number">
+										<?php
+										if (isset($this->playerStat['fppg'])) {
+											echo $this->playerStat['fppg'];
+										} else {
+											echo "0.0";
+										}
+										?>
+									</h2>
+								</div>
+							</li>
+					<?php } ?>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<?php if (isset($this->inj_status) && $this->inj_status == 1) { ?>
+						<div class="injury">               
+							<span class="injury-text"><img src="/assets/images/redcross.png">&nbsp;<?php echo ucfirst($this->inj_reason); ?></span>
+						</div>
+					<?php } ?>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+		<?php if (isset($this->sportsId) && $this->sportsId == 1) { ?>
+            <div class="row m-top-sm">
+                <div class="col-md-12 table-normal-overflow">
+                    <table class="table table-normal" id="player-stat">
+                        <thead>
+                            <tr>
+                                <th colspan="1"></th>
+                                <th colspan="1"></th>
+                        <?php if (($this->playerPos === "QB")) { ?>
+                                    <th colspan="10"><div class="th-inner-pc">Passing</div></th>
+                        <?php } else { ?>
+                            <th colspan="6"><div class="th-inner-pc">Receiving</div></th>
+    <?php } ?>
+                        <th colspan="6"><div class="th-inner-pc">Rushing</div></th>
+                        <th colspan="2"><div class="th-inner-pc">Fumbles</div></th>
+                        <th colspan="1"><div class="th-inner-pc"></div></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th class="line">G</th>
+    <?php if (($this->playerPos === "QB")) { ?>
+                                <th class="line">COMP</th>
+                                <th>ATT</th>
+                                <th>PCT</th>
+                                <th>YDS</th>
+                                <th>AVG</th>
+                                <th>YDS/G</th>
+                                <th>LNG</th>
+                                <th>TD</th>
+                                <th>INT</th>
+                                <th>RATE</th>
+                                <th class="line">ATT</th>
+                                <th>YDS</th>
+                                <th>AVG</th>
+                                <th>YDS/G</th>
+                                <th>LNG</th>
+                                <th>TD</th>
+    <?php } else { ?>
+                                <th>REC</th>
+                                <th>YDS</th>
+                                <th>AVG</th>
+                                <th>YDS/G</th>
+                                <th>LNG</th>
+                                <th>TD</th>
+                                <th class="line">ATT</th>
+                                <th>YDS</th>
+                                <th>AVG</th>
+                                <th>YDS/G</th>
+                                <th>LNG</th>
+                                <th>TD</th>
+    <?php } ?>
+
+                            <th class="line">FUM</th>
+                            <th>LOST</th>
+                            <th class="line">FPPG</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Last Game</b></td>
+                                    <td><?php
+                                        if (isset($this->playerStat['last_stats'])) {
+                                            echo $this->playerStat['last_stats']['game'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <?php if (($this->playerPos === "QB")) { ?>
+
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats']['Passing'])) {
+                                        echo $this->playerStat['last_stats']['Passing']['completions'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo $this->playerStat['last_stats']['Passing']['passing_attempts'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo $this->playerStat['last_stats']['Passing']['completion_pct'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo $this->playerStat['last_stats']['Passing']['yards'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo round($this->playerStat['last_stats']['Passing']['yards'] / $this->playerStat['last_stats']['Passing']['completions'], 1);
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats']['Passing'])) {
+                                        echo $this->playerStat['last_stats']['Passing']['yards_per_game'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo $this->playerStat['last_stats']['Passing']['longest_pass'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo $this->playerStat['last_stats']['Passing']['passing_touchdowns'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats']['Passing'])) {
+                                        echo $this->playerStat['last_stats']['Passing']['interceptions'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Passing'])) {
+                                                echo $this->playerStat['last_stats']['Passing']['quaterback_rating'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                        echo $this->playerStat['last_stats']['Rushing']['rushing_attempts'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['yards'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo round($this->playerStat['last_stats']['Rushing']['yards'] / $this->playerStat['last_stats']['Rushing']['rushing_attempts'], 1);
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                            echo round($this->playerStat['last_stats']['Rushing']['yards'] / $this->playerStat['last_stats']['game'], 1);
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['longest_rush'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['rushing_touchdowns'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats'])) {
+                                        echo $this->playerStat['last_stats']['fumble'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats'])) {
+                                                echo $this->playerStat['last_stats']['loss'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->fpts)) {
+                                                echo $this->fpts;
+                                            } else {
+                                                echo "0.0";
+                                            }
+                                            ?></td>   
+
+                                        <?php } else { ?>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Receiving'])) {
+                                                echo $this->playerStat['last_stats']['Receiving']['receptions'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Receiving'])) {
+                                                echo $this->playerStat['last_stats']['Receiving']['receiving_yards'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Receiving'])) {
+                                                echo $this->playerStat['last_stats']['Receiving']['yards_per_reception_avg'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Receiving']['receiving_yards']) && ($this->playerStat['last_stats']['Receiving']['receiving_yards'] != 0)) {
+                                                echo round($this->playerStat['last_stats']['Receiving']['receiving_yards'] / $this->playerStat['last_stats']['game'], 1);
+                                            } else {
+                                                echo "0.0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Receiving'])) {
+                                                echo $this->playerStat['last_stats']['Receiving']['longest_reception'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats']['Receiving'])) {
+                                        echo $this->playerStat['last_stats']['Receiving']['receiving_touchdowns'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['rushing_attempts'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['yards'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                        echo round($this->playerStat['last_stats']['Rushing']['yards'] / $this->playerStat['last_stats']['Rushing']['rushing_attempts'], 1);
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo round($this->playerStat['last_stats']['Rushing']['yards'] / $this->playerStat['last_stats']['game'], 1);
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['longest_rush'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats']['Rushing'])) {
+                                                echo $this->playerStat['last_stats']['Rushing']['rushing_touchdowns'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats'])) {
+                                                echo $this->playerStat['last_stats']['fumble'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['last_stats'])) {
+                                                echo $this->playerStat['last_stats']['loss'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->fpts)) {
+                                                echo $this->fpts;
+                                            } else {
+                                                echo "0.0";
+                                            }
+                                            ?></td>   
+                                        <?php } ?>
+
+                                </tr>
+
+                                <tr>
+                                    <td><b><?php echo date('Y'); ?> Season</b></td>
+                                    <td><?php
+                                    if (!empty($this->playerStat['season_stats']['game'])) {
+                                        echo $this->playerStat['season_stats']['game'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                        ?></td>
+                                        <?php if (($this->playerPos === "QB")) { ?>
+
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing'])) {
+                                                echo $this->playerStat['season_stats']['Passing']['completions'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing'])) {
+                                                echo $this->playerStat['season_stats']['Passing']['passing_attempts'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing'])) {
+                                                echo $this->playerStat['season_stats']['Passing']['completion_pct'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Passing'])) {
+                                            echo $this->playerStat['season_stats']['Passing']['yards'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing']) && $this->playerStat['season_stats']['Passing']['completions'] > 0) {
+                                                echo round($this->playerStat['season_stats']['Passing']['yards'] / $this->playerStat['season_stats']['Passing']['completions'], 1);
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing'])) {
+                                                echo $this->playerStat['season_stats']['Passing']['yards_per_game'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['Passing'])) {
+                                        echo $this->playerStat['season_stats']['Passing']['longest_pass'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing'])) {
+                                                echo $this->playerStat['season_stats']['Passing']['passing_touchdowns'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Passing'])) {
+                                                echo $this->playerStat['season_stats']['Passing']['interceptions'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['Passing'])) {
+                                        echo $this->playerStat['season_stats']['Passing']['quaterback_rating'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                                echo $this->playerStat['season_stats']['Rushing']['rushing_attempts'];
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                        echo $this->playerStat['season_stats']['Rushing']['yards'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                                echo round($this->playerStat['season_stats']['Rushing']['yards'] / $this->playerStat['season_stats']['Rushing']['rushing_attempts'], 1);
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                            if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                                echo round($this->playerStat['season_stats']['Rushing']['yards'] / $this->playerStat['season_stats']['game'], 1);
+                                            } else {
+                                                echo "0";
+                                            }
+                                            ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                        echo $this->playerStat['season_stats']['Rushing']['longest_rush'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                        echo $this->playerStat['season_stats']['Rushing']['rushing_touchdowns'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['fumble'])) {
+                                        echo $this->playerStat['season_stats']['fumble'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['loss'])) {
+                                        echo $this->playerStat['season_stats']['loss'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['fppg'])) {
+                                        echo $this->playerStat['season_stats']['fppg'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+    <?php } else { ?>
+                                        <td><?php
+        if (isset($this->playerStat['season_stats']['Receiving'])) {
+            echo $this->playerStat['season_stats']['Receiving']['receptions'];
+        } else {
+            echo "0";
+        }
+        ?></td>
+                                        <td><?php
+        if (isset($this->playerStat['season_stats']['Receiving'])) {
+            echo $this->playerStat['season_stats']['Receiving']['receiving_yards'];
+        } else {
+            echo "0";
+        }
+        ?></td>
+                                        <td><?php
+        if (isset($this->playerStat['season_stats']['Receiving'])) {
+            echo $this->playerStat['season_stats']['Receiving']['yards_per_reception_avg'];
+        } else {
+            echo "0";
+        }
+        ?></td>
+                                        <td><?php
+        if (isset($this->playerStat['season_stats']['Receiving']['receiving_yards']) && ($this->playerStat['season_stats']['Receiving']['receiving_yards'] != 0)) {
+            echo round($this->playerStat['season_stats']['Receiving']['receiving_yards'] / $this->playerStat['season_stats']['game'], 1);
+        } else {
+            echo "0.0";
+        }
+        ?></td>
+                                        <td><?php
+        if (isset($this->playerStat['season_stats']['Receiving'])) {
+            echo $this->playerStat['season_stats']['Receiving']['longest_reception'];
+        } else {
+            echo "0";
+        }
+        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Receiving'])) {
+                                            echo $this->playerStat['season_stats']['Receiving']['receiving_touchdowns'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+
+                                        <td><?php
+                                if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                    echo $this->playerStat['season_stats']['Rushing']['rushing_attempts'];
+                                } else {
+                                    echo "0";
+                                }
+                                        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                            echo $this->playerStat['season_stats']['Rushing']['yards'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                            echo round($this->playerStat['season_stats']['Rushing']['yards'] / $this->playerStat['season_stats']['Rushing']['rushing_attempts'], 1);
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                            echo round($this->playerStat['season_stats']['Rushing']['yards'] / $this->playerStat['season_stats']['game'], 1);
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                            echo $this->playerStat['season_stats']['Rushing']['longest_rush'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['Rushing'])) {
+                                            echo $this->playerStat['season_stats']['Rushing']['rushing_touchdowns'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                    if (isset($this->playerStat['season_stats']['fumble'])) {
+                                        echo $this->playerStat['season_stats']['fumble'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['loss'])) {
+                                            echo $this->playerStat['season_stats']['loss'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                        <td><?php
+                                        if (isset($this->playerStat['season_stats']['fppg'])) {
+                                            echo $this->playerStat['season_stats']['fppg'];
+                                        } else {
+                                            echo "0.0";
+                                        }
+                                        ?></td>   
+                                    <?php } ?>
+
+                                </tr>
+
+                            </tbody>
+                    </table>
+                </div>
+                                <?php } ?>
+            <!--        </div>-->
+
+            <div class="col-md-12 table-normal-overflow">
+                                <?php if (isset($this->sportsId) && $this->sportsId == 2) { ?>
+								 
+                
+                    <table class="table table-normal">
+                        <thead>
+                                    <?php if (isset($this->playerStat['Pitching'])) { ?>
+                            <th class="btn-warning" colspan="16"><b>Pitching Statistics</b></th>
+                                    <?php } else { ?>
+                            <th class="btn-warning" colspan="16"><b>Batting Statistics</b></th>
+                                    <?php } ?>
+                        </thead>
+                        <thead>
+                            <tr>
+                                    <?php if (isset($this->playerStat['Pitching'])) { ?>
+                                    <th></th>
+                                    <th>GP</th>
+                                    <th>GS</th>
+                                    <th>W</th>
+                                    <th>L</th>
+                                    <th>IP</th>
+
+                                    <th>H</th>
+                                    <th>R</th>
+                                    <th>ER</th>
+                                    <th>HR</th>
+                                    <!--<th>BB</th>-->
+                                    <th>K</th>
+                                    <th>CG</th>
+                                    <th>CGSO</th>
+                                    <th>WHIP</th>
+                                    <!--<th>BAA</th>-->
+                                    <th>ERA</th>
+                                    <th>FPPG</th>
+                                    <?php } else { ?>
+                                    <th></th>
+                                    <th>GP</th>
+                                    <th>AB</th>
+                                    <th>R</th>
+                                    <th>H</th>
+                                    <th>2B</th>
+                                    <th>3B</th>
+                                    <th>HR</th>
+                                    <th>RBI</th>
+                                    <th>BB</th>
+                                    <th>K</th>
+                                    <th>SB</th>
+                                    <th>CS</th>
+                                    <!--<th>OBP</th>-->
+                                    <th>SLG</th>
+                                    <!--<th>OPS</th>-->
+                                    <th>AVG</th>
+                                    <th>FPPG</th>
+    <?php } ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+    <?php /* if(isset($this->lastStat)){ */ if ($this->lastStat['type'] == "pitchers") { ?>
+                                    <td><b>Last Match Stat</b></td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td><?php
+        if (isset($this->lastStat['win']) && !empty($this->lastStat['win'])) {
+            echo $this->lastStat['win'];
+        } else {
+            echo "0";
+        }
+        ?></td>
+                                    <td><?php
+                                        if (isset($this->lastStat['loss']) && !empty($this->lastStat['loss'])) {
+                                            echo $this->lastStat['loss'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (isset($this->lastStat['innings_pitched'])) {
+                                            echo $this->lastStat['innings_pitched'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+
+                                    <td><?php
+                                        if (isset($this->lastStat['hits'])) {
+                                            echo $this->lastStat['hits'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (isset($this->lastStat['walks'])) {
+                                            echo $this->lastStat['walks'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+
+                                    <td><?php
+                                        if (isset($this->lastStat['earned_runs'])) {
+                                            echo $this->lastStat['earned_runs'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (isset($this->lastStat['home_runs'])) {
+                                            echo $this->lastStat['home_runs'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (isset($this->lastStat['strikeouts'])) {
+                                            echo $this->lastStat['strikeouts'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td>0<?php ?></td>
+                                    <td>0<?php ?></td>
+                                    <td>0<?php // echo $this->lastStat['walk_hits_per_inning_pitched'];  ?></td>
+                                    <!--<td><?php ?></td>-->
+                                    <td><?php
+                                        if (isset($this->lastStat['earned_run_average'])) {
+                                            echo $this->lastStat['earned_run_average'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php echo $this->fpts; ?></td>
+                                    <?php } else { ?>
+                                    <td><b>Last Match Stat</b></td>
+                                    <td>1</td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['at_bats'])) {
+                                            echo $this->lastStat['at_bats'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['runs'])) {
+                                            echo $this->lastStat['runs'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['hits'])) {
+                                            echo $this->lastStat['hits'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['doubles'])) {
+                                            echo $this->lastStat['doubles'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['triples'])) {
+                                            echo $this->lastStat['triples'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>        
+                                    <td><?php
+                                        if (!empty($this->lastStat['home_run'])) {
+                                            echo $this->lastStat['home_run'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['runs_batted_in'])) {
+                                            echo $this->lastStat['runs_batted_in'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['walks'])) {
+                                            echo $this->lastStat['walks'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['hitter_strikeouts'])) {
+                                            echo $this->lastStat['hitter_strikeouts'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->lastStat['stolen_bases'])) {
+                                            echo $this->lastStat['stolen_bases'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td>0<?php // if(isset($this->playerStat['caught_stealing']) && !empty($this->playerStat['caught_stealing'])){ echo $this->playerStat['Batting']['caught_stealing']; }else{ echo "0"; }   ?></td>
+                                    <!--<td><?php ?></td>-->
+                                    <td><?php
+                                        if (!empty($this->lastStat['slugging_percentage'])) {
+                                            echo $this->lastStat['slugging_percentage'];
+                                        } else {
+                                            echo "0.00";
+                                        }
+                                        ?></td>
+                                    <!--<td><?php ?></td>-->
+                                    <td><?php
+                                        if (!empty($this->lastStat['average'])) {
+                                            echo $this->lastStat['average'];
+                                        } else {
+                                            echo "0.00";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->fpts)) {
+                                            echo $this->fpts;
+                                        } else {
+                                            echo "0.0";
+                                        }
+                                        ?></td>
+                                    <?php } //} ?>
+                            </tr>   
+                            <tr>
+                                    <?php if (isset($this->playerStat['Pitching'])) { ?>
+                                    <td><b><?php echo date('Y'); ?> Season</b></td>
+                                    <td><?php echo $this->playerStat['Pitching']['games_played']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['games_started']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['wins']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['losses']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['innings_pitched']; ?></td>
+
+                                    <td><?php echo $this->playerStat['Pitching']['hits']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['walks']; ?></td>
+
+                                    <td><?php echo $this->playerStat['Pitching']['earned_runs']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['home_runs']; ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['strikeouts']; ?></td>
+                                    <td>0<?php ?></td>
+                                    <td>0<?php ?></td>
+                                    <td><?php echo $this->playerStat['Pitching']['walk_hits_per_inning_pitched']; ?></td>
+                                    <!--<td><?php ?></td>-->
+                                    <td><?php echo $this->playerStat['Pitching']['earned_run_average']; ?></td>
+                                    <td><?php echo $this->playerStat['fppg']; ?></td>
+                                    <?php } else { ?>
+                                    <td><b><?php echo date('Y'); ?> Season</b></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['games_played'])) {
+                                            echo $this->playerStat['Batting']['games_played'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['at_bats'])) {
+                                            echo $this->playerStat['Batting']['at_bats'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['runs'])) {
+                                            echo $this->playerStat['Batting']['runs'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['hits'])) {
+                                            echo $this->playerStat['Batting']['hits'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['doubles'])) {
+                                            echo $this->playerStat['Batting']['doubles'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['triples'])) {
+                                            echo $this->playerStat['Batting']['triples'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>        
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['home_runs'])) {
+                                            echo $this->playerStat['Batting']['home_runs'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['runs_batted_in'])) {
+                                            echo $this->playerStat['Batting']['runs_batted_in'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['walks'])) {
+                                            echo $this->playerStat['Batting']['walks'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['strikeouts'])) {
+                                            echo $this->playerStat['Batting']['strikeouts'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['stolen_bases'])) {
+                                            echo $this->playerStat['Batting']['stolen_bases'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <td><?php
+                                        if (isset($this->playerStat['Batting']['caught_stealing']) && !empty($this->playerStat['Batting']['caught_stealing'])) {
+                                            echo $this->playerStat['Batting']['caught_stealing'];
+                                        } else {
+                                            echo "0";
+                                        }
+                                        ?></td>
+                                    <!--<td><?php ?></td>-->
+                                    <td><?php
+                                        if (!empty($this->playerStat['Batting']['slugging_percentage'])) {
+                                            echo $this->playerStat['Batting']['slugging_percentage'];
+                                        } else {
+                                            echo "0.00";
+                                        }
+                                        ?></td>
+                                    <!--<td><?php ?></td>-->
+                                    <td><?php
+                                if (!empty($this->playerStat['Batting']['batting_avg'])) {
+                                    echo $this->playerStat['Batting']['batting_avg'];
+                                } else {
+                                    echo "0.00";
+                                }
+                                        ?></td>
+                                    <td><?php
+                                        if (!empty($this->playerStat['fppg'])) {
+                                            echo $this->playerStat['fppg'];
+                                        } else {
+                                            echo "0.0";
+                                        }
+                                        ?></td>
+                                    <?php } ?>
+                            </tr>   
+                        </tbody>
+                    </table>
+					
+                                <?php } ?>
+                <!--        </div>   -->
+                                <?php if (isset($this->sportsId) && $this->sportsId == 3 && isset($this->playerStat)) { ?>
+
+                    <table class="table table-normal">
+                        <thead>
+                            <tr>        
+                                <th></th>
+                                <th>G</th>
+                                <th>MPG</th>
+                                <th>FGM-FGA</th>
+                                <th>FG%</th>
+                                <th>3PM-3PA</th>
+                                <th>3P%</th>
+                                <th>FTM-FTA</th>
+                                <th>FT%</th>
+                                <th>RPG</th>
+                                <th>APG</th>
+                                <th>BLKPG</th>
+                                <th>STLPG</th>
+                                <th>PFPG</th>
+                                <th>TOPG</th>
+                                <th>PPG</th>
+                                <th>FPPG</th>            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td><b>Last Game</b></td>
+                                <td><?php
+                                if (isset($this->lastStat)) {
+                                    echo 1;
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->lastStat['minutes'])) {
+                                    echo $this->lastStat['minutes'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['field_goals_made'])) {
+                                        echo $this->lastStat['field_goals_made'];
+                                    } else {
+                                        echo "0";
+                                    } if (isset($this->lastStat['field_goals_attempts'])) {
+                                        echo "-" . $this->lastStat['field_goals_attempts'];
+                                    } else {
+                                        echo "-0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['fg_pct'])) {
+                                        echo $this->lastStat['fg_pct'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['threepoint_goals_made'])) {
+                                        echo $this->lastStat['threepoint_goals_made'];
+                                    } else {
+                                        echo "0";
+                                    } if (isset($this->lastStat['threepoint_goals_attempts'])) {
+                                        echo "-" . $this->lastStat['threepoint_goals_attempts'];
+                                    } else {
+                                        echo "-0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                if (isset($this->lastStat['three_point_pct'])) {
+                                    echo $this->lastStat['three_point_pct'];
+                                } else {
+                                    echo "0.0";
+                                }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['freethrows_goals_made'])) {
+                                        echo $this->lastStat['freethrows_goals_made'];
+                                    } else {
+                                        echo "0";
+                                    } if (isset($this->lastStat['freethrows_goals_attempts'])) {
+                                        echo "-" . $this->lastStat['freethrows_goals_attempts'];
+                                    } else {
+                                        echo "-0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['free_throws_pct'])) {
+                                        echo $this->lastStat['free_throws_pct'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['total_rebounds'])) {
+                                        echo $this->lastStat['total_rebounds'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['assists'])) {
+                                        echo $this->lastStat['assists'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                if (isset($this->lastStat['blocks'])) {
+                                    echo $this->lastStat['blocks'];
+                                } else {
+                                    echo "0.0";
+                                }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['steals'])) {
+                                        echo $this->lastStat['steals'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['personal_fouls'])) {
+                                        echo $this->lastStat['personal_fouls'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['turnovers'])) {
+                                        echo $this->lastStat['turnovers'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->lastStat['points'])) {
+                                        echo $this->lastStat['points'];
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->fpts)) {
+                                        echo $this->fpts;
+                                    } else {
+                                        echo "0.0";
+                                    }
+                                    ?></td>
+
+                            </tr>  
+                            <tr>
+
+                                <td><b><?php echo date('Y'); ?> Season</b></td>
+                                <td><?php
+                                if (isset($this->playerStat['games_played'])) {
+                                    echo $this->playerStat['games_played'];
+                                } else {
+                                    echo "0";
+                                }
+                                    ?></td>
+                                <td><?php
+                                    if (isset($this->playerStat['minutes'])) {
+                                        echo $this->playerStat['minutes'];
+                                    } else {
+                                        echo "0";
+                                    }
+                                    ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['fg_made_per_game'])) {
+                                    echo $this->playerStat['fg_made_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?> - <?php
+                                if (isset($this->playerStat['fg_attempts_per_game'])) {
+                                    echo $this->playerStat['fg_attempts_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['fg_pct'])) {
+                                    echo $this->playerStat['fg_pct'];
+                                } else {
+                                    echo "0";
+                                }
+                                    ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['three_point_made_per_game'])) {
+                                    echo $this->playerStat['three_point_made_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?> - <?php
+                                if (isset($this->playerStat['three_point_attempts_per_game'])) {
+                                    echo $this->playerStat['three_point_attempts_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['three_point_pct'])) {
+                                    echo $this->playerStat['three_point_pct'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>        
+                                <td><?php
+                                if (isset($this->playerStat['free_throws_made_per_game'])) {
+                                    echo $this->playerStat['free_throws_made_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?> - <?php
+                                if (isset($this->playerStat['free_throws_attempts_per_game'])) {
+                                    echo $this->playerStat['free_throws_attempts_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['free_throws_pct'])) {
+                                    echo $this->playerStat['free_throws_pct'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['rebounds_per_game'])) {
+                                    echo $this->playerStat['rebounds_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['assists_per_game'])) {
+                                    echo $this->playerStat['assists_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['blocks_per_game'])) {
+                                    echo $this->playerStat['blocks_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['steals_per_game'])) {
+                                    echo $this->playerStat['steals_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['fouls_per_game'])) {
+                                    echo $this->playerStat['fouls_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['turnovers_per_game'])) {
+                                    echo $this->playerStat['turnovers_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->playerStat['points_per_game'])) {
+                                    echo $this->playerStat['points_per_game'];
+                                } else {
+                                    echo "0";
+                                }
+                                ?></td>
+                                <td><?php
+                                if (isset($this->fppg)) {
+                                    echo $this->fppg;
+                                } else {
+                                    echo "0.0";
+                                }
+                                ?></td>
+
+                            </tr>   
+                        </tbody>
+
+                    </table>
+<?php } ?>
+
+
+<?php if (isset($this->sportsId) && $this->sportsId == 4) { ?>
+
+                    <table class="table table-normal">
+                        <thead>
+                            <tr>        
+                                <th></th>
+                                <th>GP</th>
+                                <th>G</th>
+                                <th>A</th>
+                                <th>PTS</th>
+                                <th>+/-</th>
+                                <th>PIM</th>
+                                <!--<th>HITS</th>-->
+                                <!--<th>BS</th>-->
+                                <th>FOW</th>
+                                <th>FOL</th>
+                                <th>SOG</th>
+                                <th>S%</th>
+                                <!--<th>PPG</th>-->
+                                <!--<th>PPA</th>-->
+                                <!--<th>SHG</th>-->
+                                <th>SHA</th>
+                                <!--<th>TOI/G</th>-->
+                                <th>FPPG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td><b>Last Stats</b></td>
+                                <td>1</td>
+                                <td><?php
+    if (isset($this->lastStat['goals'])) {
+        echo $this->lastStat['goals'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['assists'])) {
+        echo $this->lastStat['assists'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['points'])) {
+        echo $this->lastStat['points'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['plus_minus'])) {
+        echo $this->lastStat['plus_minus'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['penalty_minutes'])) {
+        echo $this->lastStat['penalty_minutes'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <!--<td><?php // if(isset($this->lastStat['minutes'])){ echo $this->lastStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <!--<td><?php // if(isset($this->lastStat['minutes'])){ echo $this->lastStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <td><?php
+    if (isset($this->lastStat['faceoffs_won'])) {
+        echo $this->lastStat['faceoffs_won'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['faceoffs_lost'])) {
+        echo $this->lastStat['faceoffs_lost'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['sh_goals'])) {
+        echo $this->lastStat['sh_goals'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->lastStat['shootout_pct'])) {
+        echo $this->lastStat['shootout_pct'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <!--<td><?php // if(isset($this->lastStat['minutes'])){ echo $this->lastStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <!--<td><?php // if(isset($this->lastStat['minutes'])){ echo $this->lastStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <!--<td><?php // if(isset($this->lastStat['minutes'])){ echo $this->lastStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <td><?php
+    if (isset($this->lastStat['hits'])) {
+        echo $this->lastStat['hits'];
+    } else {
+        echo "0";
+    }
+    ?></td>
+                                <!--<td><?php // if(isset($this->lastStat['minutes'])){ echo $this->lastStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <td><?php
+    if (isset($this->fpts)) {
+        echo $this->fpts;
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+
+                            </tr> 
+                            <tr>
+
+                                <td><b><?php echo date('Y'); ?> Season</b></td>
+                                <td><?php
+    if (isset($this->playerStat['games_played'])) {
+        echo $this->playerStat['games_played'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['goals'])) {
+        echo $this->playerStat['goals'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['assists'])) {
+        echo $this->playerStat['assists'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['points'])) {
+        echo $this->playerStat['points'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['plus_minus'])) {
+        echo $this->playerStat['plus_minus'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['penalty_minutes'])) {
+        echo $this->playerStat['penalty_minutes'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <!--<td><?php // if(isset($this->playerStat['minutes'])){ echo $this->playerStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <!--<td><?php // if(isset($this->playerStat['minutes'])){ echo $this->playerStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <td><?php
+    if (isset($this->playerStat['faceoffs_won'])) {
+        echo $this->playerStat['faceoffs_won'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['faceoffs_lost'])) {
+        echo $this->playerStat['faceoffs_lost'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['shootout_goals'])) {
+        echo $this->playerStat['shootout_goals'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td><?php
+    if (isset($this->playerStat['shootout_pct'])) {
+        echo $this->playerStat['shootout_pct'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <!--<td><?php // if(isset($this->playerStat['minutes'])){ echo $this->playerStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <!--<td><?php // if(isset($this->playerStat['minutes'])){ echo $this->playerStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <!--<td><?php // if(isset($this->playerStat['minutes'])){ echo $this->playerStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <td><?php
+    if (isset($this->playerStat['shootout_attempts'])) {
+        echo $this->playerStat['shootout_attempts'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <!--<td><?php // if(isset($this->playerStat['minutes'])){ echo $this->playerStat['minutes'];}else{ echo "0.0";}    ?></td>-->
+                                <td><?php
+    if (isset($this->playerStat['fppg'])) {
+        echo $this->playerStat['fppg'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+
+                            </tr>   
+                        </tbody>
+
+                    </table>
+<?php } ?>
+            </div>
+            <div class="modal-footer">
+<?php if (isset($this->draft) && ($this->draft == 1 )) { ?>
+                    <table style="float:left;">
+                        <tbody>
+                            <tr>
+                                <td class="r1"  style="display: none;"><a><?php echo $this->name; ?></a></td>
+                                <td class="r2" style="display: none;"><?php echo $this->teams; ?></td>
+                                <td class="r4" style="display: none;"><?php
+    if (isset($this->playerStat['fppg'])) {
+        echo $this->playerStat['fppg'];
+    } else {
+        echo "0.0";
+    }
+    ?></td>
+                                <td class="r5" style="display: none;"><?php echo "$" . $this->plrValue; ?></td>
+                                <td><a class="addPlayer" data-pcode="<?php echo $this->playerPos; ?>" data-pid="<?php echo $this->playerId ?>" data-team="<?php echo $this->teamCode; ?>" data-pval="<?php echo $this->plrValue; ?>"><input name="draftplayer" data-dismiss="modal" class="btn btn-warning lineup_tlb" style="margin-left:10px;"  value="DRAFT PLAYER"></a></td>
+                                <!--<td><a class="draftPlayer" data-pcode="<?php echo $this->playerPos; ?>" data-pid="<?php echo $this->playerId ?>" data-team="<?php echo $this->teamCode; ?>" data-pval="<?php echo $this->plrValue; ?>"><input name="draftplayer" data-dismiss="modal" class="btn btn-warning lineup_tlb" style="margin-left:10px;"  value="DRAFT PLAYER"></a></td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+<?php } ?>
+<div class="col-md-2 col-md-offset-5">
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Close</button>
+            </div>
+			</div>
+			<div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+
+        </div>
+</div>
+</div>

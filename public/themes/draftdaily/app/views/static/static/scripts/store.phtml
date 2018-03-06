@@ -1,0 +1,414 @@
+<style>
+    .bg-dark1 {
+        background: #23282d none repeat scroll 0 0 !important;
+    }
+    .product-details {
+        border: 1px solid;
+        color: #8dc407;
+        min-height: 262px;
+        padding: 15% 4% 4%;
+    }
+    .product-details > h3 {
+        margin-bottom: 7% !important;
+    }
+    .product-details > h5 {
+        color: #fff;
+    }
+    .ticketdetails {
+        color: #000 !important;
+        margin-left: 41px !important;
+        margin-top: 123px !important;
+    }
+    .ticket {
+        min-height: 262px;
+        margin-bottom: 1%;
+    }
+    .top-10px {
+        margin-top: 10px;
+    }
+.mar-100-100{
+	 margin-top:128px;
+}	
+</style>
+
+<section class="relative mar-100-100">
+	<div class="container margin-40">
+		<div class="row">			
+			<div class="text-center">
+				<img src="<?php echo $this->baseUrl();?>assets/draftdaily/img/store/banner.jpg" class="img-responsive h-300" width="100%">  
+			</div>   
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-5">
+				<p class="font-medium-a text-uppercase margin-10px">Check back regularly to see all
+					the FPP rewards</p>
+			</div>
+			<div class="col-sm-4">
+				<!--<div class="bg-light width70p m-top-md center-block text-center">
+					<a href="#" data-toggle="modal" data-target="#getTicketModal" data><p class="font-ste-medium font-20 text-gray text-uppercase p-bottom-xs">use ticket code</p></a>
+				</div>-->
+				<div class="text-center margin-10px">
+					<a class="text-blue" data-toggle="modal" data-target="#earnfpp"><p class="font-medium-a text-uppercase text-blue">How do I earn FPPs?</p></a>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="text-center">
+					<p class="font-medium-a text-uppercase margin-10px text-blue" id="fpp" >Fpp Balance
+					&nbsp; : &nbsp;<span class="font-medium-a text-uppercase fppBalance"><?php echo $this->fpp; ?></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container margin-40 pd-15">
+
+		<div class="row margin-10px">
+			<?php
+			
+			if (isset($this->fpp)):$userfpp = $this->fpp;
+			endif;
+			if (!empty($this->storedata)) {
+				//echo "<pre>";print_r($this->storedata);die;
+				
+				foreach ($this->storedata as $value) { ?>
+				
+					<div class="col-sm-4 col-xs-12">
+					
+						<?php if (!empty($value['ticket_id'])) { ?>
+								
+							<article class="col-item margin-10px">
+								
+								<div class="photo">
+									<a href="javascript:void(0);"> <img src="assets/draftdaily/img/store/football-a.jpg" class="img-responsive" alt="Product Image" /> </a>
+								</div>
+								
+								<div class="or-image margin-10px"></div>
+								
+								<div class="info">
+									<div class="row">
+										<div class="price-details col-md-6">
+											<p class="details">
+												<?php echo $value['description']; ?>
+											</p>
+											<h1>Ticket Use Limit : <?php echo $value['ticket_use_limit']; ?></h1>
+											<span class="price-new"><?php echo $value['fpp'] . " FPPs"; ?></span>
+										</div>
+										
+										<?php if ($this->fpp < $value['fpp']) { ?>
+										
+											<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+												<?php $sub = intval($value['fpp']) - intval($this->fpp);?> 
+												Additional FPPs Needed : - <?php echo $sub; ?>
+											</div>
+											
+										<?php } else { ?>
+											<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+												<button class="btn-success btn-lg-bnt btn3d ticketforsale" data-toggle="modal" data-id="<?php echo $value['ticket_id']; ?>" data-target="#ticket">Buy</button>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
+							</article> 
+							
+						<?php }elseif(!empty($value['product_id'])) { ?>
+						
+							<article class="col-item margin-10px">
+								
+								<div class="photo">
+									<a href="javascript:void(0);"> <img src="assets/draftdaily/img/store/cup-man.jpg" class="img-responsive" alt="Product Image" /> </a>
+								</div>
+								
+								<div class="or-image margin-10px"></div>
+								
+								<div class="info">
+									<div class="row">
+										<div class="price-details col-md-6">
+											<p class="details">
+												<?php echo $value['product_name']; ?>
+											</p>
+											<h1>Prize : <?php echo $value['real_cash']." DFS"; ?></h1>
+											<span class="price-new"><?php echo $value['fpp_point'] . " FPPs"; ?></span>
+										</div>
+										
+										<?php if ($this->fpp < $value['fpp_point']) { ?>
+										
+											<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+												<?php $sub = intval($value['fpp_point']) - intval($this->fpp);?> 
+												Additional FPPs Needed : - <?php echo $sub; ?>
+											</div>
+											
+										<?php } else { ?>
+											<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+												<button class="btn-success btn-lg-bnt btn3d">Buy</button>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
+							</article> 
+							
+						<?php } ?>
+					</div>
+
+					<?php
+				}
+			} else { ?>
+				<p class="textcenter font-medium-a" >Currently No Store Products Available</p>
+			<?php } ?>
+
+		</div>
+
+    </div>          
+		
+
+	<!--<div class="row">
+		<div class="col-sm-4 col-xs-12">
+            <article class="col-item">
+            	<div class="photo">
+        		<a href="#"> <img src="assets/draftdaily/img/store/football-a.jpg" class="img-responsive" alt="Product Image" /> </a>
+        		</div>
+				<div class="or-image"></div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        						Ticket valid for NFL CONTEST 1 Contest!
+        					</p>
+        					<h1>Sample Product</h1>
+        					<span class="price-new">$110.00</span>
+        				</div>
+						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+						<button class="btn-success btn-lg-bnt btn3d">Buy</button>
+						</div>
+        			</div>
+        		</div>
+        	</article>
+            </div>
+          <div class="col-sm-4 col-xs-12">
+            <article class="col-item">
+            	<div class="photo">
+        		<a href="#"> <img src="assets/draftdaily/img/store/cup-man.jpg" class="img-responsive" alt="Product Image" /> </a>
+        		</div>
+				<div class="or-image"></div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        						Ticket valid for NFL CONTEST 1 Contest!
+        					</p>
+        					<h1>Sample Product</h1>
+        					<span class="price-new">$110.00</span>
+        				</div>
+						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+						<button class="btn-success btn-lg-bnt btn3d">Buy</button>
+						</div>
+        			</div>
+        		</div>
+        	</article>
+            </div>
+          <div class="col-sm-4 col-xs-12">
+            <article class="col-item">
+            	<div class="photo">
+        		<a href="#"><img src="assets/draftdaily/img/store/football.jpg" class="img-responsive" alt="Product Image" /> </a>
+        		</div>
+				<div class="or-image"></div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        						Ticket valid for NFL CONTEST 1 Contest!
+        					</p>
+        					<h1>Sample Product</h1>
+        					<span class="price-new">$110.00</span>
+        				</div>
+						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
+						<button class="btn-success btn-lg-bnt btn3d">Buy</button>
+						</div>
+						</div>
+        		</div>
+        	</article>
+            </div>
+      
+	</div>
+-->
+      
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="earnfpp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #242424;">
+            <div class="modal-header">
+			<h3 class="modal-title text-center" id="myModalLabel" >FREQUENT PLAYER POINT DETAILS</h3>
+               
+            </div>
+            <div class="modal-body">
+                <div class="subhead gold"><strong class="text-blue" >What are Frequent Player Points (FPPs)?</strong></div>
+                <div style="margin-top:20px;color:#FFFFFF;">
+
+                    Frequent Player Points (FPP) are points you earn upon the start of every paid contest you enter on DraftDaily.com, whether you win or lose. FPPs awarded vary per contest type (displayed on the Draft page) and are not earned for playing in FREE ENTRY games. The more contests you join and money you spend, the more FPPs you earn. Your current balance of FPPs can be tracked on the My Account page. Certain contests can be entered directly by redeeming FPPs, and you can visit the <a href="/store" id="green" class="text-blue">FPP Store</a> to check out current redemption offers!
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+			<div class="row">
+			<div class=" col-md-2 col-md-offset-5 margin-10px">
+                <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+			<div class="row" style="background-color:#f85425; height:10px;"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <h3 class="modal-title text-center" id="myModalLabel" style="color: #FFF;">Ticket</h3>
+            </div>
+            <div class="modal-body">
+                <h5><strong>Do you want to purchase this ?</strong></h5>
+            </div>
+			<div class="modal-footer">
+			<div class="row">
+            <div class="col-md-6 col-md-offset-4" style="padding: 8px;">
+                <button type="button" class="btn-submit btn-lg-bnt btn3d" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-success btn-lg-bnt btn3d" data-dismiss="modal" id="ticketbuy" data-id="">Buy</button>
+            </div>
+            </div>
+            </div>
+			<div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="getTicketModal" tabindex="-1" role="dialog" aria-labelledby="to Get Ticket by code" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header bg-dark1" >
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" style="color: #FFF;">Ticket Code</h4>
+            </div>
+            <div class="modal-body text-center"  >
+                <h5>Insert Code into following Text box and get Advantages</h5>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <input type="text" value="" id="tcode" name="tcode" class="input-de form-control" placeholder="Type your ticket code" />
+                        <h5 id="ticket_msg" class="hidden"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 8px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-blue" id="getTicket" >Get Ticket >></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //dev :priyanka varanasi
+    //desc:integrated scripts for this page
+    
+     $(document.body).on('click','#getTicket', function(){
+         var tcode = $('#tcode').val();
+         if(tcode!=""){
+             $.ajax({
+                url      : '/store-ajax-handler',
+                type     : 'POST',
+                dataType : 'json',
+                data     : {
+                            method : 'useTicket',
+                            tcode  : tcode
+                           },
+                success  : function(response){ 
+                            $('#ticket_msg').html('');
+                            if(response.code == 200){
+                                $('#ticket_msg').removeClass();
+                                $('#ticket_msg').addClass('success');
+                                $('#ticket_msg').html(response.message);
+                            }else if(response.code == 198){
+                                $('#ticket_msg').removeClass();
+                                $('#ticket_msg').addClass('danger');
+                                $('#ticket_msg').html(response.message);
+                            }if(response.code == 196){
+                                $('#ticket_msg').removeClass();
+                                 $('#ticket_msg').addClass('alert');
+                                $('#ticket_msg').html(response.message);
+                            }
+                           }
+                    });
+         }else{
+             alert('please insert Ticket code');
+         }
+   });
+   $('#getTicketModal').on('show.bs.modal', function (e) {
+        $('#ticket_msg').html('');
+        $('#tcode').val('');
+        $('#ticket_msg').removeClass();
+        $('#ticket_msg').addClass('hidden');
+   });
+   
+   $(document.body).on('click','#getcode',function(){
+       $.ajax({
+            url      : '/withdraw-ajax-handler',
+            type     : 'POST',
+            dataType : 'json',
+            data     : {
+                method : 'getcode'
+            },
+            success  : function(response){ 
+                if(response.code == 200){
+                    $('#response').css('color','green');
+                    $('#response').html(response.message);
+                }
+            }
+        });
+   });
+    
+       $(document.body).on('click','.ticketforsale',function(){          
+             var ticketID =  $(this).attr('data-id');            
+             $('#ticketbuy').attr('data-id',ticketID);
+          });
+          
+               $(document.body).on('click','.buysaleticket',function(){  
+                  var ticID = $(this).attr('data-id'); 
+                  
+                        $.ajax({            
+                            url      : '/contest-ajax-handler',
+                            type     : 'POST',
+                            dataType : 'json',
+                            data : {
+                                ticketID   : ticID,
+                                method  : 'buyticket'
+                            },
+                            beforeSend : function() {
+
+                            },
+                            success : function(response) {              
+                                  if(response.code=='200'){
+                                      top.location.href = 'store';
+                                  }
+                            }
+
+                        });
+                  
+               });
+    
+    </script>

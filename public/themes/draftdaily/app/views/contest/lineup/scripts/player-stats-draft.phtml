@@ -1,0 +1,257 @@
+<?php if (isset($this->playerStat)) { ?>
+    <div style="background-color: #2A2A2A;">
+        <div class="col-md-12">
+
+            <div class="col-md-2" >
+                <img src="<?php echo '/' . $this->playerStat['player_img']; ?>" style="width:140px;margin-top:-15px;" id="player-img">
+            </div>
+            <div class="col-md-5">
+                <h4 style="color:#ebebeb;font-size:300%;font-weight: bold;">
+                    <?php echo $this->playerStat['name']; ?>
+                </h4>
+                <h5 style="color:#ebebeb;font-size:150%;">
+                    <b><?php echo $this->team_name; ?> | # <?php echo $this->playerCode; ?> </b>
+                </h5>
+            </div>
+
+            <div class="col-md-5">
+                <b style="color:#fff;font-size: 16px;"> <?php echo date('Y'); ?> Season hjjhjhStats </b>
+                <div class="col-md-12" id="stat-box">
+                    <?php if (isset($this->sportsId) && $this->sportsId == 2) { ?>
+                        <?php if ($this->playerPos == 'P') { ?>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">ERA</span><br/>
+                                <span><b id="stat-block-number"><?php echo $this->playerStat['earned_run_average']; ?></b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">W-L</span><br/>
+                                <span><b id="stat-block-number"><?php echo $this->playerStat['wins']; ?>-<?php echo $this->playerStat['losses']; ?>&nbsp;</b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">K</span><br/>
+                                <span><b id="stat-block-number"><?php echo $this->playerStat['strikeouts']; ?>&nbsp;&nbsp;</b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">WHIP</span><br/>
+                                <span><b id="stat-block-number"><?php echo $this->playerStat['walk_hits_per_inning_pitched']; ?></b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">FPPG</span><br/>
+                                <span><b id="stat-block-number">4.4&nbsp;</b></span>
+                            </div>
+                        <?php } else { ?>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">AVG</span><br/>
+                                <span><b id="stat-block-number"><?php echo $this->playerStat['batting_avg']; ?></b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">HR</span><br/>
+                                <span><b id="stat-block-number"><?php echo $this->playerStat['home_runs']; ?></b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">RBI</span><br/>
+                                <span><b id="stat-block-number"><?php ?></b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">OPS</span><br/>
+                                <span><b id="stat-block-number"><?php ?></b></span>
+                            </div>
+                            <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                                <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">FPPG</span><br/>
+                                <span><b id="stat-block-number">4.4  </b></span>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <?php if (isset($this->sportsId) && $this->sportsId == 3) { ?>
+                        <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                            <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">PPG</span><br/>
+                            <span><b id="stat-block-number"><?php echo $this->playerStat['points_per_game']; ?></b></span>
+                        </div>
+                        <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                            <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">RPG</span><br/>
+                            <span><b id="stat-block-number"><?php echo $this->playerStat['rebounds_per_game']; ?></b></span>
+                        </div>
+                        <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                            <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">APG</span><br/>
+                            <span><b id="stat-block-number"><?php echo $this->playerStat['assists_per_game']; ?></b></span>
+                        </div>
+                        <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                            <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">STLPG</span><br/>
+                            <span><b id="stat-block-number"><?php echo $this->playerStat['steals_per_game']; ?></b></span>
+                        </div>
+                        <div id="stat-box" style="width:18%;float:left;background: linear-gradient(to bottom, #2a2a2a 0%, #010101 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);">
+                            <span style="color:#8D9BA3;font-size: 10px;padding-left: 15px;">FPPG</span><br/>
+                            <span><b id="stat-block-number">4.4 </b></span>
+                        </div>
+                    <?php } ?>
+                </div>        
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <?php if (isset($this->sportsId) && $this->sportsId == 2 && isset($this->playerStat)) { ?>
+                <div class="panel-head tpspace plr_ppup btn-warning">
+                    <?php if ($this->playerPos == 'P') { ?>
+                        <b>Pitching Statistics</b>
+                    <?php } else { ?>
+                        <b>Batting Statistics</b>
+                    <?php } ?>
+                </div>
+                <table class="table table-normal">
+                    <thead>
+                        <tr>
+                            <?php if ($this->playerPos == 'P') { ?>
+                                <th></th>
+                                <th>GP</th>
+                                <th>GS</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>IP</th>
+                                <th>R</th>
+                                <th>H</th>
+                                <th>HR</th>
+                                <th>BB</th>
+                                <th>K</th>
+                                <th>CG</th>
+                                <th>CGSO</th>
+                                <th>WHIP</th>
+                                <th>BAA</th>
+                                <th>ERA</th>
+                                <th>FPPG</th>
+                            <?php } else { ?>
+                                <th></th>
+                                <th>GP</th>
+                                <th>AB</th>
+                                <th>R</th>
+                                <th>H</th>
+                                <th>2B</th>
+                                <th>3B</th>
+                                <th>HR</th>
+                                <th>RBI</th>
+                                <th>BB</th>
+                                <th>K</th>
+                                <th>SB</th>
+                                <th>CS</th>
+                                <th>OBP</th>
+                                <th>SLG</th>
+                                <th>OPS</th>
+                                <th>AVG</th>
+                                <th>FPPG</th>
+                            <?php } ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php if ($this->playerPos == 'P') { ?>
+                                <td><b><?php echo date('Y'); ?> Season</b></td>
+                                <td><?php echo $this->playerStat['games_played']; ?></td>
+                                <td><?php echo $this->playerStat['games_started']; ?></td>
+                                <td><?php echo $this->playerStat['wins']; ?></td>
+                                <td><?php echo $this->playerStat['losses']; ?></td>
+                                <td><?php echo $this->playerStat['innings_pitched']; ?></td>
+                                <td><?php echo $this->playerStat['earned_runs']; ?></td>        
+                                <td><?php echo $this->playerStat['hits']; ?></td>
+                                <td><?php echo $this->playerStat['home_runs']; ?></td>
+                                <td><?php echo $this->playerStat['walks']; ?></td>
+                                <td><?php echo $this->playerStat['strikeouts']; ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php echo $this->playerStat['walk_hits_per_inning_pitched']; ?></td>
+                                <td><?php ?></td>
+                                <td><?php echo $this->playerStat['earned_run_average']; ?></td>
+                                <td><?php ?></td>
+                            <?php } else { ?>
+                                <td><b><?php echo date('Y'); ?> Season</b></td>
+                                <td><?php echo $this->playerStat['games_played']; ?></td>
+                                <td><?php echo $this->playerStat['at_bats']; ?></td>
+                                <td><?php echo $this->playerStat['runs']; ?></td>
+                                <td><?php echo $this->playerStat['hits']; ?></td>
+                                <td><?php echo $this->playerStat['doubles']; ?></td>
+                                <td><?php echo $this->playerStat['triples']; ?></td>        
+                                <td><?php echo $this->playerStat['home_runs']; ?></td>
+                                <td><?php ?></td>
+                                <td><?php echo $this->playerStat['walks']; ?></td>
+                                <td><?php echo $this->playerStat['strikeouts']; ?></td>
+                                <td><?php ?></td>
+                                <td><?php echo $this->playerStat['caught_stealing']; ?></td>
+                                <td><?php ?></td>
+                                <td><?php echo $this->playerStat['slugging_percentage']; ?></td>
+                                <td><?php ?></td>
+                                <td><?php echo $this->playerStat['batting_avg']; ?></td>
+                                <td><?php ?></td>
+                            <?php } ?>
+                        </tr>   
+                    </tbody>
+                </table>
+            <?php } ?>
+        </div>   
+        <?php if (isset($this->sportsId) && $this->sportsId == 3 && isset($this->playerStat)) { ?>
+
+            <table class="table table-normal">
+                <thead>
+                    <tr>        
+                        <th></th>
+                        <th>G</th>
+                        <th>MPG</th>
+                        <th>FGM-FGA</th>
+                        <th>FG%</th>
+                        <th>3PM-3PA</th>
+                        <th>3P%</th>
+                        <th>FTM-FTA</th>
+                        <th>FT%</th>
+                        <th>RPG</th>
+                        <th>APG</th>
+                        <th>BLKPG</th>
+                        <th>STLPG</th>
+                        <th>PFPG</th>
+                        <th>TOPG</th>
+                        <th>PPG</th>
+                        <th>FPPG</th>            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td><b><?php echo date('Y'); ?> Season</b></td>
+                        <td><?php ?></td>
+                        <td><?php echo $this->playerStat['minutes']; ?></td>
+                        <td><?php echo $this->playerStat['fg_made_per_game']; ?> - <?php echo $this->playerStat['fg_attempts_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['fg_pct']; ?></td>
+                        <td><?php echo $this->playerStat['three_point_made_per_game']; ?> - <?php echo $this->playerStat['three_point_attempts_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['three_point_pct']; ?></td>        
+                        <td><?php echo $this->playerStat['free_throws_made_per_game']; ?> - <?php echo $this->playerStat['free_throws_attempts_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['free_throws_pct']; ?></td>
+                        <td><?php echo $this->playerStat['rebounds_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['assists_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['blocks_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['steals_per_game']; ?></td>
+                        <td><?php ?></td>
+                        <td><?php echo $this->playerStat['turnovers_per_game']; ?></td>
+                        <td><?php echo $this->playerStat['points_per_game']; ?></td>
+                        <td><?php ?></td>
+
+                    </tr>   
+                </tbody>
+
+            </table>
+        <?php } ?>
+        <?php if (isset($this->sportsId) && isset($this->playerStat)) { ?>
+            <div class="text-right">
+                <table>
+                    <tbody>
+                        <tr><td class="r1" style="display: none;"><a><?php echo $this->name; ?></a></td><td class="r2" style="display: none;"><?php echo $this->teamCode . "@" . "SF"; ?></td><td class="r4" style="display: none;">4.4</td><td class="r5" style="display: none;"><?php
+                                echo "$" . $this->plrValue;
+                            }
+                            ?></td></tr>
+                </tbody>
+
+            </table>
+            <a class="addPlayer" data-pcode="<?php echo $this->playerPos; ?>" data-pid="<?php echo $this->playerId ?>" data-team="<?php echo $this->teamCode; ?>" data-pval="<?php echo $this->plrValue; ?>">
+                <input name="draftplayer" data-dismiss="modal" class="btn btn-warning" value="DRAFT PLAYER" style="margin-right: 9px;margin-left: 710px;margin-top: -52px;" />
+            </a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+<?php } ?>
+</div>

@@ -1,0 +1,2 @@
+[11-Jul-2017 07:02:51 UTC] PHP Fatal error:  Interface 'GuzzleHttp\Promise\PromiseInterface' not found in /home/draftdaily/public_html/vendor/guzzlehttp/promises/src/FulfilledPromise.php on line 11
+[11-Jul-2017 09:11:30 UTC] PHP Fatal error:  Class 'GuzzleHttp\Promise\RejectionException' not found in /home/draftdaily/public_html/vendor/guzzlehttp/promises/src/AggregateException.php on line 8

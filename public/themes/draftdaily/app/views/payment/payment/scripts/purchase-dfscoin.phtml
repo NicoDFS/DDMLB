@@ -1,0 +1,221 @@
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<h1>DFSCOIN CENTER</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container margin-40">
+	<div class="row">
+		<div class="well bg-image-1">
+			<div class="bg-image-2">
+                <h3>Purchase Your DFSCoin!</h3>
+                <div class="row mr-15-right-left">
+					<div class="col-md-3 col-sm-3 col-xs-12 pd-15 pd-15-15">
+						<h4 class="text-left">Current DFSCoins Market :</h4>
+						<table class="table flip-table no-footer" role="grid">
+							
+							<tbody class="complete">
+								<tr role="row">
+									<td><p class="text-white">Symbol : </p></td>
+									<td><a href="javascript:void(0);"><?php echo $this->recent_market['symbol']; ?></a></td>
+								</tr>
+								<tr role="row">
+									<td><p class="text-white">Rank : </p></td>
+									<td><a href="javascript:void(0);"><?php echo $this->recent_market['rank']; ?></a></td>
+								</tr>
+								<tr role="row">
+									<td><p class="text-white">Price BTC : </p></td>
+									<td><a href="javascript:void(0);"><?php echo $this->recent_market['price_btc']; ?></a></td>
+								</tr>
+								<tr role="row">
+									<td><p class="text-white">Price USD : </p></td>
+									<td><a href="javascript:void(0);"><?php echo $this->recent_market['price_usd']; ?></a></td>
+								</tr>
+								<tr role="row">
+									<td><p class="text-white">Volume USD : </p></td>
+									<td><a href="javascript:void(0);"><?php echo $this->recent_market['24h_volume_usd']; ?></a></td>
+								</tr>
+								<tr role="row">
+									<td><p class="text-white">Total Supply : </p></td>
+									<td><a href="javascript:void(0);"><?php echo $this->recent_market['total_supply']; ?></a></td>
+								</tr>
+								<tr role="row">
+									<td><p class="text-white">Last Updated : </p></td>
+									<td><a href="javascript:void(0);"></a><a href="javascript:void(0);"><?php echo date('d-M-Y h:i:s',$this->recent_market['last_updated']); ?></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<form method="post" id="paymentForm" name="paymentForm" action="/payment-dfscoin" class="stdForm cf">
+						<div class="col-md-6 col-sm-6 col-xs-12 pd-left-0 pd-right-0 mr-top-10 ">
+							<div class="row mr-15-right-left">
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="background-image-bc">
+										<div class="radio radio-1 radio-primary">
+											<input  checked  value="<?php echo bcmul('1000', $this->bitcoin_value, 8);?>" name="bonus-radio" id="bonus25" class="depositamt" type="radio">
+											
+											<label for="bonus25">1000 DFSCoin <br/> For <?php echo bcmul('1000', $this->bitcoin_value, 8);?> BTC</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="background-image-bc">
+										<div class="radio radio-1 radio-primary">
+											<input id="bonus100" type="radio" value="<?php echo bcmul('2000', $this->bitcoin_value, 8);?>" name="bonus-radio" class="depositamt">
+											
+											<label for="bonus100">2000 DFSCoin <br/> For <?php echo bcmul('2000', $this->bitcoin_value, 8);?> BTC</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+						
+						
+							<div class="row mr-15-right-left">
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="background-image-bc">
+										<div class="radio radio-1 radio-primary">
+											
+											<input class="depositamt" type="radio" value="<?php echo bcmul('5000', $this->bitcoin_value, 8);?>" name="bonus-radio" id="bonus250" >
+											
+											<label for="bonus250">5000 DFSCoin <br/> For <?php echo bcmul('5000', $this->bitcoin_value, 8);?> BTC</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="background-image-bc">
+										<div class="radio radio-1 radio-primary">
+										
+											<input class="depositamt" type="radio" value="<?php echo bcmul('10000', $this->bitcoin_value, 8);?>" name="bonus-radio" id="bonus600">
+											
+											<label for="bonus600">10000 DFSCoin <br/> For <?php echo bcmul('10000', $this->bitcoin_value, 8);?> BTC</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					  
+						<div class="col-md-3 col-sm-3 col-xs-12 mr-top-10 pd-15-rt-lt">
+							<div class="background-image-bc">
+								<span class="block">Enter DFSCoin</span>
+									<input type="number"  class="form-control input-sm depositamt" name="custom_dfs_amt" autocomplete="off" value="" id="custom_dfs_amt">	
+								<span class="block">BTC AMOUNT</span>	
+								<div>	
+									<input type="text" class="form-control input-sm" name="custom_btc_amt" readonly="readonly" id="custom_btc_amt">
+								</div>
+								<input type="radio" id="custom_radio" value="-1" name="bonus-radio">	
+							</div> 
+							<a id="pay_bitcoin" href="javascript:void(0);">		
+
+								<img src="/images/pay_now_bitcoin.png">	
+
+							</a>
+
+							<div></div>
+						</div>
+					</form>
+                </div>
+				
+                <div class="row mr-15-right-left">
+					<div class="col-md-6 col-sm-6 col-xs-12 pd-15">
+						<div class="text-area col-md-7 col-sm-6 col-xs-12">
+							<ul class="text-area col-md-12 col-sm-12 col-xs-8 col-xs-offset-2 pd-15">
+								<li class="font-medium-a">Play Today Win Today</li>
+								<li class="font-medium-a">No Hassle Withdraw</li>
+								<li class="font-medium-a">No season-long commitment</li>
+								<li class="font-medium-a">Trade DFSCoins For BTC</li>
+							</ul>
+						</div>
+						<div class="col-md-5 col-sm-6  col-xs-12">
+							<div class="col-md-12 col-sm-12  col-xs-6 col-xs-offset-3 pd-15">
+							<img src="/themes/draftdaily/skin/images/badge_satisfaction.png" alt="badge_satisfaction.png"></li></div>
+						</div>
+                    </div>
+				</div>
+                  
+			</div>
+          
+            <div class="row mr-15-right-left">
+				<div class="bg-image-3">
+					<div class="row">		
+						<div class="col-md-6 col-sm-6 col-xs-12">		
+							<p class="font-medium-a pull-left">DFSCoin is available on <a target="_blank" href="https://www.coinexchange.io/market/DFS/BTC">CoinExchange.io</a></p>	
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12">		
+							<p class="font-medium-a text-right">DFSCoin is available on <a target="_blank" href="https://www.cryptopia.co.nz/Exchange/?market=DFS_BTC">Cryptopia.co.nz</a></p>	
+						</div>	
+					</div>
+				</div>
+            </div>
+		</div>  
+		  
+	</div>
+          
+</div>
+
+  
+		
+<script>
+$(document).ready(function(){
+	
+});
+$(document).on('keyup', "#custom_dfs_amt",function () {	
+
+	var field_value = $(this).val();
+	
+	var bitcoin_val = "<?=$this->bitcoin_value;?>";
+	
+	if(field_value != "") {		
+
+		var dfs_amt = parseFloat(field_value);	
+
+		var btc_amt = (parseFloat(bitcoin_val) * (dfs_amt.toFixed(8))).toFixed(8); 
+
+		$("#custom_btc_amt").val(btc_amt);	
+
+	} else {	
+
+		$("#custom_btc_amt").val("");	
+
+	}	
+
+});
+
+$(document).on('click', "#pay_bitcoin",function () {
+	
+	var btc_val = $("#custom_btc_amt").val();
+	
+	if($("#custom_radio").prop("checked") == true) {
+		if(btc_val == ""){
+			return false;
+		}
+	}
+	$("#paymentForm").submit();
+});
+
+$(document).on('change', "#custom_dfs_amt",function () {
+
+	$("#custom_radio").attr('checked', true);
+
+});
+
+/* $(document).ready(function(){
+	
+	$.ajax({
+		url: 'https://www.coinexchange.io/api/v1/getmarketsummary',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			market_id: '510',
+		},
+		success: function(response) {
+		   
+			console.log(response);
+		}
+
+	});
+}); */
+
+</script>

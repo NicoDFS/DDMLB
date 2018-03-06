@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DraftDaily.com</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+        <?php
+        # Title
+        echo $this->headTitle();
+
+        # Meta data
+        echo $this->headMeta();
+
+        # CSS
+        echo $this->headLink()
+                ->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/css/bootstrap.min.css')
+				->appendStylesheet('https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css', 'text/css') 
+				->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . '/draftdaily/css/font-awesome-4.5.0/css/font-awesome.min.css')
+				->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/css/main.css')
+				->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/css/footable-0.1.css')
+				->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/css/lightslider.css')
+				->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/css/developer.css')
+				->appendStylesheet($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/font/css.css');
+        # Javascript
+		
+        echo $this->headScript()
+				->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', 'text/javascript')
+                ->appendFile('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/jquery-migrate-1.2.1.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/bootstrap.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/owl.carousel.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/common.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/jquery.validate.min.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/validate.settings.js', 'text/javascript')
+                ->appendFile($this->baseUrl() . $this->theme_base_path . '/js/css3-mediaqueries.js')
+				->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/js/footable-0.1.js', 'text/javascript')
+								
+				->appendFile('https://momentjs.com/downloads/moment-with-locales.js', 'text/javascript')
+				->appendFile($this->baseUrl() . $this->appSetting->assestPath . 'draftdaily/js/lightslider.js', 'text/javascript');
+		?>
+		<script type="text/javascript" src="/assets/js/cryptobox.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('table').footable();
+			});
+			
+		</script>
+		<style type="text/css">
+			.coinmarketcap-currency-widget img{
+				width: 57% !important; 
+			}
+			div.coinmarketcap-currency-widget > div:first-child{
+				background-color:#eee;
+			}
+		</style>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-98307417-3%22%3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-98307417-3');
+</script>
+    </head>
+    <body>
+	
+
+		<div class="draft-daily">
+			<section class="menu-header">
+				<nav class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-2 col-sm-2 col-xs-2 pd-15 logo-1">
+								<a class="navbar-brand" href="/"><img src="<?php echo $this->appSetting->assestPath; ?>draftdaily/img/logo.png" alt="logo.png" /></a>
+							</div>
+							
+							<?php if ($this->auth->hasIdentity()) { ?>
+							<center class="text-uppercase display-none-a" style="color:#F5DE50 !important;">Welcome <span class="active"><a style="color:#F5DE50 !important;" href="/account">
+													<?php echo (!empty($this->session->storage->user_name))? ucfirst($this->session->storage->user_name) : '';?>
+												</a></span></center>
+												
+												
+							<?php }else{ ?>
+							<center class="text-uppercase display-none-a" style="color:#F5DE50 !important;">Welcome <span class="active">Guest</span></center>
+							<?php }?>
+							
+							<div class="navbar-header navbar-nav-a navbar-nav-ba">
+								<button type="button" class="navbar-toggle" data-target="#navbar-collapse-2" id="toggle-b">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+							
+							<div class="navbar-collapse collapse" id="navbar-collapse-2">
+								<div class="col-nav">
+									<div class="col-md-5 col-sm-12 col-xs-12 col-md-offset-1 pd-15">
+										<ul class="nav navbar-nav nav-float mr-right-1">
+											<li class="active"><a href="/lineup">My Lineups</a></li>
+											<li><a href="/contest">My Contests</a></li>
+											<li class="dropdown hoves">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">Promotions<b class="caret"></b></a>
+												<ul class="dropdown-menu pull-left setting-icon-width">
+													<?php
+													if (isset($this->session->activePromos)) {
+														foreach ($this->session->activePromos as $promovalue) {
+															echo '<li><a href="' . $this->baseUrl('/') . $promovalue['promotion_url'] . '">' . $promovalue['promotion_display_name'] . '</a></li>';
+														}
+													} else {
+														echo '<li><a href="#">No Active Promos for Now</a></li>';
+													}
+													?>
+												</ul>
+											</li>
+										</ul>
+								
+									</div>
+								
+									<div class="col-md-4 col-sm-12 col-xs-12 pd-15">
+										<ul class="nav navbar-nav paddingTB-xs bg-dark2 pull-right mr-right-2">
+											<?php if ($this->auth->hasIdentity()) { ?>
+											<li>
+													<a style="color:#F5DE50 !important;" href="/account">
+														<?php echo (!empty($this->session->storage->user_name))?"Welcome! ".$this->session->storage->user_name:'';?>
+													</a>
+												</li>
+												<li class="dropdown cus-dropdown">
+													<a href="/account" data-toggle="dropdown">DFSCoin: <?php
+													if (isset($this->session->storage->userBalance)) {
+														echo $this->session->storage->userBalance;
+													} else {
+														echo '0.00';
+													}
+													?> 
+													<b class="caret"></b></a>
+													<ul class="setting-icon-width dropdown-menu pull-right">
+														<li><a href="<?php echo $this->baseUrl('/account'); ?>"><small>Pending Bonus: <?php
+																	if (isset($this->session->storage->userBonus)) {
+																		echo $this->session->storage->userBonus;
+																	} else {
+																		echo '0.00';
+																	}
+																	?></small></a></li>
+														<li><a href="<?php echo $this->baseUrl('/account'); ?>"><small>Tickets: <?php
+																	if (isset($this->session->storage->NoOfTickets)) {
+																		echo $this->session->storage->NoOfTickets;
+																	} else {
+																		echo '0';
+																	}
+																	?></small></a></li>
+													</ul>
+												</li>
+						
+												
+											<?php }else{ ?>
+												<li><a href="javascript:void(0);" style="color:#F5DE50 !important;">Welcome! Guest</a></li>
+												<li><a class="text-maroon user-signup" href="/signup">CREATE AN ACCOUNT</a></li>
+												<li><a href="/login?showmodal=true" class="btn btn-green m-right-sm toggle-c user-login" data-toggle="modal" data-target="#loginModal" id="formvalidatorid">LOGIN</a></li>
+											<?php } ?>
+												<li class="dropdown cus-dropdown show-setting-img responsive-img-position">
+													<a data-toggle="dropdown" href="#" class="top10px">
+														<span><i class="fa fa-cog fa-spin"></i></span>
+													</a>
+													<ul class="dropdown-menu setting-icon-width pull-right">
+														<li><a href="/how-to-play">How-To-Play</a></li>
+														<li><a href="/help/mlb">Contest Rules</a></li>
+														<li><a href="/faq">FAQ</a></li>
+														<?php if ($this->auth->hasIdentity()) { ?>
+															<li><a href="<?php echo $this->baseUrl('/account'); ?>">My Account</a></li>
+															<li><a href="<?php echo $this->baseUrl('/refer-friend'); ?>">Refer-A-Friend</a></li>
+														<?php } ?>
+														<li><a href="/store">FPP Store</a></li>
+														<li><a href="/contact-us">Contact Us</a></li>
+														<li><a href="/support">DraftDaily Support</a></li>
+														<li><a href="/privacy-notice">Privacy-Notice</a></li>
+														
+														<?php if ($this->auth->hasIdentity()) { ?>
+															<li class="divider"></li>
+															<li><a href="<?php echo $this->baseUrl('/logout'); ?>" style="color:#ff6c00;">Logout</a></li>
+
+														<?php } ?>
+													</ul>
+												</li>
+										</ul>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							
+						</div>
+					</div>
+				</nav>	
+
+				<div class="row menu-bg" style="margin:0px;">
+					<div class="col-md-5 col-sm-5 col-xs-6 pd-15">
+						<div class="menu-bg">
+							<ul class="nav navbar-nav pull-right display-none-res">
+						
+								<li class="facebook social-font-pad"><a target="_blank" href="https://www.facebook.com/draftdaily" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
+								
+								<li class="twitter social-font-pad"><a target="_blank" href="https://twitter.com/dfscoin" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a></li>
+								
+								<li class="reddit social-font-pad"><a target="_blank" href="https://www.reddit.com/r/DFScoin" data-toggle="tooltip" title="Reddit"><i class="fa fa-reddit"></i></a></li>
+
+								<li class="github social-font-pad"><a target="_blank" href="https://github.com/NicoDFS/DFSCoin" data-toggle="tooltip" title="Github"><i class="fa fa-github"></i></a></li>
+
+								<li class="slack social-font-pad"><a target="_blank" href="https://dfscoin.slack.com" data-toggle="tooltip" title="Slack"><i class="fa fa-slack"></i></a></li>
+
+								<li class="instagram social-font-pad"><a target="_blank" href="https://www.instagram.com/DFSCoin/" data-toggle="tooltip" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+								
+
+								
+								<li> <img src="<?php echo $this->appSetting->assestPath; ?>draftdaily/img/bg.png" alt="bg.png" /></li>
+								
+							</ul>
+
+						</div>
+
+					</div>
+
+					<div class="col-md-7 col-sm-7 col-xs-6 pd-15">
+						<div class="menu-bg-1">
+							<nav class="navbar navbar-inverse navbar-static-top marginBottom-0" role="navigation" style="background:#1385fe;z-index:auto;">
+							
+								<div class="navbar-header navbar-nav-a navbar-nav-bac">
+									<button type="button" class="navbar-toggle" id="toggle-a" data-target="#navbar-collapse-1">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								<div class="navbar-collapse collapse" id="navbar-collapse-1">
+									<ul class="nav navbar-nav pull-right mr-right">
+										<li class="my-lobby"><a href="/home">LOBBY</a></li>
+										<li class="my-lineup"><a href="/lineup/1">CREATE A LINEUP</a></li>
+										<li class="direct-challenge"><a href="/direct-challenge">CREATE A CONTEST</a></li>
+										<li class="refer-friend"><a href="/refer-friend">REFER A FRIEND</a></li>
+										<li class="purchase-dfscoin"><a href="/purchase-dfscoin">PURCHASE DFSCOIN</a></li>
+									</ul>
+								</div>
+								
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<script>
+				$(document).ready(function(){
+					/**/
+					$("#toggle-b").click(function(){
+						$("#navbar-collapse-1").slideUp(500);
+						$("#navbar-collapse-2").slideToggle('slow');
+					});
+					
+					$("#toggle-a").click(function(){
+						$("#navbar-collapse-2").slideUp(500);
+						$("#navbar-collapse-1").slideToggle('slow');
+					});
+					
+					$(".toggle-c").click(function(){
+						$("#navbar-collapse-2").slideUp();
+						$("#navbar-collapse-1").slideUp();
+					});
+
+					
+				});		
+
+				</script>

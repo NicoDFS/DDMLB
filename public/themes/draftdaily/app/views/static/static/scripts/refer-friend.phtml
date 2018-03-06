@@ -1,0 +1,394 @@
+<div class="container mar-top">
+    <div class="row">
+		<div class="heading text-center">
+			<h1>Refer A Friend</h1>
+		</div>
+    </div>
+</div>
+  
+<div class="container margin-40">
+    <div class="row">
+		<div class="well bg-image-1">
+			<div class="bg-image-2">
+				
+				<div class="row mr-15-right-left">
+					<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+						<h3>And Earn <?php echo $this->settings['affilate_commission'];?>% Every Time They Play</h3>
+					</div>
+				</div>
+				
+				<div class="row scor-bg-color contest-bg-color-1a mr-15-right-left">
+					<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+						<h4>Invite Friends</h4>
+					</div>
+				</div>
+	
+				<div class="row mr-15-right-left">
+					<div class="panel-body border1-gray text-white paddingLR-md">
+						<div class="row mr-15-right-left">
+							<div class="col-md-6 col-sm-6 pd-left-none">
+							
+								<div class="row mr-15-right-left">
+									<h4 class="pull-left">Share Your Link</h4>
+								</div>
+								<div>
+									<div class="row mr-15-right-left">
+									
+										<div class="col-md-2  margin-20">
+										
+											<a href="https://<?php echo $this->appSetting->hostLink; ?>"  data-image="<?php echo $this->baseUrl() . $this->appSetting->assestPath . 'images/logo-large@2x1.png'; ?>" data-title="<?php echo $this->appSetting->title; ?>" data-desc="Play daily fantasy sports. Draft Like A Boss." class="btnShare"><span><i class="fa fa-3x fa-facebook-square"></i></span></a>
+											
+										</div> 
+										
+										<div class="col-md-2  margin-20">
+										
+											<a href="https://twitter.com/share?url=http://<?php echo $this->appSetting->host; ?>/<?php echo $this->session->storage->user_name;  ?>&via=dfscoin&text=Join DraftDaily Today and Play Daily Fantasy Sports!" class="twtpopup btnShare" data-related="jasoncosta" data-lang="en" data-size="large" data-via="twitterdev" data-count="none"><span><i class="fa fa-3x fa-twitter-square"></i></span></a>
+											
+											<script>
+											
+											!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+											
+											</script>
+											
+											<script>
+												$('.twtpopup').click(function(event) {
+													var width  = 575,
+														height = 400,
+														left   = ($(window).width()  - width)  / 2,
+														top    = ($(window).height() - height) / 2,
+														url    = this.href,       
+														opts   = 'status=1' +
+																 ',width='  + width  +
+																 ',height=' + height +
+																 ',top='    + top    +
+																 ',left='   + left;
+
+													window.open(url, 'twitter', opts);
+
+													return false;
+												});
+
+												window.fbAsyncInit = function(){
+													FB.init({
+														appId: '182641212315565', status: true, cookie: true, xfbml: true }); 
+												};
+												(function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];if   (d.getElementById(id)) {return;}js = d.createElement('script'); js.id = id; js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+												function postToFeed(title, desc, url, image){
+													var obj = {method: 'feed',link: url, picture: 'https://'+'draftdaily.com/'+image,name: title,description: desc};
+													function callback(response){}
+													FB.ui(obj, callback);
+												}  
+
+												$('.btnShare').click(function(){
+													elem = $(this);
+													postToFeed(elem.data('title'), elem.data('desc'), elem.prop('href'), elem.data('image'));
+
+													return false;
+												});
+											</script> 
+											
+										</div>
+										
+									</div>
+									
+								</div>
+								
+								<div class="row row mr-15-right-left">
+									<h4 class="pull-left">Copy Your Personal URL</h4>
+								</div>
+								
+								<div class="form-group">
+									<div class="input-group col-xs-12">
+										 <input class="form-control text-blue input-transparent" type="text" value="<?php echo $this->appSetting->hostLink.'/affiliate/'.$this->session->storage->user_name; ?>" readonly>
+									</div>
+								</div>
+								
+								<p class="font-medium-a">Post your link on Facebook, Twitter, or anywhere else. Every time you send a referral to our site through YOUR link, and they play in any contest, you earn a share of the cost of their entry.</p>
+							</div>
+							
+							<div class="col-md-6 col-sm-6 pd-right-none">
+								
+								<div class="row mr-15-right-left">
+									<h4 class="pull-left">Invite By Email</h4>
+								</div>
+								
+								<form method="post" action="" id= "emailform" name="emailform">
+									<div>
+										<div class="form-group help-error-setting">
+											<label  class="pull-left">To</label>
+											
+											<div class="input-group col-xs-12">
+												<input name="email" id="email" class="form-control input-transparent" type="text" placeholder="Write a email id of your friend. Separate multiple emails with comma"> 
+											</div>
+											
+											<?php if(isset($this->message)) {?>
+											
+												<div id="emailexists" style="color:#D14;"><?php echo($this->message);?></div>   
+											<?php } ?>
+											
+											<?php if(isset($this->messagemail)) { ?>
+											
+												<div id="emailinvitn" style="color:#D14;"><?php echo($this->messagemail);?></div>
+												
+											<?php } ?>
+						   
+										</div>
+
+										<div class="form-group help-error-setting">
+											<label  class="pull-left">Message</label>
+											<div class="input-group col-xs-12">
+												<textarea class="form-control input-transparent" name="message" id="message" placeholder="Write a personal message (500 characters max)."></textarea>
+											</div>
+											<p class="font-medium-a">NOTE: Email will always include your personal URL, so we can credit you. </p>
+											
+											<?php if(isset($this->result)) { ?>
+											
+												<div class="opennotificationGreen" style="background-color:#66B45E; height: 40px" align="left" >
+													<p><font face="verdana" color="black">Your message has been sent!</font></p>
+												</div>
+												
+											<?php } ?>
+	
+										</div>
+										
+										<div class="form-group">
+											<button class="btn-success btn-lg btn3d pull-right" id="btn-payment-submit" name="send" value="email">Send <span>
+											<i class="fa fa-angle-double-right"></i></span></button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row scor-bg-color contest-bg-color-1a mr-15-right-left">
+						<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+							<h4>Earnings and Achievement</h4>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="panel-body text-white paddingLR-md">
+							<div class="row">
+								<div class="col-md-9 col-sm-12">
+									
+									<div class="col-xs-3">
+										<h4>Earned This Month</h4>
+										<h2>0.00 DFS</h2>
+										<a class="bold text-blue" href="/refer-friend/overview">Learn More <span><i class="fa fa-angle-double-right"></i></span></a>
+									</div>
+									
+									<div class="col-xs-3">
+										<h4>Unpaid Earnings</h4>
+										<h2>0.00 DFS</h2>
+									</div>
+									
+									<div class="col-xs-3">
+										<h4>Current Rate</h4>
+										<h2><?php echo $this->settings['affilate_commission'];?>%</h2>
+									</div>
+									
+									<div class="col-xs-3">
+										<a class="bold text-blue" href="/transaction">Payment History<span><i class="fa fa-angle-double-right"></i></span></a>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+					<div class="row scor-bg-color contest-bg-color-1a mr-15-right-left">
+						<div class="col-md-12 col-sm-12 col-xs-12 pd-15-15-none">
+							<h4>Referrals</h4>
+						</div>
+					</div>
+
+				<div class="row">
+					<div class="panel-body text-white no-p-left no-p-right">
+						<div class="paddingLR-md m-bottom-15">
+							<ul class="nav nav-tabs border-bottom-none referralsNav">
+								<li class="text-uppercase active"><a data-toggle="tab" class="text-white" href="#pendingTab" aria-expanded="true">Pending</a></li>
+								<li class="text-uppercase"><a data-toggle="tab" class="text-white" href="#activeTab" aria-expanded="false">Active</a></li>
+							</ul>
+						</div>
+						<form method="post">
+							<div class="tab-content">
+								<div id="pendingTab" class="tab-pane fade active in">
+									<table class="footable table">
+										<thead>
+											<tr class="header-img">
+												<th class="text-uppercase text-center"></th>
+												<th class="text-uppercase text-center">Friends</th>
+												<th class="text-uppercase text-center">Status</th>
+												<th class="text-uppercase text-center">Last Invite Sent</th>
+												<th class="text-uppercase text-center">No Of Times Sent</th>
+											</tr>	
+										</thead>
+										
+										<tbody>
+											<?php if (isset($this->referals)){ foreach ($this->referals as $refer):
+														if ($refer['status'] == 0): ?>
+											<tr>
+												<td><p><input id= "checkbox[]" type="checkbox" name="checkbox[]" value="<?php if(isset($refer['ref_id'])){ echo $refer['ref_id']; } ?>"></p></td>
+												<td><p><?php if(isset($refer['email'])){ echo $refer['email'];} ?></p></td>
+												<td><p><?php
+													switch ($refer['acceptance']):
+														case 0: echo 'Not Registered';
+															break;
+														case 1: echo 'Registered';
+															break;
+													endswitch;
+													?></p></td>
+												<td><p><?php echo date("F j, Y", strtotime($refer['ref_date'])); ?></p></td>
+												<td><p><?php echo $refer['req_count']; ?></p></td>
+											</tr>
+													<?php endif;
+												endforeach;
+											} else { ?>
+											
+											<tr> 
+												<td colspan="5">
+													No records found.
+												</td>
+											</tr>
+											<?php } ?>
+											
+										</tbody>
+									</table>
+
+									<div class="text-right">
+										<button id="reminder" name="send" class="btn-success btn-lg btn3d pull-right" type="submit" value="reminder">SEND REMENDER 
+										<span class="m-left-sm"><i class="fa fa-angle-double-right"></i></span></button>
+									</div>
+								</div>
+								
+								<div id="activeTab" class="tab-pane fade">
+									<table class="footable table">
+										<thead>
+											<tr class="header-img">
+												<th class="text-uppercase text-center"></th>
+												<th class="text-uppercase text-center">FIRSTNAME</th>
+												<th class="text-uppercase text-center">LASTNAME</th>
+												<th class="text-uppercase text-center">Friends</th>
+												<th class="text-uppercase text-center">Status</th>
+												<th class="text-uppercase text-center">Last Invite Sent</th>
+												<th class="text-uppercase text-center">No Of Times Sent</th>
+											</tr>
+										</thead>
+										
+										<tbody>
+											<?php if (isset($this->referals)){ foreach ($this->referals as $refer):
+												if ($refer['status'] == 1): ?>
+											<tr>
+												<td><p><input id= "checkbox[]" type="checkbox" name="checkbox[]" value="<?php if(isset($refer['ref_id'])){ echo $refer['ref_id']; } ?>"> </p></td>
+												
+												<td><p><?php if(!empty($refer['fname'])){ echo $refer['fname'];}else{ echo "NA"; }?></p></td>
+												<td><p><?php if(!empty($refer['lname'])){ echo $refer['lname'];}else{ echo "NA"; }?></p></td>
+												
+												<td><p><?php if(isset($refer['email'])){ echo $refer['email'];} ?></p></td>
+												<td><p><?php
+														switch ($refer['acceptance']):
+															case 0: echo 'Not Registered';
+																break;
+															case 1: echo 'Registered';
+																break;
+														endswitch;
+														?></p></td>
+												<td><p><?php echo date("F j, Y", strtotime($refer['ref_date'])); ?></p></td>
+												<td><p><?php echo $refer['req_count']; ?></p></td>
+											</tr>
+													<?php endif;
+												endforeach;
+											} else { ?>
+											
+											<tr> 
+												<td colspan="7">
+													No records found.
+												</td>
+											</tr>
+											<?php } ?>
+                                                    
+										</tbody>
+									</table>
+									<button name="btn-challange" id="refchallenge" class="btn-success btn-lg btn3d pull-right"> CHALLANGE<span class="m-left-sm"><i class="fa fa-angle-double-right"></i>
+									</span></button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ <script>
+   
+    <?php if(isset($this->settings)) { ?>
+               
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+        
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000); 
+        
+       
+	<?php } ?>
+
+	$( document ).ready(function(){
+		
+        $('#emailform').validate({
+    
+            rules: {
+               email: {
+                    required: true,
+                     // email: true 
+                },
+                message: {
+                    required: true
+                }
+                           
+            
+            },
+            messages: {
+                email: {
+                    required: "Please enter the email id",
+                    email: "Enter only valid email address",
+                },
+                message: {
+                    required: "Give any message to your friend",
+                }
+              
+            
+            }
+        });
+	});
+        
+	$(document.body).on('click','#email',function(e){ 
+		$("#emailexists").css("display","none");                  
+    });      
+        
+    $(document.body).on('click','#reminder',function(){        
+
+        if($('input[name="checkbox[]"]:checked').length<=0)
+    {
+        alert("Please Select atleast one checkbox");
+        return false;
+    }
+
+    });
+    
+   $(document.body).on('click','#refchallenge',function(){        
+
+		if($('input[name="checkbox[]"]:checked').length<=0)
+	{
+		alert("Please Select atleast one checkbox");
+		return false;
+	}
+
+	});
+    
+</script> 

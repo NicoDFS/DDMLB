@@ -1,0 +1,448 @@
+<style>
+.checkbox label::before, .radio label::before {
+	top: 5%;
+}
+</style>
+<script>    $(document).ready(function() {        $('.btn-enter').hover(function() {            $(this).parent().parent().addClass('parent-bg');        }, function() {            $(this).parent().parent().removeClass('parent-bg');        });    });    /**     * Developer    :- Vivek Chaudhari     * Date         :- 13/07/2014     * Description  :- multiple countdown timer function in homepage     *------------------------------start--------------------------------------------------------*/    $(document).ready(function() {        $('.timeleft').each(function(e) {            var gettime = $(this).attr('data-time');            if (gettime !== undefined) {                updateTimeSpan(gettime, this)            }        });    });       function updateTimeSpan(gettime, selector) {        var d = new Date(gettime * 1000);                var t = new Date(new Date);        var ms;        var s, m, h, mt;        var call;        ms = d - t;               h = parseInt(ms / (1000 * 60 * 60));        ms -= (h * 1000 * 60 * 60);               m = parseInt(ms / (1000 * 60));        ms -= (m * 1000 * 60);                s = parseInt(ms / 1000);        var time = h + 'h,' + m + 'm,' + s + 's.';        $(selector).html(time);        /* //locked the contest entry if there is only 30 minutes remaining to start the contest */        if (h == 0 && m <= 30) {            var coid = $(selector).closest('td').next('td').find('.enterbutton ').removeAttr("href");            $(selector).closest('td').next('td').find('.enterbutton').html("LOCKED");            $(selector).closest('td').next('td').find('.enterbutton ').removeClass('enter_btn');        }       /*  //clear timeout value and set zero values of time */        if ((h <= 0) && (m <= 0) && (s <= 0)) {            var over = '00h,00m,00s.';            $(selector).html(over);            $(selector).closest('td').next('td').find('.btn-enter').parent().removeAttr("href");            $(selector).closest('td').next('td').find('.btn-enter').html("Live");            clearTimeout(call);        }        call = setTimeout(function() {            updateTimeSpan(gettime, selector);        }, 100);    }</script>
+
+<div class="modal fade" id="getTicketModal" tabindex="-1" role="dialog" aria-labelledby="to Get Ticket by code" aria-hidden="true">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h4 class="text-center title" id="myModalLabel">Ticket Code</h4>
+      </div>
+      <div class="modal-body text-center"  >
+        <h5>Insert Code into following Text box and get Advantages</h5>
+        <br>
+        <input type="text" value="" id="tcode" name="tcode" class="input-de col-md-6 col-md-offset-3" placeholder="Type your ticket code" />
+        <h5  id="ticket_msg" class="hidden"></h5>
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+        <button type="button" class="btn-success btn-lg btn3d" id="getTicket" >Get Ticket>></button>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="resrve entry popup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content lbg">
+      <div class="modal-body"> </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+        <?php if (isset($this->lowbalance)) {// print_r($this->lowbalance);  ?>
+        <a disabled class="btn-success btn-lg btn3d draft depositpop reserve-button" role="button" data-toggle="modal" data-target="">RESERVE ENTER >></a>
+        <?php } else { ?>
+        <!--<button type="button"  class="btn btn-primary">Reserve Entries >></button>--> <a disabled class="btn-success btn-lg btn3d reserve-button"  href="/draftteam/<?php echo $this->conid; ?>/res">Reserve Entries >></a>
+        <?php } ?>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content lbg">
+      <div class="modal-body"> </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+        <?php if (isset($this->lowbalance)) {                    ?>
+        <a disabled class="btn-success btn-lg btn3d draft depositpop reserve-button" role="button" data-toggle="modal" data-target="">RESERVE ENTER >></a>
+        <?php } else { ?>
+        <a disabled class="btn-success btn-lg btn3d reserve-button"  href="/draftteam/<?php echo $this->conid; ?>/ticket">Enter using Ticket >></a>
+        <?php } ?>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade theme2" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width:610px">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h4 class="text-center title">CONFIRM</h4>
+      </div>
+      <div class="modal-body">
+        <div id="promoContainer2" class="hide" style="display:inline-block;">
+          <div class="form-group">
+            <div class="input-group">
+              <input tstatus="0" ticketid="0" id="ticketcode2" type="text" placeholder="Enter Ticket Code" class="form-control input-bg-black ticketcode">
+              <span class="input-group-btn">
+              <button class="btn-success btn-lg btn3d" id="applyticket2">Apply</button>
+              </span> </div>
+            <input type="hidden" id="con_id" value="<?php echo $this->conid; ?>" />
+          </div>
+        </div>
+        <div> <b><span id="ticket_msg2" class="block color_white" ></span></b> </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+        <a class="btn-success btn-lg btn3d draft" id="enternowtocontest" role="button" href="<?php echo $this->baseUrl('/purchase-dfscoin'); ?>" >Deposit Now >></a>
+        <button style="" onClick="$('#promoContainer2').toggleClass('hide');" class="btn-success btn-lg btn3d pull-right">Use Ticket</button>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:600px;">
+    <div class="modal-content">
+      <div class="modal-body"> </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d popclose" data-dismiss="modal">Close</button>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="importLineup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button"> <span aria-hidden="true">×</span> <span class="sr-only">Close</span> </button>
+        <h4 class="title text-center">IMPORT LINEUP</h4>
+      </div>
+      <div class="modal-body import-body"> </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="playerModalDraft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body"  style="border: 4px solid #000000;border-top: none;background-color: #2A2A2A;"> </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title text-center" id="myModalLabel">Ticket</h4>
+      </div>
+      <div class="modal-body">
+        <h5><strong>Do you want to purchase this ?</strong></h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn-success btn-lg btn3d buysaleticket" data-dismiss="modal" id="ticketbuy" data-id="">Buy</button>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+
+<!---------------#########################New Designs#################################-------------------------->
+
+<div class="modal fade theme2" id="error-modal" style="z-index:999999999;" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h3 class="modal-title text-center">Alert</h3>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" id="error-msg"></h4>
+      </div>
+      <div class="modal-footer">
+        <div class=" col-md-4 col-md-offset-4  col-md-xs-4 col-xs-offset-4">
+          <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade theme2" id="withdrawentry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text-center title">Warning!</h3>
+      </div>
+      <div class="modal-body margin-20">
+        <p class="font-medium-a text-black">Are you sure that you want to withdraw this entry from this contest? You will be refunded the entry fee. This cannot be undone. </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">NO THANKS</button>
+        <button type="button" data-lid="<?php echo $this->mylineup_id; ?>" data-cid="<?php echo $this->conid; ?>" data-price="<?php echo $this->contestRes['entry_fee']; ?>" id="withdraw" class="btn-success btn-lg btn3d">WITHDRAW ENTRY >></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade theme2 all-enrty-check" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h4 class="title text-center">CONFIRM YOUR CONTEST ENTRY</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="contest-names">
+        </ul>
+        <ul class="list-unstyled">
+          <li>TOTAL CONTEST COST - DFS <span id="cost"></span></li>
+          <li>ACCOUNT BALANCE   - DFS
+            <?php if (isset($this->balance)) { echo $this->balance; } else { echo 0;} ?>
+          </li>
+        </ul>
+        <div class="checkbox">
+          <label>
+            <input checked type="checkbox" id="check-confirm" name="check-confirm" value="1">
+            I agree to enter this contest and certify that I am not a resident of Alabama, Arizona, Delaware, Hawaii, Idaho, Iowa, Lousisiana, Montana, Nevada or Washington. </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+        <a type="button" class="btn-success btn-lg btn3d" id="enter-confirm">Enter Now >></a> </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade theme2" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title text-center">CONFIRM YOUR CONTEST ENTRY</h4>
+      </div>
+      <div class="modal-body">
+        <div id="confirm_ent">
+          <div class="well text-center"> <?php echo $this->contestRes['contest_name'] . ' @ ' . date('d/m/y h:i a ', strtotime($this->contestRes['start_time'])) . ' EST'; ?> </div>
+          <ul class="list-unstyled margin-20">
+            <?php if (isset($this->ticketContest)) { ?>
+            <li>TOTAL CONTEST COST :&nbsp;&nbsp; <del>
+              <?php                                    if (isset($this->contestRes['entry_fee'])) {                                        echo $this->contestRes['entry_fee'];                                    }                                    ?>
+              </del>&nbsp;&nbsp;Ticket</li>
+            <?php } else { ?>
+            <li id="con_cost" data-cost="<?php                            if (isset($this->contestRes['entry_fee'])) {                                echo $this->contestRes['entry_fee'];                            }                            ?>">TOTAL CONTEST COST :&nbsp;&nbsp;
+              <?php                                    if (isset($this->contestRes['entry_fee'])) {                                        echo $this->contestRes['entry_fee'];                                    }                                    ?>
+            </li>
+            <?php } ?>
+            <li class="margin-10px">ACCOUNT BALANCE :&nbsp;&nbsp;
+              <?php                            if (isset($this->userBalance)) {                                echo $this->userBalance;                            } else {                                echo 0;                            }                            ?>
+            </li>
+          </ul>
+          <div>
+            <div id="promoContainer" class="hide" style="display:inline-block;">
+              <div class="form-group">
+                <div class="input-group">
+                  <input tstatus="0" ticketid="0" id="ticketcode" type="text" placeholder="Enter Ticket Code" class="form-control input-bg-black ticketcode">
+                  <span class="input-group-btn">
+                  <button class="btn-success btn-lg btn3d" id="applyticket">Apply</button>
+                  </span> </div>
+                <span id="ticket_msg-1" class="block color_white" ></span> </div>
+            </div>
+          </div>
+          <div>
+            <ul class="list-unstyled">
+              <li>
+                <input type="checkbox" name="conftc" id="conftc" value="1">
+                I agree to enter this contest and certify that I am not a resident of Alabama, Arizona, Delaware, Hawaii, Idaho, Iowa, Lousisiana, Montana, Nevada or Washington. </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-success btn-lg btn3d popclose" data-dismiss="modal">Close</button>
+        <button type="button" id="enternow" class="btn-success btn-lg btn3d enableagree" id="">
+        ENTER NOW >>
+        </button>
+        <button style="margin-bottom: 20px;" onClick="$('#promoContainer').toggleClass('hide');" class="btn-success btn-lg btn3d pull-right">Use Ticket</button>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade theme2" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content"> </div>
+  </div>
+</div>
+<div class="modal fade playerDetails" id="playerDetailsModal" tabindex="-1" style="z-index:99999999999999 !imporftant;padding-right:0px !important;" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog width60p">
+    <div class="modal-content">
+      <div class="modal-area" id="playDesc"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade playerDetails" style="padding-right:0px !important;" id="playerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog width60p">
+    <div class="modal-content">
+      <div class="modal-body" style="padding:0px 0px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade contestDetails" id="contestModal">
+  <div class="modal-dialog width60p">
+    <div class="modal-content" id="contestdetails_body"> </div>
+  </div>
+</div>
+<div class="modal fade contestDetails" id="termsModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog width60p">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close close-to-close" data-dismiss="modal" style="color: #FFF;" aria-hidden="true">&times;</button>
+        <h3 class="title settitle text-center">GLOSSARY OF TERMS</h3>
+      </div>
+      <div class="modal-body">
+        <center>
+          <strong class="text-uppercase margin-10px">Injury Abbreviations</strong>
+        </center>
+        <br>
+        <table class="table table-bordered" style="color: #ffffff;">
+          <tbody>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">DTD</B></td>
+              <td class="text-left">Day-To-Day</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">7Day</B></td>
+              <td class="text-left">7 Day DL (Disabled List)</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">15Day</B></td>
+              <td class="text-left">15 Day DL</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">60Day</B></td>
+              <td class="text-left">0 Day DL</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">IR</B></td>
+              <td class="text-left">Injured Reserve</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">P</B></td>
+              <td class="text-left">Probable</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">Q</B></td>
+              <td class="text-left">Questionable</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">D</B></td>
+              <td class="text-left">Doubtful</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">O</B></td>
+              <td class="text-left">Out</td>
+            </tr>
+            <tr class="left-text">
+              <td><B style="color: #f03535;">OffDL</B></td>
+              <td class="text-left">Off DL</td>
+            </tr>
+          </tbody>
+        </table>
+        <center>
+          <strong class="text-uppercase margin-10px">Other Abbreviations</strong>
+        </center>
+        <br>
+        <table  class="table table-bordered" style="color: #ffffff;">
+          <tbody>
+            <tr class="left-text">
+              <td><B>OPP</B></td>
+              <td class="text-left">Opponent</td>
+            </tr>
+            <tr class="left-text">
+              <td><B>OPRK</B></td>
+              <td class="text-left">Opponent Rank for average fantasy points given up<br>
+                against a position                                    (e.g. when a player has "16th" listed in<br>
+                the OPRK column it means his opponent is<br>
+                ranked "16th" in the league against that position.)</td>
+            </tr>
+            <tr class="left-text">
+              <td><B>FPTS</B></td>
+              <td class="text-left">Fantasy Points</td>
+            </tr>
+            <tr class="left-text">
+              <td><B>FPPG</B></td>
+              <td class="text-left">Fantasy Points Per Game</td>
+            </tr>
+            <tr class="left-text">
+              <td><B>PMR / PIR / PHR</B></td>
+              <td class="text-left">Player Minutes/Innings/Holes Remaining</td>
+            </tr>
+            <tr class="left-text">
+              <td><B>P</B></td>
+              <td class="text-left">Played (# of Players)</td>
+            </tr>
+            <tr class="left-text">
+              <td><B>YTP</B></td>
+              <td class="text-left">Yet To Play (# of Players)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade contestDetails" id="depth_chart_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" style="padding:0px 0px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="getTicketDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:521px;">
+    <div class="modal-content lbg">
+      <div class="modal-header">
+        <h3 class="text-center title">Available Tickets</h3>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered margin-10px" style="color: #ffffff;">
+          <tbody>
+            <?php					if (isset($this->session->storage->TktDetails)) {					?>
+            <tr>
+              <th><B style="color:#FF6B07;font-weight: 900%;font-size: 16px;">S.No</B>
+                </td>
+              <th><B style="color:#FF6B07;font-weight: 900%;font-size: 16px;">Code</B>
+                </td>
+              <th><B style="color:#FF6B07;font-weight: 900%;font-size: 16px;">Description</B>
+                </td>
+            </tr>
+            <?php						$i = 1;						foreach($this->session->storage->TktDetails as $k=>$val){							if(isset($val)){							?>
+            <tr>
+              <td><B style="color:#000;"><?php echo $i; ?></B></td>
+              <td><B style="color:#000;"><?php echo $val['code']; ?></B></td>
+              <td><B style="color:#000;"><?php echo $val['description']; ?></B></td>
+            </tr>
+            <?php 						$i++;						} }					} 					?>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade theme2" id="depositModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text-center title">CONFIRM YOUR DEPOSIT TRANSACTION ID</h3>
+      </div>
+      <div class="modal-body">
+        <form class="loginformpop" method="post" role="form" action="" id="deposit_dfs" style="margin-top: 3%;" novalidate>
+          <div class="form-group clearfix">
+            <div class="input-group col-xs-12"> <span class="input-group-addon"> <i class="fa fa-key"></i> </span>
+              <input name="dfs_txn_id" id="dfs_txn_id" type="text" placeholder="Enter transaction Id" class="form-control input-bg-black">
+            </div>
+            <div id="err_msg" style="display:none; margin-top:9px; font-size:14px;font-weight: 600;"> <span>Please enter your transaction id from your wallet.</span> </div>
+          </div>
+          <div class="form-group"> <a href="javascript:void(0);" id="pay_dfs_now" class="btn-success btn-lg btn3d">Submit</a>
+            <button type="button" class="btn-submit btn-lg btn3d" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+      <div class="row mr-15-right-left" style="background-color:#f85425; height:10px;"> </div>
+    </div>
+  </div>
+</div>

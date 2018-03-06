@@ -1,0 +1,684 @@
+	<div class="container mar-top">
+		<div class="row">
+			<div class="heading text-center">
+				<h1>My Lineups </h1>
+			</div>
+		</div>
+	</div>																					
+
+	<div class="container margin-40">
+		<div class="row">
+			<div class="well bg-image-1">
+				<div class="bg-image-2">
+					<div class="bs-example">
+						<div class="row">
+						
+							<?php if (isset($this->lineupdetails)) { //echo "<pre>"; print_r($this->lineupdetails); die; ?>
+							
+							<div class="col-md-5">
+								<!--<ul class="nav nav-tabs tab-menu filter-menu-tab pull-left">
+									<li class="drop-down mega-dropdown"> 
+										
+										<a id="filter-a" data-toggle="dropdown" class="dropdown-toggle btn-success btn-lg-lg-a btn3d" href="javascript:;" aria-expanded="false">
+										Filter<span class="caret"></span></a>
+										
+										<ul id="filter-menu" class="dropdown-menu mega-dropdown-menu filter-menu dropdown-menu-1">
+											<li>
+												<div class="row">
+													<div class="col-xs-6">
+														<h4 class="title">Contest Type</h4>
+														<ul class="list-unstyled">
+															<li>
+															<div class="">
+															<input class="con_status" type="checkbox" id="all_status">
+															<label for="all_status">ALL STATUS</label>
+															</div>
+															</li>
+															<li>
+															<div class="">
+															<input status-val="0" class="con_status" type="checkbox" id="s2">
+															<label for="s2">UPCOMING</label>
+															</div>
+															</li>
+															<li>
+															<div class="">
+															<input status-val="2" class="con_status" type="checkbox" id="s3">
+															<label for="s3">LIVE</label>
+															</div>
+															</li>
+															<li>
+															<div class="">
+															<input status-val="1" class="con_status" type="checkbox" id="s4">
+															<label for="s4">COMPLETE</label>
+															</div>
+															</li>
+															<li>
+															<div class="">
+															<input status-val="3" class="con_status" type="checkbox" id="s5">
+															<label for="s5">CANCEL</label>
+															</div>
+															</li>
+														</ul>
+													</div>
+
+													<div class="col-xs-6">
+														<h4 class="title">Sports Type</h4>
+														<ul class="list-unstyled">
+															
+															<li>
+																<div class="">
+																	<input class="con_sport" type="checkbox" id="all_sport">
+																	<label for="all_sport">All Sports</label>
+																</div>
+															</li>
+															
+															<li>
+																<div class="">
+																	<input sport-val="2" class="con_sport" type="checkbox" id="r1">
+																	<label for="r1">MLB</label>
+																</div>
+															</li>
+															
+															<li>
+																<div class="">
+																	<input sport-val="1" class="con_sport" type="checkbox" id="r2">
+																	<label for="r2"> NFL </label>
+																</div>
+															</li>
+															
+															<li>
+																<div class="">
+																	<input sport-val="3" class="con_sport" type="checkbox" id="r3">
+																	<label for="r3"> NBA </label>
+																</div>
+															</li>
+															
+															<li>
+																<div class="">
+																	<input sport-val="4" class="con_sport" type="checkbox" id="r4">
+																	<label for="r4"> NHL </label>
+																</div>
+															</li>
+														</ul>
+													</div>
+													
+													<div class="col-xs-12">
+														<div>
+															<button id="apply_filter" class="btn-success btn-lg-lg-a btn3d">Apply Filter</button>
+															<button id="close_filter-a" class="btn-success btn-lg-lg-a btn3d">Cancel</button>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+								</ul>-->
+							</div> 
+							
+							<?php } else { ?>
+							<div class="col-md-7"></div>
+							<?php }  ?>
+							
+							<div class="col-md-7">
+								<ul class="nav nav-tabs nav-tab-nav pull-right" id="myTab">
+								
+									<li <?php echo (!isset($this->createlineup))?"class='active'":'';?>> <a  class="btn-success btn-lg-lg-a btn3d text-uppercase" data-toggle="tab" href="#lineup-tab">My Lineup</a></li>
+									
+									<li <?php echo (isset($this->createlineup))?"class='active'":'';?>><a class="btn-success btn-lg-lg-a btn3d text-uppercase" data-toggle="tab" href="#sectionB">Create New Lineup</a></li>
+									
+									<li><a id="globalplayer" class="btn-success btn-lg-lg-a btn3d text-uppercase" data-toggle="tab" href="#gps_tabs">Global Player Swap</a></li>
+									
+								</ul>
+							</div>
+						</div>
+						
+						<div class="tab-content" id="myTabContent">
+						
+							<div id="lineup-tab" class="tab-pane fade <?php echo (!isset($this->createlineup))?"in active":'';?>">
+								
+								
+								
+								<div class="row mr-15-right-left">	
+									<?php if (!empty($this->lineupdetails)) { ?>
+									
+									
+									
+									<?php $inc = 1 ; foreach ($this->lineupdetails as $lineup) { ?>
+									
+									<div class="col-md-6 col-sm-12 col-xs-12 <?php if(($inc%2)!=0){ echo "pd-left-none"; } else{echo "pd-right-none"; } $inc++; ?> pd-15-15-none">
+									
+										<div class="row contest-bg-color mr-15-right-left">
+											<ul class="nav nav-tabs">
+												<li class="text-green-light bold text-uppercase" ><?php echo (!empty($lineup['contest_name'])?$lineup['contest_name']:''); ?></li>
+												<li class="pull-right"><?php
+													if ($lineup['l_status'] == 0) {
+														echo "UPCOMING";
+													} else if ($lineup['l_status'] == 1) {
+														echo "COMPLETED";
+													} else if ($lineup['l_status'] == 2) {
+														echo "LIVE";
+													} else if ($lineup['l_status'] == 3) {
+														echo "CANCEL";
+													}
+													?> : 
+													<span class="text-orange text-green-light bold timeleft" data-time="<?php echo strtotime($lineup['start_time']); ?>"></span>
+												</li>
+											
+												
+											</ul>
+										
+										</div>
+										
+										<div class="card card-a">
+											<ul class="nav nav-tabs nav-tabs-b" role="tablist">
+												<li class="pull-left"><?php
+                                                    if (isset($lineup['sports_id'])):
+                                                        switch ($lineup['sports_id']):
+                                                            case 1 : echo "NFL";
+                                                                break;
+                                                            case 2 : echo "MLB";
+                                                                break;
+                                                            case 3 : echo "NBA";
+                                                                break;
+                                                            case 4 : echo "NHL";
+                                                                break;
+                                                        endswitch;
+                                                    endif; ?>
+												</li>
+												
+												<li class="text-center">#of Entries <?php
+													if (isset($lineup['entries'])) {
+														echo $lineup['entries'];
+													}
+													?>
+												</li>
+												
+												
+												
+												<li class="pull-right"><span>REM. SALARY:</span> <?php
+													if (isset($lineup['rem_salary'])) {
+														echo $lineup['rem_salary']." DFS";
+													}
+													?>
+												</li>
+											</ul>
+											<div class="tab-content-1a">
+												<table id="example1" class="footable playersTable">
+													<thead>
+                                                        <tr class="header-color">
+                                                            <th>POS</th>
+															<th>PLAYER</th>
+															<th>FPPG</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="">
+                                                        <?php foreach ($lineup['player_details'] as $pkey => $player) { ?>
+                                                            <tr>                             
+                                                                <td><?php echo $player['position']; ?></td>
+                                                                <td  class="text-blue playerDetails playerstats pointer text-green-light"  data-toggle="modal"  style="cursor:pointer" data-pcode="<?php echo $player['position']; ?>" data-tid="<?php echo $player['team_id']; ?>" data-sport="<?php echo $lineup['sports_id']; ?>" data-pid="<?php echo $player['id']; ?>" data-target="#playerDetailsModal"><a><?php echo $player['name']; ?> </a></td>
+                                                                <td><?php
+                                                                    if (isset($player['fppg'])) {
+                                                                        echo $player['fppg'];
+                                                                    } else {
+                                                                        echo "0.0";
+                                                                    }
+                                                                    ?></td>
+                                                            </tr>
+                                                        <?php } ?> 
+
+                                                    </tbody>
+												</table>
+											</div>
+										</div>
+										<div <?php echo 'data-lid=' . $lineup['lineup_id']; ?> <?php echo 'data-sportId=' . $lineup['sports_id']; ?>>
+											<button class="btn-success btn-lg btn3d editmylineup">EDIT</button>
+											<button class="btn-success btn-lg btn3d export_lineup" data-val="<?php echo $lineup['lineup_id']; ?>">EXPORT</button>
+											<button class="btn-success btn-lg btn3d join_contest" data-val="<?php echo $lineup['lineup_id']; ?>">JOIN CONTESTS</button>
+											<button class="btn-success btn-lg btn3d challenge">CHALLENGE</button>
+										</div>
+									</div>
+									
+									<?php } ?>
+									
+									<?php } else { ?>
+									
+										<div class="margin-20">
+											<h3><strong><centre>Sadly You Do Not Contain Current Or Live Lineups,Create a Lineup First..</centre></strong></h3>
+										</div>
+										
+									<?php } ?>
+									
+								</div>
+								
+								<div id="exportLineup" class="row m-top-md"></div>
+								<div id="join_contest_panel" class="row m-top-md hidden"></div>
+								<div id="button_panel" class="hidden margin-10px"></div>
+								
+							</div>
+							
+							<div id="sectionB" class="tab-pane fade <?php echo (isset($this->createlineup))?"in active":'';?>">
+								<div class="row mr-15-right-left margin-20">
+									<div class="col-sm-12">
+										<div class="text-white paddingLR-lg">
+											<h3 class="text-uppercase margin-10px">Create New Lineup</h3>
+											
+											<div id="step1and2" class="">
+											
+												<?php if (isset($this->sportlist)) { ?>
+												
+												<h4>1. WHAT SPORT DO YOU WISH TO CREATE A LINEUP FOR?</h4>
+												<p class="font-medium">There are a few things we need to know before you can begin building your lineup. The questions below help us determine which players are available for drafting in the next step</p>
+												
+												<ul class="list-inline list-unstyled">
+													
+													<?php foreach ($this->sportlist as $sport) { ?>
+													
+													<li>
+														<input <?php echo "value=" . $sport['sports_id']; ?> class="selectsport" type="radio"  <?php echo "id=sport_" . $sport['sports_id']; ?> name="game">
+														<label <?php echo "for=sport_" . $sport['sports_id']; ?> ><?php echo $sport['display_name']; ?></label>
+														
+													</li>
+													<?php } ?>
+												</ul>
+												
+												<?php
+												} else { ?>
+													<p class="font-medium">Matches not available for any sport !</p>
+												<?php } ?>
+													
+												<ul class="list-unstyled list-inline">
+													
+													<?php
+														if (isset($this->sportlist)) {
+															foreach ($this->sportlist as $sport) {
+																?>
+																<div <?php echo 'id=sport_' . $sport['sports_id']; ?> class="m-top-md gametimes hidden">
+																	<p class="font-medium">There are multiple contest start times currently listed for the sport you've selected. Please select a start time.</p>
+																	<div class="row">
+																		<?php
+																		$i = 0;
+																		foreach ($sport['time'] as $games => $count) {
+																			?>
+																			<div class="col-md-4 col-sm-6">
+																				<div class="radio">
+																					<input <?php echo 'id=' . $sport['sports_id'] . $i; ?> type="radio" name="gametime" value="<?php echo $games; ?>" class="gametime">
+																					<label <?php echo 'for=' . $sport['sports_id'] . $i; ?> ><span class="top3px"><?php echo $games . "(" . $count . " games )"; ?></span></label>
+																				</div>
+																			</div>
+																			<?php
+																			$i++;
+																		}
+																		?>
+																	</div>
+																</div>
+																<?php
+															}
+														}
+														?>
+												
+												</ul>
+												<div class="row mr-top-10">
+													<button id="step2" class="btn-success btn-lg btn3d">Continue</button>
+													<button class="btn-success btn-lg btn3d">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="step3" class="hidden"> 
+									
+									</div>
+								</div>
+							</div>
+							
+							<div class="tab-pane fade" id="gps_tabs">
+
+							</div>
+							
+							<div class="relative hidden" id="challengepanel">
+
+								<div class="panel-body">
+									<div class="row">
+										<div>
+											<div class="row">
+												<div class="col-md-12 " id="gametype">
+													<div class="row">
+														<div class="col-md-12">
+															<div class="text-center black-transparent paddingTB-sm m-top-md">
+																<h2 class="text-blue no-margin">Pick a Game Type</h2>   
+																<h3>What kind of game do you want to play?</h3>
+															</div>
+														</div>
+													</div>
+													<div class="black-transparent m-top-sm">
+														<div class="row margin-20">
+															<div class="col-sm-6">
+															
+																<div class="well margin-lg text-center black-transparent min-h-250">
+																	<h4>TWO TEAMS GO TO HEAD-2-HEAD <br> ONLY ONE WILL SURVIVE</h4>
+																	<img src="<?php echo $this->baseUrl() . $this->theme_base_path?>/images/league.png" class="img-responsive center-block marginTB-md">
+																	<a class="pointer change_type" data-id="1"><button class="btn-success btn-lg btn3d">HEAD TO HEAD</button>
+																	</a>
+																</div>
+																
+																<p class="text-center text-white">Challenge a friend or take on the world by posting in the lobby!</p>
+																
+															</div>
+															
+															<div class="col-sm-6">
+															
+																<div class="well margin-lg text-center black-transparent min-h-250">
+																	<h4 class="text-white">DFS COMMISSIONERS!</h4>
+																	<img src="<?php echo $this->baseUrl() . $this->theme_base_path?>/images/league.png" class="img-responsive center-block marginTB-md">
+																	<a class="pointer change_type" data-id="2"><button class="btn-success btn-lg btn3d">LEAGUE</button></a>
+																</div>
+																
+																<p class="text-center text-white">Challenge a friend or take on the world by posting in the lobby!</p>
+																
+															</div>    
+														</div>
+													</div>
+												</div>
+											</div>
+
+
+										</div> 
+										<!--//add other tabs-->
+										<div class="relative hidden" id="h2hpanel">
+											<div>
+												<div class="row">
+													<div class="col-md-12">
+														<div class="text-center black-transparent paddingTB-sm m-top-lg">
+															<h2 class="text-white no-margin">Head To Head Contests</h2>
+														</div>
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="black-transparent padding-sm m-top-sm">
+																	<div class="paddingLR-md text-white">
+																		<p class="font-medium-a">Choose your settings below to set up a head-to-head contest in any sport, including fantasy football, baseball, basketball, and hockey! Challenge a friend or open it up to anyone. Win your rival's cash by proving your fantasy skills today!</p>
+																	</div>
+																	<div class="row margin-20">
+																		<div class="col-sm-6">
+																			<div>
+																				<div class="form-group">
+																					<label class="control-label m-top-xs col-xs-3 font-medium-a">Sport</label>
+																					<div class="input-group col-xs-9">
+																						<select class="form-control input-bg-black sportname"> 
+																						</select>
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="control-label text-right m-top-xs col-xs-3 text-white">Time</label>
+																					<div class="input-group col-xs-9">
+																						<select  name="time" class="form-control input-bg-black sporttime">
+
+																						</select>
+																					   
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="control-label text-right m-top-xs col-xs-3 text-white">Entry</label>     
+																					<div class="input-group col-xs-9">
+																						<select  name="entryfee" class="form-control input-bg-black entryfee">
+																							<option value="0">0.00 DFS</option>
+																							<option value="1">1.00 DFS</option>
+																							<option value="2">2.00 DFS</option>
+																							<option selected value="5">5.00 DFS</option>
+																							<option value="10">10.00 DFS</option>
+																							<option value="20">20.00 DFS</option>
+																							<option value="50">50.00 DFS</option>
+																							<option value="109">109.00 DFS</option>
+																							<option value="215">215.00 DFS</option>
+																							<option value="530">530.00 DFS</option>
+																							<option value="1060">1060.00 DFS</option>
+																							<option value="5300">5300.00 DFS</option>                        
+																						</select>
+																					</div>
+																				</div>
+
+																			</div>
+																		</div>
+																		<div class="col-sm-6">
+																			<div>
+																				<div class="form-group">
+																					<label class="bold text-white">Sport Type</label>
+																					<div class="input-group col-sm-12 text-white gametimes">
+																					<div class="row">
+																						<div class="radio">
+																							<input class="playwith" value="1" id="rd1" name="hthplaywith" type="radio" checked>
+																							<label for="rd1"><span>Play with Friends</span></label>
+																							<span class="block m-left-md">Find me an opponent if my challenge is not accepted.</span>
+																						</div>
+																						<div class="radio">
+																							<input class="playwith" value="2" id="rd2" name="hthplaywith" type="radio">
+																							<label for="rd2"><span>Play Anyone</span></label>
+																							<p class="font-medium-a">Your league will be posted in the game lobby. We will attempt to find you opponents if your challenge is not accepted prior to game time.</p>
+																						</div>
+																					</div>
+																					</div>
+
+																					<p class="font-medium-a">NOTE: This contest will not run and all entry fees will be refunded if the contest does not fill.</p>
+																				</div>
+
+																				<div>
+																					<a  class="btn-success btn-lg btn3d btn-warning hidethis" role="button">GO BACK</a>
+																					<button class="btn-success btn-lg btn3d     create_challenge" data-ctype="1">CREATE CONTEST</button>
+																				</div>
+																			</div>
+																		</div>
+
+																	</div>
+
+																</div>
+															</div>
+
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="relative hidden" id="lpanel">
+											<div>
+												<div class="row">
+													<div class="col-md-12">
+														<div class="text-center black-transparent paddingTB-sm m-top-lg">
+															<h2 class="text-white no-margin">League Contests</h2>
+														</div>
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="black-transparent padding-sm m-top-sm">
+																	<div class="paddingLR-md text-white">
+																		<p class="font-medium-a">Choose from the options below to set up a daily fantasy league in any sport, including football, baseball, basketball, and hockey. Play for your rivals' cash and, more importantly, for bragging rights among all your friends!</p>
+																	</div>
+																	<div class="row margin-20">
+																		<div class="col-sm-6">
+																			<div>
+																				<div class="form-group">
+																					<label class="control-label m-top-xs col-xs-3 font-medium-a">Sport</label>
+																					<div class="input-group col-xs-9">
+																						<select class="form-control input-bg-black sportname">
+																						</select>
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="control-label text-right m-top-xs col-xs-3 text-white">Time</label>
+																					<div class="input-group col-xs-9">
+																						<select required="true" name="time" class="form-control input-bg-black sporttime">
+
+																						</select>
+																						<a class="showgamelist">View Games</a>
+																						<select style="display: none;" name="viewgames" class="form-control input-bg-black viewgames">
+																							<option value="mia @ tam, 09/03 7:00 PM">mia @ tam, 09/03 7:00 PM</option>
+																							<option value="ind @ cin, 09/03 7:00 PM">ind @ cin, 09/03 7:00 PM</option>
+																							<option value="atl @ bal, 09/03 7:00 PM">atl @ bal, 09/03 7:00 PM</option>
+																							<option value="gnb @ nor, 09/03 7:00 PM">gnb @ nor, 09/03 7:00 PM</option>
+																							<option value="pit @ car, 09/03 7:30 PM">pit @ car, 09/03 7:30 PM</option>
+																							<option value="det @ buf, 09/03 7:30 PM">det @ buf, 09/03 7:30 PM</option>
+																							<option value="chi @ cle, 09/03 8:00 PM">chi @ cle, 09/03 8:00 PM</option>
+																							<option value="dal @ hou, 09/03 8:00 PM">dal @ hou, 09/03 8:00 PM</option>
+																							<option value="ten @ min, 09/03 8:00 PM">ten @ min, 09/03 8:00 PM</option>
+																							<option value="stl @ kan, 09/03 8:00 PM">stl @ kan, 09/03 8:00 PM</option>
+																							<option value="den @ ari, 09/03 9:00 PM">den @ ari, 09/03 9:00 PM</option>
+																							<option value="sfo @ sdg, 09/03 10:00 PM">sfo @ sdg, 09/03 10:00 PM</option>
+																							<option value="sea @ oak, 09/03 10:00 PM">sea @ oak, 09/03 10:00 PM</option>
+																						</select>
+																					</div>
+																				</div> 
+
+																				<div class="form-group">
+																					<label class="control-label text-right m-top-xs col-xs-3 text-white">Size</label>         
+																					<div class="input-group col-xs-9">
+																						<select id="play_limit" name="play_limit" class="form-control input-bg-black">
+																							<option value="3">3</option>
+																							<option value="4">4</option>
+																							<option value="5">5</option>
+																							<option value="6">6</option>
+																							<option value="7">7</option>
+																							<option value="8">8</option>
+																							<option value="9">9</option>
+																							<option value="10">10</option>
+																							<option value="11">11</option>
+																							<option value="12">12</option>
+																							<option value="13">13</option>
+																							<option value="14">14</option>
+																							<option value="15">15</option>
+																							<option value="16">16</option>
+																							<option value="17">17</option>
+																							<option value="18">18</option>
+																							<option value="19">19</option>
+																							<option value="20">20</option>
+																						</select>
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label class="control-label text-right m-top-xs col-xs-3 text-white">Entry</label>     
+																					<div class="input-group col-xs-9">
+																						<select name="entryfee" class="form-control input-bg-black entryfee">
+																							<option value="0">0.00 DFS</option>
+																							<option value="1">1.00 DFS</option>
+																							<option value="2">2.00 DFS</option>
+																							<option selected value="5">5.00 DFS</option>
+																							<option value="10">10.00 DFS</option>
+																							<option value="20">20.00 DFS</option>
+																							<option value="50">50.00 DFS</option>
+																							<option value="109">109.00 DFS</option>
+																							<option value="215">215.00 DFS</option>
+																							<option value="530">530.00 DFS</option>
+																							<option value="1060">1060.00 DFS</option>
+																							<option value="5300">5300.00 DFS</option>                       
+																						</select>
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="control-label text-right m-top-xs col-xs-3 text-white">Prizes</label>     
+																					<div class="input-group col-xs-9">          
+																						<select id="league_prize" name="prize" class="form-control input-bg-black">
+																							<option value="2">Top 2 Win</option>
+																						</select>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+
+																		<div class="col-sm-6">
+																			<div>
+																				<div class="form-group">
+																					<label class="m-top-xs text-white">Type</label>
+																					<div class="input-group col-xs-12 text-white gametimes">
+																						<div class="row">
+																						<div class="radio">
+																							<input class="playwith" value="1" id="rd3" name="rType" type="radio" checked>
+																							<label for="rd3"><span>Play with Friends</span></label>
+																							<span class="block m-left-md">Create private contest</span>
+																						</div>
+																						<div class="radio">
+																							<input class="playwith" value="2" id="rd4" name="rType" type="radio">
+																							<label for="rd4"><span>Play Anyone</span></label>
+																							<p class="font-medium-a">Your league will be posted in the game lobby. We will attempt to find you opponents if your challenge is not accepted prior to game time.</p>
+																						</div>
+																					</div>
+																					</div>
+
+																					<p class="font-medium-a">NOTE: This contest will not run and all entry fees will be refunded if the contest does not fill.</p>
+																				</div>
+
+																				<div>
+																					<a  class="btn-success btn-lg btn3d btn-warning hidethis" role="button">GO BACK</a>
+																					<button class="btn-success btn-lg btn3d font-16 font-ste-regular p-bottom-sm create_challenge" data-ctype="2">CREATE CONTEST</button>
+																				</div>
+
+																			</div>
+																		</div>
+
+																	</div>
+
+																</div>
+															</div>
+
+														</div>
+
+													</div>
+												</div>
+
+
+											</div>
+										</div>
+										<!--end tabs-->
+									</div>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+$(document).ready(function() {
+	<!-- replace title according to tab value -->
+	
+	$('.btn-1').on('click',function(){
+		var textc = $(this).attr('ctext');
+		$('#headerTitle').text(textc);
+	});
+
+	$('table').footable();
+			
+	$(".btn-pref .btn").click(function () {
+		$(".btn-pref .btn").removeClass("active").addClass("btn-default");
+		// $(".tab").addClass("active"); // instead of this do the below 
+		$(this).removeClass("btn-default").addClass("active");   
+	});
+
+
+
+	<!-- filter -->
+
+	$('#filter-a').click(function() {
+		$('#filter-menu').toggle('hidden');
+	});
+
+	$('#close_filter-a').click(function() {
+		$('#filter-menu').toggle('hidden');
+	});
+});
+</script>
+<script>
+    $(document.body).on('click', '.hidethis', function() { 
+
+        $('#challengepanel').addClass('hidden');
+
+    });
+</script>
+<style>
+    option {
+        color: #fff;
+    }
+</style>

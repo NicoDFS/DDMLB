@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@font-face{
+	font-family:'MyriadPro-Bold';
+	src:url('MyriadPro-Bold.otf');
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-Bold{font-family:'MyriadPro-Bold';}
+
+@font-face{
+	font-family:'MyriadPro-BoldCond';
+	src:url(MyriadPro-BoldCond.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-BoldCond{font-family:'MyriadPro-BoldCond';}
+
+@font-face{
+	font-family:'MyriadPro-BoldCondIt';
+	src:url(MyriadPro-BoldCondIt.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-BoldCondIt{font-family:'MyriadPro-BoldCondIt';}
+
+@font-face{
+	font-family:'MyriadPro-BoldIt';
+	src:url(MyriadPro-BoldIt.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-BoldIt{font-family:'MyriadPro-BoldIt';}
+
+@font-face{
+	font-family:'MyriadPro-Cond';
+	src:url(MyriadPro-Cond.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-Cond{font-family:'MyriadPro-Cond';}
+
+@font-face{
+	font-family:'MyriadPro-CondIt';
+	src:url(MyriadPro-CondIt.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-CondIt{font-family:'MyriadPro-CondIt';}
+
+@font-face{
+	font-family:'MyriadPro-It';
+	src:url(MyriadPro-It.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-It{font-family:'MyriadPro-It';}
+
+@font-face{
+	font-family:'MyriadPro-Regular';
+	src:url(MyriadPro-Regular.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-Regular{font-family:'MyriadPro-Regular';}
+
+@font-face{
+	font-family:'MyriadPro-Semibold';
+	src:url(MyriadPro-Semibold.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-Semibold{font-family:'MyriadPro-Semibold';}
+
+@font-face{
+	font-family:'MyriadPro-SemiboldIt';
+	src:url(MyriadPro-SemiboldIt.otf);
+	font-weight: normal;
+  	font-style: normal;
+}
+.font-MyriadPro-SemiboldIt{font-family:'MyriadPro-SemiboldIt';}

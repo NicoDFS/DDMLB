@@ -1,0 +1,67 @@
+<style>
+    .input-bg-black {
+        background-color: rgba(255, 255, 255, 0.2);
+        -moz-appearance: window;
+    }
+    .error  {
+        color:red ;
+
+    }.input-bg-black {
+
+        border: medium none !important;
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .xs-text-center{
+            text-align: center;
+        }
+    }
+</style>
+
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="tab1a">
+					<h1 id="headerTitle">Verification</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container margin-40">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center paddingTB-sm m-top-md">
+                <h2 class="text-white no-margin" id="head-line"><?php echo $this->action_msg;?></h2>   
+            </div>
+			<div class="text-center col-md-12 m-top-sm">
+				<div class="col-md-2">
+					  
+				</div>
+				<div class="col-md-8">
+					<img style="width:33%;margin-left:33%;margin-top:2%;" src="/images/ok_check.png" class="img-responsive"/>  
+				</div>
+				<div class="col-md-2">
+					  
+				</div>
+                
+			</div>
+            <div style="text-align:center;color:#ff6c00;" class=" m-top-sm">
+                <div class="col-md-2">
+					  
+				</div>
+				<div class="col-md-8">
+					<h3 class="text-green no-margin"><?php echo $this->message;?></h3>
+				</div>
+				
+				<div class="col-md-2">
+					  
+				</div>
+			</div>
+        </div>
+    </div>
+
+
+</div>

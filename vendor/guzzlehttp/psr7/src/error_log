@@ -1,0 +1,2 @@
+[10-Jul-2017 21:42:54 UTC] PHP Fatal error:  Interface 'Psr\Http\Message\UriInterface' not found in /home/draftdaily/public_html/vendor/guzzlehttp/psr7/src/Uri.php on line 14
+[10-Jul-2017 23:02:21 UTC] PHP Fatal error:  Interface 'Psr\Http\Message\StreamInterface' not found in /home/draftdaily/public_html/vendor/guzzlehttp/psr7/src/Stream.php on line 12

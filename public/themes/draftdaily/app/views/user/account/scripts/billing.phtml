@@ -1,0 +1,348 @@
+<?php if (isset($this->message)) { ?>
+    <div class="opennotificationGreen" style="background-color:#66B45E; height: 40px" align="left" >
+        <p><font face="verdana" color="black">Billing Address Edited Successfully</font></p>
+    <!--<span class="notification_msgGreen">edited successfully.</span>-->
+    </div>
+<?php } ?>
+<!--<div class="panel panel-default">
+  <div class="panel-body">
+    My Account
+  </div>
+</div>-->
+<div class="panel panel-default">
+    <div class="panel-heading"><b><h4>
+        My Account
+    </b></h4>
+</div>
+
+
+<div class="panel panel-default">   
+    <div class="panel-heading"><b><h5>Saved Credit Card</b></h5>
+    </div>
+             
+<div class="panel-body"></div>
+    <div class="panel-heading" id="acinfo">Saved Addresses</div>
+    <div class="panel-body">
+        <?php if (isset($this->userAddress)) {
+            foreach ($this->userAddress as $key => $value) {
+                ?>
+                <div class="row address">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-6 useraddress"  style="font-size: medium">
+                        <?php
+                        echo $value['name'] . "<br>";
+                        echo $value['address1'] . "<br>";
+                        if ($value['address2'] != "") {
+                            echo $value['address2'] . "<br>";
+                        }
+                        echo $value['city'] . "<br>";
+                        echo $value['user_state'] . ",";
+                        echo $value['country'] . "<br>";
+                        echo $value['zip'] . "<br>";
+                        echo $value['phone'] . "<br>";
+                        ?> 
+                        <br>
+                        <input type="radio" name="status" class="user-bill-address" id="<?php echo $value['address_id']; ?>" <?php if ($value['status'] == 1) {
+                            echo ' checked';
+                        } ?> >Use this as billing address
+
+                        <br><hr>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" id="<?php echo $value['address_id']; ?>" data-toggle="modal" data-target=".edit-address-pop" class="edit-user-bill-address" style="color:#F00; text-decoration: underline;">Edit</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#" data-aid="<?php echo $value['address_id']; ?>" class="delete-user-bill-address" style="color:#F00; text-decoration: underline;">Remove</a>
+                    </div>
+                </div>
+                <?php
+                }
+            }
+            ?>   
+        <div class="row">
+            <div  class="col-md-8">
+                <a href="#" data-toggle="modal" data-target=".add-address-pop" style="font-size: large;"><center style="padding-left:385px; color:#F00; text-decoration: underline;">Add New Address</center></a>
+            </div>
+<?php //if (isset($this->cancel)) {  ?>
+            <div style="pull-right" class="col-md-4">
+                <a href="/account" style="padding-left: 250px;">
+                    <button class="btn btn-default" type="button">CANCEL</button>
+                </a>
+            </div>
+<?php //}  ?>
+
+        </div>
+        <div class="modal fade add-address-pop" id="testModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Add Address</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal margin-none adduseraddress"  method="post" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/account/add-address/">
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* Full Name</label>
+                                <div class="controls">
+                                    <input type="text" name="name" id="bname" value="" required placeholder="Full Name" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* Billing Address</label>
+                                <div class="controls">
+                                    <input type="text" name="address1" id="baddress1" value="" required placeholder="Address Line 1" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"></label>
+                                <div class="controls">
+                                    <input type="text" name="address2" id="baddress2" value="" placeholder="Address Line 2" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* City</label>
+                                <div class="controls">
+                                    <input type="text" name="city" id="bcity" value="" required placeholder="Enter City" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* Zip/Pincode</label>
+                                <div class="controls">
+                                    <input type="text" name="zip" id="bzip" value="" required placeholder="Zip/Pincode" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* Status</label>
+                                <div class="controls">
+                                    <select class="span4 form-control" name="status" id="bstatus">
+                                        <option  value="1">Active </option>                                                                                
+                                        <option  value="0">Deactive</option>                                                                                
+                                    </select>										
+                                        <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* Country</label>
+                                <div class="controls">
+                                    <select class="span4 form-control" name="country" id="bcountry">
+<?php if (isset($this->userCountries)) {
+    foreach ($this->userCountries as $key => $valuecn) { ?>
+                                                <option  class="countryfilter" id="<?php echo $valuecn['country_id']; ?>" value="<?php echo $valuecn['country_code']; ?>"><?php echo $valuecn['country_name']; ?></option><?php }
+} ?>                                                                              
+                                    </select>										
+                                        <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* State</label>
+                                <div class="controls">
+                                    <select class="span4 form-control" name="user_state" id="buser-state">
+<?php if (isset($this->userStates)) {
+    foreach ($this->userStates as $key => $valuest) { ?>
+                                                <option  class="con-<?php echo $valuest['country_id']; ?>" value="<?php echo $valuest['state_code']; ?>"><?php echo $valuest['state_code']; ?></option><?php }
+} ?>                                                                              
+                                    </select>										
+                                        <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" style="color: grey">* Phone</label>
+                                <div class="controls">
+                                    <input type="text" name="phone" id="bphone" value="" required placeholder="Phone Number"  class="form-control"/>
+                                    <br/>
+                                </div>
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn btn-warning addressadd">Submit</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" style="margin-left:10px">Cancel</button>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+        <div class="modal fade edit-address-pop">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Edit Address</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal margin-none edituseraddress"  method="post" id="editspace" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/account/edit-address/<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['address_id'];
+} ?>">
+                            <div class="control-group">
+                                <label class="control-label">* Full Name</label>
+                                <div class="controls">
+                                    <input type="text" name="name" id="bname" value="<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['name'];
+} ?>" required placeholder="Full Name" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* Billing Address</label>
+                                <div class="controls">
+                                    <input type="text" name="address1" id="baddress1" value="<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['address1'];
+} ?>" required placeholder="Address Line 1" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"></label>
+                                <div class="controls">
+                                    <input type="text" name="address2" id="baddress2" value="<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['address2'];
+} ?>" placeholder="Address Line 2" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* City</label>
+                                <div class="controls">
+                                    <input type="text" name="city" id="bcity" value="<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['city'];
+} ?>" required placeholder="Enter City" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* Zip/Pincode</label>
+                                <div class="controls">
+                                    <input type="text" name="zip" id="bzip" value="<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['zip'];
+} ?>" required placeholder="Zip/Pincode" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* Status</label>
+                                <div class="controls">
+                                    <select class="span4 form-control" name="status" id="bstatus">
+                                        <option  value="1" <?php if (isset($this->userAddress)) {
+    if ($this->userAddress['status'] == 1) {
+        echo " selected";
+    }
+} ?>>Active </option>                                                                                
+                                        <option  value="0" <?php if (isset($this->userAddress)) {
+    if ($this->userAddress['status'] == 0) {
+        echo " selected";
+    }
+} ?>>Deactive</option>                                                                                
+                                    </select>										
+                                        <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* Country</label>
+                                <div class="controls">
+                                    <select class="span4 form-control" name="country" id="bcountry">
+<?php if (isset($this->userCountries)) {
+    foreach ($this->userCountries as $key => $valuecn) { ?>
+                                                <option  class="countryfilter" id="<?php echo $valuecn['country_id']; ?>"  <?php if (isset($this->userAddress)) {
+            if ($this->userAddress['country'] == $valuecn['country_code']) {
+                echo " selected";
+            }
+        } ?> value="<?php echo $valuecn['country_code']; ?>"><?php echo $valuecn['country_name']; ?></option><?php }
+} ?>                                                                              
+                                    </select>										
+                                        <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* State</label>
+                                <div class="controls">
+                                    <select class="span4 form-control" name="user_state" id="buser-state">
+<?php if (isset($this->userStates)) {
+    foreach ($this->userStates as $key => $valuest) { ?>
+                                                <option  class="con-<?php echo $valuest['country_id']; ?>"  <?php if (isset($this->userAddress)) {
+            if ($this->userAddress['user_state'] == $valuest['state_code']) {
+                echo " selected";
+            }
+        } ?> value="<?php echo $valuest['state_code']; ?>"><?php echo $valuest['state_code']; ?></option><?php }
+} ?>                                                                              
+                                    </select>										
+                                        <!--<span class="btn-action single glyphicons circle_question_mark margin-none" data-toggle="tooltip" data-placement="top" data-original-title="Last name is mandatory"><i></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">* Phone</label>
+                                <div class="controls">
+                                    <input type="text" name="phone" id="bphone" value="<?php if (isset($this->userAddress)) {
+    echo $this->userAddress['phone'];
+} ?>" required placeholder="Phone Number"  class="form-control"/>
+                                    <br/>
+                                </div>
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn btn-warning addressadd">Submit</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" style="margin-left:10px">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
+</div>
+
+<?php if (isset($this->message)) { ?>
+    <!-- This script Displays the  notification when the user details are submitted on submit  -->
+    <script>
+        $('.opennotificationGreen').click(function()
+        {
+                
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        });
+        
+        $('.opennotificationGreen').fadeIn("slow");             
+        $('.opennotificationGreen').css('display','block');
+            
+        setTimeout(function() {
+            $('.opennotificationGreen').fadeOut("slow");
+            $('div').remove(".notification_msgGreen");
+        }, 3000); 
+        
+    </script>
+<?php } ?>
+<script>
+    $('#testModal').on('hidden.bs.modal', function (e) {
+         $(".adduseraddress").removeData('name');
+         $('#bname').val('');
+         $('#baddress1').val('');
+         $('#baddress2').val('');
+         $('#bcity').val('');
+         $('#bzip').val('');
+         $('#bphone').val('');
+         
+       $(".adduseraddress").validate().resetForm();
+    });
+    
+    $(document).ready(function() {
+        $(".opennotificationGreen").fadeOut(4000);
+    });
+</script>

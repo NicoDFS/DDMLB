@@ -1,0 +1,216 @@
+<!--<div class="modal-dialog">-->
+    <div class="modal-content" id="<?php if(isset($this->ctype)){echo "con-".$this->ctype;}?>">
+<div class="panel panel-default">
+    <div class="modal-header">
+    <div class="panel-heading col-md-10">
+        <h3><?php if(isset($this->ctype)){ if($this->ctype == 1){ echo "CREATE HEAD-TO-HEAD CONTESTS"; }else { echo "CREATE A LEAGUE"; }} ?> </h3>
+        <h5><?php if(isset($this->ctype)){ if($this->ctype == 1){ echo "Choose your settings below to set up a head-to-head contest in any sport, including fantasy football, baseball, basketball, and hockey! Challenge a friend or open it up to anyone. Win your rival's cash by proving your fantasy skills today!"; }else { echo "Choose from the options below to set up a daily fantasy league in any sport, including football, baseball, basketball, and hockey. Play for your rivals' cash and, more importantly, for bragging rights among all your friends! "; }} ?> </h5>
+    </div>
+    <div class="panel-heading col-md-2">
+        <img class="img-responsive " src="<?php if(isset($this->ctype)){ if($this->ctype == 2){ echo $this->baseUrl() . $this->appSetting->assestPath . 'images/leagues.png'; }else { echo $this->baseUrl() . $this->appSetting->assestPath . 'images/h2h.png'; }} ?>" alt="...">
+    </div>
+    </div>
+    <div class="modal-body">
+    <form method="post" id="newlineupcontestform" action="<?php if(isset($this->ctype)){echo $this->baseUrl()."/new-lineup-contest/".$this->ctype;}?>">
+    <div class="panel-body">
+        <div class="row">            
+            <div class="col-md-6">
+            
+               <div class="panel-body">
+                
+                <dl class="dl-horizontal">                    
+                    <dt>Sport</dt>                    
+                    <dd>
+                        <select class="form-control" name="sport" id="sports" required="true">
+                            <option value="">Select</option>
+                            <?php if(isset($this->sportsDeatils)){ foreach ($this->sportsDeatils as $sports){ ?>
+                            <option value="<?php echo $sports['sports_id']; ?>"><?php echo $sports['display_name']; ?></option>
+                            <?php } }?>
+                        </select>
+                    </dd><br/>
+                    
+                    <dt>Time</dt>                    
+                    <dd>
+                        <select class="form-control" name="time" id="time" required="true">                                                        
+                        </select>
+                    </dd><br/>
+                    <?php if(isset($this->ctype)){ if($this->ctype == 2){ ?>
+                    <dt>Size</dt>                    
+                    <dd>
+                        <select class="form-control" name="teamsize" id="teamsize">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>                     
+                        </select>
+                    </dd><br/>
+                    <?php }} ?>
+                    <dt>Entry</dt>                    
+                    <dd>
+                        <select class="form-control" name="entryfee" id="entryfee">
+                            <option value="0">$0.00</option>
+                            <option value="1">$1.00</option>
+                            <option value="2">$2.00</option>
+                            <option value="5">$5.00</option>
+                            <option value="10">$10.00</option>
+                            <option value="20">$20.00</option>
+                            <option value="50">$50.00</option>
+                            <option value="109">$109.00</option>
+                            <option value="215">$215.00</option>
+                            <option value="530">$530.00</option>
+                            <option value="1060">$1060.00</option>
+                            <option value="5300">$5300.00</option>                        
+                        </select>
+                    </dd><br/>
+                    <?php if(isset($this->ctype)){ if($this->ctype == 1){ ?>
+                    <dt>Count</dt>                    
+                    <dd>
+                        Number of challenges to create: 
+                        <select class="form-control" name="challengerCount" id="challengerCount">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>                        
+                        </select>
+                    </dd><br/>
+                    <?php }} ?>
+                    <dt>Prizes</dt>                    
+                    <dd>                       
+                        <select class="form-control" name="prize" id="prize">
+                          <?php if(isset($this->ctype)){ if($this->ctype == 1){ ?>
+                            <option value="1">Winner Takes All</option>
+                            <option value="2">Top 2 Win</option>  
+                            <?php }else{ ?>
+                            <option value="1">Winner Takes All</option>
+                            <option value=2">Top 2 Win</option>
+                            <option value=3">Top 3 Win</option>
+                            <option value=4">Top 5 Win</option>
+                            <option value=5">50/50</option>
+                            <?php } }?>
+                        </select>
+                    </dd><br/>
+                   
+                       <?php if(isset($this->ctype)){ if($this->ctype == 1){ ?>
+                    <dt></dt>                    
+                    <dd>
+                        Limit the number of times one person can play against you. 
+                        <select class="form-control" name="numberofPerson" id="numberofPerson">
+                            <option value="0">Unlimited</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>    
+                        </select>
+                    </dd><br/>
+                   <?php } } ?>
+                </dl>
+                  </div>
+            </div>            
+            <div class="col-md-6">
+                <div class="panel-body">                
+                    <dl class="dl-horizontal">                    
+                    <dt>Type</dt>                    
+                    <dd>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="playwith" id="playwithFriend" value="0" checked>
+                                <strong>Play with Friends</strong>
+                                <?php if(isset($this->ctype)){ if($this->ctype == 2){ ?>
+                                <p>Create private contest</p>
+                                <?php }else{ ?>
+                                
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="" checked="">
+                                        Find me an opponent if my challenge is not accepted. 
+                                    </label>
+                                </div>
+                                <?php } } ?>
+                            </label>
+                        </div>
+                    </dd><br/>
+                    
+                    <dt></dt>                    
+                    <dd>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="playwith" id="playwithAnyone" value="1">
+                                <strong>Play Anyone</strong>
+                                <p>Your league will be posted in the game lobby. We will attempt to find you opponents if your challenge is not accepted prior to game time. </p>
+                            </label>
+                        </div>
+                    </dd><br/>
+                    <?php if(isset($this->ctype)){ if($this->ctype == 2){ ?>
+                    <dt>Name</dt>                    
+                    <dd>
+                        <input id="name" name="name" type="text" class="form-control">
+                        <p>NOTE: This contest will not run and all entry fees will be refunded if the contest does not fill. </p>
+                    </dd><br/>
+                    <?php }else{?>
+                    <dt></dt>                    
+                    <dd>                       
+                        <p>NOTE: This contest will not run and all entry fees will be refunded if the contest does not fill. </p>
+                    </dd><br/>
+                    <?php  }} ?>
+                </dl>                             
+            </div>
+        </div>
+            
+    </div>
+        <div class="col-md-12 text-right">
+        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Cancel</button>
+        <button type="button" id="contest_pop" class="btn btn-warning btn-lg">CREATE »</button>
+        </div>
+</div>
+        
+        </form>
+    </div>
+</div>
+        </div>
+<!--    </div>-->

@@ -1,0 +1,2036 @@
+<script type="text/javascript">
+	
+	function checkList() {
+		$('#lineup >tr').each(function() {
+			var pid = $(this).attr('data-pid');
+			if (pid !== undefined) {
+				$(document.body).find('.addPlayer*[data-pid="' + pid + '"]').each(function() {
+					$(this).parent().parent().hide();
+				});
+			}
+		});
+	}
+
+    $(document).ready(function() {
+		
+		<?php if(!empty($this->homeTeam_array)){ $hometeams = json_encode($this->homeTeam_array);?>
+			var hometeam_array = JSON.parse('<?= $hometeams; ?>');
+		<?php  }else{?>
+			console.log('homeTeam_array empty');
+		<?php }?>
+        
+        var selectedTeam = new Array();
+        var playerlist = new Array();
+        var rimSal;
+        var rimAvg;
+        var remainSalary;
+        var mylineupPlayerList = new Array();
+        var lineupTeam = new Array();
+
+        $(document.body).on('click', '.plistnew', function(e) {
+            var ptype = $(this).html();
+            var searchKey = $('#searchKey').val();
+            var searchFilter = $('#search_player').val(); // added by alok on 21/07/2017
+            var sportId = $('#sports_id').val();
+			
+			
+            if (!$(this).parent().hasClass('active')) {
+                $.ajax({
+                    url: '/filter-player-by-team',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'playerfilter',
+                       // filterValue:searchFilter,
+                        searchValue: ptype,
+                        searchKey: searchKey,
+                        selectedTeam: selectedTeam,
+                        sportId: sportId
+                    },
+                    beforeSend: function() {
+						$(".loader-section").prepend('<div class="pageloader"></div>');
+                    },
+                    success: function(response) {
+						$('.pageloader').css('display','none');
+                        if (response) {
+							//console.log(response);
+                            $(".playersTable[data-pos=" + ptype + "] >tbody").html('');
+
+                            var a = response.length;
+                            var b = 1;
+							console.log(response);
+                            $.each(response, function(index, value) {
+                                var index = playerlist.indexOf(value.id);
+                                
+                                var dl = "";
+
+                                if (value.injury_status == 1) {
+                                    dl = "<span title='"+value.injury_reason+"' class='injure_color'>&nbsp;&nbsp;"+value.injury_code+"</span>";
+                                }
+                                
+                                if (ptype == "FLEX") {
+                                    value.pos_code = "FLEX";
+                                }
+								
+								var plrteam = value.team_code;
+								var match = hometeam_array[plrteam];
+								var items = match.split('@');
+								if(items[0]==plrteam){
+									var team_c = "<span class='font3'>"+items[0]+"</span> @ "+items[1];
+								} else {
+									var team_c = items[0]+" @ <span class='font3'>"+items[1]+"</span>";
+								}
+								
+                                if (index == -1) {
+                                    $(".playersTable[data-pos=" + ptype + "] >tbody").append('<tr ><td class="r0">' + value.position + '</td><td class="r1 text-green-light"><a id="green" style="cursor:pointer;" data-toggle="modal" data-target="#playerModal" data-tid="' + value.team_id + '" data-pid="' + value.id + '">' + value.name + ' ' + dl + '</a></td><td id="tb" class="r2">' + team_c + '</td><td class="r4">' + value.fppg + '</td><td class="r5">' + value.plr_value + ' DFS</td><td class="r6"><a style="cursor:pointer" class="text-green-light addPlayer"  data-pval="' + value.plr_value + '" data-pid="' + value.id + '" data-team="' + value.team_code + '" data-pcode="' + value.pos_code + '" data-tid="' + value.team_id + '"><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td></tr>');
+                                } else {
+                                    $(".playersTable[data-pos=" + ptype + "] >tbody").append('<tr style="display:none;" ><td class="r0">' + value.position + '</td><td class="r1 text-green-light"><a id="green" style="cursor:pointer;" data-toggle="modal" data-target="#playerModal" data-tid="' + value.team_id + '" data-pid="' + value.id + '">' + value.name + ' ' + dl + '</a></td><td class="r2">' + team_c + '</td><td class="r4">' + value.fppg + '</td><td class="r5">' + value.plr_value + ' DFS</td><td class="r6"><a style="cursor:pointer" class=" text-green-light addPlayer" data-pval="' + value.plr_value + '" data-pid="' + value.id + '" data-team="' + value.team_code + '" data-pcode="' + value.pos_code + '" data-tid="' + value.team_id + '"><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td></tr>');
+                                }
+                                
+                                if (a == b) {
+                                    checkList();
+                                }
+                                b++;
+                            })
+
+                            
+                            if ( !$.fn.dataTable.isDataTable( ".playersTable[data-pos="+ptype+"]" ) ) {
+                                table=   $(".playersTable[data-pos="+ptype+"]").DataTable( {
+									"paging":         false,
+									"info":     false,
+									"searching": false
+                                });
+                               
+                               // table.fnClearTable(); 
+                                //table.fnDestroy(); 
+                            }
+
+                        } 
+                    },
+					error: function() {
+						window.location.reload();
+					}
+                });
+            }
+        });
+
+        $(document.body).on('click', '#clear_lineup', function(e) {
+            $('#salary_cap_amt').html('55000');
+            $('#salary_cap').val('55000');
+            $('#rim_amt').val('5500');
+            $('#avg_rim').html('5500');
+            $('#salary_cap_amt').css('color', '#fff');
+            $('#avg_rim').css('color', '#fff');
+            var plist = [];
+            $("#lineup").find('tr').each(function() {
+
+                var pid = $(this).attr('data-pid');
+                plist.push(pid);
+            });
+            //alert(plist);
+            if (plist.length === 0) {
+                $('#error-msg').html('Lineup is Empty');
+                $('#error-modal').modal('show');
+            } else {
+                //alert(playerlist);
+                $.each(plist, function(index, value) {
+                    //alert(index+''+value);                
+
+                    $('*[data-pid="' + value + '"]').children('.p-name').html('');
+                    $('*[data-pid="' + value + '"]').children('.opp').html('');
+                    $('*[data-pid="' + value + '"]').children('.pts').html('');
+                    $('*[data-pid="' + value + '"]').children('.salary').html('');
+                    $('*[data-pid="' + value + '"]').children('.last').html('');
+                    $('*[data-pid="' + value + '"]').parent().parent().show();
+                    $('*[data-pid="' + value + '"]').removeAttr('data-pid');
+
+                });
+                plist.length = 0;
+            }
+        });
+
+
+        $(document.body).on('click', '#lineupClear', function(e) {
+            $('#salary_cap_amt').html('55000');
+            $('#salary_cap').val('55000');
+            $('#rim_amt').val('5500');
+            $('#avg_rim').html('5500');
+            $('#salary_cap_amt').css('color', '#fff');
+            $('#avg_rim').css('color', '#fff');
+            var plist = [];
+            $("#lineup").find('tr').each(function() {
+
+                var pid = $(this).attr('data-pid');
+                plist.push(pid);
+            });
+            //alert(plist);
+            if (plist.length === 0) {
+                $('#error-msg').html('Lineup is Empty');
+                $('#error-modal').modal('show');
+            } else {
+                //alert(playerlist);
+                $.each(plist, function(index, value) {
+                    //alert(index+''+value);                
+
+                    $('*[data-pid="' + value + '"]').children('.p-name').html('');
+                    $('*[data-pid="' + value + '"]').children('.opp').html('');
+                    $('*[data-pid="' + value + '"]').children('.pts').html('');
+                    $('*[data-pid="' + value + '"]').children('.salary').html('');
+                    $('*[data-pid="' + value + '"]').children('.last').html('');
+                    $('*[data-pid="' + value + '"]').parent().parent().show();
+                    $('*[data-pid="' + value + '"]').removeAttr('data-pid');
+
+                });
+                plist.length = 0;
+            }
+        });
+
+        $(document.body).on('click', '.export_to_csv', function() {
+            var url = '/assets/csv/file.csv';
+            window.location = url;
+
+        });
+
+        $('#playerDetailsModal').on('show.bs.modal', function(e) {
+            var w = $(this);
+
+            var pid = $(e.relatedTarget).attr('data-pid');
+
+            $.ajax({
+                url: '/player-details',
+                type: 'POST',
+                dataType: 'HTML',
+                data: {
+                    pid: pid
+                },
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+//                    w.('.modal-body').html(response);
+//                    $('.playerdetails').html(response);
+                    $(w).find('#playDesc').html(response);
+                }
+
+            });
+        });
+
+        $('#playerModal').on('show.bs.modal', function(e) {
+
+            var teams = $(e.relatedTarget).parent().siblings('.r2').html();
+            var fppg = $(e.relatedTarget).parent().siblings('.r4').html();
+
+            var w = $(this);
+            var pid = $(e.relatedTarget).parent().siblings().children('.addPlayer').attr('data-pid');
+            var tid = $(e.relatedTarget).parent().siblings().children('.addPlayer').attr('data-tid');
+            var sprid = $('#sports_id').val();
+            var pos = $(e.relatedTarget).parent().siblings().children('.addPlayer').attr('data-pcode');
+            var pcode = $(e.relatedTarget).parent().siblings('.r1').html();
+
+            if (!sprid) {
+                sprid = $(e.relatedTarget).attr('data-sportId');
+            }
+            if (!pos) {
+                //pos =  $(e.relatedTarget).attr('data-pcatid'); 
+                pos = $(e.relatedTarget).parent().siblings('.pos').html();
+            }
+            if (!pcode) {
+                pcode = $(e.relatedTarget).attr('data-posid');
+            }
+
+            $.ajax({
+                url: '/ajax-lineup-stats',
+                type: 'POST',
+                dataType: 'HTML',
+                data: {
+                    pid: pid,
+                    tid: tid,
+                    sprid: sprid,
+                    pos: pos,
+                    pcode: pcode,
+                    modal: 'draft',
+                    teams: teams
+                },
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    $(w).find('.modal-body').html(response);
+                    $('#playerModal').find('.r2').html(teams);
+                    $('#playerModal').find('.r4').html(fppg);
+                }
+
+            });
+
+
+
+        });
+
+        $(document.body).on('click', '.addPlayer', function(e) {
+            var pid = $(this).attr('data-pid');
+            var pcode = $(this).attr('data-pcode');
+            var pteam = $(this).attr('data-team');
+            var tid = $(this).attr('data-tid');
+            var w = $(this);
+            var active = $('#plrlst').children('.active').children().html();
+            var clength = $('tr[data-pcode="' + pcode + '"]').length;
+            var pval = $(this).attr('data-pval');
+            var sports_id = $('#sports_id').val();
+            //console.log(active)			
+            if (sports_id == 3) {
+                if (active != pcode) {
+                    clength = $('tr[data-pcode="' + pcode + '"]').length;
+                    if (active != "ALL") {
+                        pcode = active;
+                    }
+                    addplayer(pcode, pid, pteam, pval, w, active, clength, sports_id);
+                } else {
+                    addplayer(pcode, pid, pteam, pval, w, active, clength, sports_id);
+                }
+            } else {
+                addplayer(pcode, pid, pteam, pval, w, active, clength, sports_id);
+            }
+        });
+
+        function addplayer(pcode, pid, pteam, pval, w, active, clength, sports_id) {
+
+            $('tr[data-pcode="' + pcode + '"]').each(function(cindex, value) {
+
+                if ($(this).children('.p-name').html() == "") {
+
+                    if (mylineupPlayerList !== "") {
+                        var index = mylineupPlayerList.indexOf(pid);// get index of pid
+                        var teamIndex = lineupTeam.indexOf(pteam);// get index of team
+
+                        if (index == -1) {
+                            mylineupPlayerList.push(pid);// Add pid from array list
+                        }
+
+                        if (teamIndex == -1) {
+                            lineupTeam.push(pteam);
+                        }
+
+                    } else {
+
+                        var index = playerlist.indexOf(pid);// get index of pid
+                        var teamIndex = lineupTeam.indexOf(pteam);// get index of team
+
+                        if (index == -1) {
+                            playerlist.push(pid);// Add pid from array list
+                        }
+
+                        if (teamIndex == -1) {
+                            lineupTeam.push(pteam);
+                        }
+                    }
+                    var name = w.parent().siblings('.r1').children().html();
+                    var opp = w.parent().siblings('.r2').html();
+
+                    var pts = w.parent().siblings('.r4').html();
+                    var salary = w.parent().siblings('.r5').html();
+                    var tid = w.attr('data-tid');
+                    w.parent().parent().hide();
+                    $('#tblData').find('.addPlayer*[data-pid="' + pid + '"]').parent().parent().hide();
+                    $(this).attr('data-pid', pid);
+                    $(this).attr('data-pval', pval);
+                    $(this).attr('data-pteam', pteam);
+                    $(this).children('.p-name').html('<a data-target="#playerDetailsModal" data-toggle="modal" data-tid="' + tid + '" data-pid="' + pid + '">' + name + '</a>');
+                    $(this).children('.opp').html(opp);
+                    $(this).children('.pts').html(pts);
+                    $(this).children('.salary').html(salary);
+                    $(this).children('.last').html('<a class="remPlayer" data-id="' + pid + '"><span class="text-red"><i class="fa fa-times"></i></span></a>');
+                    salaryCap(pval, 1);
+
+                    return false;
+
+                } else {
+                    if (sports_id == 1) {
+                        if (cindex == clength - 1) {
+                            $('#error-msg').html('position already filled');
+                            $('#error-modal').modal('show');
+
+                        }
+
+                    }
+                    if (cindex == clength - 1) {
+                        if (sports_id == 2) {
+                            $('#error-msg').html("position already filled");
+                            $('#error-modal').modal('show');
+                        }
+                        if (sports_id == 3) {
+
+                            if (active == "G" || active == "F") {
+                                if (active == pcode) {
+                                    pcode = $(w).attr('data-pcode');
+                                    clength = $('tr[data-pcode="' + pcode + '"]').length;
+                                    addplayer(pcode, pid, pteam, pval, w, active, clength, sports_id);
+                                    return false;
+                                }
+                            } else if (active == "ALL") {
+                                var psplit = pcode.split('');
+                                pcode = psplit[1];
+                                clength = $('tr[data-pcode="' + pcode + '"]').length;
+                                addplayer(pcode, pid, pteam, pval, w, active, clength, sports_id);
+                            }
+
+                        }
+
+                        var pclength = $('*[data-pcode="UTIL"]').length;
+
+                        // condition to check Goaile, should not go to UTIL
+                        if (sports_id == 4 && pcode == 'G') { // NHL
+                            $('#error-msg').html('position already filled');
+                            $('#error-modal').modal('show');
+                            return false;
+                        } else {
+                            $('*[data-pcode="UTIL"]').each(function(uindex, value) {
+                                if ($(this).children('.p-name').html() == "") {
+                                    var index = playerlist.indexOf(pid);// get index of pid
+
+                                    if (index == -1) {
+                                        playerlist.push(pid);// Add pid from array list
+                                    }
+                                    //                                var name   = w.parent().siblings('.r1').children('a').html('<tr><td class="r1"><a  data-toggle="modal" data-target="#playerModal" data-tid="'+value.team_id+'" data-pid="'+value.id+'">'+value.name+'</a></td></tr>');
+                                    var name = w.parent().siblings('.r1').children('a').html();
+                                    var opp = w.parent().siblings('.r2').html();
+                                    var pts = w.parent().siblings('.r4').html();
+                                    var salary = w.parent().siblings('.r5').html();
+                                    var tid = w.attr('data-tid');
+                                    w.parent().parent().hide();
+
+                                    $(this).attr('data-pid', pid);
+                                    $(this).attr('data-pval', pval);
+                                    $(this).attr('data-pteam', pteam);
+                                    $(this).children('.p-name').html('<a data-target="#playerDetailsModal" data-toggle="modal" id="green" data-tid="' + tid + '" data-pid="' + pid + '">' + name + '</a>');
+                                    $(this).children('.opp').html(opp);
+                                    $(this).children('.pts').html(pts);
+                                    $(this).children('.salary').html(salary);
+                                    $(this).children('.last').html('<a class="remPlayer" data-id="' + pid + '"><span class="text-red"><i class="fa fa-times"></i></span></a>');
+                                    salaryCap(pval, 1);
+                                    return false;
+
+                                } else {
+                                    //for utility positions only
+                                    if (uindex == pclength - 1) {
+                                        $('#error-msg').html('position already filled');
+                                        $('#error-modal').modal('show');
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            checkList();
+        }
+
+       
+
+        $(document.body).on('click', '.remPlayer', function(e) {
+
+            var pid = $(this).attr('data-id');
+            var pval = $(this).parent().parent().attr('data-pval');
+            var pteam = $(this).parent().parent().attr('data-team');
+            $(this).parent().parent().removeAttr('data-pid');
+            $(this).parent().parent().removeAttr('data-pval');
+            $(this).parent().siblings('.p-name').html('');
+            $(this).parent().siblings('.opp').html('');
+            $(this).parent().siblings('.pts').html('');
+            $(this).parent().siblings('.salary').html('');
+            $(this).parent().html('');
+            $('*[data-pid="' + pid + '"]').parent().parent().show();
+            if (mylineupPlayerList !== "") {
+
+
+                var index = mylineupPlayerList.indexOf(pid);// get index of pid
+
+                if (index > -1) {
+                    mylineupPlayerList.splice(index, 1);// remove pid from array list
+                }
+
+                var teamIndex = lineupTeam.indexOf(pteam);// get index of team
+                if (teamIndex > -1) {
+                    lineupTeam.splice(teamIndex, 1);// remove team from array list
+                }
+            } else {
+
+                var index = playerlist.indexOf(pid);// get index of pid
+                if (index > -1) {
+                    playerlist.splice(index, 1);// remove pid from array list
+                }
+
+                var teamIndex = lineupTeam.indexOf(pteam);// get index of team
+                if (teamIndex > -1) {
+                    lineupTeam.splice(teamIndex, 1);// remove team from array list
+                }
+
+            }
+            salaryCap(pval, 0);
+        });
+
+        function salaryCap(plrVal, act) {
+
+            var salary_cap_amt = $('#salary_cap_amt').html();
+
+            console.log(plrVal)
+            if (act === 1) {
+                rimSal = parseInt(salary_cap_amt - plrVal);
+            } else if (act === 0) {
+                rimSal = parseInt(salary_cap_amt) + parseInt(plrVal);
+
+            }
+
+            $('#salary_cap_amt').html(rimSal);
+            if (rimSal < 0) {
+                $('#salary_cap_amt').css('color', 'red');
+            } else {
+                $('#salary_cap_amt').css('color', '#fff');
+            }
+
+            avgRim();
+        }
+
+        function avgRim() {
+
+            var lineupRemail = $('#lineup > tr').children('.salary:empty').length;
+            var salary_cap = $('#salary_cap').val();
+
+            //var sum = new Array();
+            var sum = 0;
+
+            $('#lineup > tr').each(function(cindex, value) {
+
+                if ($(this).attr('data-pval') != "" && typeof ($(this).attr('data-pval')) != 'undefined') {
+
+                    sum = sum + parseInt($(this).attr('data-pval'));
+
+                }
+            });
+            var rimAvgVal
+
+            if (lineupRemail > 0) {
+
+                rimAvgVal = Math.round((parseInt(salary_cap) - sum) / lineupRemail);
+
+            } else {
+                rimAvgVal = 0;
+            }
+
+            $('#avg_rim').html(rimAvgVal);
+
+            if (rimAvgVal < 0) {
+                $('#avg_rim').css('color', 'red');
+            } else {
+                $('#avg_rim').css('color', '#fff');
+            }
+        }
+
+        $(document.body).on('click', '#create_lineup', function(e) {
+            var sportsId = $('#sports_id').val();
+            var check = 1;
+            var lp_players = new Array();
+            var lp_teams = new Array();
+            var lp_pos = new Array();
+            var rem_salary = parseInt($('#salary_cap_amt').text());
+            var time = $('#time').val();
+            $('#lineup>tr').each(function() {
+                if (check) {
+                    if ($(this).children('.p-name').html() === "") {
+                        check = 0;
+                        alert('lineup contains unfilled positions, please complete the lineup');
+                    }
+                }
+                if ($(this).children('.p-name').html() !== "") {
+                    var pteam = $(this).attr('data-pteam');
+                    lp_teams.push(pteam);
+                    var pid = $(this).attr('data-pid');
+                    lp_players.push(pid);
+                    var pos = $(this).attr('data-pcode');
+                    var obj = {};
+                    obj[pid] = pos;
+                    lp_pos.push(obj);
+                }
+            });
+                if(rem_salary < 0){
+            check = 0;
+             $('#error-msg').html('Salary Cap exceed, Player salaries should be within Salary cap');
+                        $('#error-modal').modal('show');
+        }
+            if (check) {
+                if (lp_teams.length <= 2) {
+                    $('#error-msg').html('Players must span at least 2 teams.');
+                    $('#error-modal').modal('show');
+
+                } else {
+                    $.ajax({
+                        url: '/ajax-handler-lineup',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            method: 'saveuserlineup',
+                            lineup: lp_players,
+                            sports_id: sportsId,
+                            time: time,
+                            rem_salary: rem_salary,
+                            pos_details: lp_pos
+                        },
+                        success: function(response) {
+                            if (response !== 0) {
+                             window.location.href = "/lineup"; 
+                                lineupTeam.length === 0;
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        $("#search").keyup(function() {
+
+            var term = $(this).val().trim().toLowerCase();
+
+            if (term !== "")
+            {
+
+                $("#tblData tbody>tr").hide();
+                $("#tblData td").filter(function() {
+                    return $(this).text().toLowerCase().indexOf(term) > -1;
+                }).parent("tr").show();
+            }
+            else
+            {
+
+                $("#tblData tbody>tr").show();
+            }
+        });
+
+       /* comment by prince for table sort issue $("#search_player").keyup(function() {
+
+            var term = $(this).val().trim().toLowerCase();
+            if (term !== "")
+            {
+                $(".playersTable tbody>tr").hide();
+                $(".playersTable td").filter(function() {
+                    return $(this).text().toLowerCase().indexOf(term) > -1;
+                }).parent("tr").show();
+            }
+            else
+            {
+
+                $(".playersTable tbody>tr").show();
+            }
+            checkList(); 
+        }); */
+        
+      
+
+        /**
+         * Developer     : Vivek Chaudhari   
+         * Date          : 19/08/2014
+         * Description   : edit lineups and update it in my lineups section
+         **/
+        $(document.body).on('click', '#edit_lineup', function() {
+            var count = 0;
+            var rem_salary = parseInt($('#salary_cap_amt').html());
+            var pid;
+            var lineup_id = $('#mylineup_id').val();
+            var list = new Array();
+            var pos_details = new Array();
+            $('#lineup').children('tr').each(function(index, value) {
+                pid = $(this).attr('data-pid');
+                var pos = $(this).attr('data-pcode');
+                var obj = {};
+                obj[pid] = pos;
+
+                pos_details.push(obj);
+                if (pid == undefined) {
+                    count++;
+                } else {
+
+                    list.push(pid);
+                }
+            });
+
+            if (count == 0) {
+                if (rem_salary >= 0) {
+                    $.ajax({
+                        url: '/ajax-handler-lineup',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            method: 'updateuserlineup',
+                            lineup: list,
+                            lineup_id: lineup_id,
+                            rem_salary: rem_salary,
+                            pos_details: pos_details
+                        },
+                        beforeSend: function() {
+                        },
+                        success: function(response) {
+                            if (response != undefined) {
+                                window.location.reload(true);
+                            }
+                        }
+                    });
+
+                } else {
+                    $('#error-msg').html('Salary cap Exceed');
+                    $('#error-modal').modal('show');
+                }
+            } else {
+                $('#error-msg').html('lineup Contains unfilled Positions');
+                $('#error-modal').modal('show');
+            }
+        });
+
+        $(document.body).on('click', '#update_lineup', function(e) {
+            e.preventDefault();
+            var count = 0;
+            var mylineupPlayerList = new Array();
+            var pos_details = [];
+            var lineup_id = $('#mylineup_id').val();
+            var rem_salary = $('#salary_cap_amt').text();
+            $('tbody[id="lineup"]>tr').each(function(z, u) {
+                var pteam = $(this).attr('data-tid');
+                var teamIndex = lineupTeam.indexOf(pteam);// get index of team
+
+                if (teamIndex === -1) {
+                    lineupTeam.push(pteam);
+                }
+                if ($(u).find('.p-name').html() === "") {
+                    count = count + 1;
+                }
+
+                var pos = $(this).attr('data-pcode');
+                var pid = $(this).attr('data-pid');
+                var obj = {};
+                obj[pid] = pos;
+                pos_details.push(obj);
+                mylineupPlayerList.push(pid);
+            });
+            if (count > 0 && lineupTeam.length === 0) {
+				$('#error-msg').html("Lineup contains unfilled positions."); 
+				$('#error-modal').modal('show');
+            }
+            else if (count > 0 && lineupTeam.length <= 2) {                
+				$('#error-msg').html("Lineup contains unfilled positions. \n Players must span at least 2 games."); 
+				$('#error-modal').modal('show');
+            } else if (count === 0 && lineupTeam.length <= 2) {               
+				$('#error-msg').html("Players must span at least 2 games."); 
+				$('#error-modal').modal('show');
+            } else if (count > 0 && lineupTeam.length >= 2) {
+				$('#error-msg').html("Lineup contains unfilled positions."); 
+				$('#error-modal').modal('show');
+            } else {
+                var lineup_id = $('#mylineup_id').val();
+                //            console.log(rem_salary)
+                //            console.log(mylineupPlayerList)
+                lineup_id = $('#mylineup_id').val();
+
+                //            var mylineupList = $('#mylineup_val').val();        
+                //            mylineupPlayerList = mylineupList.split(",");                  
+                $.each(mylineupPlayerList, function(index, value) {
+                    $('.addPlayer*[data-pid="' + value + '"]').parent().parent().hide();
+                });
+                if (mylineupPlayerList.length > 0 && rem_salary > 0) {
+
+                    $.ajax({
+                        url: '/ajax-handler-lineup',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            method: 'updateuserlineup',
+                            lineup: mylineupPlayerList,
+                            lineup_id: lineup_id,
+                            rem_salary: rem_salary,
+                            pos_details: pos_details
+                        },
+                        beforeSend: function() {
+
+                        },
+                        success: function(response) {
+
+                            // window.location.href = "/one-time-offer/"+lineup_id;
+                            window.location.href = "/lineup";
+                            lineupTeam.length === 0;
+                        }
+                        //                    }
+                    });
+                }
+                else {
+                    $('#error-msg').html('Lineup is not valid for submission for the following reason: Salary Cap has been exceeded.');
+                        $('#error-modal').modal('show');
+                $('#salary_cap_amt').focus();
+                }
+            }
+        });
+
+        $('.depth_chart').on('click', function(e) {
+            var dataTeams = $(this).attr('data-team');
+            var teamArr = dataTeams.split('@');	
+            var sportId = $('#sports_id').val();
+            var teams = new Array();
+            if (teamArr[0] != undefined && teamArr[1] != undefined) {
+                teams.push(teamArr[0]);
+                teams.push(teamArr[1]);
+                $.ajax({
+                    url: '/depth-chart',
+                    type: 'POST',
+                    dataType: 'html',
+                    data: {
+                        searchTeam: teams,
+                        sportId: sportId
+                    },
+                    beforeSend: function() {
+						
+                    },
+                    success: function(response) {
+                        $('#depth_chart_popup').find('.modal-body').html(response);
+                        $('#depth_chart_popup').modal('show');
+                    }
+                });
+            }
+        });
+
+        $(document.body).on('click', '.editmylineup', function() {
+            var lineup_id = $(this).parent().attr('data-lid');
+
+            $.ajax({
+                url: '/edit-lineup',
+                type: 'POST',
+                dataType: 'HTML',
+                data: {
+                    lid: lineup_id
+
+                },
+				beforeSend: function() {
+					$("#lineup-tab").prepend('<div class="bodypageloader"></div>');
+				},
+                success: function(response) {
+					$(".bodypageloader").css('display','none');
+                    $('#join_contest_panel').addClass('hidden');
+                    $('#challengepanel').addClass('hidden');
+                    $('#button_panel').removeClass('hidden');
+                    $('#button_panel').html('');
+                    $('#button_panel').html(response);
+
+                    checkList();
+                    $('html,body').animate({
+                        scrollTop: $("#button_panel").offset().top-300},
+                    'slow');
+
+                }
+            });
+        });
+
+
+        $(document.body).on('click', '.challenge', function() {
+            var lineup_id = $(this).parent().attr('data-lid');
+            $.ajax({
+                url: '/create-challenge-ajax',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    method: "getConType",
+                    lid: lineup_id
+                },
+                success: function(response) {
+
+                    if (response.code === 200) {
+                        $('#challengepanel').removeClass('hidden');
+                        $('#join_contest_panel').addClass('hidden');
+                        $('#button_panel').addClass('hidden');
+                        var sportdiv = '<option value="' + response.data.sports_id + '">' + response.data.sportname + ' </option>';
+                        $('.sportname').append(sportdiv);
+                        var timediv = '<option value="' + response.data.start_time + '">' + response.data.sporttime + ' </option>'
+                        $('.sporttime').append(timediv);
+						
+
+                    } else {
+
+                        $('#error-msg').html(response.message);
+                        $('#error-modal').modal('show');
+                    }
+					
+                }
+            });
+        });
+
+
+        $(document.body).on('click', '.change_type', function() {
+            $('#gametype').addClass('hidden');
+            var type = $(this).attr('data-id');
+            if (type == 1) {
+                $('#h2hpanel').removeClass('hidden');
+            } else {
+                $('#lpanel').removeClass('hidden');
+            }
+        });
+
+        $(document.body).on('click', '.hidethis', function() {
+            $('#h2hpanel').addClass('hidden');
+            $('#lpanel').addClass('hidden');
+            $('#gametype').removeClass('hidden');
+        });
+
+
+        $(document.body).on('click', '.join_contest', function() {
+
+            var lineup_id = $(this).attr('data-val');
+            $.ajax({
+                url: '/contest-details-ajax',
+                type: 'POST',
+                dataType: 'HTML',
+                data: {
+                    lid: lineup_id
+
+                },
+                success: function(response) {
+                    $('#challengepanel').addClass('hidden');
+                    $('#button_panel').addClass('hidden');
+                    $('#join_contest_panel').removeClass('hidden');
+                    $('#join_contest_panel').html('');
+                    $('#join_contest_panel').html(response);
+					
+					$('html,body').animate({
+                        scrollTop: $("#join_contest_panel").offset().top-200},
+                    'slow');
+                }
+            });
+        });
+
+
+        $(document.body).on('click', '.create_challenge', function() {
+            var contestType = $(this).attr('data-ctype');
+            var fee = $('.entryfee').val();
+            var time = $('.sporttime').val();
+            var sportid = $('.sportname').val();
+            var playwith = $('.playwith:checked').val();
+
+            var prizetype = $('#league_prize').val();
+            var playlimit = $('#play_limit').val();
+            $.ajax({
+                url: '/create-challenge-ajax',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    method: "createChallenge",
+                    contestType: contestType,
+                    fee: fee,
+                    time: time,
+                    sportid: sportid,
+                    playwith: playwith,
+                    prizetype: prizetype,
+                    playlimit: playlimit
+                },
+                success: function(response) {
+                    if (response.code == 200) {
+                        if (playwith == 1) {
+                            $('#error-msg').html('Challenge Created Successfully, Please invite your Friends');
+                            var href = "/invite/" + response.data;
+//                          
+                        } else {
+                            $('#error-msg').html('Challenge Created Successfully, Please Create your Lineup');
+                            var href = "/draftteam/" + response.data;
+                        }
+                        $('#error-modal').modal('show');
+                        window.setInterval(function() {
+                            window.location.href = href;
+                        }, 10000);
+
+                    } else {
+                        $('#error-msg').html(response.message);
+                        $('#error-modal').modal('show');
+                    }
+                }
+            });
+        });
+
+
+        $(document.body).on('click', '.export_lineup', function() {
+            var lid = $(this).attr('data-val');
+            if (lid) {
+                $.ajax({
+                    url: '/ajax-handler-lineup',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'exportlineup',
+                        lid: lid
+                    },
+                    success: function(response) {
+                        if (response.code == 200) {
+                            var url = '/assets/csv/exportlineup.csv';
+                            window.location = url;
+                        } else {
+                            $('#button_panel').html('Unable to export lineup, please try again');
+                            $('#button_panel').html(response);
+                        }
+                    }
+                });
+            }
+        });
+
+        $(document.body).on('click', '#step2', function() {
+            var sportid = $('.selectsport:checked').val();
+            var time = $('.gametime:checked').val();
+
+            if (sportid == undefined || sportid == "") {
+                $('#error-msg').html('Please select the sport');
+                $('#error-modal').modal('show');
+            } else if (time == undefined || time == "") {
+
+                $('#error-msg').html('please select the match time to create lineup for');
+                $('#error-modal').modal('show');
+            } else {
+                $.ajax({
+                    url: '/new-lineup',
+                    type: 'POST',
+                    dataType: 'HTML',
+                    data: {
+                        gid: sportid,
+                        time: time
+                    },
+                    success: function(response) {
+                        $('#step1and2').addClass('hidden');
+                        $('#step3').removeClass('hidden');
+                        $('#step3').html(response);
+                    }
+                });
+            }
+        });
+
+        $(document.body).on('click', '.selectsport', function() {
+            if ($(this).prop("checked")) {
+                var id = $(this).attr('id');
+                $('.gametimes').addClass('hidden');
+                $('.gametimes[id=' + id + ']').removeClass('hidden');
+            }
+        });
+
+
+        $(document.body).on('click', '.joinall', function() {
+
+            var balance = $('#balance').attr('data-balance');
+
+            var cid = [];
+            var cost = 0;
+            var fee;
+            var check = 0;
+            $('.contest-names').html('');
+            $(document.body).find('.joincheck:checked').each(function() {
+                check = 1;
+                var name = $(this).parent().siblings('.con-name').text();
+                var contest = $(this).parent().parent().find('.select').siblings().attr('data-cid');
+                fee = $(this).parent().parent().find('.select').attr('data-fee');
+
+                cost += Number(fee);
+                cid.push(contest);
+                $('.contest-names').append('<li>' + name + '</li>');
+            });
+            $('#cost').html(cost);
+
+            if (Number(cost) > Number(balance)) {
+                
+                $('.enter').html('');
+                $('.enter').html('Deposit Now >>');
+                $('.enter').attr('href', '/deposit');
+            }
+
+            if (check) {
+                $('.all-enrty-check').modal('show');
+            } else {
+                $('#error-msg').html('Please select a Contest');
+                $('#error-modal').modal('show');
+            }
+
+
+        });
+
+        $(document.body).on('click', '#lineupSubmit', function(e) { //alert('test')
+            var check = 1;
+            var lp_players = new Array();
+            var lp_teams = new Array();
+            var lp_pos = new Array();
+            var rem_salary = parseInt($('#salary_cap_amt').text());
+            var time = $('#time').val();
+            $('#lineup>tr').each(function() {
+                if (check) {
+                    if ($(this).children('.p-name').html() == "") {
+                        check = 0;
+						$('#error-msg').html('Lineup contains unfilled positions, please complete the lineup');
+						$('#error-modal').modal('show');
+                    }
+                }
+                if ($(this).children('.p-name').html() != "") {
+                    var pid = $(this).attr('data-pid');
+                    var pteam = $(this).attr('data-pteam');
+                    lp_teams.push(pteam);
+                    lp_players.push(pid);
+                    var pos = $(this).attr('data-pcode');
+                    var obj = {};
+                    obj[pid] = pos;
+                    lp_pos.push(obj);
+                }
+            });
+			
+			if(rem_salary < 0){
+				check = 0;
+				$('#error-msg').html('Salary Cap exceed, Player salaries should be within Salary cap');
+				$('#error-modal').modal('show');
+			}
+			
+            if (check) {
+				<?php if (isset($this->lowbalance)) { ?>
+									$('#depositModal').modal('show');
+				<?php } else { ?>
+									$('#submitModal').modal('show');
+				<?php } ?>
+            }
+
+        });
+		
+        $(document.body).on('click', '#submit_lineup', function() { 
+            var sportsId = $('#sports_id').val();
+            var tstatus = $('#ticketcode').attr('tstatus');
+            var ticketid = $('#ticketcode').attr('ticketid');
+
+            var sports_id = $('#sports_id').val();
+            var conid = $('#conid').val();
+            var start_time = $('#startTime').val();
+            var rem_salary = $('#salary_cap_amt').html();
+            var end_time = $('#endTime').val(); // Manoj (29th Oct 14)
+            var pos_details = [];
+            var arr = [];
+            $("#lineup").children('tr').each(function() {
+                var pos = $(this).attr('data-pcode');
+                var pid = $(this).attr('data-pid');
+                var obj = {};
+                obj[pid] = pos;
+                arr.push(pid);
+                pos_details.push(obj);
+
+            });
+			
+            $.ajax({
+                url: '/ajax-handler-lineup',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    method: 'savelineup',
+                    lineup: arr,
+                    sports_id: sports_id,
+                    conid: conid,
+                    start_time: start_time,
+                    rem_salary: rem_salary,
+                    end_time: end_time, // Manoj (29th Oct 14)
+                    pos_details: pos_details, // vivek (5th nov 14)
+                    tstatus: tstatus,
+                    ticketid: ticketid
+                },
+                beforeSend: function() {
+					$(".modal-content").prepend('<div class="bodypageloader"></div>');
+                },
+                success: function(response) {
+					$(".bodypageloader").css('display','none');
+                    if (response.code === 200) {
+                        top.location.href = "/onlineOffer/" + response.data;
+                        lineupTeam.length === 0;
+                    } else {
+                        $('#error-msg').html('Entry Full');
+						$('#error-modal').modal('show');
+
+                    }
+                }
+
+            });
+        });
+
+		// this is ticket code validation when user has no sufficient balance
+		
+        $(document.body).on('click', '#applyticket2', function(e) {
+            e.preventDefault();
+            var ticketcode = $("#ticketcode2").val();
+            var contestId = $('#con_id').val();
+            if (ticketcode != "") {
+                $.ajax({
+                    url: '/contest-ajax-handler',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'useticket',
+                        code: ticketcode,
+                        contestId: contestId
+                    },
+					beforeSend: function() {
+						$(".modal-content").prepend('<div class="bodypageloader"></div>');
+					},
+                    success: function(response) {
+						$(".bodypageloader").css('display','none');
+                        if (response.code == 200) {
+                            $('#ticket_msg2').text('');
+                            $('#ticket_msg2').text(response.message);
+                            $('#ticket_msg2').css('color', 'green');
+                            $("#ticketcode2").attr('ticketid', response.data);
+                            $("#ticketcode2").attr('tstatus', 1);
+							
+							$('#promoContainer2').attr('style', 'display:none;');							
+							$('#enternowtocontest').attr('style', 'background-color:green;');							
+							$('#enternowtocontest').html('ENTER NOW >>');
+							$('#enternowtocontest').attr('href', '#');
+							$('#enternowtocontest').attr('id', 'submit_lineup2');
+                            //$('#con_cost').text('TOTAL CONTEST COST - Free');
+                        } else if (response.code == 197) {
+                            $('#ticket_msg2').text('');
+                            $('#ticket_msg2').text(response.message);
+                            $('#ticket_msg2').css('color', 'red');
+                            $("#ticketcode2").attr('ticketid', 0);
+                            $("#ticketcode2").attr('tstatus', 0);
+                            //$('#con_cost').text('TOTAL CONTEST COST -' + $('#con_cost').attr('data-cost'));
+                        }
+                    }
+                });
+            } else {
+                alert('Please provide Ticket Code');
+            }
+        });
+		
+		
+		
+		$(document.body).on('click', '#applyticket', function(e) {
+            e.preventDefault();
+            var ticketcode = $("#ticketcode").val();
+            var contestId = $('#conid').val();
+            if (ticketcode != "") {
+                $.ajax({
+                    url: '/contest-ajax-handler',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'useticket',
+                        code: ticketcode,
+                        contestId: contestId
+                    },
+					beforeSend: function() {
+						$(".modal-content").prepend('<div class="bodypageloader"></div>');
+					},
+                    success: function(response) {
+						$(".bodypageloader").css('display','none');
+                        if (response.code == 200) {
+                            $('#ticket_msg-1').text('');
+                            $('#ticket_msg-1').text(response.message);
+                            $('#ticket_msg-1').css('color', 'green');
+                            $("#ticketcode").attr('ticketid', response.data);
+                            $("#ticketcode").attr('tstatus', 1);
+                            $('#con_cost').text('TOTAL CONTEST COST - Free');
+                        } else if (response.code == 197) {
+                            $('#ticket_msg-1').text('');
+                            $('#ticket_msg-1').text(response.message);
+                            $('#ticket_msg-1').css('color', 'red');
+                            $("#ticketcode").attr('ticketid', 0);
+                            $("#ticketcode").attr('tstatus', 0);
+                            $('#con_cost').text('TOTAL CONTEST COST -' + $('#con_cost').attr('data-cost'));
+                        }
+                    }
+                });
+            } else {
+                $('#error-msg').html('Please provide Ticket Code');
+				$('#error-modal').modal('show');
+            }
+        });
+
+        $(document.body).on('click', '.modal-body #conftc', function() {
+            var result = $(this).val();
+            if ($(this).prop('checked') == true) {
+                $('.enableagree').attr('id', 'submit_lineup');
+            } else {
+                $('.enableagree').removeAttr('id');
+            }
+        });
+
+
+        $(document.body).on('click', '#enter-confirm', function() {
+            var lid = $('#lineup-id').attr('data-lid');
+            var cost = 0;
+            var fee = 0;
+            var cid = [];
+            var time = [];
+            var sport = [];
+            $(document.body).find('.joincheck:checked').each(function() {
+                var contest = $(this).parent().parent().find('.select').siblings().attr('data-cid');
+                var contime = $(this).parent().parent().find('.select').attr('data-time');
+                fee = $(this).parent().parent().find('.select').attr('data-fee');
+
+                cost += Number(fee);
+                time.push(contime);
+                cid.push(contest);
+            });
+            if (cid.length > 0) {
+                $.ajax({
+                    url: '/ajax-handler-lineup',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'samelineupcontests',
+                        cid: cid,
+                        time: time,
+                        cost: cost,
+                        lid: lid
+                    },
+                    beforeSend: function() {
+                    },
+                    success: function(response) {
+                        if (response != 0) {
+                            window.location.reload(true);
+                        }
+                        else {
+                            alert("play limit exceeded");
+                        }
+                    }
+                });
+            }
+        });
+
+
+        /**
+         * Developer     : Vivek Chaudhari   
+         * Date          : 01/08/2014
+         * Description   : get the swap in player in global player swap section 
+         */
+        $(document.body).on('click', '#globalplayer', function() {
+            $.ajax({
+                url: '/swap-lineup',
+                type: 'POST',
+                dataType: 'HTML',
+                success: function(response) {
+                    $('#gps_tabs').html('');
+                    $('#gps_tabs').append(response);
+                }
+            });
+        });
+
+        $('#filter').click(function() {
+            $('#filter-menu').toggle('hidden');
+        });
+
+        $('#close_filter').click(function() {
+            $('#filter-menu').toggle('hidden');
+        });
+
+        $('#all_status').change(function() {
+            var status = $(this).prop('checked');
+            $('.con_status').each(function() {
+                $(this).prop('checked', status);
+            });
+        });
+
+        $('#all_sport').change(function() {
+            var status = $(this).prop('checked');
+            $('.con_sport').each(function() {
+                $(this).prop('checked', status);
+            });
+        });
+
+//        $('#apply_filter').click(function(){
+//                    var statusArr = []; var sportArr = [];
+//                    $('.con_status').each(function(){
+//                            if($(this).prop('checked')){
+//                                var status = $(this).attr('status-val');
+//                                if(status!=undefined){
+//                                    statusArr.push(status);
+//                                }
+//                            }
+//                    });
+//                     $('.con_sport').each(function(){
+//                            if($(this).prop('checked')){
+//                                var sport = $(this).attr('sport-val');
+//                                if(sport!=undefined){
+//                                    sportArr.push(sport);
+//                                }
+//                            }
+//                    });
+//
+//                    $('.all-lineups').each(function(){
+//                       var status = $(this).attr('data-status');
+//                       var sport = $(this).attr('data-sport');
+//                       var showStatus=false;
+//                       var showSport=false;
+//                       if(statusArr.length !=0){
+//                       if($.inArray(status,statusArr) != -1){
+//                           showStatus = true;
+//                       }
+//                       }
+//
+//                       if(sportArr.length !=0){
+//                               if($.inArray(sport,sportArr) != -1){
+//                                   showSport = true;
+//                               }
+//                           }
+//                           if(showStatus==true && showSport==true){
+//                               $(this).show();
+//                           }else{
+//                               $(this).hide();
+//                           }
+//                    });
+//                });
+
+        //Dev :priyanka varanasi 
+        //Date: 13/11/2015
+        //Desc: modified the code of  lineups filter
+        $('#apply_filter').click(function() {
+
+            var statusArr = [];
+            var sportArr = [];
+            $('.con_status').each(function() {
+                if ($(this).prop('checked')) {
+                    var status = $(this).attr('status-val');
+                    if (status != undefined) {
+                        statusArr.push(status);
+
+                    }
+
+                }
+            });
+            $('.con_sport').each(function() {
+                if ($(this).prop('checked')) {
+                    var sport = $(this).attr('sport-val');
+                    if (sport != undefined) {
+                        sportArr.push(sport);
+                    }
+                }
+            });
+
+            $('.all-lineups').each(function() {
+                var status = $(this).attr('data-status');
+                var sport = $(this).attr('data-sport');
+                var showStatus = false;
+                var showSport = false;
+                if (statusArr.length != 0) {
+                    if ($.inArray(status, statusArr) != -1) {
+                        showStatus = true;
+                    } else {
+                        showStatus = false;
+                    }
+                } else {
+                    showStatus = true;
+                }
+
+                if (sportArr.length != 0) {
+                    if ($.inArray(sport, sportArr) != -1) {
+                        showSport = true;
+                    } else {
+                        showSport = false;
+
+                    }
+                } else {
+                    showSport = true;
+                }
+                if (showStatus == true && showSport == true) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        $(document.body).on('click', '#withdraw', function() {
+            var cid = $(this).attr('data-cid');
+            var lid = $(this).attr('data-lid');
+            var price = $(this).attr('data-price');
+			
+            $.ajax({
+                url: '/contest-ajax-handler',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    method: 'cancelcontest',
+                    cid: cid,
+                    lid: lid,
+                    price: price
+                },
+                beforeSend: function() {
+					$(".modal-content").prepend('<div class="bodypageloader"></div>');
+                },
+                success: function(response) {
+
+                    window.location.href = "/home";
+
+                }
+            });
+        });
+
+        //////////////////#########OLD SCRIPTS NOT CHECKED ##############///////////////////
+
+        $(document.body).on('click', '.contest_details', function() {
+            var contestId = $(this).attr('data-id');
+            var drafttype = $(this).attr('data-draft');
+            $.ajax({
+                url: '/contest-details',
+                type: 'POST',
+                dataType: 'html',
+                data: {
+                    cid: contestId,
+                    drafttype: drafttype
+                },
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                    $(document.body).find('#contestdetails_body').html(response)
+                    $('#contestModal').modal('show');
+                }
+            });
+
+        });
+
+        $('#importLineup').on('show.bs.modal', function(e) {
+            var conId = $('#conid').val();
+            var lineupId = $('#mylineup_id').val();
+            $.ajax({
+                url: '/import-lineup',
+                type: 'POST',
+                dataType: 'HTML',
+                data: {
+                    conid: conId,
+                    lineupid: lineupId
+                },
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+
+                    $('.import-body').html(response);
+
+                }
+            });
+        });
+
+        $(document.body).on('click', '#import_selected', function() {
+            if ($('.sel_import').is(':checked')) {
+                //dev:priyanka varanasi  added this line of script to ge teh players from selected line up//
+                //Date:18/11/2015
+                var cur = $('.importeddiv > input[type="radio"]:checked').parent();
+                //////////////////////////code ends//////////////
+                var remSalary = $('.sel_import').attr('data-rem');
+                rimSal = remSalary;
+                rimAvg = 0;
+                $('#salary_cap_amt').html(remSalary);
+                $('#avg_rim').html('0');
+                var plist = [];
+                $("#lineup").find('tr').each(function() {
+
+                    var plrid = $(this).attr('data-pid');
+                    plist.push(plrid);
+                });
+                $.each(plist, function(index, value) {
+
+                    $('*[data-pid="' + value + '"]').children('.p-name').html('');
+                    $('*[data-pid="' + value + '"]').children('.opp').html('');
+                    $('*[data-pid="' + value + '"]').children('.pts').html('');
+                    $('*[data-pid="' + value + '"]').children('.salary').html('');
+                    $('*[data-pid="' + value + '"]').children('.last').html('');
+                    $('*[data-pid="' + value + '"]').parent().parent().show();
+                    $('*[data-pid="' + value + '"]').removeAttr('data-pid');
+
+                });
+
+                // $(this).parent().parent().find('.players').each(function(index,value){
+
+                //dev:priyanka varanasi  coomented the above line of code and modified that code to //
+                //Date:18/11/2015  
+                cur.find('.players').each(function(index, value) {
+                    ////////////code ends /////////////////////
+                    var name = $(this).find('.name').html();
+                    var pcode = $(this).find('.pcode').html();
+                    var opp = $(this).find('.oppcode').html();
+                    var salary = $(this).attr('data-salary');
+                    var tid = $(this).attr('data-tid');
+                    var pid = $(this).attr('data-ppid');
+
+                    $('#lineup >tr[data-pcode="' + pcode + '"]').each(function(cindex, value) {
+
+                        if ($(this).children('.p-name').html() == "") {
+                            $(this).attr('data-pval', salary);
+                            $(this).attr('data-pid', pid);
+                            $(this).children('.p-name').html('<a data-pid="' + pid + '" data-tid="' + tid + '" data-target="#playerDetailsModal" style="cursor:pointer;" id="green" data-toggle="modal">' + name + '</a>');
+
+                            $(this).children('.opp').html(opp);
+                            $(this).children('.pts').html('4.1');
+                            $(this).children('.salary').html("$ " + salary);
+                            $(this).children('.last').html('<a class="remPlayer"><img src="/assets/images/cross2.png" /></a>');
+                            if (typeof (tid) != 'undefined') {
+//                            lineupTeam.push(tid);
+                            }
+                            if (typeof (pid) != 'undefined') {
+                                playerlist.push(pid);
+//                            mylineupPlayerList.push(pid);
+                            }
+                            return false;
+                        }
+                    });
+                });
+            } else {
+                $('#error-msg').html('Please select a lineup for import');
+                $('#error-modal').modal('show');
+            }
+        });
+
+        $(document.body).on('click', '.export', function() {
+
+            var lineup_id = $(this).attr('data-val');
+            $.ajax({
+                url: './export-ajax',
+                type: 'POST',
+                dataType: 'HTML',
+                data: {
+                    lid: lineup_id
+                },
+                success: function(response) {
+                    $('#exportLineup').html('');
+                    $('#exportLineup').html(response);
+                }
+            });
+        });
+
+
+
+
+        $(document.body).on('click', '.joinmultiple', function() {
+
+            var balance = $('#balance').attr('data-balance');
+            var conids = new Array;
+            var cost = 0;
+            var fee;
+            var check = 0;
+            $('.contest-names').html("");
+            $(document.body).find('.multiplecheck:checked').each(function() {
+                check = 1;
+                var i = 0;
+                var name = [];
+                name[i] = $(this).parent().siblings('.condetails').text();
+                var contest = $(this).parent().siblings('.condetails').attr('data-cid');
+                fee = $(this).parent().siblings('.condetails').attr('data-fee');
+                cost += Number(fee);
+                conids.push(contest);
+                $('.contest-names').append('<li>' + name[i] + '</li>');
+                i++;
+            });
+
+            $('#cost').html(cost);
+//      $('#mcheck-confirm').parent().parent().css('display','none');
+            if (Number(cost) > Number(balance)) {
+                $('#mcheck-confirm').parent().parent().html('');
+                $('.enter').html('');
+                $('.enter').html('Deposit Now >>');
+                $('.enter').attr('href', '/deposit');
+            }
+
+            if (check) {
+                $('.multiple-enrty').modal('show');
+            } else {
+
+                $('#error-msg').html('Please select a Contest');
+                $('#error-modal').modal('show');
+            }
+
+            $(document.body).on('click', '#mcheck-confirm', function() {
+                if ($(this).prop('checked')) {
+                    $('.enter').attr('id', 'multiple-confirm');
+                } else {
+                    $('.enter').removeAttr('id');
+                }
+            });
+
+        });
+
+        $(document.body).on('click', '#multiple-confirm', function() {
+            var lid = $('#lineup-id').attr('data-lid');
+            var balance = $('#balance').attr('data-balance');
+            //alert()
+            var cost = 0;
+            var fee = 0;
+            var cid = [];
+            var time = [];
+            var sport = [];
+            $(document.body).find('.multiplecheck:checked').each(function() {
+                var contest = $(this).parent().siblings('.condetails').attr('data-cid');
+                var contime = $(this).parent().siblings('.condetails').attr('data-time');
+                fee = $(this).parent().siblings('.condetails').attr('data-fee');
+                cost += Number(fee);
+                time.push(contime);
+                cid.push(contest);
+
+            });
+            $('#cost').html(cost);
+            //alert(cost);
+            if ((cid.length > 0) && (balance >= cost)) {
+
+                $.ajax({
+                    url: '/ajax-handler-lineup',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'samelineupcontests',
+                        cid: cid,
+                        time: time,
+                        cost: cost,
+                        lid: lid
+                    },
+                    beforeSend: function() {
+                    },
+                    success: function(response) {
+                        if (response != 0) {
+                            $(".multiple-enrty").modal('hide');
+                            $('#contest-entry-successmessage').modal('show');
+                            $.each(response, function(index, value) {
+                                $('#enteredcontestdet').append('<div class="contestinfo"><h5><p style="color:#FF9900; padding-right:5px;"></br>' + value.contest_name + '</p><h5></div>');
+                                $('#contest-entry-successmessage').on('hidden.bs.modal', function(e) {
+                                    window.location.reload(true);
+                                })
+                            })
+                        }
+                        else {
+                            $('#error-msg').html('Entry Full');
+                            $('#error-modal').modal('show');
+                        }
+
+
+                    }
+                });
+
+
+            } else {
+                $('#error-msg').html("You don't have sufficient balance !");
+                $('#error-modal').modal('show');
+                top.location.href = "/deposit";
+            }
+        });
+
+
+
+
+
+//        $('#contestModal').on('show.bs.modal', function (e) {
+//            var cid = $(e.relatedTarget).attr('data-cid');  
+//            var drafttype = $(e.relatedTarget).attr('drafttype');
+//            $.ajax({            
+//                url      : '/contest-details',
+//                type     : 'POST',
+//                dataType : 'HTML',
+//                data : {
+//                    cid   : cid,
+//                    drafttype : drafttype
+//                },
+//                beforeSend : function() { 
+//                },
+//                success : function(response) {  
+//                    $('#contestdetails_body').html(response);
+//                }
+//            });
+//        });
+
+        $(document.body).on('click', '.swap', function(e) {
+            var playerout = $(this).parent().siblings('.p-name').children().html();
+            //alert(playerout);
+            var pid = $(this).parent().parent().attr('data-pid');
+            var pcode = $(this).parent().parent().attr('data-pcode');
+            var salary = $(this).parent().parent().attr('data-salary');
+            var lid = $(this).parent().parent().attr('data-lid');
+            var cid = $(this).parent().parent().attr('data-cid');
+            $('.criteria').html("PLAYER POOL CRITERIA " + pcode + ' and ' + salary + ' DFS or less');
+            if (playerout) {
+                $('#swap_in').val('');
+                $('#swap_in').attr('data-pid', '');
+                $('#swap_out').val(playerout);
+                $('#swap_out').attr('data-lid', lid);
+                $('#swap_out').attr('data-cid', cid);
+                $('#swap_out').attr('data-pid', pid);
+            }
+            if (salary) {
+                $.ajax({
+                    url: '/swap-ajax-handler',
+                    Type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        method: 'getSwapPlayer',
+                        salary: salary,
+                        pcode: pcode,
+                        cid: cid
+                    },
+                    success: function(response) {
+                        //$('.description').hide();
+                        $('.availableplayer ').show();
+
+                        $('.swapteam').html('');
+                        $.each(response, function(index, value) {
+
+                            $('.swapteam').append('<tr data-pid="' + value.id + '"><td class="pname"><a href="javascript:vouid(0);" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="' + value.details.id + '">' + value.details.name + '</a></td><td>' + value.details.team_code + '</td><td>' + value.fppg + '</td><td>' + value.salary + ' DFS</td><td><a class="swapplayer pointer"><span class="text-green-light pointer"><i class="fa fa-plus"></i></span></a></td></tr>')
+                        });
+                    }
+                });
+            }
+        });
+        //===============================================================================================================================//
+        /**
+         * Developer     : Vivek Chaudhari   
+         * Date          : 01/08/2014
+         * Description   : insert player name in global player swap section
+         *///------------------------------------------------------------------------------------------
+        $(document.body).on('click', '.swapplayer', function() {
+            $('html,body').animate({
+                scrollTop: $(".apply-swap").offset().top-300},
+            'slow');
+            var pname = $(this).parent().siblings().siblings('.pname').children('a').html();
+
+            var pid = $(this).parent().parent().attr('data-pid');
+            if (pname) {
+                $('#swap_in').val(pname);
+                $('#swap_in').attr('data-pid', pid);
+            }
+        });//===========================================================================================
+        /**
+         * Developer     : Vivek Chaudhari   
+         * Date          : 01/08/2014
+         * Description   : update lineup with swapped player
+         *///-------------------------------------------------------------------------------------------------------------//
+        $(document.body).on('click', '#apply_swap', function() {
+            var playerIn = $('#swap_in').attr('data-pid');
+            var playerOut = $('#swap_out').attr('data-pid');
+            var cid = $('#swap_out').attr('data-cid');
+            var lid = $('#swap_out').attr('data-lid');
+            var errormsg = 'This Lineup Is Not Joined In Any Contest!!';
+
+
+
+            if ((typeof (playerOut) == 'undefined') || playerOut == "") {
+                $('#error-msg').html('Please select swap out player');
+                $('#error-modal').modal('show');
+            } else if (typeof (playerIn) == 'undefined' || playerIn == "") {
+                $('#error-msg').html('Please select swap in player');
+                $('#error-modal').modal('show');
+            } else
+            if ((typeof (playerIn) != 'undefined') && (typeof (playerOut) != 'undefined') && playerOut == playerIn) {
+                $('#error-msg').html('You cannot swap a player for the same player');
+                $('#error-modal').modal('show');
+
+            }
+            else if ((typeof (playerIn) != 'undefined') && (typeof (playerOut) != 'undefined')) {
+                $.ajax({
+                    Type: "POST",
+                    url: '/swap-ajax-handler',
+                    dataType: 'json',
+                    data: {
+                        cid: cid,
+                        lid: lid,
+                        playerIn: playerIn,
+                        playerOut: playerOut,
+                        method: 'updateLineup'
+
+                    },
+                    success: function(response) {
+
+                        $('.contestmsg').children('ul').html('');
+                        $('.contestmsg').show();
+
+                        $.each(response, function(index, value) {
+                            if (value != null) {
+                                $('.contestmsg').children('ul').append('<li><h4>' + value + '</h4></li>')
+                            } else {
+                                $('.contestmsg').children('ul').append('<li><h4>' + errormsg + '</h4></li>')
+                            }
+                        });
+                    }
+                });
+            }
+
+        });
+
+
+
+        $(document.body).on('change', '#swap_sport', function() {
+            var sport = parseInt($(this).val());
+            var time = parseInt($('#swap_time').val());
+            var swapLineup = new Array();
+            var dropValue = new Array();
+            swapLineup = <?php
+if (isset($this->session->storage->swap_lineups)) {
+    echo json_encode($this->session->storage->swap_lineups);
+} else {
+    echo 0;
+}
+?>;
+            dropValue = <?php
+if (isset($this->session->storage->drop_value)) {
+    echo json_encode($this->session->storage->drop_value);
+} else {
+    echo 0;
+}
+?>;
+            $.each(swapLineup, function(dindex, dval) {
+                $('#swap_tbl_data').html('');
+                if (parseInt(dval.sportId) == sport) {
+                    $.each(dval.players, function(pindex, pval) {
+                        var div = '<tr data-salary="' + pval.plr_value + '" data-sprid="' + dval.sportId + '" data-lid="' + dval.lineupId + '"  data-pcode="' + pval.pos_code + '" data-pid="' + pval.plr_id + '" data-cid="' + dval.contestId + '" class="active">' +
+                                '<td class="pos">' + pval.position + '</td>' +
+                                '<td class="p-name"  style= "cursor:pointer;"><a href="#"  id="green" class="playerDetails" data-target="#playerDetailsModal" data-toggle="modal" data-pid="' + pval.plr_id + '">' + pval.name + '</a></td>' +
+                                '<td class="opp">' + pval.team_code + '@' + pval.team_vs + '</td>' +
+                                '<td class="pts">' + pval.fppg + '</td>' +
+                                '<td class="salary">' + pval.plr_value + '</td>' +
+                                '<td class="last"><a class="swap"><img src="/assets/images/cross2.png"></a></td>'
+                        '</tr>';
+                        $('#swap_tbl_data').append(div);
+                    });
+                    return false;
+                }
+            });
+
+            $.each(dropValue, function(dvindex, dvval) {
+                $('#swap_time').html('');
+                if (parseInt(dvval.sport) == sport) {
+                    $.each(dvval.time, function(tindex, tval) {
+                        var tdiv = '<option value=' + tindex + '>' + tval + '</option>';
+                        $('#swap_time').append(tdiv);
+                    });
+
+                }
+            });
+        });
+
+
+        $(document.body).on('change', '#swap_time', function() {
+            var time = parseInt($(this).val());
+            var sport = parseInt($('#swap_sport').val());
+            var swapLineup1 = new Array();
+            var dropValue1 = new Array();
+            swapLineup1 = <?php
+if (isset($this->session->storage->swap_lineups)) {
+    echo json_encode($this->session->storage->swap_lineups);
+} else {
+    echo 0;
+}
+?>;
+            dropValue1 = <?php
+if (isset($this->session->storage->drop_value)) {
+    echo json_encode($this->session->storage->drop_value);
+} else {
+    echo 0;
+}
+?>;
+
+            $.each(swapLineup1, function(dindex, dval) {
+                if (parseInt(dval.sportId) === sport) {
+                    if (parseInt(dval.time) == time) {
+                        $('#swap_tbl_data').html('');
+                        $.each(dval.players, function(pindex, pval) {
+                            var div = '<tr data-salary="' + pval.plr_value + '" data-sprid="' + dval.sportId + '" data-lid="' + dval.lineupId + '"  data-pcode="' + pval.pos_code + '" data-pid="' + pval.plr_id + '" data-cid="' + dval.contestId + '" class="active">' +
+                                    '<td class="pos">' + pval.position + '</td>' +
+                                    '<td class="p-name"  style= "cursor:pointer;"><a href="javascript:void(0);"  id="green" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="' + pval.plr_id + '">' + pval.name + '</a></td>' +
+                                    '<td class="opp">' + pval.team_code + '@' + pval.team_vs + '</td>' +
+                                    '<td class="pts">' + pval.fppg + '</td>' +
+                                    '<td class="salary">' + pval.plr_value + '</td>' +
+                                    '<td class="last"><a class="swap"><span class="text-green-light pointer"><i class="fa fa-times"></i></i></span></a></td>'
+                            '</tr>';
+                            $('#swap_tbl_data').append(div);
+                        });
+                        return false;
+                    }
+                }
+            });
+        });
+//============================================end swap player section===========================================================================//
+
+
+
+    });//ready ends
+
+</script>
+
+
+<script>
+
+	// make entry in contest using ticket code with no balance	
+	$(document.body).on('click', '#submit_lineup2', function() {
+		var tstatus = $('#ticketcode2').attr('tstatus');
+		var ticketid = $('#ticketcode2').attr('ticketid');
+
+		var sports_id = $('#sports_id').val();
+		
+		var conid = $('#conid').val();
+		var start_time = $('#startTime').val();
+		var rem_salary = $('#salary_cap_amt').html();
+		var end_time = $('#endTime').val(); // Manoj (29th Oct 14)
+		var pos_details = [];
+		var arr = [];
+		$("#lineup").children('tr').each(function() {
+			var pos = $(this).attr('data-pcode');
+			var pid = $(this).attr('data-pid');
+			var obj = {};
+			obj[pid] = pos;
+			arr.push(pid);
+			pos_details.push(obj);
+
+		});
+		$.ajax({
+			url: '/ajax-handler-lineup',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				method: 'savelineup',
+				lineup: arr,
+				sports_id: sports_id,
+				conid: conid,
+				start_time: start_time,
+				rem_salary: rem_salary,
+				end_time: end_time, // Manoj (29th Oct 14)
+				pos_details: pos_details, // vivek (5th nov 14)
+				tstatus: tstatus,
+				ticketid: ticketid
+			},
+			beforeSend: function() {
+
+			},
+			success: function(response) {
+				if (response.code === 200) {
+					top.location.href = "/onlineOffer/" + response.data;
+					lineupTeam.length === 0;
+				} else {
+					alert('Entry full');
+				}
+			}
+
+		});
+	});
+	
+	
+	$(document.body).on('click','#pay_dfs_now',function(e){
+		var dfs_txn_id = $('#dfs_txn_id').val();
+		if((dfs_txn_id !=null) && (dfs_txn_id !='')){
+			//$("#deposit_dfs").submit();
+			$.ajax({
+				url: '/deposit',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					dfs_txn_id: dfs_txn_id
+				},
+				success: function(response) {
+					$("#err_msg").hide();
+					$("#err_msg").html(response.message);
+					if(response.status ==1){
+						$("#err_msg").css('color','green');
+						$("#err_msg").show();
+						setTimeout(function() {location.reload();}, 2000);
+					} else {
+						$("#err_msg").css('color','red');
+						$("#err_msg").show();
+					}
+				}
+
+			});
+		} else {
+			$("#err_msg").html("*Please enter your transaction id copied from desktop wallet");
+			$("#err_msg").css('color','red');
+			$("#err_msg").show();
+		}
+	});
+</script>

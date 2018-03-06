@@ -1,0 +1,2 @@
+[05-Jul-2017 07:07:43 UTC] PHP Fatal error:  Class 'Postmark\PostmarkClientBase' not found in /home/draftdaily/public_html/vendor/wildbit/postmark-php/src/Postmark/PostmarkAdminClient.php on line 13
+[05-Jul-2017 07:10:03 UTC] PHP Fatal error:  Class 'Postmark\PostmarkClientBase' not found in /home/draftdaily/public_html/vendor/wildbit/postmark-php/src/Postmark/PostmarkClient.php on line 12

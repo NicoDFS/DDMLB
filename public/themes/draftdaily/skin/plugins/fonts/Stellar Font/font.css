@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Stellar-Medium';
+  src: url('Stellar-Medium.eot');
+  src: url('Stellar-Medium.eot?#iefix') format('embedded-opentype'),
+       url('Stellar-Medium.woff') format('woff'),
+       url('Stellar-Medium.ttf') format('truetype'),
+       url('Stellar-Medium.svg#Stellar-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stellar-Bold';
+  src: url('Stellar-Bold.eot');
+  src: url('Stellar-Bold.eot?#iefix') format('embedded-opentype'),
+       url('Stellar-Bold.woff') format('woff'),
+       url('Stellar-Bold.ttf') format('truetype'),
+       url('Stellar-Bold.svg#Stellar-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Stellar-Light';
+  src: url('Stellar-Light.eot');
+  src: url('Stellar-Light.eot?#iefix') format('embedded-opentype'),
+       url('Stellar-Light.woff') format('woff'),
+       url('Stellar-Light.ttf') format('truetype'),
+       url('Stellar-Light.svg#Stellar-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stellar-Regular';
+  src: url('Stellar-Regular.eot');
+  src: url('Stellar-Regular.eot?#iefix') format('embedded-opentype'),
+       url('Stellar-Regular.woff') format('woff'),
+       url('Stellar-Regular.ttf') format('truetype'),
+       url('Stellar-Regular.svg#Stellar-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-ste-regular{font-family: 'Stellar-Regular';}
+.font-ste-light{font-family: 'Stellar-Light';}
+.font-ste-bold{font-family: 'Stellar-Bold';}
+.font-ste-medium{font-family: 'Stellar-Medium';}

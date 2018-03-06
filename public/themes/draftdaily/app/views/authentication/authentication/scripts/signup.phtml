@@ -1,0 +1,360 @@
+	
+	<div class="container mar-top">
+		<div class="row">
+			<div class="heading text-center">
+				<h1>Sign Up Now</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container margin-40">
+		<div class="row"> 
+			<div class="well bg-image-1">
+				<div class="tab-content">
+					<div class="tab-pane fade in active">
+						<div class="row col-container">
+							<div class="col bg-image-2 download">
+								<h3>CREATE AN ACCOUNT</h3>
+						  
+								<div class="row mr-15-right-left">
+							  
+									<div class="col-sm-12 col-md-10 col-md-offset-1">
+							   
+										<div class="pull-right">
+							  
+											<a href="/login?showmodal=true" class="btn-green m-right-sm" data-toggle="modal" data-target="#loginModal" id="formvalidatorid">Already have a DraftDaily Account?</a>
+										
+										</div>
+										
+									</div>
+									
+								</div>
+						  
+								<span style="color:green;"><b> <?php echo (!empty($this->session->storage->signupMessage))?$this->session->storage->signupMessage:'';?></b></span>
+								
+								<form id="signupform" method="post" autocomplete="off">
+									<div class="modal-body">
+									
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input type="text" class="form-control input-bg-black" autocomplete="off" id="username" name="username" placeholder="Username">
+										</div>
+										
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input type="email" id="email" autocomplete="off"name="email" class="form-control input-bg-black" placeholder="Email Address">
+										</div>
+										
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input type="text" autocomplete="off" id="wallet_address" name="wallet_address" class="form-control input-bg-black" placeholder="DFSCoin Wallet Address">
+										</div>
+										
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input name="password"  autocomplete="off" id="loginpopmatch" type="password" class="form-control input-bg-black" placeholder="Password">
+										</div>
+										
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input name="confirmPassword" autocomplete="off" type="password" class="form-control input-bg-black" placeholder="Confirm Password">
+										</div>
+									   <div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input name="dob" id="dob" autocomplete="off" type="text" class="form-control input-bg-black" placeholder="Date of birth">
+										</div>
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<input name="address" autocomplete="off" type="text" class="form-control input-bg-black" placeholder="Address">
+										</div>
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<select name="countryoption" id="countryinp" class="form-control input-bg-black custom-input">
+
+												<option value="country">Country</option> <?php
+												
+												if (isset($this->countryList)) {
+													foreach ($this->countryList as $cokey => $covalue) {
+														?>
+														<option  value="<?php echo $covalue['country_id']; ?>"><?php echo $covalue['country_name']; ?></option>
+														<?php
+													}
+												}
+												?> 
+											</select>
+										</div>	<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<select name="cityoption" id="cityinp" class="form-control input-bg-black custom-input isValidGuid">												<option value="state">State</option>																							</select>
+										</div>
+									  
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<div class="form-group group-form">
+												<label for="agree1"><span class="m-left-sm bold"><input type="checkbox" name="agreeterms" id="agree1">&nbsp; I agree to the <a target="_blank" href="/terms-of-use">Terms of Use</a> and the Privacy Policy.</span></label>
+											</div>
+										</div>
+									  
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<div class="form-group group-form">
+												<label for="agree2"><span class="top15px m-left-sm bold">
+												<input type="checkbox" name="ageconfirm" id="agree2"> &nbsp; I confirm that I am at least 18 years of age. Must be 19 years of age in Alabama and Nebraska.</span></label>
+											</div>				
+										</div>
+										
+										<div class="input-group col-sm-12 col-md-10 col-md-offset-1 pd-15">
+											<div class="form-group group-form">
+												<script src='https://www.google.com/recaptcha/api.js'></script>
+												<div class="g-recaptcha" data-sitekey="<?php echo $this->site_key; ?>"></div>
+												<span style="color:red;"><?php if(!empty($this->errMsg)){ echo $this->errMsg;} ?></span>
+											</div>
+										</div>
+										
+										
+										
+									</div>
+							  
+									<div class="row mr-15-right-left" style="margin-left: 3%;">
+									
+										<div class="col-md-3 col-sm-4 col-xs-4 col-md-offset-1">
+											<button class="btn-submit btn-lg btn3d pull-left" name="formbutton" id="formsignup" value="signup" type="submit">Register</button>  
+										</div>
+										
+									</div>
+									<input class="hidden" name="formbutton" value="signup" />
+									<input class="hidden" id="affuser" name="affuser" value="<?php echo $this->affuser; ?>" />
+								</form>
+					   
+							</div>
+							
+							<div class="col bg-image-2">
+								<div class="row mr-15-right-left">
+									<div class="col-sm-12 col-md-10 col-md-offset-1">
+									
+										<p class="font-medium">Download the DFSCoin Wallet</p>
+										
+										<div class="col-sm-6 col-xs-6 col-md-6 pd-left-none">
+											<a href="https://github.com/NicoDFS/DFSCoin/raw/master/dfscoin-qt-windows.zip" target="_blank" class="downloadOS"> Get Wallet for Windows</a>
+										</div>
+										
+										<div class="col-sm-6 col-xs-6 col-md-6 pd-right-none">
+											<a href="https://github.com/NicoDFS/DFSCoin/raw/master/dfscoin-qt-linux.tar.gz" target="_blank" class="downloadOS">Get Wallet for Linux</a>
+										</div>
+										
+									</div>
+								</div>
+					  
+								<div class="row mr-15-right-left">
+						  
+									<div class="col-sm-12 col-md-10 col-md-offset-1">
+										<h3 class="m-top-lg pull-left">Draft Like A Boss with Draft Daily!</h3>
+									</div>
+									
+									<div class="col-sm-12 col-md-10 col-md-offset-1">
+									
+										<ul class="list-unstyled m-top-md">
+										
+											<li class="font-medium"><span><i class="fa fa-chevron-right"></i></span>55,000 DFS Salary Cap Games</li>
+											
+											<li class="font-medium"><span><i class="fa fa-chevron-right"></i></span> Enter a Contest from the Lobby</li>
+											
+											<li class="font-medium"><span><i class="fa fa-chevron-right"></i></span> Draft Your Fantasy Team Before the Game Starts</li>
+											
+											<li class="font-medium"><span><i class="fa fa-chevron-right"></i></span> Then Follow the Action Live in the Game Center</li>
+											
+											<li class="font-medium"><span><i class="fa fa-chevron-right"></i></span> Invite your Friends and Earn 35% Lifetime Revshare</li>
+											
+										</ul> 
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row col-container">
+							<div class="bg-image-3">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+$(document).ready(function(){
+	
+	$('#countryinp').change(function(){	
+
+		var country_id = $(this).val();	
+		$.ajax({	
+			url: '/signup',	
+			type: 'POST',		
+			dataType: 'json',	
+			data: {			
+				formbutton: 'getCityByCountry',	
+				country_id: country_id		
+			},			
+			success: function(response) {	
+				/* console.log(response); */
+				$('#cityinp').html('');
+				$('#cityinp').append('<option value="state">State</option>');
+				if(response != ''){
+					$.each(response, function (i, item) {
+						$('#cityinp').append($('<option>', { 
+							value: item.id,
+							text : item.name 
+						}));
+					});
+				}else{
+					$('#cityinp').append('<option value="state">No Eligible State</option>');
+				}		
+			}	
+		});	
+	});
+    
+    $.validator.addMethod("valueNotEquals", function(value, element, arg)
+    {
+        return arg != value;
+    }, "Value must not equal arg.");
+    
+    $.validator.addMethod("dateFormat",
+    function(value, element) {
+        return value.match(/^dd?-mm?-yyyy$/);
+    },
+    "Please enter a date in the format dd-mm-yyyy.");
+    
+    $.validator.addMethod("isValidGuid", function(value, element) {
+        
+         return true;
+		/*  if("<?php echo $this->CurrentStateCode; ?>" == $('#cityinp').val()){
+            return true;
+        }else{
+            return false;
+        } */
+    }, 'Please select a valid state.');
+   
+    $.validator.addMethod("AccurateDate", function(value) {
+  var checkdate = $("#dob").val();
+  var rawmonth = checkdate.substr(0,2);
+  var rawday   = checkdate.substr(3,2);
+  var rawyear  = checkdate.substr(6,4);
+  var checkdate = new Date( $("#dob").val());
+  return ( (rawmonth == checkdate.getMonth()+1) &&
+         (rawday == checkdate.getDate()) &&
+         (rawyear == checkdate.getFullYear())
+        );
+                                                       }, "Not a real date");
+$.validator.classRuleSettings.AccurateDate = {AccurateDate: true};
+
+	$("#signupform").validate({
+        rules: {
+            username: {
+                required: true,
+                remote: {
+                    url: "/ajax-handler-auth",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        username: function() {
+                            return $("#username").val();
+                        },
+                        formtype: function() {
+                            return $("#formsignup").val();
+                        },
+                        ajaxMethod: 'validateUsername'
+                    }
+
+                },
+                regex: /^[a-zA-Z0-9_\.]+$/
+
+            },
+            email: {
+                required: true,
+                remote: {
+                    url: "/ajax-handler-auth",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        email: function() {
+                            return $("#email").val();
+                        },
+                        ajaxMethod: 'validateEmail'
+                    }
+
+                },
+                email: true,
+				
+				regex: /^((?!mailnator.com)[\s\S])*$/,
+
+            },
+            password: {
+                required: true,
+                regex: /^[A-Za-z].*[0-9]|[0-9].*[A-Za-z]+$/,
+                minlength: 8,
+                maxlength:25
+            },
+          
+            confirmPassword: {
+                required: true,
+                minlength: 8,
+                maxlength:25,
+                equalTo: "#loginpopmatch"
+            },
+            
+            address : {
+                required: true,
+            },
+            dob : {
+                required: true,
+                AccurateDate: true
+            },
+            countryoption: {valueNotEquals: "country"},
+			cityoption: {
+			   valueNotEquals: "state", 
+			},
+            agreeterms: {
+                required: true
+            },
+            ageconfirm: {
+                required: true
+            }
+
+        },
+        messages: {
+            username: {
+                required: "Username is required field.",
+                regex: "Invalid Format.",
+                remote: "Username already exits."
+            },
+            email: {
+                required: "Email is required field.",
+                email: "Invalid email format.",
+                remote: "Email already exists.",
+                
+				regex: "mailnator.com email are not allowed."
+            },
+            password: {
+                required: "Password is required field.",
+                minlength: "Minimum length of password is 8",
+                regex: "Password must contain at least one letter and one number.",
+                maxlength: "MaxLength of password is 25."
+            },
+            
+            confirmPassword: {
+                required: "This is required field.",
+                minlength: "Minimum length of password is 8.",
+                maxlength: "MaxLength of password is 25.",
+                equalTo: "Password doesn't matched"
+            },
+            countryoption: {valueNotEquals: "Please select a country."},
+            cityoption: {
+                valueNotEquals: "Please select a state.",
+            },
+            agreeterms: {
+                required: "You must agree to term and condition."
+            },
+            ageconfirm: {
+                required: "Please confirm age verification."
+            }
+
+        },
+		errorPlacement: function (error, element) {
+
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( 'span').parent('label').parent('div').parent('div') );
+			} else {
+				error.insertAfter( element.parent('div') );
+			}
+		}
+
+    });
+});  
+</script>

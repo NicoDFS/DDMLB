@@ -1,0 +1,22 @@
+<?php if(isset($this->notification)): $i=0; foreach ($this->notification as $note): ?>
+<li class="notificationId bod_bot" data-notifyId=<?php echo "notifyId_".$note['notification_id']; ?>>
+    
+    <div class="notifyMessage"><a data-toggle="modal" data-target="#contest-notification-details-modal" data-nid="<?php echo $note['notification_id'];?>"><?php echo $note['message']; ?></a> </div>
+    <?php if(isset($note['contest_id']) && $note['contest_id']!=0){ ?>
+        <a id="draftbutton" style="width:40%;margin-left: 65%;" href="<?php echo $this->baseUrl('/draftteam/') . $note['contest_id']; ?>" class="btn btn-toggle-code btn-mini btn-warning btn-icon glyphicons" role="button">Draft Team</a>
+    <?php } ?>
+    <div class="notifyActions">
+        &nbsp;<a href="#" data-id="1" class="status" id="accept"></a>
+        &nbsp; &nbsp;&nbsp;<a href="#" data-id="2" class="status" id="decline" ></a>                                
+    </div>
+</li>
+<?php $i++; endforeach; ?>
+<label class="total-notification" style="float: right">Total(<?php echo $i; ?>)</label>
+<?php 
+else: ?>
+<p>&nbsp;</p>
+<label>You have Currently No Notification</label>
+<li class="divider"></li>
+<label class="total-notification" style="float: right">Total (0)</label>
+<?php endif; ?>
+

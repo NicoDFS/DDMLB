@@ -1,0 +1,77 @@
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<h1>FANTASY TEAM</h1>
+		</div>
+	</div>
+</div>
+
+
+<div class="container margin-40">
+    <div class="row">
+		<div class="well bg-image-1">
+			<div class="bg-image-2">
+				<h3>THIS IS YOUR LINEUP</h3>
+				<div class="row mr-15-right-left">
+					<div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2 pd-right-none pd-15-15-none">
+						<div class="card card-a">
+							<ul class="nav nav-tabs nav-tabs-b" role="tablist">
+								<li class="pull-left">&nbsp;&nbsp;&nbsp;
+									<?php
+										if (isset($this->headData)) {
+											switch ($this->headData['sports_id']) {
+												case 1 : echo "NFL";
+													break;
+												case 2 : echo "MLB";
+													break;
+												case 3 : echo "NBA";
+													break;
+												case 4 : echo "NHL";
+													break;
+											}
+										}
+										?>
+								</li>
+								<li class="text-center"><span># of Entries 1</li>
+								<li class="pull-right"><span>REM. SALARY:</span> <?php
+                                                        if (isset($this->headData)) {
+                                                            echo $this->headData['rem_salary']." DFS";
+                                                        }
+                                                        ?></li>
+							</ul>
+							<div class="tab-content-1a">
+								<table class="footable">
+									<thead>
+										<tr class="header-color">
+											<th>POS</th>
+											<th>PLAYER</th>
+											<th>SALARY</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										if (isset($this->playerIds)) {
+											foreach ($this->playerIds as $playerDetails) {
+												?>                  
+												<tr>
+													<td><?php echo $playerDetails['position']; ?></td>                       
+													<td class="text-green-light" id="green"><?php echo $playerDetails['name']; ?></td>
+													<td><?php echo $playerDetails['plr_value']." DFS"; ?></td>
+												</tr>   
+												<?php
+											}
+										}
+										?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<a href="/contest" class="btn-success btn-lg btn3d" role="button">CONTINUE&gt;&gt;</a> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<input class="hidden" id="lineup" data-lid="<?php echo $this->lineupId; ?>">

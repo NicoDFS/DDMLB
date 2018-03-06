@@ -1,0 +1,68 @@
+ 	<div class="row">
+                            	<div class="col-sm-12">
+                          			<div>
+                                    	<div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input type="text" name="name" id="bname" value="<?php  if(isset($this->userAddress)){echo $this->userAddress['name'];}  ?>" required placeholder="Full Name" class="form-control custom-input"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input type="text" name="address1" id="baddress1" value="<?php  if(isset($this->userAddress)){echo $this->userAddress['address1'];}  ?>" class="form-control custom-input" placeholder="Billing Address"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input type="text" name="address2" id="baddress2" value="<?php  if(isset($this->userAddress)){echo $this->userAddress['address2'];}  ?>" class="form-control custom-input" placeholder="Billing Address 2"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input type="text" name="city" id="bcity" value="<?php  if(isset($this->userAddress)){echo $this->userAddress['city'];}  ?>" class="form-control custom-input" placeholder="City"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input type="text" name="zip" id="bzip" value="<?php  if(isset($this->userAddress)){echo $this->userAddress['zip'];} ?>" class="form-control custom-input" placeholder="Zip/Pincode"> 
+                                            </div>
+                                        </div>
+<!--                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input name="status" id="bstatus" class="form-control custom-input" placeholder="Status"> 
+                                            </div>
+                                        </div>-->
+                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                                    	<div class="col-xs-6 no-p-left">
+                                                  <select class="form-control custom-input" name="status" id="bstatus">
+                                                      <option >Status</option>
+                                                <option  value="1" <?php  if(isset($this->userAddress)){if($this->userAddress['status']==1){echo " selected";}} ?>>Active </option>                                                                                
+                                                <option  value="0" <?php  if(isset($this->userAddress)){if($this->userAddress['status']==0){echo " selected";}} ?>>Deactive</option>                                                                                
+                                            </select>	
+                                                </div>
+                                            	<div class="col-xs-6 no-p-left">
+                                                	  <select class="form-control custom-input" name="country" id="bcountry">
+                                                               <option >Country</option>
+                                                <?php if(isset($this->userCountries)){foreach($this->userCountries as $key=>$valuecn){?>
+                                                <option  class="countryfilter" id="<?php echo $valuecn['country_id']; ?>"  <?php  if(isset($this->userAddress)){if($this->userAddress['country'] == $valuecn['country_code']){echo " selected";}} ?> value="<?php echo $valuecn['country_code']; ?>"><?php echo $valuecn['country_name']; ?></option><?php } } ?>                                                                              
+                                            </select>
+                                                </div>
+                                                <div class="col-xs-6 no-p-right">
+                                                   <select class="form-control custom-input" name="user_state" id="buser-state">
+                                                       <option >State</option>
+                                                <?php if(isset($this->userStates)){foreach($this->userStates as $key=>$valuest){?>
+                                                <option  class="con-<?php echo $valuest['country_id']; ?>"  <?php  if(isset($this->userAddress)){if($this->userAddress['user_state'] == $valuest['state_code']){echo " selected";}} ?> value="<?php echo $valuest['state_code']; ?>"><?php echo $valuest['state_code']; ?></option><?php } } ?>                                                                              
+                                            </select>	
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="input-group col-xs-12">
+                                            	<input type="text" name="phone" id="bphone" value="<?php  if(isset($this->userAddress)){echo $this->userAddress['phone'];} ?>" class="form-control custom-input" placeholder="Phone"> 
+                                            </div>
+                                        </div>
+                                    </div>      	
+                                </div>
+                            </div>
+<button class="btn btn-blue font-ste-regular p-bottom-sm addressadd">Update</button>
+    <button class="btn btn-light font-ste-regular p-bottom-sm" data-dismiss="modal">Cancel</button>

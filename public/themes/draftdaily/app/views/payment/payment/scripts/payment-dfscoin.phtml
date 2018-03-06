@@ -1,0 +1,98 @@
+
+<style>
+
+iframe  {height:300px; width:100%; margin:10px 0px ! important; border-radius:0px ! important;}
+
+</style>
+
+<div class="container mar-top">
+    <div class="row">
+		<div class="heading text-center">
+			<h1>Payment for DFSCoin</h1>
+		</div>
+    </div>
+</div>
+
+
+
+<div class="container margin-40">
+<div class="row">
+		<div class="well bg-image-1">
+			<div class="row bg-image-2 mr-15-right-left">
+			<div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2">
+    <div class="invoice-box">                        
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                               <h4 class="text-white text-left"> <?php echo $this->users_details['user_name']; ?><br>
+                                <?php echo $this->users_details['address']; ?><br>
+                                <?php echo $this->users_details['email']; ?></h4>
+                            </div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="row">
+							<div class="col-md-4 col-md-offset-8 col-sm-4 col-xs-12">
+                                <img src="/themes/draftdaily/skin/images/logo_small.png">
+                            </div>
+                            </div>
+                            </div>
+                    </div> 
+					
+            <table class="table margin-20">
+			<thead>
+            <tr class="contest-bg-color">
+                <th class="col-md-4 col-sm-4 col-xs-4 text-left text-uppercase">Item</th>
+                 <th class="col-md-4 col-sm-4 col-xs-4 text-center text-uppercase">Amount</th>
+                 <th class="col-md-4 col-sm-4 col-xs-4 text-right text-uppercase">Price</th>
+            </tr>
+			</thead>
+            <tbody>
+            <tr class="total-a">
+                <td class="col-md-4 col-sm-4 col-xs-4 text-left text-uppercase">
+                    DFSCoin
+                </td>
+				
+                <td class="col-md-4 col-sm-4 col-xs-4 text-center text-uppercase">
+                    <?php echo $this->session->storage->pay_data['custom_dfs_amt']; ?>
+                </td>
+				
+                <td class="col-md-4 col-sm-4 col-xs-4 text-right text-uppercase">
+                    <?php echo $this->session->storage->pay_data['custom_btc_amt']; ?> BTC
+                </td>
+            </tr>
+			
+			
+            <tr class="total total-a"> 
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                    Total Due : <?php echo $this->session->storage->pay_data['custom_btc_amt']; ?> BTC
+                </td>
+            </tr></tbody>
+        </table>
+		
+		<div>
+		
+		
+		<?php if (!$this->box->is_paid()) { echo "<h3>Buy Now</h3>"; } else { echo "<br>"; } ?>
+		<div style="color:#fff;">Language: &#160; <?php echo $this->languages_list; ?></div>
+		<div id="ParentIframeDiv"><?php echo $this->box->display_cryptobox(true, '100%','auto'); ?> </div>
+		<br><br><br><?php //echo $this->box->cryptobox_json_url();?>
+		<h3>Message :</h3> 
+		<h2 style='color:#999'><?php echo $this->message; ?></h2>
+
+
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+    </div>
+    </div>
+	<script>
+	$('#ParentIframeDiv > iframe').ready(function(){
+		Id=$(this).attr('id');
+   
+});
+
+	</script>

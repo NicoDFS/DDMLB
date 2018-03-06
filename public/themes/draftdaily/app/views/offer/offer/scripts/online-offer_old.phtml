@@ -1,0 +1,143 @@
+<style>
+    .btn-continue {
+        bottom: 0;
+        position: absolute;
+        left: 0;
+    }
+    .line-content {
+        margin-top: 3%;
+        min-height: 490px;
+    }
+</style>
+
+<section class="relative">
+    <div class="bg-top-pos">
+        <img src="<?php echo $this->baseUrl() . $this->theme_base_path; ?>/images/headerBg.png" class="" width="100%" height="100%">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center black-transparent paddingTB-sm m-top-lg">
+                    <h2 class="text-white no-margin">FANTASY TEAM</h2>
+                </div>
+                <div class="text-center black-transparent paddingTB-xs m-top-sm">
+                    <h3 class="text-white no-margin">THIS IS YOUR LINEUP</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="black-transparent min-h-300">
+                            <div class="padding-md text-white">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="padding-sm text-white bg-light-trans m-top-md">
+                                            <h3 class="no-m-top"> <?php
+                                                if (isset($this->headData)) {
+                                                    switch ($this->headData['sports_id']) {
+                                                        case 1 : echo "NFL";
+                                                            break;
+                                                        case 2 : echo "MLB";
+                                                            break;
+                                                        case 3 : echo "NBA";
+                                                            break;
+                                                        case 4 : echo "NHL";
+                                                            break;
+                                                    }
+                                                }
+                                                ?> <span class="pull-right">UPCOMING<small class="timeleft text-blue" data-time="<?php echo strtotime($this->headData['start_time']) ?>"></small></span></h3>
+                                            <ul class="list-inline nav-justified list-unstyled no-m-bottom">
+                                                <li class="text-left">
+                                                    <span># of Entries</span><br>
+                                                    <span> 1</span>
+                                                </li>
+
+                                                <li class="text-right">
+                                                    <span>Rem.Salary</span><br>
+                                                    <span><?php
+                                                        if (isset($this->headData)) {
+                                                            echo $this->headData['rem_salary']." DFS";
+                                                        }
+                                                        ?></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <table  class="table playersTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>POS</th>
+                                                    <th>PLAYER</th>
+                                                    <th>SALARY</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                                <?php
+                                                if (isset($this->playerIds)) {
+                                                    foreach ($this->playerIds as $playerDetails) {
+                                                        ?>                  
+                                                        <tr>
+                                                            <td><?php echo $playerDetails['position']; ?></td>                       
+                                                            <td id="green"><?php echo $playerDetails['name']; ?></td>
+                                                            <td><?php echo $playerDetails['plr_value']." DFS"; ?></td>
+                                                        </tr>   
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+
+                                            </tbody>
+
+                                        </table>
+
+
+                                    </div>
+                                    <div class="col-md-6 line-content">
+<!--                                        <?php// if (isset($this->offer)){  ?>
+                                        <h3><b>Nice LineUp! </b> </h3>
+                                        <p> Enter into "<?php
+                                         //   if (isset($this->offer)) {
+                                                //echo $this->offer['contest_name'];
+                                           // }
+                                            ?>" Contest to</p>
+                                        <p> Compete for $<?php
+                                           // if (isset($this->offer)) {
+                                                //echo $this->offer['prize_pool'];
+                                            //}
+                                            ?>.</p>
+                                        <input type="checkbox" name="offercheck" id="offercheck" checked><b> Enter now for only Free with 1st Deposit </b><br><BR>
+                                        <div class="alert alert-danger" style="display:none;" id="offermsg">Are you sure you want to pass up this offer?</div>
+                                        <a id="checkbutton" data-id="<?php //echo $this->offer['contest_id']; ?>" href="<?php// echo $this->baseUrl('/draftteam/' . $this->offer['contest_id']); ?>" class="btn btn-warning" role="button">CLAIM FREE ENTRY>></a>-->
+
+                                        <?php //}else {
+                                        ?>
+                                       <!-- <a id="checkbutton" data-id="<?php //echo $this->offer['contest_id']; ?>" href="/one-time-offer/<?php //echo $this->lineupId; ?>" class="btn btn-warning btn-continue" role="button">CONTINUE>></a> -->
+                                       <a id="checkbutton" data-id="<?php //echo $this->offer['contest_id']; ?>" href="/contest" class="btn btn-warning btn-continue" role="button">CONTINUE>></a>
+                                        <?php //}  ?>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+</section>
+
+<input class="hidden" id="lineup" data-lid="<?php echo $this->lineupId; ?>">

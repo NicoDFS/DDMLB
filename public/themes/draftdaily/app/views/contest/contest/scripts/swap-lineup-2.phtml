@@ -1,0 +1,237 @@
+<?php if (isset($this->message)) { ?>
+    <div id="message" class="margin-20">		
+       <?php echo "<h3><centre><strong>".$this->message." </strong></centre></h3>"; ?>
+    </div>
+<?php } else { ?>
+    <div class="row">
+        <div class="col-sm-12 margin-10px">
+            <h3 style="margin-bottom:0px;">GLOBAL PLAYER SWAP</h3>
+            <h4 class="margin-20">Need to make a last-minute swap across multiple lineups?</h4>
+        </div>
+		<div class="col-md-12">
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="col-xs-6 m-top-md margin-10px"> 
+					<h4 class="panel-title text-white text-left pull-left margin-10px">My Drafted Player</h4>
+				</div>
+				<div class="col-xs-6 m-top-md margin-10px pd-15">
+				<select id="swap_sport" class="form-control input-bg-black pull-right swap_times"> 
+					<?php
+						if (isset($this->drop_value)) {
+							foreach ($this->drop_value as $dkey => $dVal) {
+								?>
+								<option value="<?php echo $dkey; ?>"><?php
+									if ($dVal['sport'] == 1) {
+										echo "NFL";
+									} else if ($dVal['sport'] == 2) {
+										echo "MLB";
+									} else if ($dVal['sport'] == 3) {
+										echo "NBA";
+									} else if ($dVal['sport'] == 4) {
+										echo "NHL";
+									}
+									?></option>
+								<?php
+							}
+						}
+						?>
+					</select>
+			</div>
+				
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="col-xs-12 m-top-md margin-10px pd-15"> 
+				<div class="form-group">
+				  <select id="swap_times" class="form-control input-bg-black swap_times"> 
+							<?php
+							if (isset($this->drop_value)) {
+								foreach ($this->drop_value as $dkey => $dVal) {
+									foreach ($dVal['time'] as $tkey => $tval) {
+										?>
+										<option value="<?php echo $tkey; ?>"><?php echo $tval; ?></option>
+										<?php
+									} break;
+								}
+							}
+							?>
+				   </select>
+				</div>
+			</div>
+		</div>
+				
+        <div class="col-sm-6 col-xs-12">
+            <div class="row">
+				<div class="col-sm-12">
+                    <?php if (isset($this->mylineup)) { ?>
+					
+                        <div class="scroll card-a">
+							<table id="example1" data-filter="#filter"  id="tblData" class="footable playersTable lobbyTable">
+								<thead>
+									<tr class="header-img">
+										<th>POS</th>
+										<th>PLAYER</th>
+										<th>OPP</th>
+										<th>FPPG</th>
+										<th>SALARY</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody id="swap_tbl_data">
+									<?php
+									if (isset($this->mylineup)) {
+										foreach ($this->mylineup['players'] as $lineupdetails) {
+											?>
+											<tr data-salary="<?php echo $lineupdetails['plr_value']; ?>" data-sprid="<?php echo $this->mylineup['sportId']; ?>" data-lid="<?php echo $this->mylineup['lineupId']; ?>"  data-pcode="<?php echo $lineupdetails['pos_code']; ?>" data-pid="<?php echo $lineupdetails['plr_id']; ?>" data-cid="<?php echo $this->mylineup['contestId']; ?>" class="active">
+												
+												<td class="pos"><?php echo $lineupdetails['position']; ?></td>
+												
+												<td class="p-name"><a href="javascript:void(0);" id="green" class="playerDetails text-green-light" data-target="#playerDetailsModal" data-toggle="modal" data-pid="<?php echo $lineupdetails['plr_id']; ?>"> <?php echo $lineupdetails['name']; ?></a></td>
+												
+												<td class="opp"><?php echo $lineupdetails['team_code']; ?></td>
+												
+												<td class="pts"> <?php echo $lineupdetails['fppg']; ?> </td>
+												
+												<td class="salary"><?php echo $lineupdetails['plr_value']." DFS"; ?></td>
+												
+												<td class="last"><a class="swap pointer"><span class="text-red"><i class="fa fa-times"></i></span></a></td>
+											</tr> 
+											<?php
+										}
+									}
+									?>
+								</tbody>
+							</table>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div> 
+        </div>
+        <div class="col-sm-6 col-xs-12">
+		<div class="theme1">
+				<div class="searching" style="display:none;">
+					<input id="filteravailableplayer" class="form-control input-bg-black" type="text" placeholder="Player Search" />
+				</div> 
+                <div class="header-img" style="padding:10px;">
+                    <div class="row">
+                        <div class="col-md-4"><h4 class="panel-title text-left">Available Player</h4></div>
+                        <div class="col-md-8"><span class="criteria"></span></div>
+                    </div>
+                </div>
+                <div class="textur_bg">
+                    <div class="swapscroll">    
+                        <div class="card card-a">
+							<div class="tab-content">
+								<table  class="footable availableplayer" style="display: none;">
+									<thead>
+										<tr class="header-color"><th>PLAYER</th><th>OPP</th><th>FPPG</th><th>SALARY</th><th></th></tr>
+									</thead>
+									<tbody class="swapteam">
+									</tbody>
+								</table>
+							</div>
+						</div>
+                    </div>
+                </div>  
+            </div> 
+        </div>
+		<div class="clearfix"></div>
+		<div class="row mr-15-right-left">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+                            <p class="font-medium-a margin-10px">Select a player from the "My Drafted Players" area to the left and a list of players eligible for the "Quick Swap" will display here.</p>
+                            <p class="font-medium-a">Note: In order to meet salary requirements for all lineups with the chosen player, only players with salaries equal to or lesser than the chosen player will be displayed.</p>
+                        </div>
+                        </div>
+        <div class="col-sm-12 apply-swap margin-20">
+            <ul class="list-inline list-unstyled text-center col-md-6 col-sm-6 col-xs-12">
+                <li class="col-md-6 col-sm-6 col-xs-6">
+                    <label class="control-label inline-block" style="color:#fff;">Swap-Out </label>    
+                    <input class="form-control inline-block" required type="text" id="swap_out"  placeholder="Swap-Out" readonly>
+                </li>
+                <li class="col-md-6 col-sm-6 col-xs-6">
+                    <label class="control-label inline-block" style="color:#fff;">Swap-In </label>    
+                    <input class="form-control inline-block" required type="text" id="swap_in" placeholder="Swap-In" readonly>                
+                </li>
+			</ul>
+			
+			<ul class="list-inline list-unstyled col-md-6 col-sm-6 col-xs-12 pd-15" style="margin-top:15px;">
+				<li class="margin-10px pull-left">
+                    <button type="button" class="btn-success btn-lg btn3d btn-warning" id="apply_swap">APPLY SWAP &raquo;</button>            
+                </li>
+                <li class="margin-10px pull-right">
+                    <a href="<?php $this->baseUrl(); ?>/lineup">
+					<button type="button" class="btn-submit btn-lg btn3d btn-info glyphicons circle_remove"><i></i>Cancel</button> </a>
+                </li>
+                
+            </ul>
+
+            <div class="contestmsg" style="display:none;">
+                <h4  class="margin-20">You've successfully swapped players within the following contest entries:</h4>
+                <ul class="margin-10px">
+
+                </ul>
+                <h4>NOTE: New lineup cards may have been created by this swap. Your cards have been reloaded.</h4>
+            </div>
+
+        </div>
+
+    </div>
+<?php } ?>
+
+<script>
+    $(document).ready(function() {
+        $('.swap').click(function() {
+            $(".searching").show();
+            $('html,body').animate({
+                scrollTop: $(".apply-swap").offset().top-300},
+            'slow');
+        });
+
+        // Write on keyup event of keyword input element
+        $("#filteravailableplayer").keyup(function() {
+            // When value of the input is not blank
+            var term = $(this).val().trim().toLowerCase();
+
+            if (term != "")
+            {
+                // Show only matching TR, hide rest of them
+                $(".availableplayer tbody>tr").hide();
+                $(".availableplayer td").filter(function() {
+                    return $(this).text().toLowerCase().indexOf(term) > -1
+                }).parent("tr").show();
+            }
+            else
+            {
+                // When there is no input or clean again, show everything back
+                $(".availableplayer tbody>tr").show();
+            }
+        });
+        $('#searches').keyup(function() {
+            searchTable($(this).val());
+        });
+    });
+    function searchTable(inputVal)
+    {
+        //console.log('test');
+        var table = $('#tblData');
+        table.find('tr').each(function(index, row)
+        {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0)
+            {
+                var found = false;
+                allCells.each(function(index, td)
+                {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text()))
+                    {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true)
+                    $(row).show();
+                else
+                    $(row).hide();
+            }
+        });
+    }
+</script>

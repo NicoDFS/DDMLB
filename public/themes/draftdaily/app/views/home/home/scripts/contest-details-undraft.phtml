@@ -1,0 +1,229 @@
+<?php if (isset($this->details)) {
+    $details = $this->details; 
+} ?>
+<div class="panel panel-default borderclr">
+    <div class="panel-heading">
+        <div class="navbar remv_botm">
+            
+                <div class="col-md-7 pull-left">
+                    <h4><?php  if (isset($details['contest_name'])) {
+                        echo $details['contest_name'];
+                    } ?></h4>
+                    <h5>
+                        <?php if(isset($details['sports_id'])){
+                                switch ($details['sports_id']){
+                                    case 1 : echo "NFL";
+                                        break;
+                                    case 2 : echo "MLB";
+                                        break;
+                                    case 3 : echo "NBA";
+                                        break;
+                                    case 4 : echo "NHL";
+                                        break;
+                                }
+                        } ?>
+
+<div class="clear"></div>
+                        <span>|</span>
+                                               
+                        Entries:<?php if (isset($details['total_entry'])) {
+                            echo $details['total_entry'];
+                        } ?>/
+                        <?php if (isset($details['play_limit'])) {
+                            echo   $details['play_limit'];
+                        } ?>
+                        <span>|</span>
+                       Entry Fee:<?php if (isset($details['entry_fee'])) {
+                            if($details['entry_fee'] == 0){
+                                echo "FREE";
+                            }else{
+                                echo "".$details['entry_fee'];
+                            }
+                            
+                        } ?>
+                        <span>|</span>
+                       Prize pool: $<?php if (isset($details['prize_pool'])) {
+                            echo $details['prize_pool'];
+                        } ?>
+                        <span>|</span>
+                        <?php if (isset($details['fpp'])) {
+                            echo $details['fpp'];
+                        } ?>FPPS
+                    </h5>
+                </div>
+                <div class="panel panel-default col-md-4 text-center pull-right remv_botm rgtbgclr">
+                  
+                    <h5>CONTEST LIVE</h5>
+                    <?php if(strtotime(date('Y-m-d H:i:s'))< strtotime($this->details['start_time'])){ ?>
+                    
+                    <div class="timeleft1" counter="<?php echo strtotime($this->details['start_time']); ?>"></div>
+                    <?php } ?>
+                    
+                    <label><?php echo Date("F j, g:i a ", strtotime($this->details['start_time']))."EST"; ?></label>
+                </div>
+           
+        </div>
+    </div>
+    <div class="panel-body pnlbodybg">
+        <div class="panel panel-default">
+            <div class="panel-heading">CONTEST DETAILS</div>
+            <div class="row">
+                <div class="col-md-7 tpspace leftspace">    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">SUMMARY</div>
+                        <div class="panel-body">
+                            <?php if (isset($details['description'])) {
+                                echo $details['description'];
+                            } ?>
+                        </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class=" col-md-2">ENTRANTS</div>
+                                    <div class="col-md-4" style="padding-left: -15px;">
+                                        
+                                        <?php //if (isset($details['total_entry'])) {
+                                                //echo $details['total_entry'];
+                                           // } ?><?php //if (isset($details['play_limit'])) {
+                                                    //echo $details['play_limit'];
+                                                //} ?>
+                                            
+                                             <input type="text" name="entrants" class="form-control" style="border:2px solid #7A7883;width: 100%;height:-1%;"
+                                           value="<?php if (isset($details['total_entry']))
+                                               { echo $details['total_entry'] . '/'; }
+                                              if (isset($details['play_limit'])) {
+                                                  echo $details['play_limit']; } ?> " readonly="">
+                                    </div>
+                                    <div class=" col-md-6" >FIND A RIVAL <span><input type="text" id="rival-input" class="clearable" style="color:#000000;"><a class="hidden rival-array"><?php print_r($this->username); ?> </a></span></div>
+                                   
+                                </div>
+                            </div>
+                            <div class="panel-body contestid">
+                                <table class="table table-bordered" id ="usertabledata">        
+                                    <tbody class="user_name">
+                                            <?php if (isset($this->username)) {
+                                                foreach ($this->username as $key => $value) { ?>
+                                                <tr>
+                                                    <td> <?php echo $key;
+                                                            if ($value > 1) { ?>
+                                                            <span  class="multiEntry" title="<?php echo $value; ?> entries">M</span>
+                                                        <?php } ?>
+                                                    </td> 
+                                                </tr>
+                                            <?php }
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    
+                    <p>visit
+                        <?php if(isset($details['sports_id'])){
+                                  switch ($details['sports_id']){
+                                      case 1 : echo "<a href=".$this->baseUrl()."/help/nfl".">NFL rules</a>";
+                                          break;
+                                      case 2 : echo "<a href=".$this->baseUrl()."/help/mlb".">MLB rules</a>";
+                                          break;
+                                      case 3: echo "<a href=".$this->baseUrl()."/help/nba".">NBA rules</a>";
+                                          break;
+                                      case 4 : echo "<a href=".$this->baseUrl()."/help/nhl".">NHL rules</a>";
+                                          break;
+                                  }
+                                }
+                            ?>
+                        <!--<a href="<?php echo $this->baseUrl()."/help/mlb"; ?>">MLB rules</a>--> 
+                            for full contest scoring</p>
+                        
+                </div>
+                <div class="col-md-4 tpspace pull-right rightspace">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">PRIZE PAYOUTS</div>
+                        <div class="panel-body contest_detail">
+                            <?php if(isset($this->prize_details) && $details['prizes'] != 0){ ?>
+                             <table class="table table-bordered">        
+                                <thead>
+                                    <tr>
+                                        <th> RANK</th>
+                                        <th >PRIZES AWARDED</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php  foreach($this->prize_details as $key=>$value){ ?>
+                                        <tr>
+                                            <td><?php if(isset($value['from'])){echo $value['from']; } if(isset($value['to'])){ echo "-".$value['to']; } ?></td>
+                                            <td><?php if(isset($value['prize'])){echo $value['prize']; } ?></td>
+                                        </tr>
+                                <?php }  ?>
+                                </tbody>
+                             </table>
+                             <?php }else{ echo "<p>No Prizes </p>"; }  ?>
+                        </div>
+                    </div>
+                    <div style="float:right;">
+                        <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">Close</button>
+                        <!--<a id="draftbutton" href="<?php echo $this->baseUrl('/draftteam/') . $this->contest_id; ?>" class="btn btn-toggle-code btn-mini btn-warning btn-icon glyphicons" role="button">Draft Team</a>-->
+                     </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    onload = countdown();
+    var gettime1 ='';
+    function countdown(){
+        var gettime1 = $('.timeleft1').attr('counter');
+        updateTimeSpan1(gettime1,$('.timeleft1'));
+    }
+    function updateTimeSpan1(gettime1,selector) {
+            
+        var d = new Date(gettime1*1000);
+        var t = new Date();
+        var ms;
+        var s, m, h;
+        ms = d - t;
+    
+        // get hours    
+        h = parseInt(ms / (1000 * 60 * 60));
+        ms -= (h * 1000 * 60 * 60);
+        // get minutes    
+        m = parseInt(ms / (1000 * 60));
+        ms -= (m * 1000 * 60);
+        // get seconds    
+        s = parseInt(ms / 1000);
+
+        var time1 =  h + 'h,' + m + 'm,' + s + 's.';
+        $(selector).html(time1);
+        setTimeout(function(){
+            updateTimeSpan(gettime1,selector);
+        }, 100); 
+    }
+    //dev:priyanka varanasi
+    //desc:search box in the player detail modal to find the player who entered in the following contest
+   $(document).ready(function(){
+        // Write on keyup event of keyword input element
+        $("#rival-input").keyup(function(){
+            // When value of the input is not blank
+        var term=$(this).val().trim().toLowerCase();
+        //alert(term);
+            if( term != "")
+            {
+                // Show only matching TR, hide rest of them
+                $("#usertabledata tbody>tr").hide();
+            $("#usertabledata td").filter(function(){
+               return $(this).text().toLowerCase().indexOf(term ) >-1
+            }).parent("tr").show();
+            }
+            else
+            {
+                // When there is no input or clean again, show everything back
+                $("#usertabledata tbody>tr").show();
+            }
+        });
+    });
+
+</script>
+
+
+

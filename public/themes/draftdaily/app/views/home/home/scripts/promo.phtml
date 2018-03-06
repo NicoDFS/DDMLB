@@ -1,0 +1,48 @@
+	
+<div class="container mar-top">
+
+	<div class="row">
+
+		<div class="heading text-center">
+
+			<h1>PROMOTIONS</h1>
+
+		</div>
+
+	</div>
+
+</div>	
+
+<div class="container margin-40">
+	<div class="well bg-image-1">
+		<div class="bg-image-2">
+			<div class="h3-font">
+				<div class="row">
+					<div class="col-md-12">
+						<?php 
+							if(isset($this->promoid)){
+								if(!empty($this->session->activePromos)) {
+									foreach ($this->session->activePromos as $promovalue) {
+								
+										if($this->promoid == $promovalue['promotion_id']){
+											echo $promovalue['promotion_content'];
+										}
+									}
+								}		
+							} ?>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+	
+<script type="text/javascript">
+    $(document).ready(function(){
+		
+    $('.home_menu').css('color','');
+    $('#headpromo').css('color','#FDD400');
+    });
+
+</script>

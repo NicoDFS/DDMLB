@@ -1,0 +1,614 @@
+<div class="container mar-top">
+	<div class="row">
+		<div class="heading text-center">
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="tab1a">
+					<h1 id="headerTitle">Account History</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container margin-40">
+
+    <div class="row">
+			
+		<div class="btn-pref btn-group btn-group-1 btn-group-justified btn-group-lg" role="group" aria-label="...">
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="favorites" class="btn btn-default btn-1" href="/account">
+					<div class="hidden-xs-1">My <br />Account</div>
+				</a>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="favorites" class="btn btn-default btn-1" href="/withdrawal">
+					<div class="hidden-xs-1"> <br />Withdrawal</div>
+				</a>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<button type="button" id="stars" class="btn btn-1 active" href="#transactions" data-toggle="tab">
+					<div class="hidden-xs-1">Account <br /> History</div>
+				</button>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a type="button" id="following" class="btn btn-default btn-1" href="/deposit">
+					<div class="hidden-xs-1"> <br />Deposit</div>
+				</a>
+			</div>
+		</div>
+	  
+	  
+		<div class="well bg-image-1">
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="transactions">
+					<div class="row mr-15-right-left">
+						<div class="bg-image-2">
+							<p class="font-medium-b">Below are all transactions associated with your account, including deposits, withdrawals, transfers to fund games, payouts, and bonuses. If you have any questions on your account history, please contact <a href="#">support@draftdaily.com</a></p>
+							<h3>Transaction Details</h3>
+							<div class="row mr-15-right-left">
+								<div class="col-md-12 pd-15"> 
+									<!-- Nav tabs -->
+									<div class="card">
+										<ul class="nav nav-tabs nav-tabs-1" role="tablist">                
+											<li role="presentation" class="active"><a data-toggle="tab" data-tid="0" href="#All">All Transaction</a></li>
+											<li role="presentation"><a data-toggle="tab" data-tid="5" href="#Winnings">Winnings</a></li>
+											<li role="presentation"><a data-toggle="tab" data-tid="6" href="#Entry">Entry Fees </a></li>
+											<li role="presentation"><a data-toggle="tab" data-tid="2" href="#Withdrawals">Withdrawals </a></li>
+											<li role="presentation"><a data-toggle="tab" data-tid="1" href="#Deposits">Deposits</a></li>
+											<li role="presentation"><a data-toggle="tab" data-tid="3" href="#Bonus">Bonus Awards</a></li>
+										</ul>
+                      
+										<!-- Tab panes -->
+										<div class="tab-content">
+											
+											<div role="tabpanel" class="tab-pane active" id="All">							
+												<table class="footable transaction_tbl">
+													<thead>
+														<tr class="header-img">
+															<th data-class="expand">DATE</th>
+															<th>TYPE</th>
+															<th>AMOUNT</th>
+															<th data-hide="phone,tablet">DESCRIPTION</th>
+															<th data-hide="phone,tablet">STATUS</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php
+														if (isset($this->all_data)) {
+															foreach ($this->all_data as $detail) { ?>
+																<tr>
+																	<td>
+																		<?php 
+																			if (isset($detail['transaction_date'])) {
+																				echo $detail['transaction_date'];
+																			} 	
+																		?>
+																	</td>
+																	<td>
+																		<?php 
+																			if (isset($detail['transaction_type'])) {
+																				echo $detail['transaction_type'];
+																			} 
+																		?>
+																	</td>
+																	
+																	<td>
+																		<?php 
+																			if (isset($detail['transaction_amount'])) {
+																				echo $detail['transaction_amount'];
+																			}
+																		?>
+																	</td>
+																	
+																	<td>
+																		<?php 
+																			if ((isset($detail['description'])) && (is_string($detail['description']))) {
+																				echo $detail['description'];
+																			} else {
+																				echo "N/A";
+																			} 
+																		?>
+																	</td>
+																	
+																	<td>
+																		<?php
+																		if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																			switch ($detail['status']):
+																				case 0 : echo "Pending";
+																					break;
+																				case 1: echo "Completed";
+																			endswitch;
+																		}else {
+																			echo "N/A";
+																		}
+																		?>
+																	</td>
+																</tr>
+														<?php }
+														
+														}else { ?>
+																	
+															<tr><td  colspan="6">You dont have any transations in selected Time period</td></tr>
+																
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+											
+											<div role="tabpanel" class="tab-pane" id="Winnings">							
+												<table class="footable transaction_tbl">
+													<thead>
+														<tr class="header-img">
+															<th data-class="expand">DATE</th>
+															<th>TYPE</th>
+															<th>AMOUNT</th>
+															<th data-hide="phone,tablet">DESCRIPTION</th>
+															<th data-hide="phone,tablet">STATUS</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $winrow= False;
+														if (isset($this->win_data)) {
+															foreach ($this->win_data as $detail) { 
+																	$winrow= True; ?>
+																	<tr>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_date'])) {
+																					echo $detail['transaction_date'];
+																				} 	
+																			?>
+																		</td>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_type'])) {
+																					echo $detail['transaction_type'];
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_amount'])) {
+																					echo $detail['transaction_amount'];
+																				}
+																			?>
+																		</td>
+																		
+																		
+																		
+																		<td>
+																			<?php 
+																				if ((isset($detail['description'])) && (is_string($detail['description']))) {
+																					echo $detail['description'];
+																				} else {
+																					echo "N/A";
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php
+																			if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																				switch ($detail['status']):
+																					case 0 : echo "Pending";
+																						break;
+																					case 1: echo "Completed";
+																				endswitch;
+																			}else {
+																				echo "N/A";
+																			}
+																			?>
+																		</td>
+																	</tr>
+															<?php  }
+														
+														} if(!$winrow){  ?>
+																	
+															<tr><td  colspan="6">You dont have any transations in section</td></tr>
+																
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+											
+											<div role="tabpanel" class="tab-pane" id="Entry">							
+												<table class="footable transaction_tbl">
+													<thead>
+														<tr class="header-img">
+															<th data-class="expand">DATE</th>
+															<th>TYPE</th>
+															<th>AMOUNT</th>
+															<th data-hide="phone,tablet">DESCRIPTION</th>
+															<th data-hide="phone,tablet">STATUS</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $entryrow= False;
+														if (isset($this->entry_data)) {
+															foreach ($this->entry_data as $detail) { 
+																	$entryrow= True; ?>
+																	<tr>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_date'])) {
+																					echo $detail['transaction_date'];
+																				} 	
+																			?>
+																		</td>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_type'])) {
+																					echo $detail['transaction_type'];
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_amount'])) {
+																					echo $detail['transaction_amount'];
+																				}
+																			?>
+																		</td>
+																		
+																		
+																		
+																		<td>
+																			<?php 
+																				if ((isset($detail['description'])) && (is_string($detail['description']))) {
+																					echo $detail['description'];
+																				} else {
+																					echo "N/A";
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php
+																			if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																				switch ($detail['status']):
+																					case 0 : echo "Pending";
+																						break;
+																					case 1: echo "Completed";
+																				endswitch;
+																			}else {
+																				echo "N/A";
+																			}
+																			?>
+																		</td>
+																	</tr>
+															<?php  }
+														
+														} if(!$entryrow){  ?>
+																	
+															<tr><td  colspan="6">You dont have any transations in section</td></tr>
+																
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+											
+											<div role="tabpanel" class="tab-pane" id="Withdrawals">							
+												<table class="footable transaction_tbl">
+													<thead>
+														<tr class="header-img">
+															<th data-class="expand">DATE</th>
+															<th>TYPE</th>
+															<th>AMOUNT</th>
+															<th data-hide="phone,tablet">DESCRIPTION</th>
+															<th data-hide="phone,tablet">STATUS</th>
+															<th data-hide="phone,tablet">ACTION</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $wdrrow= False;
+														
+														if (isset($this->withdrawRequest)) {
+															foreach ($this->withdrawRequest as $detail) { 
+																
+																	$wdrrow= True; ?>
+																	<tr>
+																		<td>
+																			<?php 
+																				if (isset($detail['request_date'])) {
+																					echo date('Y-m-d',strtotime($detail['request_date']));
+																				} 	
+																			?>
+																		</td>
+																		<td>Withdraw DFSCoin</td>
+																		
+																		<td>
+																			<?php 
+																				if (isset($detail['requested_amt'])) {
+																					echo $detail['requested_amt'];
+																				}
+																			?>
+																		</td>
+																		
+																		<td>Submitted for admin approvals</td>
+																		
+																		<td>
+																			<?php
+																			if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																				switch ($detail['status']):
+																					case 0 : echo "Pending";
+																						break;
+																					case 1: echo "Completed";
+																				endswitch;
+																			}else {
+																				echo "N/A";
+																			} 
+																			?>
+																			
+																		</td>
+																			
+																		<td>
+																			<a class="btn-success btn-lg-1 btn3d" href="/transaction?wid=<?php echo $detail['withdrawal_id']?>" type="button">Cancel</a>
+																		</td>
+																	</tr>
+															<?php  }
+														
+														}
+														
+														if (isset($this->withdraw_data)) {
+															foreach ($this->withdraw_data as $detail) { 
+																
+																	$wdrrow= True; ?>
+																	<tr>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_date'])) {
+																					echo $detail['transaction_date'];
+																				} 	
+																			?>
+																		</td>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_type'])) {
+																					echo $detail['transaction_type'];
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_amount'])) {
+																					echo $detail['transaction_amount'];
+																				}
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if ((isset($detail['description'])) && (is_string($detail['description']))) {
+																					echo $detail['description'];
+																				} else {
+																					echo "N/A";
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php
+																			if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																				switch ($detail['status']):
+																					case 0 : echo "Pending";
+																						break;
+																					case 1: echo "Completed";
+																				endswitch;
+																			}else {
+																				echo "N/A";
+																			}
+																			?>
+																		</td>
+																		<td>N/A</td>
+																	</tr>
+															<?php  }
+														
+														} 
+														
+														if(!$wdrrow){  ?>
+																	
+															<tr><td  colspan="6">You dont have any transations in section</td></tr>
+																
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+											
+											<div role="tabpanel" class="tab-pane" id="Deposits">							
+												<table class="footable transaction_tbl">
+													<thead>
+														<tr class="header-img">
+															<th data-class="expand">DATE</th>
+															<th>TYPE</th>
+															<th>AMOUNT</th>
+															<th data-hide="phone,tablet">DESCRIPTION</th>
+															<th data-hide="phone,tablet">STATUS</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $deposit= False;
+														if (isset($this->deposit_data)) {
+															foreach ($this->deposit_data as $detail) { 
+																	$deposit= True; ?>
+																	<tr>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_date'])) {
+																					echo $detail['transaction_date'];
+																				} 	
+																			?>
+																		</td>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_type'])) {
+																					echo $detail['transaction_type'];
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_amount'])) {
+																					echo $detail['transaction_amount'];
+																				}
+																			?>
+																		</td>
+																		
+																		
+																		<td>
+																			<?php 
+																				if ((isset($detail['description'])) && (is_string($detail['description']))) {
+																					echo $detail['description'];
+																				} else {
+																					echo "N/A";
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php
+																			if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																				switch ($detail['status']):
+																					case 0 : echo "Pending";
+																						break;
+																					case 1: echo "Completed";
+																				endswitch;
+																			}else {
+																				echo "N/A";
+																			}
+																			?>
+																		</td>
+																	</tr>
+															<?php }
+														
+														} if(!$deposit){  ?>
+																	
+															<tr><td  colspan="6">You dont have any transations in section</td></tr>
+																
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+											
+											<div role="tabpanel" class="tab-pane" id="Bonus">							
+												<table class="footable transaction_tbl">
+													<thead>
+														<tr class="header-img">
+															<th data-class="expand">DATE</th>
+															<th>TYPE</th>
+															<th>AMOUNT</th>
+															<th data-hide="phone,tablet">DESCRIPTION</th>
+															<th data-hide="phone,tablet">STATUS</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $bonusrow= False;
+														if (isset($this->bonus_data)) {
+															foreach ($this->bonus_data as $detail) { 
+																	$bonusrow= True; ?>
+																	<tr>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_date'])) {
+																					echo $detail['transaction_date'];
+																				} 	
+																			?>
+																		</td>
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_type'])) {
+																					echo $detail['transaction_type'];
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if (isset($detail['transaction_amount'])) {
+																					echo $detail['transaction_amount'];
+																				}
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php 
+																				if ((isset($detail['description'])) && (is_string($detail['description']))) {
+																					echo $detail['description'];
+																				} else {
+																					echo "N/A";
+																				} 
+																			?>
+																		</td>
+																		
+																		<td>
+																			<?php
+																			if ((isset($detail['status'])) && (is_numeric($detail['status']))) {
+																				switch ($detail['status']):
+																					case 0 : echo "Pending";
+																						break;
+																					case 1: echo "Completed";
+																				endswitch;
+																			}else {
+																				echo "N/A";
+																			}
+																			?>
+																		</td>
+																	</tr>
+															<?php   }
+														
+														} if(!$bonusrow){  ?>
+																	
+															<tr><td  colspan="6">You dont have any transations in section</td></tr>
+																
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mr-15-right-left">
+						<div class="bg-image-3">
+							<p class="font-medium-a pull-left">DFSCoin is available on <a href="#">CoinExchange.io</a></p>
+							
+							<p class="font-medium-a text-right"> To Buy DFSCoin wtih BTC And Add to your account <a href="javascript:void(0);">Click here</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $(document.body).on('change','#transactionDay', function(e){
+		
+	});
+	
+	$.fn.dataTable.ext.classes.sPageButton = 'btn btn-custom';
+	
+	$(document).ready(function() {
+        $('.transaction_tbl').dataTable({
+            "bPaginate": true,
+            "bFilter": false,
+            "bLengthChange": false,
+            "pageLength":10,
+			"order": [[ 0, "desc" ]],
+            "bInfo": true
+        });
+    });
+
+});
+</script>
